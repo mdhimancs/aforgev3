@@ -1,0 +1,7 @@
+{
+  "name": "AgentForge",
+  "description": "AI-powered Cyber Defense & SecOps Fusion Center featuring Lockheed Martin Cyber Kill Chain (7-stage pipeline), Bruce Schneier Attack Trees (AND/OR graphs & choke-point analysis), Hypothesis-Driven Threat Hunting (KQL/SPL/Sigma/YARA-L), SIEM, SOAR, XDR, and Autonomous Red-Team PenTesting with full light and dark mode support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
