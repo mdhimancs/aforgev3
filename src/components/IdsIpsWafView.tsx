@@ -657,52 +657,52 @@ export function IdsIpsWafView() {
         {/* Operational Dashboard Tabs Bar */}
         <div className={`p-3 rounded-xl border space-y-3 ${isLight ? 'bg-white border-slate-200 shadow-xs' : 'bg-slate-900 border-slate-800'}`}>
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-2">
-            <div className="flex items-center gap-1.5 overflow-x-auto">
+            <div className="flex items-center gap-2 overflow-x-auto">
               <button
                 onClick={() => setActiveTab('waf')}
-                className={`px-3.5 py-2 rounded-t-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border-b-2 ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border shadow-2xs ${
                   activeTab === 'waf'
-                    ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                    : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                    ? 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950/80 dark:text-amber-200 dark:border-amber-700 font-extrabold'
+                    : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
-                <ShieldAlert className={`w-4 h-4 ${activeTab === 'waf' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+                <ShieldAlert className={`w-4 h-4 ${activeTab === 'waf' ? 'text-amber-600 dark:text-amber-400' : 'text-slate-500'}`} />
                 <span>WAF Engine & OWASP Rules ({wafRules.length})</span>
               </button>
  
               <button
                 onClick={() => setActiveTab('ids_ips')}
-                className={`px-3.5 py-2 rounded-t-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border-b-2 ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border shadow-2xs ${
                   activeTab === 'ids_ips'
-                    ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                    : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                    ? 'bg-cyan-100 text-cyan-900 border-cyan-300 dark:bg-cyan-950/80 dark:text-cyan-200 dark:border-cyan-700 font-extrabold'
+                    : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
-                <Cpu className={`w-4 h-4 ${activeTab === 'ids_ips' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+                <Cpu className={`w-4 h-4 ${activeTab === 'ids_ips' ? 'text-cyan-600 dark:text-cyan-400' : 'text-slate-500'}`} />
                 <span>IDS / IPS Network Sensor ({idsSignatures.length})</span>
               </button>
  
               <button
                 onClick={() => setActiveTab('logs')}
-                className={`px-3.5 py-2 rounded-t-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border-b-2 ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border shadow-2xs ${
                   activeTab === 'logs'
-                    ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                    : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                    ? 'bg-purple-100 text-purple-900 border-purple-300 dark:bg-purple-950/80 dark:text-purple-200 dark:border-purple-700 font-extrabold'
+                    : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
-                <Terminal className={`w-4 h-4 ${activeTab === 'logs' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+                <Terminal className={`w-4 h-4 ${activeTab === 'logs' ? 'text-purple-600 dark:text-purple-400' : 'text-slate-500'}`} />
                 <span>Live Interception Logs ({eventLogs.length})</span>
               </button>
  
               <button
                 onClick={() => setActiveTab('ban_list')}
-                className={`px-3.5 py-2 rounded-t-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border-b-2 ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border shadow-2xs ${
                   activeTab === 'ban_list'
-                    ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                    : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                    ? 'bg-rose-100 text-rose-900 border-rose-300 dark:bg-rose-950/80 dark:text-rose-200 dark:border-rose-700 font-extrabold'
+                    : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
-                <Ban className={`w-4 h-4 ${activeTab === 'ban_list' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+                <Ban className={`w-4 h-4 ${activeTab === 'ban_list' ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500'}`} />
                 <span>Dynamic Banned IPs ({blockedIps.length})</span>
               </button>
             </div>

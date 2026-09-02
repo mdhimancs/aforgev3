@@ -476,52 +476,52 @@ export const AppSecDashboard: React.FC = () => {
       </div>
 
       {/* Main AppSec Navigation Tabs */}
-      <div className="px-6 border-b border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-900/80 flex items-center justify-between shrink-0 overflow-x-auto pt-2">
-         <div className="flex items-center gap-1.5">
+      <div className="px-6 border-b border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-900/80 flex items-center justify-between shrink-0 overflow-x-auto py-2.5">
+         <div className="flex items-center gap-2">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-xs font-bold rounded-t-lg transition-all cursor-pointer border-b-2 ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'overview'
-                ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                ? 'bg-blue-100 text-blue-900 border-blue-300 dark:bg-blue-950/80 dark:text-blue-200 dark:border-blue-700 font-extrabold'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
-            <ShieldCheck className={`w-4 h-4 ${activeTab === 'overview' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+            <ShieldCheck className={`w-4 h-4 ${activeTab === 'overview' ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500'}`} />
             <span>Executive Overview</span>
           </button>
  
           <button
             onClick={() => setActiveTab('aegis')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-xs font-bold rounded-t-lg transition-all cursor-pointer border-b-2 ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'aegis'
-                ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                ? 'bg-emerald-100 text-emerald-900 border-emerald-300 dark:bg-emerald-950/80 dark:text-emerald-200 dark:border-emerald-700 font-extrabold'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
             <div className="relative flex items-center">
-              <Shield className={`w-4 h-4 ${activeTab === 'aegis' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+              <Shield className={`w-4 h-4 ${activeTab === 'aegis' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500'}`} />
               <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
             </div>
-            <span className={`font-bold ${activeTab === 'aegis' ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500 dark:text-slate-400'}`}>
+            <span>
               AEGIS Defense Shield
             </span>
-            <span className="px-1.5 py-0.2 bg-emerald-200 text-emerald-900 text-[10px] rounded font-bold border border-emerald-300 uppercase">
+            <span className="px-1.5 py-0.2 bg-emerald-200/90 text-emerald-900 text-[10px] rounded font-bold border border-emerald-300 uppercase">
               ACTIVE
             </span>
           </button>
  
           <button
             onClick={() => setActiveTab('sast')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-xs font-bold rounded-t-lg transition-all cursor-pointer border-b-2 ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'sast'
-                ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                ? 'bg-purple-100 text-purple-900 border-purple-300 dark:bg-purple-950/80 dark:text-purple-200 dark:border-purple-700 font-extrabold'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
-            <Code2 className={`w-4 h-4 ${activeTab === 'sast' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+            <Code2 className={`w-4 h-4 ${activeTab === 'sast' ? 'text-purple-600 dark:text-purple-400' : 'text-slate-500'}`} />
             <span>SAST (Static Code)</span>
-            <span className={`px-1.5 py-0.2 text-[10px] rounded font-mono font-bold ${
-              activeTab === 'sast' ? 'bg-rose-100 text-rose-800 dark:bg-rose-900/80 dark:text-rose-200' : 'bg-slate-200 text-slate-600 dark:bg-slate-700/80'
+            <span className={`px-1.5 py-0.2 text-[10px] rounded font-mono font-bold border ${
+              activeTab === 'sast' ? 'bg-purple-200 text-purple-900 border-purple-300 dark:bg-purple-900/80 dark:text-purple-200' : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'
             }`}>
               {activeSastList.length}
             </span>
@@ -529,16 +529,16 @@ export const AppSecDashboard: React.FC = () => {
  
           <button
             onClick={() => setActiveTab('dast')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-xs font-bold rounded-t-lg transition-all cursor-pointer border-b-2 ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'dast'
-                ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                ? 'bg-cyan-100 text-cyan-900 border-cyan-300 dark:bg-cyan-950/80 dark:text-cyan-200 dark:border-cyan-700 font-extrabold'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
-            <Globe className={`w-4 h-4 ${activeTab === 'dast' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+            <Globe className={`w-4 h-4 ${activeTab === 'dast' ? 'text-cyan-600 dark:text-cyan-400' : 'text-slate-500'}`} />
             <span>DAST (Dynamic API)</span>
-            <span className={`px-1.5 py-0.2 text-[10px] rounded font-mono font-bold ${
-              activeTab === 'dast' ? 'bg-rose-100 text-rose-800 dark:bg-rose-900/80 dark:text-rose-200' : 'bg-slate-200 text-slate-600 dark:bg-slate-700/80'
+            <span className={`px-1.5 py-0.2 text-[10px] rounded font-mono font-bold border ${
+              activeTab === 'dast' ? 'bg-cyan-200 text-cyan-900 border-cyan-300 dark:bg-cyan-900/80 dark:text-cyan-200' : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'
             }`}>
               {currentProject.dastProbes.length}
             </span>
@@ -546,16 +546,16 @@ export const AppSecDashboard: React.FC = () => {
  
           <button
             onClick={() => setActiveTab('sca')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-xs font-bold rounded-t-lg transition-all cursor-pointer border-b-2 ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'sca'
-                ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                ? 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950/80 dark:text-amber-200 dark:border-amber-700 font-extrabold'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
-            <Package className={`w-4 h-4 ${activeTab === 'sca' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+            <Package className={`w-4 h-4 ${activeTab === 'sca' ? 'text-amber-600 dark:text-amber-400' : 'text-slate-500'}`} />
             <span>SCA & Dependencies</span>
-            <span className={`px-1.5 py-0.2 text-[10px] rounded font-mono font-bold ${
-              activeTab === 'sca' ? 'bg-rose-100 text-rose-800 dark:bg-rose-900/80 dark:text-rose-200' : 'bg-slate-200 text-slate-600 dark:bg-slate-700/80'
+            <span className={`px-1.5 py-0.2 text-[10px] rounded font-mono font-bold border ${
+              activeTab === 'sca' ? 'bg-amber-200 text-amber-900 border-amber-300 dark:bg-amber-900/80 dark:text-amber-200' : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'
             }`}>
               {allSca.length} CVEs
             </span>
@@ -563,16 +563,16 @@ export const AppSecDashboard: React.FC = () => {
  
           <button
             onClick={() => setActiveTab('secrets_iac')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-xs font-bold rounded-t-lg transition-all cursor-pointer border-b-2 ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'secrets_iac'
-                ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                ? 'bg-rose-100 text-rose-900 border-rose-300 dark:bg-rose-950/80 dark:text-rose-200 dark:border-rose-700 font-extrabold'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
-            <Key className={`w-4 h-4 ${activeTab === 'secrets_iac' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+            <Key className={`w-4 h-4 ${activeTab === 'secrets_iac' ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500'}`} />
             <span>Secrets & IaC</span>
-            <span className={`px-1.5 py-0.2 text-[10px] rounded font-mono font-bold ${
-              activeTab === 'secrets_iac' ? 'bg-rose-100 text-rose-800 dark:bg-rose-900/80 dark:text-rose-200' : 'bg-slate-200 text-slate-600 dark:bg-slate-700/80'
+            <span className={`px-1.5 py-0.2 text-[10px] rounded font-mono font-bold border ${
+              activeTab === 'secrets_iac' ? 'bg-rose-200 text-rose-900 border-rose-300 dark:bg-rose-900/80 dark:text-rose-200' : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'
             }`}>
               {allSecrets.length + allIac.length}
             </span>
@@ -580,25 +580,25 @@ export const AppSecDashboard: React.FC = () => {
  
           <button
             onClick={() => setActiveTab('ai_copilot')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-xs font-bold rounded-t-lg transition-all cursor-pointer border-b-2 ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'ai_copilot'
-                ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                ? 'bg-indigo-100 text-indigo-900 border-indigo-300 dark:bg-indigo-950/80 dark:text-indigo-200 dark:border-indigo-700 font-extrabold'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
-            <Sparkles className={`w-4 h-4 ${activeTab === 'ai_copilot' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'} animate-pulse`} />
+            <Sparkles className={`w-4 h-4 ${activeTab === 'ai_copilot' ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-500'} animate-pulse`} />
             <span>AI Security Copilot</span>
           </button>
  
           <button
             onClick={() => setActiveTab('reports')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-xs font-bold rounded-t-lg transition-all cursor-pointer border-b-2 ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'reports'
-                ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                ? 'bg-teal-100 text-teal-900 border-teal-300 dark:bg-teal-950/80 dark:text-teal-200 dark:border-teal-700 font-extrabold'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
-            <FileText className={`w-4 h-4 ${activeTab === 'reports' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+            <FileText className={`w-4 h-4 ${activeTab === 'reports' ? 'text-teal-600 dark:text-teal-400' : 'text-slate-500'}`} />
             <span>Reports & CI/CD Gate</span>
           </button>
         </div>

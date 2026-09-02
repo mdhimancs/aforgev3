@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Play, Rocket, Code2, ChevronDown, Sparkles, Check, RefreshCw, ShieldAlert, LayoutGrid, ShieldCheck, Terminal, Sun, Moon, Zap, FileCheck2, Lightbulb } from 'lucide-react';
+import { Play, Rocket, Code2, ChevronDown, Sparkles, Check, RefreshCw, ShieldAlert, LayoutGrid, ShieldCheck, Terminal, Sun, Moon, Zap, FileCheck2, Lightbulb, BookOpen } from 'lucide-react';
 import { AgentWorkflow } from '../types';
 import { useTheme } from '../context/ThemeContext';
 
@@ -7,8 +7,8 @@ interface NavbarProps {
   currentWorkflow: AgentWorkflow;
   allWorkflows: AgentWorkflow[];
   onSelectWorkflow: (workflow: AgentWorkflow) => void;
-  activeView: 'builder' | 'security_lab' | 'appsec_scanner' | 'vapt' | 'secops' | 'grc_compliance';
-  onChangeView: (view: 'builder' | 'security_lab' | 'appsec_scanner' | 'vapt' | 'secops' | 'grc_compliance') => void;
+  activeView: 'builder' | 'security_lab' | 'appsec_scanner' | 'vapt' | 'secops' | 'grc_compliance' | 'blog';
+  onChangeView: (view: 'builder' | 'security_lab' | 'appsec_scanner' | 'vapt' | 'secops' | 'grc_compliance' | 'blog') => void;
   onDeploy: () => void;
   onExportCode: () => void;
   onTestRun: () => void;
@@ -212,6 +212,20 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <LayoutGrid className="w-3.5 h-3.5" />
           <span>Canvas</span>
+        </button>
+
+        {/* Blog Reader */}
+        <button
+          id="tab-blog-view"
+          onClick={() => onChangeView('blog')}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
+            activeView === 'blog'
+              ? 'bg-blue-700 text-white border-blue-800 shadow-2xs'
+              : 'bg-white/80 text-slate-700 border-slate-300 hover:bg-white'
+          }`}
+        >
+          <BookOpen className="w-3.5 h-3.5" />
+          <span>Blog</span>
         </button>
       </div>
 

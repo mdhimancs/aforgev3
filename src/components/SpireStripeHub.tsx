@@ -102,27 +102,27 @@ export function SpireStripeHub() {
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex items-center bg-slate-200 dark:bg-slate-800 p-1 rounded-xl">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => setActiveTab('SPIRE')}
-            className={`flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all border shadow-2xs cursor-pointer ${
               activeTab === 'SPIRE'
-                ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                ? 'bg-indigo-100 text-indigo-900 border-indigo-300 dark:bg-indigo-950/80 dark:text-indigo-200 dark:border-indigo-700 font-extrabold'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
-            <Server className="w-3.5 h-3.5" />
+            <Server className={`w-3.5 h-3.5 ${activeTab === 'SPIRE' ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-500'}`} />
             <span>SPIRE Identity Mesh</span>
           </button>
           <button
             onClick={() => setActiveTab('STRIPE')}
-            className={`flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all border shadow-2xs cursor-pointer ${
               activeTab === 'STRIPE'
-                ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                ? 'bg-emerald-100 text-emerald-900 border-emerald-300 dark:bg-emerald-950/80 dark:text-emerald-200 dark:border-emerald-700 font-extrabold'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
-            <CreditCard className="w-3.5 h-3.5" />
+            <CreditCard className={`w-3.5 h-3.5 ${activeTab === 'STRIPE' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500'}`} />
             <span>Stripe Subscriptions & Billing</span>
           </button>
         </div>

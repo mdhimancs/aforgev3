@@ -192,15 +192,15 @@ export function OsintReconView() {
       </div>
 
       {/* Navigation Sub-Tabs */}
-      <div className={`px-4 pt-2 border-b flex items-center gap-1 overflow-x-auto ${isLight ? 'bg-slate-200/50 border-slate-200' : 'bg-slate-900 border-slate-800'}`}>
+      <div className={`px-4 py-2 border-b flex items-center gap-2 overflow-x-auto ${isLight ? 'bg-slate-200/50 border-slate-200' : 'bg-slate-900 border-slate-800'}`}>
         {[
-          { id: 'OVERVIEW', label: 'Attack Surface Summary', icon: Activity },
-          { id: 'SUBDOMAINS', label: `Subdomains (${report.subdomains.length})`, icon: Server },
-          { id: 'DNS_WHOIS', label: `DNS & WHOIS (${report.dnsRecords.length})`, icon: Database },
-          { id: 'BREACHES', label: `Breaches & Leaks (${report.breachRecords.length})`, icon: ShieldAlert },
-          { id: 'PORTS', label: `Port Exposures (${report.portExposures.length})`, icon: Crosshair },
-          { id: 'EMPLOYEES', label: `Exposed Staff (${report.employeeFootprint.length})`, icon: Users },
-          { id: 'DOSSIER', label: 'AI Executive Dossier', icon: FileText }
+          { id: 'OVERVIEW', label: 'Attack Surface Summary', icon: Activity, activeClass: 'bg-blue-100 text-blue-900 border-blue-300 dark:bg-blue-950/80 dark:text-blue-200 dark:border-blue-700', iconColor: 'text-blue-600 dark:text-blue-400' },
+          { id: 'SUBDOMAINS', label: `Subdomains (${report.subdomains.length})`, icon: Server, activeClass: 'bg-cyan-100 text-cyan-900 border-cyan-300 dark:bg-cyan-950/80 dark:text-cyan-200 dark:border-cyan-700', iconColor: 'text-cyan-600 dark:text-cyan-400' },
+          { id: 'DNS_WHOIS', label: `DNS & WHOIS (${report.dnsRecords.length})`, icon: Database, activeClass: 'bg-purple-100 text-purple-900 border-purple-300 dark:bg-purple-950/80 dark:text-purple-200 dark:border-purple-700', iconColor: 'text-purple-600 dark:text-purple-400' },
+          { id: 'BREACHES', label: `Breaches & Leaks (${report.breachRecords.length})`, icon: ShieldAlert, activeClass: 'bg-rose-100 text-rose-900 border-rose-300 dark:bg-rose-950/80 dark:text-rose-200 dark:border-rose-700', iconColor: 'text-rose-600 dark:text-rose-400' },
+          { id: 'PORTS', label: `Port Exposures (${report.portExposures.length})`, icon: Crosshair, activeClass: 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950/80 dark:text-amber-200 dark:border-amber-700', iconColor: 'text-amber-600 dark:text-amber-400' },
+          { id: 'EMPLOYEES', label: `Exposed Staff (${report.employeeFootprint.length})`, icon: Users, activeClass: 'bg-indigo-100 text-indigo-900 border-indigo-300 dark:bg-indigo-950/80 dark:text-indigo-200 dark:border-indigo-700', iconColor: 'text-indigo-600 dark:text-indigo-400' },
+          { id: 'DOSSIER', label: 'AI Executive Dossier', icon: FileText, activeClass: 'bg-teal-100 text-teal-900 border-teal-300 dark:bg-teal-950/80 dark:text-teal-200 dark:border-teal-700', iconColor: 'text-teal-600 dark:text-teal-400' }
         ].map(tab => {
           const IconComponent = tab.icon;
           const isSelected = activeTab === tab.id;
@@ -208,13 +208,13 @@ export function OsintReconView() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-t-lg transition-all border-b-2 cursor-pointer ${
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all border shadow-2xs cursor-pointer whitespace-nowrap ${
                 isSelected
-                  ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                  : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                  ? `${tab.activeClass} font-extrabold`
+                  : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
               }`}
             >
-              <IconComponent className={`w-3.5 h-3.5 ${isSelected ? 'text-rose-500 dark:text-rose-400' : 'text-slate-400 dark:text-slate-500'}`} />
+              <IconComponent className={`w-3.5 h-3.5 ${isSelected ? tab.iconColor : 'text-slate-500'}`} />
               <span>{tab.label}</span>
             </button>
           );

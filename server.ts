@@ -1812,6 +1812,98 @@ Return a JSON object with:
     }
   });
 
+  // ---------------- SYSTEM DESIGN BLOG ARCHIVE & REPLICA API ----------------
+  app.get("/api/blog/posts", (req, res) => {
+    try {
+      const fullPath = path.join(process.cwd(), "public/data/system_design_blog_full.json");
+      if (!fs.existsSync(fullPath)) {
+        return res.status(404).json({ error: "Blog data not found" });
+      }
+      const raw = fs.readFileSync(fullPath, "utf-8");
+      const data = JSON.parse(raw);
+      const { q, category, systemDesignOnly } = req.query;
+
+      let filtered = data.posts;
+      if (systemDesignOnly === "true") {
+        filtered = filtered.filter((p: any) => p.isSystemDesign);
+      }
+      if (category && typeof category === "string" && category !== "ALL") {
+        filtered = filtered.filter((p: any) => p.categories.includes(category));
+      }
+      if (q && typeof q === "string" && q.trim()) {
+        const query = q.toLowerCase().trim();
+        filtered = filtered.filter((p: any) =>
+          p.title.toLowerCase().includes(query) ||
+          p.excerpt.toLowerCase().includes(query) ||
+          p.categories.some((c: string) => c.toLowerCase().includes(query))
+        );
+      }
+
+      // Return summaries
+      const summaries = filtered.map((p: any) => ({
+        id: p.id,
+        slug: p.slug,
+        title: p.title,
+        date: p.date,
+        formattedDate: p.formattedDate,
+        year: p.year,
+        categories: p.categories,
+        excerpt: p.excerpt,
+        wordCount: p.wordCount,
+        readingTime: p.readingTime,
+        readingTimeMinutes: p.readingTimeMinutes,
+        originalUrl: p.originalUrl,
+        coverImage: p.coverImage,
+        isSystemDesign: p.isSystemDesign
+      }));
+
+      return res.json({
+        site: data.site,
+        categories: data.categories,
+        total: summaries.length,
+        posts: summaries
+      });
+    } catch (err: any) {
+      return res.status(500).json({ error: err.message || "Failed to fetch blog posts" });
+    }
+  });
+
+  app.get("/api/blog/posts/:slug", (req, res) => {
+    try {
+      const fullPath = path.join(process.cwd(), "public/data/system_design_blog_full.json");
+      if (!fs.existsSync(fullPath)) {
+        return res.status(404).json({ error: "Blog data not found" });
+      }
+      const raw = fs.readFileSync(fullPath, "utf-8");
+      const data = JSON.parse(raw);
+      const post = data.posts.find((p: any) => p.slug === req.params.slug);
+      if (!post) {
+        return res.status(404).json({ error: "Post not found" });
+      }
+      return res.json(post);
+    } catch (err: any) {
+      return res.status(500).json({ error: err.message || "Failed to fetch post" });
+    }
+  });
+
+  app.get("/api/blog/download/json", (req, res) => {
+    const filePath = path.join(process.cwd(), "public/data/system_design_blog_full.json");
+    if (fs.existsSync(filePath)) {
+      res.download(filePath, "system_design_blog_full_dataset.json");
+    } else {
+      res.status(404).json({ error: "File not found" });
+    }
+  });
+
+  app.get("/api/blog/download/zip", (req, res) => {
+    const filePath = path.join(process.cwd(), "public/data/system_design_blog_markdown.zip");
+    if (fs.existsSync(filePath)) {
+      res.download(filePath, "system_design_blog_markdown_archive.zip");
+    } else {
+      res.status(404).json({ error: "File not found" });
+    }
+  });
+
   // Health check endpoint
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok", app: "AgentForge" });

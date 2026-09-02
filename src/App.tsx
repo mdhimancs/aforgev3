@@ -20,6 +20,7 @@ import { AppSecDashboard } from './components/AppSecDashboard';
 import { VaptCenter } from './components/VaptCenter';
 import { AiSecOpsNexus } from './components/AiSecOpsNexus';
 import { GrcAuditView } from './components/GrcAuditView';
+import { BlogReader } from './components/BlogReader/BlogReader';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 
 function AppContent() {
@@ -29,8 +30,8 @@ function AppContent() {
     PRESET_WORKFLOWS[0].nodes.find((n) => n.type === 'llm')?.id || null
   );
 
-  // View state: 'secops' | 'vapt' | 'appsec_scanner' | 'grc_compliance' | 'security_lab' | 'builder'
-  const [activeView, setActiveView] = useState<'secops' | 'vapt' | 'appsec_scanner' | 'grc_compliance' | 'security_lab' | 'builder'>('secops');
+  // View state: 'secops' | 'vapt' | 'appsec_scanner' | 'grc_compliance' | 'security_lab' | 'builder' | 'blog'
+  const [activeView, setActiveView] = useState<'secops' | 'vapt' | 'appsec_scanner' | 'grc_compliance' | 'security_lab' | 'builder' | 'blog'>('blog');
 
   // Modals state
   const [isDeployOpen, setIsDeployOpen] = useState(false);
@@ -342,6 +343,10 @@ function AppContent() {
       ) : activeView === 'security_lab' ? (
         <div className="flex flex-1 overflow-hidden">
           <SecurityAttackLab workflow={activeWorkflow} />
+        </div>
+      ) : activeView === 'blog' ? (
+        <div className="flex flex-1 overflow-hidden">
+          <BlogReader />
         </div>
       ) : (
         <div className="flex flex-1 overflow-hidden">

@@ -275,52 +275,52 @@ export const VaptCenter: React.FC = () => {
         </div>
 
         {/* Sub-Navigation Tabs */}
-        <div className="flex items-center gap-2 mt-4 border-b border-slate-200 dark:border-slate-800 pb-0.5 overflow-x-auto">
+        <div className="flex items-center gap-2 mt-4 pt-2 border-t border-slate-200 dark:border-slate-800 pb-0.5 overflow-x-auto">
           <button
             onClick={() => setActiveTab('workbench')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-xs font-bold rounded-t-lg transition-all cursor-pointer border-b-2 ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'workbench'
-                ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                ? 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950/80 dark:text-amber-200 dark:border-amber-700 font-extrabold'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
-            <Play className={`w-3.5 h-3.5 ${activeTab === 'workbench' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+            <Play className={`w-3.5 h-3.5 ${activeTab === 'workbench' ? 'text-amber-600 dark:text-amber-400' : 'text-slate-500'}`} />
             <span>Interactive Attack Workbench</span>
           </button>
  
           <button
             onClick={() => setActiveTab('findings')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-xs font-bold rounded-t-lg transition-all cursor-pointer border-b-2 ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'findings'
-                ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                ? 'bg-rose-100 text-rose-900 border-rose-300 dark:bg-rose-950/80 dark:text-rose-200 dark:border-rose-700 font-extrabold'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
-            <ShieldAlert className={`w-3.5 h-3.5 ${activeTab === 'findings' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+            <ShieldAlert className={`w-3.5 h-3.5 ${activeTab === 'findings' ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500'}`} />
             <span>Vulnerability Tracker ({findings.length})</span>
           </button>
  
           <button
             onClick={() => setActiveTab('cvss_calc')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-xs font-bold rounded-t-lg transition-all cursor-pointer border-b-2 ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'cvss_calc'
-                ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                ? 'bg-purple-100 text-purple-900 border-purple-300 dark:bg-purple-950/80 dark:text-purple-200 dark:border-purple-700 font-extrabold'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
-            <Sliders className={`w-3.5 h-3.5 ${activeTab === 'cvss_calc' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+            <Sliders className={`w-3.5 h-3.5 ${activeTab === 'cvss_calc' ? 'text-purple-600 dark:text-purple-400' : 'text-slate-500'}`} />
             <span>CVSS v3.1 Calculator</span>
           </button>
  
           <button
             onClick={() => setActiveTab('compliance_report')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-xs font-bold rounded-t-lg transition-all cursor-pointer border-b-2 ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'compliance_report'
-                ? 'bg-slate-200/90 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border-rose-600 dark:border-rose-400 shadow-2xs font-extrabold'
-                : 'bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 hover:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-200 border-transparent'
+                ? 'bg-emerald-100 text-emerald-900 border-emerald-300 dark:bg-emerald-950/80 dark:text-emerald-200 dark:border-emerald-700 font-extrabold'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
-            <FileCode className={`w-3.5 h-3.5 ${activeTab === 'compliance_report' ? 'text-rose-500 dark:text-rose-400' : 'text-slate-500'}`} />
+            <FileCode className={`w-3.5 h-3.5 ${activeTab === 'compliance_report' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500'}`} />
             <span>Executive VAPT Report</span>
           </button>
         </div>
