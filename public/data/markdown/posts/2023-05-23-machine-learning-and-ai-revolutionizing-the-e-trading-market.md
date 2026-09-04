@@ -3,15 +3,15 @@ title: "Machine Learning and AI Revolutionizing the e-Trading Market"
 date: "2023-05-23T21:44:08+05:30"
 slug: "machine-learning-and-ai-revolutionizing-the-e-trading-market"
 categories: ["ai", "e-trading", "hft", "machine_learning"]
-original_url: "https://rishijeet.github.io/blog/machine-learning-and-ai-revolutionizing-the-e-trading-market/"
+original_url: "https://systemdesign.github.io/blog/machine-learning-and-ai-revolutionizing-the-e-trading-market/"
 word_count: 617
 reading_time: "3 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Machine Learning and AI Revolutionizing the e-Trading Market
 
-*Published on 2023-05-23 by Rishijeet Mishra | [https://rishijeet.github.io/blog/machine-learning-and-ai-revolutionizing-the-e-trading-market/](https://rishijeet.github.io/blog/machine-learning-and-ai-revolutionizing-the-e-trading-market/)*
+*Published on 2023-05-23 by System Design | [https://systemdesign.github.io/blog/machine-learning-and-ai-revolutionizing-the-e-trading-market/](https://systemdesign.github.io/blog/machine-learning-and-ai-revolutionizing-the-e-trading-market/)*
 
 The world of electronic trading (e-Trading) has undergone a profound transformation with the emergence of machine learning and artificial intelligence (AI). These technologies have revolutionized how financial markets operate, empowering traders with advanced tools and insights to make more informed decisions. In this blog, we will explore the significant impact of machine learning and AI on the e-Trading market, highlighting their transformative potential and the benefits they bring to traders and investors.
 

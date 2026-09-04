@@ -3,15 +3,15 @@ title: "Enhancing Natural Language Processing with Retrieval-Augmented Generatio
 date: "2024-01-13T20:34:07+05:30"
 slug: "enhancing-natural-language-processing-with-retrieval-augmented-generation"
 categories: ["rag", "ai", "gpt", "nlp"]
-original_url: "https://rishijeet.github.io/blog/enhancing-natural-language-processing-with-retrieval-augmented-generation/"
+original_url: "https://systemdesign.github.io/blog/enhancing-natural-language-processing-with-retrieval-augmented-generation/"
 word_count: 881
 reading_time: "4 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Enhancing Natural Language Processing with Retrieval-Augmented Generation
 
-*Published on 2024-01-13 by Rishijeet Mishra | [https://rishijeet.github.io/blog/enhancing-natural-language-processing-with-retrieval-augmented-generation/](https://rishijeet.github.io/blog/enhancing-natural-language-processing-with-retrieval-augmented-generation/)*
+*Published on 2024-01-13 by System Design | [https://systemdesign.github.io/blog/enhancing-natural-language-processing-with-retrieval-augmented-generation/](https://systemdesign.github.io/blog/enhancing-natural-language-processing-with-retrieval-augmented-generation/)*
 
 Natural Language Processing (NLP) has witnessed remarkable advancements in recent years, with the advent of sophisticated language models like GPT-3 (Generative Pre-trained Transformer 3). However, one of the challenges that still persists in NLP is the generation of coherent and contextually relevant content. Retrieval-Augmented Generation (RAG) emerges as a powerful solution to address this issue, combining the strengths of both retrieval-based and generation-based approaches.
 
@@ -19,7 +19,7 @@ Natural Language Processing (NLP) has witnessed remarkable advancements in recen
 
 Retrieval-Augmented Generation is a hybrid approach that integrates the benefits of information retrieval systems with generative models. Let's delve into the mathematical formulations of the key components of RAG.
 
-![Alt text](https://rishijeet.github.io/images/rag_new.png)
+![Alt text](https://systemdesign.github.io/images/rag_new.png)
 
  Figure: Overview of our approach. We combine a pre-trained retriever (Query Encoder + Document Index) with a pre-trained seq2seq model (Generator) and fine-tune end-to-end. For query \(x\), we use Maximum Inner Product Search (MIPS) to find the top-\(K\) documents \(z_i\). For the final prediction \(y\), we treat \(z\) as a latent variable and marginalize over seq2seq predictions given different documents. [Source: arxiv.org](https://arxiv.org/pdf/2005.11401.pdf)
 

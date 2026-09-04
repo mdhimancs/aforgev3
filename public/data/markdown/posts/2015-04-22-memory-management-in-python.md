@@ -3,15 +3,15 @@ title: "Memory Management in Python"
 date: "2015-04-22T09:54:01+05:30"
 slug: "memory-management-in-python"
 categories: ["python", "memory"]
-original_url: "https://rishijeet.github.io/blog/memory-management-in-python/"
+original_url: "https://systemdesign.github.io/blog/memory-management-in-python/"
 word_count: 1003
 reading_time: "5 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Memory Management in Python
 
-*Published on 2015-04-22 by Rishijeet Mishra | [https://rishijeet.github.io/blog/memory-management-in-python/](https://rishijeet.github.io/blog/memory-management-in-python/)*
+*Published on 2015-04-22 by System Design | [https://systemdesign.github.io/blog/memory-management-in-python/](https://systemdesign.github.io/blog/memory-management-in-python/)*
 
 I came across the interesting write up somewhere on website on memory management in Python. Here are some data facts
 which I liked,

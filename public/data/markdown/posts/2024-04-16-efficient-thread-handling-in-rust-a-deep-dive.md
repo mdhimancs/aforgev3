@@ -3,15 +3,15 @@ title: "Efficient Thread Handling in Rust: A Deep Dive"
 date: "2024-04-16T19:43:17+05:30"
 slug: "efficient-thread-handling-in-rust-a-deep-dive"
 categories: ["rust"]
-original_url: "https://rishijeet.github.io/blog/efficient-thread-handling-in-rust-a-deep-dive/"
+original_url: "https://systemdesign.github.io/blog/efficient-thread-handling-in-rust-a-deep-dive/"
 word_count: 720
 reading_time: "4 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Efficient Thread Handling in Rust: A Deep Dive
 
-*Published on 2024-04-16 by Rishijeet Mishra | [https://rishijeet.github.io/blog/efficient-thread-handling-in-rust-a-deep-dive/](https://rishijeet.github.io/blog/efficient-thread-handling-in-rust-a-deep-dive/)*
+*Published on 2024-04-16 by System Design | [https://systemdesign.github.io/blog/efficient-thread-handling-in-rust-a-deep-dive/](https://systemdesign.github.io/blog/efficient-thread-handling-in-rust-a-deep-dive/)*
 
 Concurrency is a fundamental aspect of modern software development, and Rust provides robust abstractions for managing concurrent tasks through its ownership and borrowing system. Threads, a primary mechanism for concurrent programming in Rust, can be efficiently handled using various features and best practices. In this article, we will explore the basics of thread handling in Rust, ownership, and thread safety, as well as practical examples to illustrate efficient concurrent programming.
 

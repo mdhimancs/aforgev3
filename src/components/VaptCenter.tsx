@@ -208,35 +208,35 @@ export const VaptCenter: React.FC = () => {
   const getSeverityBadge = (sev: SeverityLevel) => {
     switch (sev) {
       case 'CRITICAL':
-        return <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40">CRITICAL</span>;
+        return <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-50 text-rose-700 border border-rose-200">CRITICAL</span>;
       case 'HIGH':
-        return <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-orange-500/20 text-orange-300 border border-orange-500/40">HIGH</span>;
+        return <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-orange-50 text-orange-700 border border-orange-200">HIGH</span>;
       case 'MEDIUM':
-        return <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">MEDIUM</span>;
+        return <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-50 text-amber-700 border border-amber-200">MEDIUM</span>;
       case 'LOW':
-        return <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40">LOW</span>;
+        return <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-50 text-blue-700 border border-blue-200">LOW</span>;
       default:
-        return <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-500/20 text-slate-300 border border-slate-500/40">INFO</span>;
+        return <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-slate-700 border border-slate-200">INFO</span>;
     }
   };
 
   return (
-    <div className={`flex flex-col flex-1 h-full overflow-y-auto ${isLight ? 'bg-slate-100/80 text-slate-800' : 'bg-slate-900 text-slate-100'}`}>
+    <div className="flex flex-col flex-1 h-full overflow-y-auto bg-slate-50 text-slate-800">
       {/* Top Header & Target Scope Selector */}
-      <div className={`border-b px-4 py-2.5 sticky top-0 z-20 backdrop-blur-md ${isLight ? 'bg-slate-100/90 border-slate-200/90 shadow-xs' : 'border-slate-800 bg-slate-900/90'}`}>
+      <div className="border-b px-4 py-2.5 sticky top-0 z-20 backdrop-blur-md bg-white border-slate-200 shadow-2xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 bg-gradient-to-br from-rose-600 to-amber-600 rounded-xl shadow-lg shadow-rose-600/20 text-white">
+            <div className="p-2.5 bg-rose-50 rounded-xl border border-rose-200 text-rose-600 shadow-2xs">
               <Terminal className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className={`text-lg font-bold tracking-tight ${isLight ? 'text-slate-900' : 'text-white'}`}>VAPT & Penetration Testing Workbench</h1>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 uppercase">
+                <h1 className="text-lg font-bold tracking-tight text-slate-900">VAPT & Penetration Testing Workbench</h1>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-rose-50 text-rose-700 border border-rose-200 uppercase">
                   PTES • OWASP ASVS v4.0
                 </span>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500">
                 Automated vulnerability assessment, proof-of-concept fuzzing & verifiable exploit path auditing
               </p>
             </div>
@@ -244,9 +244,9 @@ export const VaptCenter: React.FC = () => {
 
           {/* Scope Selector */}
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800 text-xs">
-              <Globe className="w-3.5 h-3.5 text-cyan-400" />
-              <span className="text-slate-400">Target Scope:</span>
+            <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-slate-200 text-xs shadow-2xs">
+              <Globe className="w-3.5 h-3.5 text-cyan-600" />
+              <span className="text-slate-500">Target Scope:</span>
               <select
                 value={selectedScopeId}
                 onChange={(e) => {
@@ -254,10 +254,10 @@ export const VaptCenter: React.FC = () => {
                   const sc = scopes.find(s => s.id === e.target.value);
                   if (sc) setTargetEndpointUrl(sc.targetUrl);
                 }}
-                className="bg-transparent text-slate-200 font-semibold focus:outline-none cursor-pointer"
+                className="bg-transparent text-slate-800 font-semibold focus:outline-none cursor-pointer"
               >
                 {scopes.map(s => (
-                  <option key={s.id} value={s.id} className="bg-slate-900 text-slate-200">
+                  <option key={s.id} value={s.id} className="bg-white text-slate-800">
                     {s.name} ({s.environment})
                   </option>
                 ))}
@@ -266,25 +266,25 @@ export const VaptCenter: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('scope_roe')}
-              className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-xs font-semibold text-slate-700 border border-slate-200 flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
             >
-              <Sliders className="w-3.5 h-3.5 text-slate-700 dark:text-slate-300" />
+              <Sliders className="w-3.5 h-3.5 text-slate-600" />
               <span>Scope & RoE</span>
             </button>
           </div>
         </div>
 
         {/* Sub-Navigation Tabs */}
-        <div className="flex items-center gap-2 mt-4 pt-2 border-t border-slate-200 dark:border-slate-800 pb-0.5 overflow-x-auto">
+        <div className="flex items-center gap-2 mt-4 pt-2 border-t border-slate-200 pb-0.5 overflow-x-auto">
           <button
             onClick={() => setActiveTab('workbench')}
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'workbench'
-                ? 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950/80 dark:text-amber-200 dark:border-amber-700 font-extrabold'
-                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'bg-amber-50 text-amber-900 border-b-2 border-amber-600 font-bold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
             }`}
           >
-            <Play className={`w-3.5 h-3.5 ${activeTab === 'workbench' ? 'text-amber-600 dark:text-amber-400' : 'text-slate-500'}`} />
+            <Play className={`w-3.5 h-3.5 ${activeTab === 'workbench' ? 'text-amber-600' : 'text-slate-500'}`} />
             <span>Interactive Attack Workbench</span>
           </button>
  
@@ -292,11 +292,11 @@ export const VaptCenter: React.FC = () => {
             onClick={() => setActiveTab('findings')}
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'findings'
-                ? 'bg-rose-100 text-rose-900 border-rose-300 dark:bg-rose-950/80 dark:text-rose-200 dark:border-rose-700 font-extrabold'
-                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'bg-rose-50 text-rose-900 border-b-2 border-rose-600 font-bold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
             }`}
           >
-            <ShieldAlert className={`w-3.5 h-3.5 ${activeTab === 'findings' ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500'}`} />
+            <ShieldAlert className={`w-3.5 h-3.5 ${activeTab === 'findings' ? 'text-rose-600' : 'text-slate-500'}`} />
             <span>Vulnerability Tracker ({findings.length})</span>
           </button>
  
@@ -304,11 +304,11 @@ export const VaptCenter: React.FC = () => {
             onClick={() => setActiveTab('cvss_calc')}
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'cvss_calc'
-                ? 'bg-purple-100 text-purple-900 border-purple-300 dark:bg-purple-950/80 dark:text-purple-200 dark:border-purple-700 font-extrabold'
-                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'bg-indigo-50 text-indigo-900 border-b-2 border-indigo-600 font-bold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
             }`}
           >
-            <Sliders className={`w-3.5 h-3.5 ${activeTab === 'cvss_calc' ? 'text-purple-600 dark:text-purple-400' : 'text-slate-500'}`} />
+            <Sliders className={`w-3.5 h-3.5 ${activeTab === 'cvss_calc' ? 'text-indigo-600' : 'text-slate-500'}`} />
             <span>CVSS v3.1 Calculator</span>
           </button>
  
@@ -316,11 +316,11 @@ export const VaptCenter: React.FC = () => {
             onClick={() => setActiveTab('compliance_report')}
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'compliance_report'
-                ? 'bg-emerald-100 text-emerald-900 border-emerald-300 dark:bg-emerald-950/80 dark:text-emerald-200 dark:border-emerald-700 font-extrabold'
-                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'bg-teal-50 text-teal-900 border-b-2 border-teal-600 font-bold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
             }`}
           >
-            <FileCode className={`w-3.5 h-3.5 ${activeTab === 'compliance_report' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500'}`} />
+            <FileCode className={`w-3.5 h-3.5 ${activeTab === 'compliance_report' ? 'text-teal-600' : 'text-slate-500'}`} />
             <span>Executive VAPT Report</span>
           </button>
         </div>
@@ -335,9 +335,9 @@ export const VaptCenter: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
             {/* Left Column: Attack Vector Catalog */}
             <div className="lg:col-span-4 flex flex-col gap-4">
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
-                  <Flame className="w-4 h-4 text-rose-400" />
+              <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-2">
+                  <Flame className="w-4 h-4 text-rose-600" />
                   <span>Standardized Attack Vectors ({testVectors.length})</span>
                 </h3>
 
@@ -349,22 +349,22 @@ export const VaptCenter: React.FC = () => {
                         setSelectedVectorId(v.id);
                         setCustomPayload(v.testPayload);
                       }}
-                      className={`p-3 rounded-lg border text-left cursor-pointer transition-all ${
+                      className={`p-3 rounded-lg border text-left cursor-pointer transition-all shadow-2xs ${
                         v.id === selectedVectorId
-                          ? 'bg-rose-950/40 border-rose-500/50 shadow-md shadow-rose-900/10'
-                          : 'bg-slate-900/60 border-slate-800 hover:border-slate-700'
+                          ? 'bg-emerald-50/50 border-emerald-500 shadow-xs'
+                          : 'bg-white border-slate-200 hover:bg-slate-50 hover:border-slate-300'
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-xs font-bold text-white truncate max-w-[200px]">
+                        <span className="text-xs font-bold text-slate-900 truncate max-w-[200px]">
                           {v.name}
                         </span>
                         {getSeverityBadge(v.defaultSeverity)}
                       </div>
-                      <p className="text-[11px] text-slate-400 line-clamp-2 mb-2">{v.description}</p>
+                      <p className="text-[11px] text-slate-600 line-clamp-2 mb-2">{v.description}</p>
                       <div className="flex items-center justify-between text-[10px] text-slate-500 font-mono">
                         <span>{v.cwe.split(':')[0]}</span>
-                        <span className="text-rose-400">{v.owaspRef.split(' - ')[0]}</span>
+                        <span className="text-rose-700 font-bold">{v.owaspRef.split(' - ')[0]}</span>
                       </div>
                     </div>
                   ))}
@@ -375,14 +375,14 @@ export const VaptCenter: React.FC = () => {
             {/* Right Column: Live Probe Dispatcher & Telemetry Console */}
             <div className="lg:col-span-8 flex flex-col gap-4">
               {/* Target & Probe Configuration */}
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-sm">
+              <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
-                    <Terminal className="w-4 h-4 text-cyan-400" />
-                    <h3 className="text-sm font-bold text-white">Target Probe Dispatcher</h3>
+                    <Terminal className="w-4 h-4 text-cyan-600" />
+                    <h3 className="text-sm font-bold text-slate-900">Target Probe Dispatcher</h3>
                   </div>
-                  <span className="text-xs text-slate-400 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-xs text-slate-500 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                     RoE Authorized: Safe Simulated Verification Mode
                   </span>
                 </div>
@@ -390,11 +390,11 @@ export const VaptCenter: React.FC = () => {
                 {/* URL and Method */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-3 mb-4">
                   <div className="md:col-span-3">
-                    <label className="text-[11px] text-slate-400 font-medium block mb-1">HTTP Method</label>
+                    <label className="text-[11px] text-slate-600 font-medium block mb-1">HTTP Method</label>
                     <select
                       value={httpMethod}
                       onChange={(e) => setHttpMethod(e.target.value as any)}
-                      className="w-full bg-slate-900 border border-slate-800 text-slate-200 text-xs rounded-lg px-3 py-2 focus:border-rose-500 focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs rounded-lg px-3 py-2 focus:border-rose-500 focus:bg-white focus:outline-none"
                     >
                       <option value="GET">GET</option>
                       <option value="POST">POST</option>
@@ -404,41 +404,41 @@ export const VaptCenter: React.FC = () => {
                     </select>
                   </div>
                   <div className="md:col-span-9">
-                    <label className="text-[11px] text-slate-400 font-medium block mb-1">Target Endpoint URL</label>
+                    <label className="text-[11px] text-slate-600 font-medium block mb-1">Target Endpoint URL</label>
                     <input
                       type="text"
                       value={targetEndpointUrl}
                       onChange={(e) => setTargetEndpointUrl(e.target.value)}
                       placeholder="https://api.example.com/v1/resource"
-                      className="w-full bg-slate-900 border border-slate-800 text-slate-200 font-mono text-xs rounded-lg px-3 py-2 focus:border-rose-500 focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 text-slate-800 font-mono text-xs rounded-lg px-3 py-2 focus:border-rose-500 focus:bg-white focus:outline-none"
                     />
                   </div>
                 </div>
 
                 {/* Authorization Header */}
                 <div className="mb-4">
-                  <label className="text-[11px] text-slate-400 font-medium flex items-center justify-between mb-1">
+                  <label className="text-[11px] text-slate-600 font-medium flex items-center justify-between mb-1">
                     <span>Authorization Header (Simulated Attacker or Client Token)</span>
-                    <span className="text-[10px] text-slate-500 font-mono">Authorization: Bearer &lt;token&gt;</span>
+                    <span className="text-[10px] text-slate-400 font-mono">Authorization: Bearer &lt;token&gt;</span>
                   </label>
                   <input
                     type="text"
                     value={authHeader}
                     onChange={(e) => setAuthHeader(e.target.value)}
-                    className="w-full bg-slate-900 border border-slate-800 text-slate-300 font-mono text-xs rounded-lg px-3 py-2 focus:border-rose-500 focus:outline-none"
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 font-mono text-xs rounded-lg px-3 py-2 focus:border-rose-500 focus:bg-white focus:outline-none"
                   />
                 </div>
 
                 {/* Custom Probe Payload */}
                 <div className="mb-4">
                   <div className="flex items-center justify-between mb-1">
-                    <label className="text-[11px] text-slate-400 font-medium flex items-center gap-1.5">
+                    <label className="text-[11px] text-slate-600 font-medium flex items-center gap-1.5">
                       <CodeIcon />
                       <span>Penetration Test Payload / Request Body</span>
                     </label>
                     <button
                       onClick={() => setCustomPayload(selectedVector.testPayload)}
-                      className="text-[11px] text-cyan-400 hover:text-cyan-300 flex items-center gap-1 cursor-pointer"
+                      className="text-[11px] text-cyan-600 hover:text-cyan-700 flex items-center gap-1 cursor-pointer font-semibold"
                     >
                       <RefreshCw className="w-3 h-3" />
                       Reset to Vector Default
@@ -448,19 +448,19 @@ export const VaptCenter: React.FC = () => {
                     rows={4}
                     value={customPayload}
                     onChange={(e) => setCustomPayload(e.target.value)}
-                    className="w-full bg-slate-900 border border-slate-800 text-slate-300 font-mono text-xs rounded-lg p-3 focus:border-rose-500 focus:outline-none resize-none leading-relaxed"
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 font-mono text-xs rounded-lg p-3 focus:border-rose-500 focus:bg-white focus:outline-none resize-none leading-relaxed"
                   />
                 </div>
 
                 {/* Launch Button */}
-                <div className="flex items-center justify-between pt-2 border-t border-slate-800">
-                  <div className="text-xs text-slate-400">
-                    Vector: <strong className="text-slate-200">{selectedVector.name}</strong>
+                <div className="flex items-center justify-between pt-2 border-t border-slate-200">
+                  <div className="text-xs text-slate-500">
+                    Vector: <strong className="text-slate-800">{selectedVector.name}</strong>
                   </div>
                   <button
                     onClick={handleLaunchProbe}
                     disabled={isProbing}
-                    className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 font-bold text-xs text-white shadow-lg shadow-rose-600/20 flex items-center gap-2 transition-all cursor-pointer disabled:opacity-50"
+                    className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 font-bold text-xs text-white shadow-md flex items-center gap-2 transition-all cursor-pointer disabled:opacity-50"
                   >
                     {isProbing ? (
                       <>
@@ -479,76 +479,76 @@ export const VaptCenter: React.FC = () => {
 
               {/* Probe Result & Proof of Concept (PoC) Console */}
               {probeResult && (
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg space-y-4 animate-fadeIn">
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-2xs space-y-4 animate-fadeIn">
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200">
                     <div className="flex items-center gap-2.5">
                       {probeResult.status === 'VULNERABLE' ? (
-                        <div className="p-1.5 rounded-lg bg-rose-500/20 text-rose-400 border border-rose-500/40">
+                        <div className="p-1.5 rounded-lg bg-rose-50 text-rose-600 border border-rose-200">
                           <AlertTriangle className="w-4 h-4" />
                         </div>
                       ) : (
-                        <div className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
+                        <div className="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-200">
                           <CheckCircle2 className="w-4 h-4" />
                         </div>
                       )}
                       <div>
                         <div className="flex items-center gap-2">
-                          <h4 className="text-sm font-bold text-white">
+                          <h4 className="text-sm font-bold text-slate-900">
                             Probe Outcome: {probeResult.status}
                           </h4>
                           {getSeverityBadge(probeResult.severity)}
                         </div>
-                        <p className="text-xs text-slate-400">
-                          Execution Latency: <span className="font-mono text-cyan-300">{probeResult.latencyMs}ms</span> | HTTP Status: <span className="font-mono text-amber-300">{probeResult.statusCode}</span>
+                        <p className="text-xs text-slate-500">
+                          Execution Latency: <span className="font-mono text-cyan-700 font-semibold">{probeResult.latencyMs}ms</span> | HTTP Status: <span className="font-mono text-amber-700 font-semibold">{probeResult.statusCode}</span>
                         </p>
                       </div>
                     </div>
 
                     {probeResult.cvssScore > 0 && (
                       <div className="text-right">
-                        <div className="text-xs text-slate-400">Calculated CVSS</div>
-                        <div className="text-lg font-black text-rose-400 font-mono">{probeResult.cvssScore} / 10</div>
+                        <div className="text-xs text-slate-500">Calculated CVSS</div>
+                        <div className="text-lg font-black text-rose-600 font-mono">{probeResult.cvssScore} / 10</div>
                       </div>
                     )}
                   </div>
 
                   {/* Impact Summary */}
-                  <div className="p-3.5 bg-slate-900 rounded-lg border border-slate-800 text-xs text-slate-300">
-                    <strong className="text-rose-300 block mb-1">Exploitation Risk & Impact:</strong>
+                  <div className="p-3.5 bg-rose-50/60 rounded-lg border border-rose-200 text-xs text-rose-950">
+                    <strong className="text-rose-700 block mb-1">Exploitation Risk & Impact:</strong>
                     {probeResult.impactSummary}
                   </div>
 
                   {/* Proof of Concept Trace */}
                   <div>
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
-                        <Terminal className="w-3.5 h-3.5 text-rose-400" />
+                      <span className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                        <Terminal className="w-3.5 h-3.5 text-rose-600" />
                         Proof-of-Concept (PoC) HTTP Evidence Trace
                       </span>
                       <button
                         onClick={() => handleCopyCode(probeResult.proofOfConcept)}
-                        className="text-[11px] text-slate-400 hover:text-slate-200 flex items-center gap-1 cursor-pointer"
+                        className="text-[11px] text-slate-500 hover:text-slate-700 flex items-center gap-1 cursor-pointer font-medium"
                       >
-                        {copiedCode ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                        {copiedCode ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
                         {copiedCode ? 'Copied' : 'Copy PoC'}
                       </button>
                     </div>
-                    <pre className="p-3 bg-black/80 rounded-lg text-[11px] font-mono text-emerald-300 border border-slate-800 overflow-x-auto max-h-52 leading-relaxed">
+                    <pre className="p-3 bg-slate-900 text-emerald-400 rounded-lg text-[11px] font-mono border border-slate-700 overflow-x-auto max-h-52 leading-relaxed shadow-inner">
                       {probeResult.proofOfConcept}
                     </pre>
                   </div>
 
                   {/* Quick Remediation Action */}
-                  <div className="pt-2 flex items-center justify-between">
-                    <span className="text-xs text-slate-400">
-                      Recommendation: <span className="text-slate-300">{probeResult.remediationAdvice}</span>
+                  <div className="pt-2 flex items-center justify-between border-t border-slate-100">
+                    <span className="text-xs text-slate-500">
+                      Recommendation: <span className="text-slate-800 font-medium">{probeResult.remediationAdvice}</span>
                     </span>
                     <button
                       onClick={() => {
                         setActiveTab('findings');
                         if (findings[0]) handleGenerateRemediation(findings[0]);
                       }}
-                      className="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer shrink-0 ml-3"
+                      className="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer shrink-0 ml-3 shadow-2xs"
                     >
                       <Sparkles className="w-3.5 h-3.5" />
                       Generate Patch
@@ -567,9 +567,9 @@ export const VaptCenter: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
             {/* Left: Findings List */}
             <div className="lg:col-span-5 flex flex-col gap-4">
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+              <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500">
                     Vulnerabilities Discovered ({filteredFindings.length})
                   </h3>
                   <div className="flex items-center gap-1 text-xs">
@@ -577,10 +577,10 @@ export const VaptCenter: React.FC = () => {
                       <button
                         key={sev}
                         onClick={() => setFilterSeverity(sev)}
-                        className={`px-2 py-0.5 rounded text-[10px] font-bold cursor-pointer transition-colors ${
+                        className={`px-2 py-0.5 rounded text-[10px] font-bold cursor-pointer transition-colors border shadow-2xs ${
                           filterSeverity === sev
-                            ? 'bg-rose-600 text-white'
-                            : 'bg-slate-800 text-slate-400 hover:text-slate-200'
+                            ? 'bg-emerald-50 text-emerald-900 border-b-2 border-emerald-600 font-bold'
+                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                         }`}
                       >
                         {sev}
@@ -597,22 +597,22 @@ export const VaptCenter: React.FC = () => {
                         setSelectedFinding(f);
                         setRemediationOutput(null);
                       }}
-                      className={`p-3.5 rounded-lg border text-left cursor-pointer transition-all ${
+                      className={`p-3.5 rounded-lg border text-left cursor-pointer transition-all shadow-2xs ${
                         selectedFinding?.id === f.id
-                          ? 'bg-slate-800 border-rose-500 shadow-md'
-                          : 'bg-slate-900/60 border-slate-800 hover:border-slate-700'
+                          ? 'bg-emerald-50/50 border-emerald-500 shadow-xs'
+                          : 'bg-white border-slate-200 hover:bg-slate-50 hover:border-slate-300'
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-xs font-bold text-white truncate max-w-[220px]">
+                        <span className="text-xs font-bold text-slate-900 truncate max-w-[220px]">
                           {f.title}
                         </span>
                         {getSeverityBadge(f.severity)}
                       </div>
-                      <p className="text-[11px] text-slate-400 font-mono truncate mb-2">{f.targetUrl}</p>
+                      <p className="text-[11px] text-slate-500 font-mono truncate mb-2">{f.targetUrl}</p>
                       <div className="flex items-center justify-between text-[11px]">
-                        <span className="text-rose-400 font-bold font-mono">CVSS {f.cvssScore}</span>
-                        <span className="text-slate-500 text-[10px]">{f.owaspId} • {f.cwe}</span>
+                        <span className="text-rose-600 font-bold font-mono">CVSS {f.cvssScore}</span>
+                        <span className="text-slate-400 text-[10px]">{f.owaspId} • {f.cwe}</span>
                       </div>
                     </div>
                   ))}
@@ -623,35 +623,35 @@ export const VaptCenter: React.FC = () => {
             {/* Right: Finding Deep-Dive & AI Remediation */}
             <div className="lg:col-span-7 flex flex-col gap-4">
               {selectedFinding ? (
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-sm space-y-4">
-                  <div className="flex items-start justify-between pb-3 border-b border-slate-800">
+                <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs space-y-4">
+                  <div className="flex items-start justify-between pb-3 border-b border-slate-200">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         {getSeverityBadge(selectedFinding.severity)}
-                        <span className="text-xs font-mono text-slate-400">{selectedFinding.owaspId}</span>
-                        <span className="text-xs font-mono text-slate-400">{selectedFinding.cwe}</span>
+                        <span className="text-xs font-mono text-slate-500">{selectedFinding.owaspId}</span>
+                        <span className="text-xs font-mono text-slate-500">{selectedFinding.cwe}</span>
                       </div>
-                      <h3 className="text-base font-bold text-white">{selectedFinding.title}</h3>
-                      <p className="text-xs font-mono text-slate-400 mt-0.5">{selectedFinding.targetUrl}</p>
+                      <h3 className="text-base font-bold text-slate-900">{selectedFinding.title}</h3>
+                      <p className="text-xs font-mono text-slate-500 mt-0.5">{selectedFinding.targetUrl}</p>
                     </div>
 
                     <div className="text-right">
-                      <div className="text-2xl font-black text-rose-400 font-mono">{selectedFinding.cvssScore}</div>
-                      <div className="text-[10px] text-slate-500 font-mono">CVSS v3.1 BASE</div>
+                      <div className="text-2xl font-black text-rose-600 font-mono">{selectedFinding.cvssScore}</div>
+                      <div className="text-[10px] text-slate-400 font-mono">CVSS v3.1 BASE</div>
                     </div>
                   </div>
 
                   {/* Exploit Chain Diagram */}
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
                       Multi-Stage Attack Chain
                     </h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                       {selectedFinding.exploitChain.map((step, idx) => (
-                        <div key={idx} className="p-3 bg-slate-900 rounded-lg border border-slate-800">
-                          <div className="text-[10px] font-bold text-rose-400 uppercase mb-1">{step.step}</div>
-                          <div className="text-xs font-semibold text-slate-200 mb-0.5">{step.actor}</div>
-                          <div className="text-[11px] text-slate-400">{step.outcome}</div>
+                        <div key={idx} className="p-3 bg-slate-50 rounded-lg border border-slate-200 shadow-2xs">
+                          <div className="text-[10px] font-bold text-rose-600 uppercase mb-1">{step.step}</div>
+                          <div className="text-xs font-semibold text-slate-900 mb-0.5">{step.actor}</div>
+                          <div className="text-[11px] text-slate-600">{step.outcome}</div>
                         </div>
                       ))}
                     </div>
@@ -660,33 +660,33 @@ export const VaptCenter: React.FC = () => {
                   {/* Proof of Concept Trace */}
                   <div>
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-xs font-bold text-slate-300">Exploitation Evidence Trace</span>
+                      <span className="text-xs font-bold text-slate-700">Exploitation Evidence Trace</span>
                       <button
                         onClick={() => handleCopyCode(selectedFinding.proofOfConcept)}
-                        className="text-[11px] text-slate-400 hover:text-slate-200 flex items-center gap-1 cursor-pointer"
+                        className="text-[11px] text-slate-500 hover:text-slate-700 flex items-center gap-1 cursor-pointer font-medium"
                       >
-                        {copiedCode ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                        {copiedCode ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
                         Copy PoC
                       </button>
                     </div>
-                    <pre className="p-3 bg-black/80 rounded-lg text-[11px] font-mono text-emerald-300 border border-slate-800 overflow-x-auto max-h-40">
+                    <pre className="p-3 bg-slate-900 text-emerald-400 rounded-lg text-[11px] font-mono border border-slate-700 overflow-x-auto max-h-40 shadow-inner">
                       {selectedFinding.proofOfConcept}
                     </pre>
                   </div>
 
                   {/* AI Remediation Patch Generator */}
-                  <div className="p-4 bg-gradient-to-br from-indigo-950/40 to-purple-950/30 rounded-xl border border-indigo-500/30 space-y-3">
+                  <div className="p-4 bg-indigo-50/70 rounded-xl border border-indigo-200 space-y-3 shadow-2xs">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-indigo-400" />
-                        <h4 className="text-xs font-bold text-white">AI-Powered Developer Remediation</h4>
+                        <Sparkles className="w-4 h-4 text-indigo-600" />
+                        <h4 className="text-xs font-bold text-indigo-950">AI-Powered Developer Remediation</h4>
                       </div>
 
                       <div className="flex items-center gap-2">
                         <select
                           value={targetLanguage}
                           onChange={(e) => setTargetLanguage(e.target.value as any)}
-                          className="bg-slate-900 border border-slate-800 text-xs text-slate-300 rounded px-2 py-1 focus:outline-none"
+                          className="bg-white border border-indigo-200 text-xs text-indigo-900 rounded px-2 py-1 focus:outline-none shadow-2xs"
                         >
                           <option value="TypeScript">TypeScript</option>
                           <option value="Python">Python</option>
@@ -696,7 +696,7 @@ export const VaptCenter: React.FC = () => {
                         <button
                           onClick={() => handleGenerateRemediation(selectedFinding)}
                           disabled={isGeneratingRemediation}
-                          className="px-3 py-1 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer disabled:opacity-50"
+                          className="px-3 py-1 bg-indigo-600 hover:bg-indigo-700 text-white rounded text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer disabled:opacity-50 shadow-2xs"
                         >
                           {isGeneratingRemediation ? (
                             <RefreshCw className="w-3 h-3 animate-spin" />
@@ -711,8 +711,8 @@ export const VaptCenter: React.FC = () => {
                     {remediationOutput ? (
                       <div className="space-y-3 animate-fadeIn">
                         <div>
-                          <div className="text-[11px] font-bold text-indigo-300 mb-1">Recommended Remediation Steps:</div>
-                          <ul className="text-xs text-slate-300 space-y-1 pl-4 list-disc">
+                          <div className="text-[11px] font-bold text-indigo-900 mb-1">Recommended Remediation Steps:</div>
+                          <ul className="text-xs text-indigo-950 space-y-1 pl-4 list-disc">
                             {remediationOutput.remediationPlan?.map((step: string, i: number) => (
                               <li key={i}>{step}</li>
                             ))}
@@ -720,29 +720,29 @@ export const VaptCenter: React.FC = () => {
                         </div>
 
                         <div>
-                          <div className="flex items-center justify-between text-[11px] font-bold text-slate-300 mb-1">
+                          <div className="flex items-center justify-between text-[11px] font-bold text-indigo-900 mb-1">
                             <span>Secure Code Patch ({targetLanguage}):</span>
                             <button
                               onClick={() => handleCopyCode(remediationOutput.patchedCode)}
-                              className="text-cyan-400 hover:text-cyan-300 text-[10px] flex items-center gap-1 cursor-pointer"
+                              className="text-cyan-600 hover:text-cyan-700 text-[10px] flex items-center gap-1 cursor-pointer font-semibold"
                             >
                               <Copy className="w-3 h-3" /> Copy Code
                             </button>
                           </div>
-                          <pre className="p-3 bg-black/90 rounded-lg text-[11px] font-mono text-cyan-300 border border-slate-800 max-h-48 overflow-x-auto">
+                          <pre className="p-3 bg-slate-900 rounded-lg text-[11px] font-mono text-cyan-300 border border-slate-700 max-h-48 overflow-x-auto shadow-inner">
                             {remediationOutput.patchedCode}
                           </pre>
                         </div>
                       </div>
                     ) : (
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-indigo-900/80">
                         Click <strong>Generate Fix</strong> to construct context-aware patch code, WAF defense filters, and automated security unit tests for this finding.
                       </p>
                     )}
                   </div>
                 </div>
               ) : (
-                <div className="p-12 text-center text-slate-500 bg-slate-900 border border-slate-800 rounded-xl">
+                <div className="p-12 text-center text-slate-400 bg-white border border-slate-200 rounded-xl shadow-2xs">
                   Select a vulnerability from the tracker list to view exploitation forensics and AI patch guidance.
                 </div>
               )}
@@ -754,34 +754,34 @@ export const VaptCenter: React.FC = () => {
         {/* TAB 3: DYNAMIC CVSS v3.1 CALCULATOR                      */}
         {/* ======================================================== */}
         {activeTab === 'cvss_calc' && (
-          <div className="max-w-4xl mx-auto bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-md space-y-6">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+          <div className="max-w-4xl mx-auto bg-white border border-slate-200 rounded-xl p-6 shadow-2xs space-y-6">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-200">
               <div>
-                <h3 className="text-base font-bold text-white flex items-center gap-2">
-                  <Sliders className="w-4 h-4 text-indigo-400" />
+                <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                  <Sliders className="w-4 h-4 text-indigo-600" />
                   <span>CVSS v3.1 Base Score Calculator</span>
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-500">
                   Standardized vulnerability risk quantification and vector string generator
                 </p>
               </div>
 
               <div className="text-right">
-                <div className={`text-3xl font-black font-mono ${currentCvssScore >= 9.0 ? 'text-rose-400' : currentCvssScore >= 7.0 ? 'text-orange-400' : currentCvssScore >= 4.0 ? 'text-amber-400' : 'text-blue-400'}`}>
+                <div className={`text-3xl font-black font-mono ${currentCvssScore >= 9.0 ? 'text-rose-600' : currentCvssScore >= 7.0 ? 'text-orange-600' : currentCvssScore >= 4.0 ? 'text-amber-600' : 'text-blue-600'}`}>
                   {currentCvssScore.toFixed(1)}
                 </div>
-                <div className="text-xs font-bold text-slate-400">
+                <div className="text-xs font-bold text-slate-500">
                   {currentCvssScore >= 9.0 ? 'CRITICAL' : currentCvssScore >= 7.0 ? 'HIGH' : currentCvssScore >= 4.0 ? 'MEDIUM' : 'LOW'}
                 </div>
               </div>
             </div>
 
             {/* Vector String Output */}
-            <div className="p-3 bg-slate-900 rounded-lg border border-slate-800 flex items-center justify-between">
-              <span className="text-xs font-mono text-cyan-300 select-all">{currentCvssVector}</span>
+            <div className="p-3 bg-slate-50 rounded-lg border border-slate-200 flex items-center justify-between shadow-2xs">
+              <span className="text-xs font-mono text-indigo-700 font-semibold select-all">{currentCvssVector}</span>
               <button
                 onClick={() => handleCopyCode(currentCvssVector)}
-                className="text-xs text-slate-400 hover:text-slate-200 flex items-center gap-1 cursor-pointer"
+                className="text-xs text-slate-600 hover:text-slate-800 flex items-center gap-1 cursor-pointer font-medium"
               >
                 <Copy className="w-3.5 h-3.5" />
                 Copy Vector
@@ -792,13 +792,13 @@ export const VaptCenter: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Exploitability Metrics */}
               <div className="space-y-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-rose-400">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-rose-700">
                   Exploitability Metrics
                 </h4>
 
                 {/* Attack Vector */}
                 <div>
-                  <label className="text-xs text-slate-300 font-semibold block mb-1.5">Attack Vector (AV)</label>
+                  <label className="text-xs text-slate-700 font-semibold block mb-1.5">Attack Vector (AV)</label>
                   <div className="grid grid-cols-4 gap-1.5">
                     {[
                       { id: 'N', label: 'Network' },
@@ -809,10 +809,10 @@ export const VaptCenter: React.FC = () => {
                       <button
                         key={opt.id}
                         onClick={() => setCvssMetrics({ ...cvssMetrics, av: opt.id })}
-                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors ${
+                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors shadow-2xs ${
                           cvssMetrics.av === opt.id
-                            ? 'bg-rose-600 text-white border-rose-500'
-                            : 'bg-slate-900 text-slate-400 border-slate-800 hover:border-slate-700'
+                            ? 'bg-emerald-50 text-emerald-900 border-b-2 border-emerald-600 font-bold'
+                            : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                         }`}
                       >
                         {opt.label}
@@ -823,7 +823,7 @@ export const VaptCenter: React.FC = () => {
 
                 {/* Attack Complexity */}
                 <div>
-                  <label className="text-xs text-slate-300 font-semibold block mb-1.5">Attack Complexity (AC)</label>
+                  <label className="text-xs text-slate-700 font-semibold block mb-1.5">Attack Complexity (AC)</label>
                   <div className="grid grid-cols-2 gap-1.5">
                     {[
                       { id: 'L', label: 'Low (L)' },
@@ -832,10 +832,10 @@ export const VaptCenter: React.FC = () => {
                       <button
                         key={opt.id}
                         onClick={() => setCvssMetrics({ ...cvssMetrics, ac: opt.id })}
-                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors ${
+                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors shadow-2xs ${
                           cvssMetrics.ac === opt.id
-                            ? 'bg-rose-600 text-white border-rose-500'
-                            : 'bg-slate-900 text-slate-400 border-slate-800 hover:border-slate-700'
+                            ? 'bg-emerald-50 text-emerald-900 border-b-2 border-emerald-600 font-bold'
+                            : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                         }`}
                       >
                         {opt.label}
@@ -846,7 +846,7 @@ export const VaptCenter: React.FC = () => {
 
                 {/* Privileges Required */}
                 <div>
-                  <label className="text-xs text-slate-300 font-semibold block mb-1.5">Privileges Required (PR)</label>
+                  <label className="text-xs text-slate-700 font-semibold block mb-1.5">Privileges Required (PR)</label>
                   <div className="grid grid-cols-3 gap-1.5">
                     {[
                       { id: 'N', label: 'None (N)' },
@@ -856,10 +856,10 @@ export const VaptCenter: React.FC = () => {
                       <button
                         key={opt.id}
                         onClick={() => setCvssMetrics({ ...cvssMetrics, pr: opt.id })}
-                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors ${
+                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors shadow-2xs ${
                           cvssMetrics.pr === opt.id
-                            ? 'bg-rose-600 text-white border-rose-500'
-                            : 'bg-slate-900 text-slate-400 border-slate-800 hover:border-slate-700'
+                            ? 'bg-emerald-50 text-emerald-900 border-b-2 border-emerald-600 font-bold'
+                            : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                         }`}
                       >
                         {opt.label}
@@ -870,7 +870,7 @@ export const VaptCenter: React.FC = () => {
 
                 {/* User Interaction */}
                 <div>
-                  <label className="text-xs text-slate-300 font-semibold block mb-1.5">User Interaction (UI)</label>
+                  <label className="text-xs text-slate-700 font-semibold block mb-1.5">User Interaction (UI)</label>
                   <div className="grid grid-cols-2 gap-1.5">
                     {[
                       { id: 'N', label: 'None (N)' },
@@ -879,10 +879,10 @@ export const VaptCenter: React.FC = () => {
                       <button
                         key={opt.id}
                         onClick={() => setCvssMetrics({ ...cvssMetrics, ui: opt.id })}
-                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors ${
+                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors shadow-2xs ${
                           cvssMetrics.ui === opt.id
-                            ? 'bg-rose-600 text-white border-rose-500'
-                            : 'bg-slate-900 text-slate-400 border-slate-800 hover:border-slate-700'
+                            ? 'bg-emerald-50 text-emerald-900 border-b-2 border-emerald-600 font-bold'
+                            : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                         }`}
                       >
                         {opt.label}
@@ -894,13 +894,13 @@ export const VaptCenter: React.FC = () => {
 
               {/* Impact Metrics */}
               <div className="space-y-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-400">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-700">
                   Impact Metrics
                 </h4>
 
                 {/* Scope */}
                 <div>
-                  <label className="text-xs text-slate-300 font-semibold block mb-1.5">Scope (S)</label>
+                  <label className="text-xs text-slate-700 font-semibold block mb-1.5">Scope (S)</label>
                   <div className="grid grid-cols-2 gap-1.5">
                     {[
                       { id: 'U', label: 'Unchanged (U)' },
@@ -909,10 +909,10 @@ export const VaptCenter: React.FC = () => {
                       <button
                         key={opt.id}
                         onClick={() => setCvssMetrics({ ...cvssMetrics, s: opt.id })}
-                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors ${
+                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors shadow-2xs ${
                           cvssMetrics.s === opt.id
-                            ? 'bg-indigo-600 text-white border-indigo-500'
-                            : 'bg-slate-900 text-slate-400 border-slate-800 hover:border-slate-700'
+                            ? 'bg-emerald-50 text-emerald-900 border-b-2 border-emerald-600 font-bold'
+                            : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                         }`}
                       >
                         {opt.label}
@@ -923,7 +923,7 @@ export const VaptCenter: React.FC = () => {
 
                 {/* Confidentiality */}
                 <div>
-                  <label className="text-xs text-slate-300 font-semibold block mb-1.5">Confidentiality Impact (C)</label>
+                  <label className="text-xs text-slate-700 font-semibold block mb-1.5">Confidentiality Impact (C)</label>
                   <div className="grid grid-cols-3 gap-1.5">
                     {[
                       { id: 'H', label: 'High (H)' },
@@ -933,10 +933,10 @@ export const VaptCenter: React.FC = () => {
                       <button
                         key={opt.id}
                         onClick={() => setCvssMetrics({ ...cvssMetrics, c: opt.id })}
-                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors ${
+                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors shadow-2xs ${
                           cvssMetrics.c === opt.id
-                            ? 'bg-indigo-600 text-white border-indigo-500'
-                            : 'bg-slate-900 text-slate-400 border-slate-800 hover:border-slate-700'
+                            ? 'bg-emerald-50 text-emerald-900 border-b-2 border-emerald-600 font-bold'
+                            : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                         }`}
                       >
                         {opt.label}
@@ -947,7 +947,7 @@ export const VaptCenter: React.FC = () => {
 
                 {/* Integrity */}
                 <div>
-                  <label className="text-xs text-slate-300 font-semibold block mb-1.5">Integrity Impact (I)</label>
+                  <label className="text-xs text-slate-700 font-semibold block mb-1.5">Integrity Impact (I)</label>
                   <div className="grid grid-cols-3 gap-1.5">
                     {[
                       { id: 'H', label: 'High (H)' },
@@ -957,10 +957,10 @@ export const VaptCenter: React.FC = () => {
                       <button
                         key={opt.id}
                         onClick={() => setCvssMetrics({ ...cvssMetrics, i: opt.id })}
-                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors ${
+                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors shadow-2xs ${
                           cvssMetrics.i === opt.id
-                            ? 'bg-indigo-600 text-white border-indigo-500'
-                            : 'bg-slate-900 text-slate-400 border-slate-800 hover:border-slate-700'
+                            ? 'bg-emerald-50 text-emerald-900 border-b-2 border-emerald-600 font-bold'
+                            : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                         }`}
                       >
                         {opt.label}
@@ -971,7 +971,7 @@ export const VaptCenter: React.FC = () => {
 
                 {/* Availability */}
                 <div>
-                  <label className="text-xs text-slate-300 font-semibold block mb-1.5">Availability Impact (A)</label>
+                  <label className="text-xs text-slate-700 font-semibold block mb-1.5">Availability Impact (A)</label>
                   <div className="grid grid-cols-3 gap-1.5">
                     {[
                       { id: 'H', label: 'High (H)' },
@@ -981,10 +981,10 @@ export const VaptCenter: React.FC = () => {
                       <button
                         key={opt.id}
                         onClick={() => setCvssMetrics({ ...cvssMetrics, a: opt.id })}
-                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors ${
+                        className={`py-1.5 text-xs font-medium rounded border cursor-pointer transition-colors shadow-2xs ${
                           cvssMetrics.a === opt.id
-                            ? 'bg-indigo-600 text-white border-indigo-500'
-                            : 'bg-slate-900 text-slate-400 border-slate-800 hover:border-slate-700'
+                            ? 'bg-emerald-50 text-emerald-900 border-b-2 border-emerald-600 font-bold'
+                            : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                         }`}
                       >
                         {opt.label}
@@ -1001,19 +1001,19 @@ export const VaptCenter: React.FC = () => {
         {/* TAB 4: SCOPE & RULES OF ENGAGEMENT (RoE)                */}
         {/* ======================================================== */}
         {activeTab === 'scope_roe' && (
-          <div className="max-w-4xl mx-auto bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-md space-y-6">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+          <div className="max-w-4xl mx-auto bg-white border border-slate-200 rounded-xl p-6 shadow-2xs space-y-6">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-200">
               <div>
-                <h3 className="text-base font-bold text-white flex items-center gap-2">
-                  <Sliders className="w-4 h-4 text-cyan-400" />
+                <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                  <Sliders className="w-4 h-4 text-cyan-600" />
                   <span>Target Scope & Rules of Engagement (RoE)</span>
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-500">
                   Define penetration testing boundaries, safe rate limits, and compliance constraints
                 </p>
               </div>
 
-              <span className="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/40">
+              <span className="px-2.5 py-1 rounded bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200 shadow-2xs">
                 RoE STATUS: AUTHORIZED
               </span>
             </div>
@@ -1021,58 +1021,58 @@ export const VaptCenter: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div>
-                  <label className="text-xs font-semibold text-slate-300 block mb-1">Target Application Name</label>
+                  <label className="text-xs font-semibold text-slate-700 block mb-1">Target Application Name</label>
                   <input
                     type="text"
                     value={selectedScope.name}
                     readOnly
-                    className="w-full bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-200"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs text-slate-900 shadow-2xs"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-slate-300 block mb-1">Target Base URL</label>
+                  <label className="text-xs font-semibold text-slate-700 block mb-1">Target Base URL</label>
                   <input
                     type="text"
                     value={selectedScope.targetUrl}
                     readOnly
-                    className="w-full bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-xs font-mono text-cyan-300"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs font-mono text-cyan-800 shadow-2xs"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-slate-300 block mb-1">Environment Classification</label>
+                  <label className="text-xs font-semibold text-slate-700 block mb-1">Environment Classification</label>
                   <input
                     type="text"
                     value={selectedScope.environment}
                     readOnly
-                    className="w-full bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-200"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs text-slate-900 shadow-2xs"
                   />
                 </div>
               </div>
 
               <div className="space-y-4">
                 <div>
-                  <label className="text-xs font-semibold text-slate-300 block mb-1">Maximum Request Rate (Req/Sec)</label>
+                  <label className="text-xs font-semibold text-slate-700 block mb-1">Maximum Request Rate (Req/Sec)</label>
                   <input
                     type="number"
                     value={selectedScope.rateLimitReqPerSec}
                     readOnly
-                    className="w-full bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-xs font-mono text-slate-200"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs font-mono text-slate-900 shadow-2xs"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-slate-300 block mb-1">Excluded Critical Paths (Out of Scope)</label>
+                  <label className="text-xs font-semibold text-slate-700 block mb-1">Excluded Critical Paths (Out of Scope)</label>
                   <div className="space-y-1.5">
                     {selectedScope.exclusionPaths.length > 0 ? (
                       selectedScope.exclusionPaths.map((p, idx) => (
-                        <div key={idx} className="p-2 bg-slate-900 border border-slate-800 rounded text-xs font-mono text-rose-300">
+                        <div key={idx} className="p-2 bg-rose-50 border border-rose-200 rounded text-xs font-mono text-rose-800 shadow-2xs">
                           {p}
                         </div>
                       ))
                     ) : (
-                      <div className="text-xs text-slate-500 italic">No path exclusions configured.</div>
+                      <div className="text-xs text-slate-400 italic">No path exclusions configured.</div>
                     )}
                   </div>
                 </div>
@@ -1085,21 +1085,21 @@ export const VaptCenter: React.FC = () => {
         {/* TAB 5: EXECUTIVE & TECHNICAL VAPT AUDIT REPORT           */}
         {/* ======================================================== */}
         {activeTab === 'compliance_report' && (
-          <div className="max-w-4xl mx-auto bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-md space-y-6">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+          <div className="max-w-4xl mx-auto bg-white border border-slate-200 rounded-xl p-6 shadow-2xs space-y-6">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-200">
               <div>
-                <h3 className="text-base font-bold text-white flex items-center gap-2">
-                  <FileCode className="w-4 h-4 text-cyan-400" />
+                <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                  <FileCode className="w-4 h-4 text-cyan-600" />
                   <span>Executive VAPT Attestation Report</span>
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-500">
                   Compliant with NIST AI RMF • EU AI Act (2024/1689) Art. 15 • GDPR Art. 32 • PCI-DSS 4.0 Req 11.3 • SOC 2 Type II
                 </p>
               </div>
 
               <button
                 onClick={() => handleCopyCode(JSON.stringify(PRESET_VAPT_REPORT, null, 2))}
-                className="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 flex items-center gap-1.5 border border-slate-700 cursor-pointer"
+                className="px-3.5 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-xs font-bold text-slate-700 flex items-center gap-1.5 border border-slate-200 shadow-2xs cursor-pointer"
               >
                 <Download className="w-3.5 h-3.5" />
                 Export JSON Report
@@ -1108,41 +1108,41 @@ export const VaptCenter: React.FC = () => {
 
             {/* Report Summary Cards */}
             <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-              <div className="p-3.5 bg-slate-900 rounded-xl border border-slate-800 text-center">
-                <div className="text-[11px] text-slate-400 font-semibold">Overall Risk Score</div>
-                <div className="text-xl font-black text-rose-400 mt-1">{PRESET_VAPT_REPORT.overallRiskScore} / 100</div>
+              <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-center shadow-2xs">
+                <div className="text-[11px] text-slate-500 font-semibold">Overall Risk Score</div>
+                <div className="text-xl font-black text-rose-600 mt-1">{PRESET_VAPT_REPORT.overallRiskScore} / 100</div>
               </div>
 
-              <div className="p-3.5 bg-slate-900 rounded-xl border border-slate-800 text-center">
-                <div className="text-[11px] text-slate-400 font-semibold">EU AI Act (Art 15)</div>
-                <div className="text-xs font-bold text-emerald-400 mt-2">Resilience Passed</div>
+              <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-center shadow-2xs">
+                <div className="text-[11px] text-slate-500 font-semibold">EU AI Act (Art 15)</div>
+                <div className="text-xs font-bold text-emerald-700 mt-2">Resilience Passed</div>
               </div>
 
-              <div className="p-3.5 bg-slate-900 rounded-xl border border-slate-800 text-center">
-                <div className="text-[11px] text-slate-400 font-semibold">NIST AI RMF (MAP-2.2)</div>
-                <div className="text-xs font-bold text-indigo-300 mt-2">Threat Mapped</div>
+              <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-center shadow-2xs">
+                <div className="text-[11px] text-slate-500 font-semibold">NIST AI RMF (MAP-2.2)</div>
+                <div className="text-xs font-bold text-indigo-700 mt-2">Threat Mapped</div>
               </div>
 
-              <div className="p-3.5 bg-slate-900 rounded-xl border border-slate-800 text-center">
-                <div className="text-[11px] text-slate-400 font-semibold">EU GDPR Art. 32</div>
-                <div className="text-xs font-bold text-teal-300 mt-2">Crypto Verified</div>
+              <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-center shadow-2xs">
+                <div className="text-[11px] text-slate-500 font-semibold">EU GDPR Art. 32</div>
+                <div className="text-xs font-bold text-teal-700 mt-2">Crypto Verified</div>
               </div>
 
-              <div className="p-3.5 bg-slate-900 rounded-xl border border-slate-800 text-center">
-                <div className="text-[11px] text-slate-400 font-semibold">OWASP ASVS</div>
-                <div className="text-xs font-bold text-cyan-300 mt-2">Level 2 Verified</div>
+              <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-center shadow-2xs">
+                <div className="text-[11px] text-slate-500 font-semibold">OWASP ASVS</div>
+                <div className="text-xs font-bold text-cyan-700 mt-2">Level 2 Verified</div>
               </div>
             </div>
 
             {/* Findings Breakdown Table */}
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
                 Identified Security Gaps & Exploit Vectors
               </h4>
 
-              <div className="border border-slate-800 rounded-lg overflow-hidden">
+              <div className="border border-slate-200 rounded-lg overflow-hidden shadow-2xs">
                 <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-900 border-b border-slate-800 text-slate-400">
+                  <thead className="bg-slate-50 border-b border-slate-200 text-slate-600">
                     <tr>
                       <th className="p-3">Severity</th>
                       <th className="p-3">Finding Title</th>
@@ -1151,15 +1151,15 @@ export const VaptCenter: React.FC = () => {
                       <th className="p-3">Remediation Status</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800">
+                  <tbody className="divide-y divide-slate-200">
                     {findings.map((f) => (
-                      <tr key={f.id} className="hover:bg-slate-800/40">
+                      <tr key={f.id} className="hover:bg-slate-50/80">
                         <td className="p-3">{getSeverityBadge(f.severity)}</td>
-                        <td className="p-3 font-semibold text-white">{f.title}</td>
-                        <td className="p-3 font-mono text-rose-400 font-bold">{f.cvssScore}</td>
-                        <td className="p-3 font-mono text-slate-400 truncate max-w-[200px]">{f.targetUrl}</td>
+                        <td className="p-3 font-semibold text-slate-900">{f.title}</td>
+                        <td className="p-3 font-mono text-rose-600 font-bold">{f.cvssScore}</td>
+                        <td className="p-3 font-mono text-slate-600 truncate max-w-[200px]">{f.targetUrl}</td>
                         <td className="p-3">
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">
                             {f.status}
                           </span>
                         </td>

@@ -97,135 +97,97 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Center View Mode Switcher with Visual Groups */}
-      <div className="flex items-center gap-2 overflow-x-auto scrollbar-none max-w-[50vw] lg:max-w-[60vw] xl:max-w-[70vw] py-1 shrink-0">
-        {/* GROUP 1: SOC Operations */}
-        <div
-          className="flex items-center p-1 rounded-xl border border-blue-200 shadow-2xs bg-blue-50/80 gap-1"
+      {/* Center View Mode Switcher - Clean & Uncluttered with domain-specific colors */}
+      <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none max-w-[55vw] lg:max-w-[65vw] xl:max-w-[75vw] py-1 shrink-0">
+        <button
+          id="tab-secops-nexus-view"
+          onClick={() => onChangeView('secops')}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
+            activeView === 'secops'
+              ? 'bg-violet-50 text-violet-900 border-b-2 border-violet-600 shadow-2xs font-bold'
+              : 'bg-slate-50/80 text-slate-700 border-slate-200/80 hover:bg-slate-100 hover:text-slate-900'
+          }`}
         >
-          <div className="px-2 text-[10px] font-black uppercase tracking-wider text-blue-700 select-none hidden lg:block">
-            SOC
-          </div>
-          <button
-            id="tab-secops-nexus-view"
-            onClick={() => onChangeView('secops')}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-              activeView === 'secops'
-                ? 'bg-blue-600 text-white shadow-2xs'
-                : 'bg-white/80 text-slate-700 hover:bg-white hover:text-slate-900 border border-transparent'
-            }`}
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>AI SecOps Nexus</span>
-            <span className="px-1.5 py-0.2 bg-blue-500/20 text-blue-700 rounded text-[9px] font-mono font-bold">
-              SIEM•SOAR•XDR
-            </span>
-          </button>
+          <Sparkles className={`w-3.5 h-3.5 ${activeView === 'secops' ? 'text-violet-600' : 'text-slate-500'}`} />
+          <span>AI SecOps Nexus</span>
+        </button>
 
-          <button
-            id="tab-grc-compliance-view"
-            onClick={() => onChangeView('grc_compliance')}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-              activeView === 'grc_compliance'
-                ? 'bg-emerald-600 text-white shadow-2xs'
-                : 'bg-white/80 text-slate-700 hover:bg-white hover:text-slate-900 border border-transparent'
-            }`}
-          >
-            <FileCheck2 className="w-3.5 h-3.5" />
-            <span>NIST & EU GRC</span>
-            <span className="px-1.5 py-0.2 bg-emerald-500/20 text-emerald-700 rounded text-[9px] font-mono font-bold">
-              EU AI Act•GDPR
-            </span>
-          </button>
-        </div>
-
-        {/* GROUP 2: Threat Hunting */}
-        <div
-          className="flex items-center p-1 rounded-xl border border-purple-200 shadow-2xs bg-purple-50/80 gap-1"
+        <button
+          id="tab-grc-compliance-view"
+          onClick={() => onChangeView('grc_compliance')}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
+            activeView === 'grc_compliance'
+              ? 'bg-blue-50 text-blue-900 border-b-2 border-blue-600 shadow-2xs font-bold'
+              : 'bg-slate-50/80 text-slate-700 border-slate-200/80 hover:bg-slate-100 hover:text-slate-900'
+          }`}
         >
-          <div className="px-2 text-[10px] font-black uppercase tracking-wider text-purple-700 select-none hidden lg:block">
-            Threat Hunting
-          </div>
-          <button
-            id="tab-security-lab-view"
-            onClick={() => onChangeView('security_lab')}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-              activeView === 'security_lab'
-                ? 'bg-purple-600 text-white shadow-2xs'
-                : 'bg-white/80 text-slate-700 hover:bg-white hover:text-slate-900 border border-transparent'
-            }`}
-          >
-            <ShieldAlert className="w-3.5 h-3.5" />
-            <span>Red-Team Attack Lab</span>
-          </button>
-        </div>
+          <FileCheck2 className={`w-3.5 h-3.5 ${activeView === 'grc_compliance' ? 'text-blue-600' : 'text-slate-500'}`} />
+          <span>NIST & EU GRC</span>
+        </button>
 
-        {/* GROUP 3: Vulnerability & Pen Testing */}
-        <div
-          className="flex items-center p-1 rounded-xl border border-rose-200 shadow-2xs bg-rose-50/80 gap-1"
+        <button
+          id="tab-security-lab-view"
+          onClick={() => onChangeView('security_lab')}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
+            activeView === 'security_lab'
+              ? 'bg-rose-50 text-rose-900 border-b-2 border-rose-600 shadow-2xs font-bold'
+              : 'bg-slate-50/80 text-slate-700 border-slate-200/80 hover:bg-slate-100 hover:text-slate-900'
+          }`}
         >
-          <div className="px-2 text-[10px] font-black uppercase tracking-wider text-rose-700 select-none hidden lg:block">
-            Vuln & PenTest
-          </div>
-          <button
-            id="tab-vapt-workbench-view"
-            onClick={() => onChangeView('vapt')}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-              activeView === 'vapt'
-                ? 'bg-rose-600 text-white shadow-2xs'
-                : 'bg-white/80 text-slate-700 hover:bg-white hover:text-slate-900 border border-transparent'
-            }`}
-          >
-            <Terminal className="w-3.5 h-3.5" />
-            <span>PenTest & VAPT</span>
-            <span className="px-1.5 py-0.2 bg-rose-500/20 text-rose-700 rounded text-[9px] font-mono font-bold">
-              CVSS•PoC
-            </span>
-          </button>
+          <ShieldAlert className={`w-3.5 h-3.5 ${activeView === 'security_lab' ? 'text-rose-600' : 'text-slate-500'}`} />
+          <span>Red-Team Lab</span>
+        </button>
 
-          <button
-            id="tab-appsec-scanner-view"
-            onClick={() => onChangeView('appsec_scanner')}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-              activeView === 'appsec_scanner'
-                ? 'bg-cyan-600 text-white shadow-2xs'
-                : 'bg-white/80 text-slate-700 hover:bg-white hover:text-slate-900 border border-transparent'
-            }`}
-          >
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>AppSec Scanner</span>
-            <span className="px-1.5 py-0.2 bg-cyan-500/20 text-cyan-700 rounded text-[9px] font-mono font-bold">
-              SAST•SCA
-            </span>
-          </button>
-        </div>
+        <button
+          id="tab-vapt-workbench-view"
+          onClick={() => onChangeView('vapt')}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
+            activeView === 'vapt'
+              ? 'bg-amber-50 text-amber-900 border-b-2 border-amber-600 shadow-2xs font-bold'
+              : 'bg-slate-50/80 text-slate-700 border-slate-200/80 hover:bg-slate-100 hover:text-slate-900'
+          }`}
+        >
+          <Terminal className={`w-3.5 h-3.5 ${activeView === 'vapt' ? 'text-amber-600' : 'text-slate-500'}`} />
+          <span>PenTest & VAPT</span>
+        </button>
 
-        {/* Canvas Builder */}
+        <button
+          id="tab-appsec-scanner-view"
+          onClick={() => onChangeView('appsec_scanner')}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
+            activeView === 'appsec_scanner'
+              ? 'bg-cyan-50 text-cyan-900 border-b-2 border-cyan-600 shadow-2xs font-bold'
+              : 'bg-slate-50/80 text-slate-700 border-slate-200/80 hover:bg-slate-100 hover:text-slate-900'
+          }`}
+        >
+          <ShieldCheck className={`w-3.5 h-3.5 ${activeView === 'appsec_scanner' ? 'text-cyan-600' : 'text-slate-500'}`} />
+          <span>AppSec Scanner</span>
+        </button>
+
         <button
           id="tab-builder-view"
           onClick={() => onChangeView('builder')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
             activeView === 'builder'
-              ? 'bg-slate-700 text-white border-slate-800 shadow-2xs'
-              : 'bg-white/80 text-slate-700 border-slate-300 hover:bg-white'
+              ? 'bg-sky-50 text-sky-900 border-b-2 border-sky-600 shadow-2xs font-bold'
+              : 'bg-slate-50/80 text-slate-700 border-slate-200/80 hover:bg-slate-100 hover:text-slate-900'
           }`}
         >
-          <LayoutGrid className="w-3.5 h-3.5" />
+          <LayoutGrid className={`w-3.5 h-3.5 ${activeView === 'builder' ? 'text-sky-600' : 'text-slate-500'}`} />
           <span>Canvas</span>
         </button>
 
-        {/* Blog Reader */}
         <button
           id="tab-blog-view"
           onClick={() => onChangeView('blog')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
             activeView === 'blog'
-              ? 'bg-blue-700 text-white border-blue-800 shadow-2xs'
-              : 'bg-white/80 text-slate-700 border-slate-300 hover:bg-white'
+              ? 'bg-emerald-50 text-emerald-900 border-b-2 border-emerald-600 shadow-2xs font-bold'
+              : 'bg-slate-50/80 text-slate-700 border-slate-200/80 hover:bg-slate-100 hover:text-slate-900'
           }`}
         >
-          <BookOpen className="w-3.5 h-3.5" />
-          <span>Blog</span>
+          <BookOpen className={`w-3.5 h-3.5 ${activeView === 'blog' ? 'text-emerald-600' : 'text-slate-500'}`} />
+          <span>Security Design Blog</span>
         </button>
       </div>
 

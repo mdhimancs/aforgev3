@@ -3,15 +3,15 @@ title: "Web 3.0 - Decentralizing Internet"
 date: "2022-10-29T22:04:22+05:30"
 slug: "web-3-dot-0-decentralizing-internet"
 categories: ["web3.0", "technology", "iot", "blockchain"]
-original_url: "https://rishijeet.github.io/blog/web-3-dot-0-decentralizing-internet/"
+original_url: "https://systemdesign.github.io/blog/web-3-dot-0-decentralizing-internet/"
 word_count: 455
 reading_time: "2 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Web 3.0 - Decentralizing Internet
 
-*Published on 2022-10-29 by Rishijeet Mishra | [https://rishijeet.github.io/blog/web-3-dot-0-decentralizing-internet/](https://rishijeet.github.io/blog/web-3-dot-0-decentralizing-internet/)*
+*Published on 2022-10-29 by System Design | [https://systemdesign.github.io/blog/web-3-dot-0-decentralizing-internet/](https://systemdesign.github.io/blog/web-3-dot-0-decentralizing-internet/)*
 
 The Internet has become an integral part of our lives, transforming the way we communicate, work, and access information. From the early days of Web 1.0, where static websites provided basic information, to the dynamic and interactive Web 2.0 era that brought social media, online collaboration, and user-generated content, the Internet has continuously evolved. Now, a new paradigm shift is on the horizon - Web 3.0. In this blog, we will explore the exciting possibilities and potential of Web 3.0, a decentralized and user-centric vision of the future internet.
 

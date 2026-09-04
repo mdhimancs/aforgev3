@@ -3,15 +3,15 @@ title: "Understanding the Bloom filter"
 date: "2024-06-11T10:09:01+05:30"
 slug: "understanding-the-bloom-filter"
 categories: ["bloom_filter", "algorithm", "data_structure"]
-original_url: "https://rishijeet.github.io/blog/understanding-the-bloom-filter/"
+original_url: "https://systemdesign.github.io/blog/understanding-the-bloom-filter/"
 word_count: 2360
 reading_time: "12 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Understanding the Bloom filter
 
-*Published on 2024-06-11 by Rishijeet Mishra | [https://rishijeet.github.io/blog/understanding-the-bloom-filter/](https://rishijeet.github.io/blog/understanding-the-bloom-filter/)*
+*Published on 2024-06-11 by System Design | [https://systemdesign.github.io/blog/understanding-the-bloom-filter/](https://systemdesign.github.io/blog/understanding-the-bloom-filter/)*
 
 A Bloom filter is a probabilistic data structure used to test whether an element is a member of a set. It is highly space-efficient and allows for fast query operations, but it has a small risk of false positives (reporting that an element is in the set when it is not) while guaranteeing no false negatives (an element that is in the set will always be reported as such).
 

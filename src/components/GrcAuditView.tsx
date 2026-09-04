@@ -123,23 +123,23 @@ export function GrcAuditView() {
   };
 
   return (
-    <div className={`flex flex-col flex-1 h-full overflow-y-auto ${isLight ? 'bg-slate-100/80 text-slate-800' : 'bg-slate-900 text-slate-100'}`}>
+    <div className="flex flex-col flex-1 h-full overflow-y-auto bg-slate-50 text-slate-800">
       {/* Top Banner */}
-      <div className={`p-4 border-b flex flex-wrap items-center justify-between gap-4 ${isLight ? 'bg-slate-100/90 border-slate-200/90 shadow-xs' : 'bg-slate-900 border-slate-800'}`}>
+      <div className="p-4 border-b border-slate-200 bg-white shadow-2xs flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="p-2.5 bg-gradient-to-br from-indigo-600 via-teal-600 to-emerald-600 rounded-xl shadow-md text-white">
             <FileCheck2 className="w-5 h-5" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className={`text-base font-bold tracking-tight ${isLight ? 'text-slate-900' : 'text-white'}`}>
+              <h2 className="text-base font-bold tracking-tight text-slate-900">
                 NIST • EU AI Act • GDPR • Continuous GRC Hub
               </h2>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 uppercase">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-indigo-50 text-indigo-700 border border-indigo-200 uppercase">
                 EU AI Act Art 9/10/14/15 • NIST AI RMF • GDPR Art 25/32 • SOC 2
               </span>
             </div>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs text-slate-500">
               Automated evidence collection and real-time regulatory compliance mapping across cloud, AI models, identity, and application security.
             </p>
           </div>
@@ -149,12 +149,10 @@ export function GrcAuditView() {
         <div className="flex items-center gap-2">
           <button
             onClick={handleExportAuditPackage}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 shadow-xs ${
               copiedAuditPackage
-                ? 'bg-emerald-600 text-white shadow-xs'
-                : isLight
-                ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-xs'
-                : 'bg-indigo-600 text-white hover:bg-indigo-500'
+                ? 'bg-emerald-600 text-white'
+                : 'bg-indigo-600 text-white hover:bg-indigo-700'
             }`}
           >
             {copiedAuditPackage ? (
@@ -176,93 +174,91 @@ export function GrcAuditView() {
         {/* Compliance Framework Summary Cards Ribbon */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
           {/* EU AI Act Card */}
-          <div className={`p-3.5 rounded-xl border ${isLight ? 'bg-indigo-50/70 border-indigo-200 shadow-xs' : 'bg-slate-900 border-indigo-900/60'}`}>
+          <div className="p-3.5 rounded-xl border bg-white border-slate-200 shadow-2xs">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700 dark:text-indigo-400">EU AI Act (2024/1689)</span>
-              <Cpu className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+              <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700">EU AI Act (2024/1689)</span>
+              <Cpu className="w-4 h-4 text-indigo-600" />
             </div>
-            <div className="text-xl font-black mt-1 text-indigo-950 dark:text-indigo-200">95% Compliant</div>
-            <span className="text-[10px] text-indigo-700 dark:text-indigo-300 font-medium block mt-0.5 truncate">
+            <div className="text-xl font-black mt-1 text-slate-900">95% Compliant</div>
+            <span className="text-[10px] text-slate-500 font-medium block mt-0.5 truncate">
               Art. 9 Risk • Art. 14 Oversight
             </span>
           </div>
 
           {/* EU GDPR Card */}
-          <div className={`p-3.5 rounded-xl border ${isLight ? 'bg-emerald-50/70 border-emerald-200 shadow-xs' : 'bg-slate-900 border-emerald-900/60'}`}>
+          <div className="p-3.5 rounded-xl border bg-white border-slate-200 shadow-2xs">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">EU GDPR Data Privacy</span>
-              <Scale className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">EU GDPR Data Privacy</span>
+              <Scale className="w-4 h-4 text-emerald-600" />
             </div>
-            <div className="text-xl font-black mt-1 text-emerald-950 dark:text-emerald-200">98% Compliant</div>
-            <span className="text-[10px] text-emerald-700 dark:text-emerald-300 font-medium block mt-0.5 truncate">
+            <div className="text-xl font-black mt-1 text-slate-900">98% Compliant</div>
+            <span className="text-[10px] text-slate-500 font-medium block mt-0.5 truncate">
               Art. 25 Minimization & Art. 32 Encryption
             </span>
           </div>
 
           {/* NIST AI RMF & CSF 2.0 Card */}
-          <div className={`p-3.5 rounded-xl border ${isLight ? 'bg-purple-50/70 border-purple-200 shadow-xs' : 'bg-slate-900 border-purple-900/60'}`}>
+          <div className="p-3.5 rounded-xl border bg-white border-slate-200 shadow-2xs">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-purple-700 dark:text-purple-400">NIST AI RMF & CSF 2.0</span>
-              <ShieldCheck className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+              <span className="text-[10px] font-bold uppercase tracking-wider text-purple-700">NIST AI RMF & CSF 2.0</span>
+              <ShieldCheck className="w-4 h-4 text-purple-600" />
             </div>
-            <div className="text-xl font-black mt-1 text-purple-950 dark:text-purple-200">96% Compliant</div>
-            <span className="text-[10px] text-purple-700 dark:text-purple-300 font-medium block mt-0.5 truncate">
+            <div className="text-xl font-black mt-1 text-slate-900">96% Compliant</div>
+            <span className="text-[10px] text-slate-500 font-medium block mt-0.5 truncate">
               GOVERN-1.2 • MAP-2.2 Mapped
             </span>
           </div>
 
           {/* SOC 2 & ISO 27001 Card */}
-          <div className={`p-3.5 rounded-xl border ${isLight ? 'bg-cyan-50/70 border-cyan-200 shadow-xs' : 'bg-slate-900 border-cyan-900/60'}`}>
+          <div className="p-3.5 rounded-xl border bg-white border-slate-200 shadow-2xs">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-700 dark:text-cyan-400">SOC 2 & ISO 27001</span>
-              <Lock className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+              <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-700">SOC 2 & ISO 27001</span>
+              <Lock className="w-4 h-4 text-cyan-600" />
             </div>
-            <div className="text-xl font-black mt-1 text-cyan-950 dark:text-cyan-200">94% Compliant</div>
-            <span className="text-[10px] text-cyan-700 dark:text-cyan-300 font-medium block mt-0.5 truncate">
+            <div className="text-xl font-black mt-1 text-slate-900">94% Compliant</div>
+            <span className="text-[10px] text-slate-500 font-medium block mt-0.5 truncate">
               CC6.1 Logical Access • Annex A.8.28
             </span>
           </div>
 
           {/* Cryptographic Ledger Card */}
-          <div className={`p-3.5 rounded-xl border ${isLight ? 'bg-amber-50/70 border-amber-200 shadow-xs' : 'bg-slate-900 border-amber-900/60'}`}>
+          <div className="p-3.5 rounded-xl border bg-white border-slate-200 shadow-2xs">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">Audit Evidence Integrity</span>
-              <Key className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+              <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700">Audit Evidence Integrity</span>
+              <Key className="w-4 h-4 text-amber-600" />
             </div>
-            <div className="text-xl font-black mt-1 text-amber-950 dark:text-amber-200">SHA-256 Valid</div>
-            <span className="text-[10px] text-amber-700 dark:text-amber-300 font-medium block mt-0.5 truncate">
+            <div className="text-xl font-black mt-1 text-slate-900">SHA-256 Valid</div>
+            <span className="text-[10px] text-slate-500 font-medium block mt-0.5 truncate">
               Cryptographic Proof Ledger Verified
             </span>
           </div>
         </div>
 
         {/* Framework Selector & Filter Control Bar */}
-        <div className={`p-4 rounded-xl border space-y-3 ${isLight ? 'bg-white border-slate-200 shadow-xs' : 'bg-slate-900 border-slate-800'}`}>
+        <div className="p-4 rounded-xl border border-slate-200 bg-white shadow-2xs space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 max-w-full">
               <span className="text-xs font-bold text-slate-500 mr-1 uppercase tracking-wider text-[10px]">Framework:</span>
               {(
                 [
-                  { id: 'ALL', label: 'All Frameworks' },
-                  { id: 'EU_AI_ACT', label: 'EU AI Act (2024/1689)' },
-                  { id: 'GDPR', label: 'EU GDPR' },
-                  { id: 'NIST_AI_RMF', label: 'NIST AI RMF 1.0' },
-                  { id: 'NIST_CSF_2_0', label: 'NIST CSF 2.0' },
-                  { id: 'NIST_SP_800_53', label: 'NIST SP 800-53' },
-                  { id: 'SOC2_TYPE2', label: 'SOC 2 Type II' },
-                  { id: 'ISO_27001_2022', label: 'ISO 27001:2022' },
-                  { id: 'PCI_DSS_4_0', label: 'PCI-DSS 4.0' }
+                  { id: 'ALL', label: 'All Frameworks', activeClass: 'bg-slate-100 text-slate-900 border-b-2 border-slate-700 font-bold' },
+                  { id: 'EU_AI_ACT', label: 'EU AI Act (2024/1689)', activeClass: 'bg-indigo-50 text-indigo-900 border-b-2 border-indigo-600 font-bold' },
+                  { id: 'GDPR', label: 'EU GDPR', activeClass: 'bg-emerald-50 text-emerald-900 border-b-2 border-emerald-600 font-bold' },
+                  { id: 'NIST_AI_RMF', label: 'NIST AI RMF 1.0', activeClass: 'bg-purple-50 text-purple-900 border-b-2 border-purple-600 font-bold' },
+                  { id: 'NIST_CSF_2_0', label: 'NIST CSF 2.0', activeClass: 'bg-blue-50 text-blue-900 border-b-2 border-blue-600 font-bold' },
+                  { id: 'NIST_SP_800_53', label: 'NIST SP 800-53', activeClass: 'bg-cyan-50 text-cyan-900 border-b-2 border-cyan-600 font-bold' },
+                  { id: 'SOC2_TYPE2', label: 'SOC 2 Type II', activeClass: 'bg-teal-50 text-teal-900 border-b-2 border-teal-600 font-bold' },
+                  { id: 'ISO_27001_2022', label: 'ISO 27001:2022', activeClass: 'bg-violet-50 text-violet-900 border-b-2 border-violet-600 font-bold' },
+                  { id: 'PCI_DSS_4_0', label: 'PCI-DSS 4.0', activeClass: 'bg-amber-50 text-amber-900 border-b-2 border-amber-600 font-bold' }
                 ] as const
               ).map((fw) => (
                 <button
                   key={fw.id}
                   onClick={() => setFrameworkFilter(fw.id)}
-                  className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap border ${
+                  className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap border shadow-2xs ${
                     frameworkFilter === fw.id
-                      ? 'bg-indigo-600 text-white border-indigo-600 shadow-2xs'
-                      : isLight
-                      ? 'bg-slate-100/90 text-slate-700 border-slate-200 hover:bg-slate-200'
-                      : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'
+                      ? fw.activeClass
+                      : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
                   }`}
                 >
                   {fw.label}
@@ -271,7 +267,7 @@ export function GrcAuditView() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-200 dark:border-slate-800">
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-200">
             {/* Search Input */}
             <div className="relative flex-1 min-w-[240px]">
               <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -280,11 +276,7 @@ export function GrcAuditView() {
                 placeholder="Search controls (e.g. EU-AI-ART-14, GOVERN-1.2, GDPR-ART-25)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className={`w-full pl-9 pr-3 py-1.5 text-xs rounded-lg border font-mono ${
-                  isLight
-                    ? 'bg-slate-50 border-slate-200 text-slate-900 focus:bg-white focus:border-indigo-500'
-                    : 'bg-slate-900 border-slate-800 text-slate-200 focus:border-indigo-500'
-                } focus:outline-none`}
+                className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg border font-mono bg-slate-50 border-slate-200 text-slate-900 focus:bg-white focus:border-indigo-500 focus:outline-none"
               />
             </div>
 
@@ -294,11 +286,7 @@ export function GrcAuditView() {
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className={`px-3 py-1.5 text-xs rounded-lg border font-semibold ${
-                  isLight
-                    ? 'bg-slate-50 border-slate-200 text-slate-800'
-                    : 'bg-slate-900 border-slate-800 text-slate-200'
-                } focus:outline-none`}
+                className="px-3 py-1.5 text-xs rounded-lg border font-semibold bg-slate-50 border-slate-200 text-slate-800 focus:outline-none"
               >
                 <option value="ALL">All Control Domains</option>
                 <option value="AI Safety & Governance">AI Safety & Governance</option>
@@ -316,10 +304,10 @@ export function GrcAuditView() {
         {/* 2-Column Split: Interactive Regulatory Controls Register & Evidence Vault */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* Main Controls List (2 Columns wide on LG) */}
-          <div className={`lg:col-span-2 p-4 rounded-xl border ${isLight ? 'bg-white border-slate-200 shadow-xs' : 'bg-slate-900 border-slate-800'}`}>
-            <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-200 dark:border-slate-800">
-              <h3 className={`text-xs font-bold uppercase tracking-wider flex items-center gap-2 ${isLight ? 'text-slate-800' : 'text-slate-200'}`}>
-                <ShieldCheck className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+          <div className="lg:col-span-2 p-4 rounded-xl border border-slate-200 bg-white shadow-2xs">
+            <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-200">
+              <h3 className="text-xs font-bold uppercase tracking-wider flex items-center gap-2 text-slate-800">
+                <ShieldCheck className="w-4 h-4 text-indigo-600" />
                 <span>Automated Regulatory Control Register ({filteredControls.length})</span>
               </h3>
               <span className="text-[11px] font-mono font-medium text-slate-500">
@@ -335,14 +323,10 @@ export function GrcAuditView() {
                 return (
                   <div
                     key={ctrl.id}
-                    className={`border rounded-xl transition-all ${
+                    className={`border rounded-xl transition-all shadow-2xs ${
                       isExpanded
-                        ? isLight
-                          ? 'border-indigo-300 bg-indigo-50/30 shadow-xs'
-                          : 'border-indigo-700 bg-indigo-950/20'
-                        : isLight
-                        ? 'border-slate-200 hover:border-slate-300 bg-white'
-                        : 'border-slate-800 hover:border-slate-700 bg-slate-900/60'
+                        ? 'border-indigo-300 bg-indigo-50/40 shadow-xs'
+                        : 'border-slate-200 hover:border-slate-300 bg-white'
                     }`}
                   >
                     {/* Control Row Header */}
@@ -352,10 +336,10 @@ export function GrcAuditView() {
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <button className="text-slate-400 hover:text-slate-600">
-                          {isExpanded ? <ChevronDown className="w-4 h-4 text-indigo-500" /> : <ChevronRight className="w-4 h-4" />}
+                          {isExpanded ? <ChevronDown className="w-4 h-4 text-indigo-600" /> : <ChevronRight className="w-4 h-4" />}
                         </button>
 
-                        <span className="font-mono text-xs font-extrabold text-indigo-700 dark:text-indigo-400 shrink-0">
+                        <span className="font-mono text-xs font-extrabold text-indigo-700 shrink-0">
                           {ctrl.controlId}
                         </span>
 
@@ -363,21 +347,21 @@ export function GrcAuditView() {
                           {ctrl.framework.replace(/_/g, ' ')}
                         </span>
 
-                        <span className={`text-xs font-bold truncate ${isLight ? 'text-slate-900' : 'text-slate-100'}`}>
+                        <span className="text-xs font-bold truncate text-slate-900">
                           {ctrl.title}
                         </span>
                       </div>
 
                       <div className="flex items-center gap-3 shrink-0">
-                        <span className="hidden sm:inline-block text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                        <span className="hidden sm:inline-block text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
                           {ctrl.automatedEvidenceSource}
                         </span>
 
                         <span
-                          className={`px-2 py-0.5 rounded text-[9px] font-bold ${
+                          className={`px-2 py-0.5 rounded text-[9px] font-bold border ${
                             ctrl.status === 'COMPLIANT'
-                              ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800'
-                              : 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 border border-amber-300 dark:border-amber-800'
+                              ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                              : 'bg-amber-100 text-amber-800 border-amber-300'
                           }`}
                         >
                           {ctrl.status}
@@ -387,13 +371,13 @@ export function GrcAuditView() {
 
                     {/* Expandable Control Details Drawer */}
                     {isExpanded && (
-                      <div className={`p-4 border-t space-y-3 ${isLight ? 'bg-slate-50/90 border-indigo-200' : 'bg-slate-900 border-indigo-900/60'}`}>
+                      <div className="p-4 border-t border-indigo-200 bg-slate-50/90 space-y-3">
                         {/* Regulatory Reference & Description */}
                         <div className="space-y-1.5">
                           {ctrl.regulatoryReference && (
                             <div className="flex items-center gap-2">
                               <span className="text-[10px] uppercase font-bold text-slate-500">Regulatory Requirement:</span>
-                              <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-100 dark:bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-200 dark:border-indigo-800">
+                              <span className="text-xs font-bold text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded border border-indigo-200">
                                 {ctrl.regulatoryReference}
                               </span>
                               {ctrl.riskLevel && (
@@ -406,37 +390,33 @@ export function GrcAuditView() {
                             </div>
                           )}
 
-                          <p className={`text-xs ${isLight ? 'text-slate-700' : 'text-slate-300'}`}>
+                          <p className="text-xs text-slate-700">
                             {ctrl.description || 'Continuous automated compliance check inspecting system runtime and security telemetry.'}
                           </p>
                         </div>
 
                         {/* Remediation & Policy Details */}
                         {ctrl.remediationAdvice && (
-                          <div className={`p-3 rounded-lg border ${isLight ? 'bg-indigo-50/80 border-indigo-200' : 'bg-indigo-950/40 border-indigo-900/50'}`}>
-                            <span className="text-[10px] uppercase font-bold text-indigo-800 dark:text-indigo-300 block mb-1">
+                          <div className="p-3 rounded-lg border bg-indigo-50 border-indigo-200">
+                            <span className="text-[10px] uppercase font-bold text-indigo-900 block mb-1">
                               Automated Enforcement Strategy & Recommendation:
                             </span>
-                            <p className="text-xs font-mono text-indigo-900 dark:text-indigo-200">
+                            <p className="text-xs font-mono text-indigo-950">
                               {ctrl.remediationAdvice}
                             </p>
                           </div>
                         )}
 
                         {/* Meta info & Re-verify Action */}
-                        <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-200 dark:border-slate-800 text-[11px] font-mono text-slate-500">
+                        <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-200 text-[11px] font-mono text-slate-500">
                           <div>
-                            Owner: <span className="font-bold text-slate-700 dark:text-slate-300">{ctrl.owner}</span> • Last checked: <span className="text-emerald-600 dark:text-emerald-400 font-bold">{ctrl.lastAutomatedCheck}</span>
+                            Owner: <span className="font-bold text-slate-800">{ctrl.owner}</span> • Last checked: <span className="text-emerald-700 font-bold">{ctrl.lastAutomatedCheck}</span>
                           </div>
 
                           <button
                             onClick={() => handleReVerify(ctrl.id)}
                             disabled={isReVerifying}
-                            className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 border ${
-                              isLight
-                                ? 'bg-white hover:bg-slate-100 text-slate-800 border-slate-300 shadow-2xs'
-                                : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700'
-                            }`}
+                            className="px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 border bg-white hover:bg-slate-100 text-slate-800 border-slate-300 shadow-2xs"
                           >
                             <RefreshCw className={`w-3.5 h-3.5 ${isReVerifying ? 'animate-spin text-indigo-500' : ''}`} />
                             <span>{isReVerifying ? 'Verifying Telemetry...' : 'Trigger Real-time Audit Scan'}</span>
@@ -451,10 +431,10 @@ export function GrcAuditView() {
           </div>
 
           {/* Cryptographic Evidence Ledger Register (1 Column wide on LG) */}
-          <div className={`p-4 rounded-xl border ${isLight ? 'bg-white border-slate-200 shadow-xs' : 'bg-slate-900 border-slate-800'}`}>
-            <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-200 dark:border-slate-800">
-              <h3 className={`text-xs font-bold uppercase tracking-wider flex items-center gap-2 ${isLight ? 'text-slate-800' : 'text-slate-200'}`}>
-                <Key className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+          <div className="p-4 rounded-xl border border-slate-200 bg-white shadow-2xs">
+            <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-200">
+              <h3 className="text-xs font-bold uppercase tracking-wider flex items-center gap-2 text-slate-800">
+                <Key className="w-4 h-4 text-amber-600" />
                 <span>SHA-256 Cryptographic Evidence Ledger</span>
               </h3>
             </div>
@@ -463,38 +443,36 @@ export function GrcAuditView() {
               {evidenceList.map((ev) => (
                 <div
                   key={ev.id}
-                  className={`p-3 rounded-xl border space-y-2 ${
-                    isLight ? 'bg-slate-50/80 border-slate-200 hover:border-slate-300' : 'bg-slate-900 border-slate-800'
-                  }`}
+                  className="p-3 rounded-xl border border-slate-200 bg-slate-50/80 hover:border-slate-300 shadow-2xs space-y-2"
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-mono text-xs font-extrabold text-emerald-600 dark:text-emerald-400">
+                    <span className="font-mono text-xs font-extrabold text-emerald-700">
                       [{ev.controlId}]
                     </span>
-                    <span className="text-[10px] font-mono text-slate-400 truncate max-w-[140px]">
+                    <span className="text-[10px] font-mono text-slate-500 truncate max-w-[140px]">
                       {ev.verifiedTimestamp}
                     </span>
                   </div>
 
-                  <h4 className={`text-xs font-bold ${isLight ? 'text-slate-900' : 'text-slate-100'}`}>
+                  <h4 className="text-xs font-bold text-slate-900">
                     {ev.title}
                   </h4>
 
-                  <p className={`text-[11px] ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
+                  <p className="text-[11px] text-slate-600">
                     {ev.payloadSummary}
                   </p>
 
-                  <div className="flex items-center justify-between pt-1 border-t border-slate-200 dark:border-slate-800">
+                  <div className="flex items-center justify-between pt-1 border-t border-slate-200">
                     <span className="font-mono text-[9px] text-slate-500 truncate max-w-[180px]">
                       {ev.integrityHash}
                     </span>
 
                     <button
                       onClick={() => handleCopyHash(ev.id, ev.integrityHash)}
-                      className={`p-1 rounded text-slate-500 hover:text-indigo-600 transition-colors cursor-pointer`}
+                      className="p-1 rounded text-slate-500 hover:text-indigo-600 transition-colors cursor-pointer"
                       title="Copy SHA-256 Hash"
                     >
-                      {copiedHashId === ev.id ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+                      {copiedHashId === ev.id ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                     </button>
                   </div>
                 </div>

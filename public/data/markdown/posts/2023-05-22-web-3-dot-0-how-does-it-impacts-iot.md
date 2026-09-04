@@ -3,15 +3,15 @@ title: "Web 3.0 - How does it impacts IOT ?"
 date: "2023-05-22T13:13:54+05:30"
 slug: "web-3-dot-0-how-does-it-impacts-iot"
 categories: ["web3.0", "technology", "iot"]
-original_url: "https://rishijeet.github.io/blog/web-3-dot-0-how-does-it-impacts-iot/"
+original_url: "https://systemdesign.github.io/blog/web-3-dot-0-how-does-it-impacts-iot/"
 word_count: 463
 reading_time: "2 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Web 3.0 - How does it impacts IOT ?
 
-*Published on 2023-05-22 by Rishijeet Mishra | [https://rishijeet.github.io/blog/web-3-dot-0-how-does-it-impacts-iot/](https://rishijeet.github.io/blog/web-3-dot-0-how-does-it-impacts-iot/)*
+*Published on 2023-05-22 by System Design | [https://systemdesign.github.io/blog/web-3-dot-0-how-does-it-impacts-iot/](https://systemdesign.github.io/blog/web-3-dot-0-how-does-it-impacts-iot/)*
 
 Web 3.0 has a significant impact on the Internet of Things (IoT) by enhancing its capabilities, security, and interoperability. Here are some key ways in which Web 3.0 transforms the IoT landscape:
 

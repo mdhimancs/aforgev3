@@ -395,7 +395,7 @@ export const AppSecDashboard: React.FC = () => {
         );
       default:
         return (
-          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-500/20 text-slate-300 border border-slate-500/40">
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-500/20 text-slate-800 border border-slate-500/40">
             INFO
           </span>
         );
@@ -409,9 +409,9 @@ export const AppSecDashboard: React.FC = () => {
   const selectedScaPackage = activeScaList.find((p) => p.id === selectedScaId) || activeScaList[0];
 
   return (
-    <div className={`flex flex-col flex-1 h-full overflow-hidden ${isLight ? 'bg-slate-100/80 text-slate-800' : 'bg-slate-900 text-slate-100'}`}>
+    <div className={`flex flex-col flex-1 h-full overflow-hidden ${isLight ? 'bg-slate-100/80 text-slate-800' : 'bg-white text-slate-100'}`}>
       {/* Top Header & Project Selection Bar */}
-      <div className={`px-4 py-2 border-b flex flex-wrap items-center justify-between gap-3 shrink-0 ${isLight ? 'bg-slate-100/90 border-slate-200/90 shadow-xs' : 'bg-slate-900/90 border-slate-800'}`}>
+      <div className={`px-4 py-2 border-b flex flex-wrap items-center justify-between gap-3 shrink-0 ${isLight ? 'bg-slate-100/90 border-slate-200/90 shadow-xs' : 'bg-white/90 border-slate-200'}`}>
         <div className="flex items-center gap-3.5">
           <div className="p-2.5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg shadow-indigo-500/20 text-white">
             <Shield className="w-5 h-5" />
@@ -423,8 +423,8 @@ export const AppSecDashboard: React.FC = () => {
                 SAST • DAST • SCA
               </span>
             </div>
-            <div className="flex items-center gap-3 text-xs text-slate-400 mt-0.5">
-              <span className="flex items-center gap-1 font-mono text-[11px] text-slate-300">
+            <div className="flex items-center gap-3 text-xs text-slate-600 mt-0.5">
+              <span className="flex items-center gap-1 font-mono text-[11px] text-slate-800">
                 <GitBranch className="w-3.5 h-3.5 text-indigo-400" />
                 {currentProject.repoUrl} : <span className="text-indigo-300">{currentProject.branch}</span>
               </span>
@@ -446,7 +446,7 @@ export const AppSecDashboard: React.FC = () => {
               setLiveSastResults(null);
               setAiFixData(null);
             }}
-            className="bg-slate-900 border border-slate-700 text-xs text-slate-200 rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500 cursor-pointer"
+            className="bg-white border border-slate-200 text-xs text-slate-900 rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500 cursor-pointer"
           >
             {projects.map((p) => (
               <option key={p.id} value={p.id}>
@@ -475,18 +475,18 @@ export const AppSecDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Main AppSec Navigation Tabs */}
-      <div className="px-6 border-b border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-900/80 flex items-center justify-between shrink-0 overflow-x-auto py-2.5">
+       {/* Main AppSec Navigation Tabs */}
+      <div className="px-6 border-b border-slate-200 bg-slate-50/80 flex items-center justify-between shrink-0 overflow-x-auto py-2.5">
          <div className="flex items-center gap-2">
           <button
             onClick={() => setActiveTab('overview')}
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'overview'
-                ? 'bg-blue-100 text-blue-900 border-blue-300 dark:bg-blue-950/80 dark:text-blue-200 dark:border-blue-700 font-extrabold'
-                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'bg-sky-50 text-sky-900 border-b-2 border-sky-600 font-bold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
             }`}
           >
-            <ShieldCheck className={`w-4 h-4 ${activeTab === 'overview' ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500'}`} />
+            <ShieldCheck className={`w-4 h-4 ${activeTab === 'overview' ? 'text-sky-600' : 'text-slate-500'}`} />
             <span>Executive Overview</span>
           </button>
  
@@ -494,18 +494,20 @@ export const AppSecDashboard: React.FC = () => {
             onClick={() => setActiveTab('aegis')}
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'aegis'
-                ? 'bg-emerald-100 text-emerald-900 border-emerald-300 dark:bg-emerald-950/80 dark:text-emerald-200 dark:border-emerald-700 font-extrabold'
-                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'bg-emerald-50 text-emerald-900 border-b-2 border-emerald-600 font-bold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
             }`}
           >
             <div className="relative flex items-center">
-              <Shield className={`w-4 h-4 ${activeTab === 'aegis' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500'}`} />
+              <Shield className={`w-4 h-4 ${activeTab === 'aegis' ? 'text-emerald-600' : 'text-slate-500'}`} />
               <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
             </div>
             <span>
               AEGIS Defense Shield
             </span>
-            <span className="px-1.5 py-0.2 bg-emerald-200/90 text-emerald-900 text-[10px] rounded font-bold border border-emerald-300 uppercase">
+            <span className={`px-1.5 py-0.2 text-[10px] rounded font-bold border uppercase ${
+              activeTab === 'aegis' ? 'bg-emerald-200 text-emerald-900 border-emerald-400' : 'bg-emerald-100 text-emerald-800 border-emerald-300'
+            }`}>
               ACTIVE
             </span>
           </button>
@@ -514,14 +516,14 @@ export const AppSecDashboard: React.FC = () => {
             onClick={() => setActiveTab('sast')}
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'sast'
-                ? 'bg-purple-100 text-purple-900 border-purple-300 dark:bg-purple-950/80 dark:text-purple-200 dark:border-purple-700 font-extrabold'
-                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'bg-indigo-50 text-indigo-900 border-b-2 border-indigo-600 font-bold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
             }`}
           >
-            <Code2 className={`w-4 h-4 ${activeTab === 'sast' ? 'text-purple-600 dark:text-purple-400' : 'text-slate-500'}`} />
+            <Code2 className={`w-4 h-4 ${activeTab === 'sast' ? 'text-indigo-600' : 'text-slate-500'}`} />
             <span>SAST (Static Code)</span>
             <span className={`px-1.5 py-0.2 text-[10px] rounded font-mono font-bold border ${
-              activeTab === 'sast' ? 'bg-purple-200 text-purple-900 border-purple-300 dark:bg-purple-900/80 dark:text-purple-200' : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'
+              activeTab === 'sast' ? 'bg-indigo-100 text-indigo-900 border-indigo-300' : 'bg-slate-100 text-slate-600 border-slate-200'
             }`}>
               {activeSastList.length}
             </span>
@@ -531,14 +533,14 @@ export const AppSecDashboard: React.FC = () => {
             onClick={() => setActiveTab('dast')}
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'dast'
-                ? 'bg-cyan-100 text-cyan-900 border-cyan-300 dark:bg-cyan-950/80 dark:text-cyan-200 dark:border-cyan-700 font-extrabold'
-                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'bg-cyan-50 text-cyan-900 border-b-2 border-cyan-600 font-bold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
             }`}
           >
-            <Globe className={`w-4 h-4 ${activeTab === 'dast' ? 'text-cyan-600 dark:text-cyan-400' : 'text-slate-500'}`} />
+            <Globe className={`w-4 h-4 ${activeTab === 'dast' ? 'text-cyan-600' : 'text-slate-500'}`} />
             <span>DAST (Dynamic API)</span>
             <span className={`px-1.5 py-0.2 text-[10px] rounded font-mono font-bold border ${
-              activeTab === 'dast' ? 'bg-cyan-200 text-cyan-900 border-cyan-300 dark:bg-cyan-900/80 dark:text-cyan-200' : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'
+              activeTab === 'dast' ? 'bg-cyan-100 text-cyan-900 border-cyan-300' : 'bg-slate-100 text-slate-600 border-slate-200'
             }`}>
               {currentProject.dastProbes.length}
             </span>
@@ -548,14 +550,14 @@ export const AppSecDashboard: React.FC = () => {
             onClick={() => setActiveTab('sca')}
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'sca'
-                ? 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950/80 dark:text-amber-200 dark:border-amber-700 font-extrabold'
-                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'bg-amber-50 text-amber-900 border-b-2 border-amber-600 font-bold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
             }`}
           >
-            <Package className={`w-4 h-4 ${activeTab === 'sca' ? 'text-amber-600 dark:text-amber-400' : 'text-slate-500'}`} />
+            <Package className={`w-4 h-4 ${activeTab === 'sca' ? 'text-amber-600' : 'text-slate-500'}`} />
             <span>SCA & Dependencies</span>
             <span className={`px-1.5 py-0.2 text-[10px] rounded font-mono font-bold border ${
-              activeTab === 'sca' ? 'bg-amber-200 text-amber-900 border-amber-300 dark:bg-amber-900/80 dark:text-amber-200' : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'
+              activeTab === 'sca' ? 'bg-amber-100 text-amber-900 border-amber-300' : 'bg-slate-100 text-slate-600 border-slate-200'
             }`}>
               {allSca.length} CVEs
             </span>
@@ -565,14 +567,14 @@ export const AppSecDashboard: React.FC = () => {
             onClick={() => setActiveTab('secrets_iac')}
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'secrets_iac'
-                ? 'bg-rose-100 text-rose-900 border-rose-300 dark:bg-rose-950/80 dark:text-rose-200 dark:border-rose-700 font-extrabold'
-                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'bg-rose-50 text-rose-900 border-b-2 border-rose-600 font-bold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
             }`}
           >
-            <Key className={`w-4 h-4 ${activeTab === 'secrets_iac' ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500'}`} />
+            <Key className={`w-4 h-4 ${activeTab === 'secrets_iac' ? 'text-rose-600' : 'text-slate-500'}`} />
             <span>Secrets & IaC</span>
             <span className={`px-1.5 py-0.2 text-[10px] rounded font-mono font-bold border ${
-              activeTab === 'secrets_iac' ? 'bg-rose-200 text-rose-900 border-rose-300 dark:bg-rose-900/80 dark:text-rose-200' : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'
+              activeTab === 'secrets_iac' ? 'bg-rose-100 text-rose-900 border-rose-300' : 'bg-slate-100 text-slate-600 border-slate-200'
             }`}>
               {allSecrets.length + allIac.length}
             </span>
@@ -582,11 +584,11 @@ export const AppSecDashboard: React.FC = () => {
             onClick={() => setActiveTab('ai_copilot')}
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'ai_copilot'
-                ? 'bg-indigo-100 text-indigo-900 border-indigo-300 dark:bg-indigo-950/80 dark:text-indigo-200 dark:border-indigo-700 font-extrabold'
-                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'bg-purple-50 text-purple-900 border-b-2 border-purple-600 font-bold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
             }`}
           >
-            <Sparkles className={`w-4 h-4 ${activeTab === 'ai_copilot' ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-500'} animate-pulse`} />
+            <Sparkles className={`w-4 h-4 ${activeTab === 'ai_copilot' ? 'text-purple-600' : 'text-slate-500'} animate-pulse`} />
             <span>AI Security Copilot</span>
           </button>
  
@@ -594,11 +596,11 @@ export const AppSecDashboard: React.FC = () => {
             onClick={() => setActiveTab('reports')}
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'reports'
-                ? 'bg-teal-100 text-teal-900 border-teal-300 dark:bg-teal-950/80 dark:text-teal-200 dark:border-teal-700 font-extrabold'
-                : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'bg-teal-50 text-teal-900 border-b-2 border-teal-600 font-bold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
             }`}
           >
-            <FileText className={`w-4 h-4 ${activeTab === 'reports' ? 'text-teal-600 dark:text-teal-400' : 'text-slate-500'}`} />
+            <FileText className={`w-4 h-4 ${activeTab === 'reports' ? 'text-teal-600' : 'text-slate-500'}`} />
             <span>Reports & CI/CD Gate</span>
           </button>
         </div>
@@ -607,8 +609,8 @@ export const AppSecDashboard: React.FC = () => {
           <span
             className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold ${
               isQualityGatePassed
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
-                : 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
+                ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+                : 'bg-rose-100 text-rose-800 border border-rose-300'
             }`}
           >
             {isQualityGatePassed ? <CheckCheck className="w-3.5 h-3.5" /> : <AlertTriangle className="w-3.5 h-3.5" />}
@@ -627,9 +629,9 @@ export const AppSecDashboard: React.FC = () => {
             {/* Top Stat Gauges */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               {/* Security Health Score */}
-              <div className="p-4 bg-slate-900/70 border border-slate-800 rounded-xl relative overflow-hidden flex flex-col justify-between">
+              <div className="p-4 bg-white border border-slate-200 rounded-xl relative overflow-hidden flex flex-col justify-between">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-slate-400">Security Health Score</span>
+                  <span className="text-xs font-medium text-slate-600">Security Health Score</span>
                   <ShieldCheck className="w-4 h-4 text-emerald-400" />
                 </div>
                 <div className="my-2 flex items-baseline gap-2">
@@ -639,7 +641,7 @@ export const AppSecDashboard: React.FC = () => {
                     Grade B+
                   </span>
                 </div>
-                <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
                   <div
                     className="bg-gradient-to-r from-emerald-500 to-indigo-500 h-full rounded-full"
                     style={{ width: `${currentProject.healthScore}%` }}
@@ -648,7 +650,7 @@ export const AppSecDashboard: React.FC = () => {
               </div>
 
               {/* Critical Findings */}
-              <div className="p-4 bg-slate-900/70 border border-rose-500/30 rounded-xl relative overflow-hidden flex flex-col justify-between">
+              <div className="p-4 bg-white border border-rose-500/30 rounded-xl relative overflow-hidden flex flex-col justify-between">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-medium text-rose-300">Critical Severity</span>
                   <Flame className="w-4 h-4 text-rose-400" />
@@ -657,11 +659,11 @@ export const AppSecDashboard: React.FC = () => {
                   <span className="text-3xl font-extrabold text-rose-400">{totalCritical}</span>
                   <span className="text-xs text-rose-300/70 ml-2">Requires immediate patch</span>
                 </div>
-                <p className="text-[11px] text-slate-400">SQLi, BOLA, JWT RCE, Exposed Keys</p>
+                <p className="text-[11px] text-slate-600">SQLi, BOLA, JWT RCE, Exposed Keys</p>
               </div>
 
               {/* High Severity */}
-              <div className="p-4 bg-slate-900/70 border border-amber-500/30 rounded-xl relative overflow-hidden flex flex-col justify-between">
+              <div className="p-4 bg-white border border-amber-500/30 rounded-xl relative overflow-hidden flex flex-col justify-between">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-medium text-amber-300">High Severity</span>
                   <AlertTriangle className="w-4 h-4 text-amber-400" />
@@ -670,31 +672,31 @@ export const AppSecDashboard: React.FC = () => {
                   <span className="text-3xl font-extrabold text-amber-400">{totalHigh}</span>
                   <span className="text-xs text-amber-300/70 ml-2">Fix in next release</span>
                 </div>
-                <p className="text-[11px] text-slate-400">SSRF, Path Traversal, CVEs</p>
+                <p className="text-[11px] text-slate-600">SSRF, Path Traversal, CVEs</p>
               </div>
 
               {/* Medium / Low */}
-              <div className="p-4 bg-slate-900/70 border border-slate-800 rounded-xl relative overflow-hidden flex flex-col justify-between">
+              <div className="p-4 bg-white border border-slate-200 rounded-xl relative overflow-hidden flex flex-col justify-between">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-slate-400">Medium & Low</span>
+                  <span className="text-xs font-medium text-slate-600">Medium & Low</span>
                   <Layers className="w-4 h-4 text-cyan-400" />
                 </div>
                 <div className="my-2">
-                  <span className="text-3xl font-extrabold text-slate-200">{totalMedium + totalLow}</span>
+                  <span className="text-3xl font-extrabold text-slate-900">{totalMedium + totalLow}</span>
                   <span className="text-xs text-slate-500 ml-2">Audited & monitored</span>
                 </div>
-                <p className="text-[11px] text-slate-400">CORS policies, XSS sanitization</p>
+                <p className="text-[11px] text-slate-600">CORS policies, XSS sanitization</p>
               </div>
 
               {/* MTTR Metric */}
-              <div className="p-4 bg-slate-900/70 border border-slate-800 rounded-xl relative overflow-hidden flex flex-col justify-between">
+              <div className="p-4 bg-white border border-slate-200 rounded-xl relative overflow-hidden flex flex-col justify-between">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-slate-400">Mean Time To Remediate</span>
+                  <span className="text-xs font-medium text-slate-600">Mean Time To Remediate</span>
                   <Clock className="w-4 h-4 text-indigo-400" />
                 </div>
                 <div className="my-2">
                   <span className="text-3xl font-extrabold text-indigo-300">2.4</span>
-                  <span className="text-xs text-slate-400 ml-1">days average</span>
+                  <span className="text-xs text-slate-600 ml-1">days average</span>
                 </div>
                 <p className="text-[11px] text-emerald-400 flex items-center gap-1">
                   <Check className="w-3 h-3" /> 42% faster with AI auto-fixes
@@ -719,9 +721,9 @@ export const AppSecDashboard: React.FC = () => {
                   </span>
                 </div>
                 <h3 className="text-sm font-bold text-white mb-1">AEGIS Defense Shield</h3>
-                <p className="text-xs text-slate-400 mb-3">Real-time LLM jailbreak, PII & RASP firewall</p>
-                <div className="flex items-center justify-between text-xs pt-3 border-t border-slate-800/80">
-                  <span className="text-slate-400">Interception Rate:</span>
+                <p className="text-xs text-slate-600 mb-3">Real-time LLM jailbreak, PII & RASP firewall</p>
+                <div className="flex items-center justify-between text-xs pt-3 border-t border-slate-200/80">
+                  <span className="text-slate-600">Interception Rate:</span>
                   <span className="font-bold text-emerald-300">99.4% (7.8ms)</span>
                 </div>
               </div>
@@ -729,7 +731,7 @@ export const AppSecDashboard: React.FC = () => {
               {/* SAST Pillar */}
               <div
                 onClick={() => setActiveTab('sast')}
-                className="p-5 bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 rounded-xl transition-all cursor-pointer group"
+                className="p-5 bg-white border border-slate-200 hover:border-cyan-500/50 rounded-xl transition-all cursor-pointer group"
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="p-2 bg-cyan-500/20 text-cyan-400 rounded-lg">
@@ -738,9 +740,9 @@ export const AppSecDashboard: React.FC = () => {
                   <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition-transform group-hover:translate-x-1" />
                 </div>
                 <h3 className="text-sm font-bold text-white mb-1">SAST (Static Analysis)</h3>
-                <p className="text-xs text-slate-400 mb-3">AST syntax parser & taint-analysis dataflow rules</p>
-                <div className="flex items-center justify-between text-xs pt-3 border-t border-slate-800/80">
-                  <span className="text-slate-400">Findings:</span>
+                <p className="text-xs text-slate-600 mb-3">AST syntax parser & taint-analysis dataflow rules</p>
+                <div className="flex items-center justify-between text-xs pt-3 border-t border-slate-200/80">
+                  <span className="text-slate-600">Findings:</span>
                   <span className="font-bold text-cyan-300">{allSast.length} issues</span>
                 </div>
               </div>
@@ -748,7 +750,7 @@ export const AppSecDashboard: React.FC = () => {
               {/* DAST Pillar */}
               <div
                 onClick={() => setActiveTab('dast')}
-                className="p-5 bg-slate-900/80 border border-slate-800 hover:border-emerald-500/50 rounded-xl transition-all cursor-pointer group"
+                className="p-5 bg-white border border-slate-200 hover:border-emerald-500/50 rounded-xl transition-all cursor-pointer group"
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="p-2 bg-emerald-500/20 text-emerald-400 rounded-lg">
@@ -757,9 +759,9 @@ export const AppSecDashboard: React.FC = () => {
                   <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 transition-transform group-hover:translate-x-1" />
                 </div>
                 <h3 className="text-sm font-bold text-white mb-1">DAST (Dynamic Testing)</h3>
-                <p className="text-xs text-slate-400 mb-3">Black-box HTTP endpoint fuzzing & BOLA probes</p>
-                <div className="flex items-center justify-between text-xs pt-3 border-t border-slate-800/80">
-                  <span className="text-slate-400">Endpoints Probed:</span>
+                <p className="text-xs text-slate-600 mb-3">Black-box HTTP endpoint fuzzing & BOLA probes</p>
+                <div className="flex items-center justify-between text-xs pt-3 border-t border-slate-200/80">
+                  <span className="text-slate-600">Endpoints Probed:</span>
                   <span className="font-bold text-emerald-300">{allDast.length} targets</span>
                 </div>
               </div>
@@ -767,7 +769,7 @@ export const AppSecDashboard: React.FC = () => {
               {/* SCA Pillar */}
               <div
                 onClick={() => setActiveTab('sca')}
-                className="p-5 bg-slate-900/80 border border-slate-800 hover:border-purple-500/50 rounded-xl transition-all cursor-pointer group"
+                className="p-5 bg-white border border-slate-200 hover:border-purple-500/50 rounded-xl transition-all cursor-pointer group"
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="p-2 bg-purple-500/20 text-purple-400 rounded-lg">
@@ -776,9 +778,9 @@ export const AppSecDashboard: React.FC = () => {
                   <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-purple-400 transition-transform group-hover:translate-x-1" />
                 </div>
                 <h3 className="text-sm font-bold text-white mb-1">SCA & Supply Chain</h3>
-                <p className="text-xs text-slate-400 mb-3">NVD CVE vulnerability scanner & SBOM generator</p>
-                <div className="flex items-center justify-between text-xs pt-3 border-t border-slate-800/80">
-                  <span className="text-slate-400">Packages Analyzed:</span>
+                <p className="text-xs text-slate-600 mb-3">NVD CVE vulnerability scanner & SBOM generator</p>
+                <div className="flex items-center justify-between text-xs pt-3 border-t border-slate-200/80">
+                  <span className="text-slate-600">Packages Analyzed:</span>
                   <span className="font-bold text-purple-300">{currentProject.scaPackages.length} dependencies</span>
                 </div>
               </div>
@@ -786,7 +788,7 @@ export const AppSecDashboard: React.FC = () => {
               {/* Secrets & IaC Pillar */}
               <div
                 onClick={() => setActiveTab('secrets_iac')}
-                className="p-5 bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 rounded-xl transition-all cursor-pointer group"
+                className="p-5 bg-white border border-slate-200 hover:border-amber-500/50 rounded-xl transition-all cursor-pointer group"
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="p-2 bg-amber-500/20 text-amber-400 rounded-lg">
@@ -795,63 +797,63 @@ export const AppSecDashboard: React.FC = () => {
                   <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-amber-400 transition-transform group-hover:translate-x-1" />
                 </div>
                 <h3 className="text-sm font-bold text-white mb-1">Secrets & IaC Posture</h3>
-                <p className="text-xs text-slate-400 mb-3">High-entropy credential leaks & Docker/K8s policies</p>
-                <div className="flex items-center justify-between text-xs pt-3 border-t border-slate-800/80">
-                  <span className="text-slate-400">Hardcoded Secrets:</span>
+                <p className="text-xs text-slate-600 mb-3">High-entropy credential leaks & Docker/K8s policies</p>
+                <div className="flex items-center justify-between text-xs pt-3 border-t border-slate-200/80">
+                  <span className="text-slate-600">Hardcoded Secrets:</span>
                   <span className="font-bold text-amber-300">{allSecrets.length} detected</span>
                 </div>
               </div>
             </div>
 
             {/* Compliance Frameworks Readiness */}
-            <div className="p-5 bg-slate-900/60 border border-slate-800 rounded-xl">
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-xl">
               <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
                 <Shield className="w-4 h-4 text-indigo-400" />
                 Industry Security & Compliance Mapping
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="p-3.5 bg-slate-900 rounded-lg border border-slate-800">
+                <div className="p-3.5 bg-white rounded-lg border border-slate-200">
                   <div className="flex justify-between items-center mb-1.5">
-                    <span className="text-xs font-semibold text-slate-200">OWASP Top 10 (2021)</span>
+                    <span className="text-xs font-semibold text-slate-900">OWASP Top 10 (2021)</span>
                     <span className="text-xs font-bold text-amber-400">82%</span>
                   </div>
-                  <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                  <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
                     <div className="bg-amber-400 h-full rounded-full" style={{ width: '82%' }} />
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-2">A03 Injection & A01 Broken Access flags present</p>
+                  <p className="text-[11px] text-slate-600 mt-2">A03 Injection & A01 Broken Access flags present</p>
                 </div>
 
-                <div className="p-3.5 bg-slate-900 rounded-lg border border-slate-800">
+                <div className="p-3.5 bg-white rounded-lg border border-slate-200">
                   <div className="flex justify-between items-center mb-1.5">
-                    <span className="text-xs font-semibold text-slate-200">SOC 2 Type II</span>
+                    <span className="text-xs font-semibold text-slate-900">SOC 2 Type II</span>
                     <span className="text-xs font-bold text-emerald-400">91%</span>
                   </div>
-                  <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                  <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
                     <div className="bg-emerald-400 h-full rounded-full" style={{ width: '91%' }} />
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-2">Access controls & secret rotation compliant</p>
+                  <p className="text-[11px] text-slate-600 mt-2">Access controls & secret rotation compliant</p>
                 </div>
 
-                <div className="p-3.5 bg-slate-900 rounded-lg border border-slate-800">
+                <div className="p-3.5 bg-white rounded-lg border border-slate-200">
                   <div className="flex justify-between items-center mb-1.5">
-                    <span className="text-xs font-semibold text-slate-200">PCI-DSS v4.0</span>
+                    <span className="text-xs font-semibold text-slate-900">PCI-DSS v4.0</span>
                     <span className="text-xs font-bold text-rose-400">64%</span>
                   </div>
-                  <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                  <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
                     <div className="bg-rose-400 h-full rounded-full" style={{ width: '64%' }} />
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-2">Cardholder wallet BOLA probe requires fix</p>
+                  <p className="text-[11px] text-slate-600 mt-2">Cardholder wallet BOLA probe requires fix</p>
                 </div>
 
-                <div className="p-3.5 bg-slate-900 rounded-lg border border-slate-800">
+                <div className="p-3.5 bg-white rounded-lg border border-slate-200">
                   <div className="flex justify-between items-center mb-1.5">
-                    <span className="text-xs font-semibold text-slate-200">NIST SP 800-53</span>
+                    <span className="text-xs font-semibold text-slate-900">NIST SP 800-53</span>
                     <span className="text-xs font-bold text-indigo-400">88%</span>
                   </div>
-                  <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                  <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
                     <div className="bg-indigo-400 h-full rounded-full" style={{ width: '88%' }} />
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-2">Supply-chain & software integrity verified</p>
+                  <p className="text-[11px] text-slate-600 mt-2">Supply-chain & software integrity verified</p>
                 </div>
               </div>
             </div>
@@ -871,7 +873,7 @@ export const AppSecDashboard: React.FC = () => {
             {/* Left: Finding List & Live Scanner Toggle */}
             <div className="lg:col-span-5 space-y-4">
               {/* Live Code Input Sandbox */}
-              <div className="p-4 bg-slate-900 border border-slate-800 rounded-xl space-y-3">
+              <div className="p-4 bg-white border border-slate-200 rounded-xl space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-cyan-300 flex items-center gap-1.5">
                     <Code2 className="w-3.5 h-3.5" />
@@ -888,7 +890,7 @@ export const AppSecDashboard: React.FC = () => {
                         className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors ${
                           selectedSampleIndex === idx
                             ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
-                            : 'text-slate-400 hover:text-slate-200'
+                            : 'text-slate-600 hover:text-slate-900'
                         }`}
                       >
                         Sample {idx + 1}
@@ -901,7 +903,7 @@ export const AppSecDashboard: React.FC = () => {
                   value={customCodeInput}
                   onChange={(e) => setCustomCodeInput(e.target.value)}
                   rows={6}
-                  className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-lg text-xs font-mono text-slate-200 focus:outline-none focus:border-cyan-500"
+                  className="w-full p-2.5 bg-white border border-slate-200 rounded-lg text-xs font-mono text-slate-900 focus:outline-none focus:border-cyan-500"
                   placeholder="Paste JavaScript, TypeScript, or Python code to scan..."
                 />
 
@@ -926,13 +928,13 @@ export const AppSecDashboard: React.FC = () => {
 
               {/* Finding List Header */}
               <div className="flex items-center justify-between">
-                <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
                   Static Findings ({activeSastList.length})
                 </h4>
                 <select
                   value={severityFilter}
                   onChange={(e) => setSeverityFilter(e.target.value)}
-                  className="bg-slate-900 border border-slate-800 text-[11px] text-slate-300 rounded px-2 py-1"
+                  className="bg-white border border-slate-200 text-[11px] text-slate-800 rounded px-2 py-1"
                 >
                   <option value="ALL">All Severities</option>
                   <option value="CRITICAL">Critical Only</option>
@@ -953,16 +955,16 @@ export const AppSecDashboard: React.FC = () => {
                       }}
                       className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
                         selectedSastId === finding.id
-                          ? 'bg-slate-800/90 border-cyan-500 shadow-md shadow-cyan-500/10'
-                          : 'bg-slate-900/60 border-slate-800 hover:border-slate-700'
+                          ? 'bg-slate-100 border-cyan-500 shadow-md shadow-cyan-500/10'
+                          : 'bg-slate-50 border-slate-200 hover:border-slate-200'
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1.5">
                         {getSeverityBadge(finding.severity)}
-                        <span className="text-[10px] font-mono text-slate-400">{finding.ruleId}</span>
+                        <span className="text-[10px] font-mono text-slate-600">{finding.ruleId}</span>
                       </div>
                       <h4 className="text-xs font-bold text-white line-clamp-1 mb-1">{finding.title}</h4>
-                      <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                      <div className="flex items-center justify-between text-[11px] text-slate-600 font-mono">
                         <span className="truncate max-w-[220px]">{finding.filePath}:{finding.lineNumber}</span>
                         <span className="text-cyan-400">{finding.cwe.split(':')[0]}</span>
                       </div>
@@ -974,9 +976,9 @@ export const AppSecDashboard: React.FC = () => {
             {/* Right: Detailed Finding Inspector & AI Fix Generator */}
             <div className="lg:col-span-7 space-y-4">
               {selectedSastFinding ? (
-                <div className="p-5 bg-slate-900 border border-slate-800 rounded-xl space-y-5">
+                <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-5">
                   {/* Finding Title & CWE Banner */}
-                  <div className="flex items-start justify-between gap-4 border-b border-slate-800 pb-4">
+                  <div className="flex items-start justify-between gap-4 border-b border-slate-200 pb-4">
                     <div>
                       <div className="flex items-center gap-2 mb-1.5">
                         {getSeverityBadge(selectedSastFinding.severity)}
@@ -985,7 +987,7 @@ export const AppSecDashboard: React.FC = () => {
                         </span>
                       </div>
                       <h3 className="text-base font-bold text-white">{selectedSastFinding.title}</h3>
-                      <p className="text-xs text-slate-400 font-mono mt-0.5">{selectedSastFinding.cwe}</p>
+                      <p className="text-xs text-slate-600 font-mono mt-0.5">{selectedSastFinding.cwe}</p>
                     </div>
 
                     <button
@@ -1010,42 +1012,42 @@ export const AppSecDashboard: React.FC = () => {
                   {/* Vulnerable Code Snippet */}
                   <div>
                     <div className="flex justify-between items-center mb-1.5">
-                      <span className="text-xs font-bold text-slate-300 font-mono flex items-center gap-1.5">
+                      <span className="text-xs font-bold text-slate-800 font-mono flex items-center gap-1.5">
                         <FileCode className="w-3.5 h-3.5 text-cyan-400" />
                         {selectedSastFinding.filePath}:{selectedSastFinding.lineNumber}
                       </span>
                       <button
                         onClick={() => copyToClipboard(selectedSastFinding.codeSnippet, 'sast-snippet')}
-                        className="text-[11px] text-slate-400 hover:text-white flex items-center gap-1"
+                        className="text-[11px] text-slate-600 hover:text-white flex items-center gap-1"
                       >
                         {copiedId === 'sast-snippet' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
                         {copiedId === 'sast-snippet' ? 'Copied' : 'Copy'}
                       </button>
                     </div>
-                    <pre className="p-3.5 bg-slate-900 rounded-xl border border-rose-500/30 text-xs font-mono text-rose-300 overflow-x-auto">
+                    <pre className="p-3.5 bg-white rounded-xl border border-rose-500/30 text-xs font-mono text-rose-300 overflow-x-auto">
                       {selectedSastFinding.codeSnippet}
                     </pre>
                   </div>
 
                   {/* Taint Flow Propagation (Source -> Sanitizer -> Sink) */}
                   {selectedSastFinding.sourceSinkFlow && (
-                    <div className="p-3 bg-slate-900/70 border border-slate-800 rounded-xl space-y-2">
-                      <span className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+                    <div className="p-3 bg-white border border-slate-200 rounded-xl space-y-2">
+                      <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
                         <Layers className="w-3.5 h-3.5 text-indigo-400" />
                         Taint-Analysis Dataflow Flow
                       </span>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs font-mono">
-                        <div className="p-2 bg-slate-900 border border-slate-800 rounded">
+                        <div className="p-2 bg-white border border-slate-200 rounded">
                           <span className="text-[10px] text-rose-400 block font-bold">SOURCE</span>
-                          <span className="text-slate-300 text-[11px]">{selectedSastFinding.sourceSinkFlow.source}</span>
+                          <span className="text-slate-800 text-[11px]">{selectedSastFinding.sourceSinkFlow.source}</span>
                         </div>
-                        <div className="p-2 bg-slate-900 border border-slate-800 rounded">
+                        <div className="p-2 bg-white border border-slate-200 rounded">
                           <span className="text-[10px] text-amber-400 block font-bold">SANITIZER</span>
-                          <span className="text-slate-300 text-[11px]">{selectedSastFinding.sourceSinkFlow.sanitizer || 'None'}</span>
+                          <span className="text-slate-800 text-[11px]">{selectedSastFinding.sourceSinkFlow.sanitizer || 'None'}</span>
                         </div>
-                        <div className="p-2 bg-slate-900 border border-slate-800 rounded">
+                        <div className="p-2 bg-white border border-slate-200 rounded">
                           <span className="text-[10px] text-rose-400 block font-bold">SINK</span>
-                          <span className="text-slate-300 text-[11px]">{selectedSastFinding.sourceSinkFlow.sink}</span>
+                          <span className="text-slate-800 text-[11px]">{selectedSastFinding.sourceSinkFlow.sink}</span>
                         </div>
                       </div>
                     </div>
@@ -1053,11 +1055,11 @@ export const AppSecDashboard: React.FC = () => {
 
                   {/* Description & Impact */}
                   <div className="space-y-2 text-xs">
-                    <p className="text-slate-300 leading-relaxed">
+                    <p className="text-slate-800 leading-relaxed">
                       <strong className="text-white">Analysis: </strong>
                       {selectedSastFinding.description}
                     </p>
-                    <p className="text-slate-400 leading-relaxed">
+                    <p className="text-slate-600 leading-relaxed">
                       <strong className="text-rose-400">Security Impact: </strong>
                       {selectedSastFinding.impact}
                     </p>
@@ -1065,32 +1067,32 @@ export const AppSecDashboard: React.FC = () => {
 
                   {/* AI Generated Patch / Hardened Code View */}
                   {(aiFixData || selectedSastFinding.fixedCodeSnippet) && (
-                    <div className="p-4 bg-emerald-950/20 border border-emerald-500/30 rounded-xl space-y-3">
+                    <div className="p-4 bg-emerald-50/80 border border-emerald-200 rounded-xl space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-emerald-300 flex items-center gap-1.5">
-                          <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                        <span className="text-xs font-bold text-emerald-900 flex items-center gap-1.5">
+                          <ShieldCheck className="w-4 h-4 text-emerald-600" />
                           Remediated Secure Code Replacement
                         </span>
-                        <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-mono">
+                        <span className="text-[10px] bg-emerald-100 text-emerald-800 border border-emerald-300 px-2 py-0.5 rounded font-mono font-semibold">
                           Verified Safe
                         </span>
                       </div>
 
-                      <pre className="p-3 bg-slate-900 rounded-lg border border-emerald-500/40 text-xs font-mono text-emerald-300 overflow-x-auto">
+                      <pre className="p-3 bg-white rounded-lg border border-emerald-200 text-xs font-mono text-emerald-900 overflow-x-auto shadow-2xs">
                         {aiFixData?.remediatedCode || selectedSastFinding.fixedCodeSnippet}
                       </pre>
 
                       {aiFixData?.explanation && (
-                        <p className="text-xs text-slate-300">
-                          <strong className="text-emerald-400">Why this fix is secure: </strong>
+                        <p className="text-xs text-slate-800">
+                          <strong className="text-emerald-700">Why this fix is secure: </strong>
                           {aiFixData.explanation}
                         </p>
                       )}
 
                       {aiFixData?.unitTestCode && (
                         <div>
-                          <span className="text-[11px] font-bold text-slate-400 block mb-1">Regression Security Unit Test:</span>
-                          <pre className="p-2.5 bg-slate-900 rounded border border-slate-800 text-[11px] font-mono text-indigo-300 overflow-x-auto">
+                          <span className="text-[11px] font-bold text-slate-600 block mb-1">Regression Security Unit Test:</span>
+                          <pre className="p-2.5 bg-white rounded border border-slate-200 text-[11px] font-mono text-indigo-900 overflow-x-auto shadow-2xs">
                             {aiFixData.unitTestCode}
                           </pre>
                         </div>
@@ -1099,7 +1101,7 @@ export const AppSecDashboard: React.FC = () => {
                   )}
                 </div>
               ) : (
-                <div className="p-8 text-center text-slate-500 bg-slate-900 border border-slate-800 rounded-xl">
+                <div className="p-8 text-center text-slate-500 bg-white border border-slate-200 rounded-xl">
                   Select a SAST finding to inspect code taint flow and generate remediations.
                 </div>
               )}
@@ -1114,7 +1116,7 @@ export const AppSecDashboard: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
             {/* Left: Active Dynamic Probe Configuration */}
             <div className="lg:col-span-5 space-y-4">
-              <div className="p-4 bg-slate-900 border border-slate-800 rounded-xl space-y-3">
+              <div className="p-4 bg-white border border-slate-200 rounded-xl space-y-3">
                 <span className="text-xs font-bold text-emerald-300 flex items-center gap-1.5">
                   <Globe className="w-3.5 h-3.5 text-emerald-400" />
                   Dynamic Endpoint Scanner Workbench
@@ -1124,7 +1126,7 @@ export const AppSecDashboard: React.FC = () => {
                   <select
                     value={dastMethod}
                     onChange={(e: any) => setDastMethod(e.target.value)}
-                    className="bg-slate-900 border border-slate-800 text-xs font-mono text-emerald-400 rounded-lg px-2 py-1.5 focus:outline-none"
+                    className="bg-white border border-slate-200 text-xs font-mono text-emerald-400 rounded-lg px-2 py-1.5 focus:outline-none"
                   >
                     <option value="GET">GET</option>
                     <option value="POST">POST</option>
@@ -1135,18 +1137,18 @@ export const AppSecDashboard: React.FC = () => {
                     type="text"
                     value={dastTargetUrl}
                     onChange={(e) => setDastTargetUrl(e.target.value)}
-                    className="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-xs font-mono text-slate-200 focus:outline-none focus:border-emerald-500"
+                    className="flex-1 bg-white border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-mono text-slate-900 focus:outline-none focus:border-emerald-500"
                     placeholder="https://api.domain.com/v1/resource"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-bold text-slate-400 block mb-1">Authorization Header / JWT:</label>
+                  <label className="text-[11px] font-bold text-slate-600 block mb-1">Authorization Header / JWT:</label>
                   <input
                     type="text"
                     value={dastAuthToken}
                     onChange={(e) => setDastAuthToken(e.target.value)}
-                    className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-xs font-mono text-slate-300 focus:outline-none focus:border-emerald-500"
+                    className="w-full bg-white border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-mono text-slate-800 focus:outline-none focus:border-emerald-500"
                   />
                 </div>
 
@@ -1171,7 +1173,7 @@ export const AppSecDashboard: React.FC = () => {
 
               {/* Probe Test Suite List */}
               <div className="space-y-2">
-                <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
                   Automated Endpoint Test Battery ({currentProject.dastProbes.length})
                 </h4>
                 {currentProject.dastProbes.map((probe) => (
@@ -1180,8 +1182,8 @@ export const AppSecDashboard: React.FC = () => {
                     onClick={() => setSelectedDastId(probe.id)}
                     className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
                       selectedDastId === probe.id
-                        ? 'bg-slate-800/90 border-emerald-500 shadow-md shadow-emerald-500/10'
-                        : 'bg-slate-900/60 border-slate-800 hover:border-slate-700'
+                        ? 'bg-slate-100 border-emerald-500 shadow-md shadow-emerald-500/10'
+                        : 'bg-slate-50 border-slate-200 hover:border-slate-200'
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1.5">
@@ -1194,10 +1196,10 @@ export const AppSecDashboard: React.FC = () => {
                       >
                         {probe.status === 'vulnerable' ? 'VULNERABLE' : 'PASSED'}
                       </span>
-                      <span className="text-[10px] font-mono text-slate-400">{probe.category}</span>
+                      <span className="text-[10px] font-mono text-slate-600">{probe.category}</span>
                     </div>
                     <h4 className="text-xs font-bold text-white line-clamp-1 mb-1">{probe.name}</h4>
-                    <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                    <div className="flex items-center justify-between text-[11px] text-slate-600 font-mono">
                       <span className="text-emerald-400">{probe.method}</span>
                       <span>HTTP {probe.responseStatus || 200} • {probe.latencyMs || 45}ms</span>
                     </div>
@@ -1209,8 +1211,8 @@ export const AppSecDashboard: React.FC = () => {
             {/* Right: DAST Probe HTTP Inspector */}
             <div className="lg:col-span-7 space-y-4">
               {selectedDastProbe ? (
-                <div className="p-5 bg-slate-900 border border-slate-800 rounded-xl space-y-5">
-                  <div className="border-b border-slate-800 pb-4">
+                <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-5">
+                  <div className="border-b border-slate-200 pb-4">
                     <div className="flex items-center gap-2 mb-1.5">
                       <span
                         className={`px-2 py-0.5 rounded text-[10px] font-bold ${
@@ -1224,7 +1226,7 @@ export const AppSecDashboard: React.FC = () => {
                       <span className="text-xs font-mono text-emerald-400">{selectedDastProbe.category}</span>
                     </div>
                     <h3 className="text-base font-bold text-white">{selectedDastProbe.name}</h3>
-                    <p className="text-xs text-slate-300 font-mono mt-1 break-all bg-slate-900 p-2 rounded border border-slate-800">
+                    <p className="text-xs text-slate-800 font-mono mt-1 break-all bg-white p-2 rounded border border-slate-200">
                       <span className="text-emerald-400 font-bold mr-2">{selectedDastProbe.method}</span>
                       {selectedDastProbe.url}
                     </p>
@@ -1232,28 +1234,28 @@ export const AppSecDashboard: React.FC = () => {
 
                   {/* Vulnerability Evidence */}
                   {selectedDastProbe.evidence && (
-                    <div className="p-3.5 bg-rose-950/20 border border-rose-500/30 rounded-xl text-xs space-y-1">
-                      <span className="font-bold text-rose-300 flex items-center gap-1.5">
-                        <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
+                    <div className="p-3.5 bg-rose-50/90 border border-rose-200 rounded-xl text-xs space-y-1">
+                      <span className="font-bold text-rose-900 flex items-center gap-1.5">
+                        <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
                         Exploitation Evidence:
                       </span>
-                      <p className="text-slate-300 leading-relaxed">{selectedDastProbe.evidence}</p>
+                      <p className="text-slate-800 leading-relaxed">{selectedDastProbe.evidence}</p>
                     </div>
                   )}
 
                   {/* HTTP Request / Response Trace */}
                   <div className="space-y-3">
                     <div>
-                      <span className="text-[11px] font-bold text-slate-400 block mb-1">Payload Sent:</span>
-                      <pre className="p-2.5 bg-slate-900 rounded-lg border border-slate-800 text-[11px] font-mono text-amber-300 overflow-x-auto">
+                      <span className="text-[11px] font-bold text-slate-600 block mb-1">Payload Sent:</span>
+                      <pre className="p-2.5 bg-white rounded-lg border border-slate-200 text-[11px] font-mono text-amber-900 overflow-x-auto shadow-2xs">
                         {selectedDastProbe.testPayload}
                       </pre>
                     </div>
 
                     {selectedDastProbe.responseSnippet && (
                       <div>
-                        <span className="text-[11px] font-bold text-slate-400 block mb-1">Server Response Body:</span>
-                        <pre className="p-2.5 bg-slate-900 rounded-lg border border-slate-800 text-[11px] font-mono text-slate-300 overflow-x-auto">
+                        <span className="text-[11px] font-bold text-slate-600 block mb-1">Server Response Body:</span>
+                        <pre className="p-2.5 bg-white rounded-lg border border-slate-200 text-[11px] font-mono text-slate-800 overflow-x-auto">
                           {selectedDastProbe.responseSnippet}
                         </pre>
                       </div>
@@ -1261,13 +1263,13 @@ export const AppSecDashboard: React.FC = () => {
                   </div>
 
                   {/* Remediation Guide */}
-                  <div className="p-4 bg-slate-900 border border-slate-800 rounded-xl text-xs space-y-1.5">
+                  <div className="p-4 bg-white border border-slate-200 rounded-xl text-xs space-y-1.5">
                     <strong className="text-emerald-400 block">Remediation Action:</strong>
-                    <p className="text-slate-300 leading-relaxed">{selectedDastProbe.remediation}</p>
+                    <p className="text-slate-800 leading-relaxed">{selectedDastProbe.remediation}</p>
                   </div>
                 </div>
               ) : (
-                <div className="p-8 text-center text-slate-500 bg-slate-900 border border-slate-800 rounded-xl">
+                <div className="p-8 text-center text-slate-500 bg-white border border-slate-200 rounded-xl">
                   Select a dynamic endpoint probe to inspect raw HTTP traffic and evidence.
                 </div>
               )}
@@ -1281,14 +1283,14 @@ export const AppSecDashboard: React.FC = () => {
         {activeTab === 'sca' && (
           <div className="space-y-6">
             {/* Top Toolbar: View Mode Switcher */}
-            <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+            <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setScaViewMode('inventory')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                     scaViewMode === 'inventory'
                       ? 'bg-purple-600 text-white shadow-md shadow-purple-600/30'
-                      : 'text-slate-400 hover:text-slate-200 bg-slate-900/60'
+                      : 'text-slate-600 hover:text-slate-900 bg-slate-50'
                   }`}
                 >
                   Project Inventory ({currentProject.scaPackages.length})
@@ -1298,7 +1300,7 @@ export const AppSecDashboard: React.FC = () => {
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                     scaViewMode === 'live_manifest'
                       ? 'bg-purple-600 text-white shadow-md shadow-purple-600/30'
-                      : 'text-slate-400 hover:text-slate-200 bg-slate-900/60'
+                      : 'text-slate-600 hover:text-slate-900 bg-slate-50'
                   }`}
                 >
                   <Sparkles className="w-3.5 h-3.5 text-purple-300" />
@@ -1313,7 +1315,7 @@ export const AppSecDashboard: React.FC = () => {
 
               {scaViewMode === 'live_manifest' && (
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-slate-400">Ecosystem:</span>
+                  <span className="text-xs text-slate-600">Ecosystem:</span>
                   <select
                     value={manifestEcosystem}
                     onChange={(e: any) => {
@@ -1325,7 +1327,7 @@ export const AppSecDashboard: React.FC = () => {
                         setManifestText(`flask==1.0.2\nrequests==2.20.0\npyyaml==5.1\nsqlalchemy==1.2.0\ncryptography==3.2`);
                       }
                     }}
-                    className="bg-slate-900 border border-slate-700 text-purple-300 text-xs rounded px-2.5 py-1 font-mono focus:outline-none"
+                    className="bg-white border border-slate-200 text-purple-300 text-xs rounded px-2.5 py-1 font-mono focus:outline-none"
                   >
                     <option value="npm">Node.js (package.json)</option>
                     <option value="pypi">Python (requirements.txt)</option>
@@ -1336,7 +1338,7 @@ export const AppSecDashboard: React.FC = () => {
 
             {/* Live Manifest Input Box (When in Live Manifest Mode) */}
             {scaViewMode === 'live_manifest' && (
-              <div className="p-4 bg-slate-900 border border-purple-500/30 rounded-xl space-y-3">
+              <div className="p-4 bg-white border border-purple-500/30 rounded-xl space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <FileCode className="w-4 h-4 text-purple-400" />
@@ -1367,7 +1369,7 @@ export const AppSecDashboard: React.FC = () => {
                   value={manifestText}
                   onChange={(e) => setManifestText(e.target.value)}
                   rows={6}
-                  className="w-full bg-slate-900 border border-slate-800 focus:border-purple-500 rounded-lg p-3 text-xs font-mono text-slate-200 focus:outline-none"
+                  className="w-full bg-white border border-slate-200 focus:border-purple-500 rounded-lg p-3 text-xs font-mono text-slate-900 focus:outline-none"
                   placeholder="Paste manifest dependencies here..."
                 />
               </div>
@@ -1378,7 +1380,7 @@ export const AppSecDashboard: React.FC = () => {
               {/* Left: Package Inventory */}
               <div className="lg:col-span-5 space-y-4">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                  <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
                     {scaViewMode === 'live_manifest' ? 'Scanned Packages' : 'Project Packages'} ({activeScaList.length})
                   </h4>
                   <span className="text-[11px] font-mono text-purple-400">Ecosystem: {manifestEcosystem}</span>
@@ -1395,8 +1397,8 @@ export const AppSecDashboard: React.FC = () => {
                         onClick={() => setSelectedScaId(pkg.id)}
                         className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
                           selectedScaId === pkg.id
-                            ? 'bg-slate-800/90 border-purple-500 shadow-md shadow-purple-500/10'
-                            : 'bg-slate-900/60 border-slate-800 hover:border-slate-700'
+                            ? 'bg-slate-100 border-purple-500 shadow-md shadow-purple-500/10'
+                            : 'bg-slate-50 border-slate-200 hover:border-slate-200'
                         }`}
                       >
                         <div className="flex items-center justify-between mb-1.5">
@@ -1407,9 +1409,9 @@ export const AppSecDashboard: React.FC = () => {
                             </span>
                           )}
                         </div>
-                        <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                        <div className="flex items-center justify-between text-[11px] text-slate-600 font-mono">
                           <span>v{pkg.currentVersion} {pkg.fixVersion && `-> ${pkg.fixVersion}`}</span>
-                          <span className={`text-[10px] ${pkg.licenseRisk === 'VIRAL_COPYLEFT' ? 'text-rose-400 font-bold' : 'text-slate-400'}`}>
+                          <span className={`text-[10px] ${pkg.licenseRisk === 'VIRAL_COPYLEFT' ? 'text-rose-400 font-bold' : 'text-slate-600'}`}>
                             {pkg.license}
                           </span>
                         </div>
@@ -1422,27 +1424,27 @@ export const AppSecDashboard: React.FC = () => {
               {/* Right: Dependency CVE & SBOM Inspector */}
               <div className="lg:col-span-7 space-y-4">
               {selectedScaPackage ? (
-                <div className="p-5 bg-slate-900 border border-slate-800 rounded-xl space-y-5">
-                  <div className="border-b border-slate-800 pb-4 flex justify-between items-start">
+                <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-5">
+                  <div className="border-b border-slate-200 pb-4 flex justify-between items-start">
                     <div>
                       <div className="flex items-center gap-2 mb-1.5">
                         <span className="px-2 py-0.5 bg-purple-500/20 text-purple-300 border border-purple-500/30 rounded text-[10px] font-mono">
                           {selectedScaPackage.ecosystem}
                         </span>
-                        <span className="text-xs text-slate-400 font-mono">
+                        <span className="text-xs text-slate-600 font-mono">
                           {selectedScaPackage.isDirect ? 'Direct Dependency' : 'Transitive Dependency'}
                         </span>
                       </div>
                       <h3 className="text-lg font-bold text-white font-mono">{selectedScaPackage.name}</h3>
-                      <p className="text-xs text-slate-400">
-                        Installed: <span className="font-mono text-slate-200">{selectedScaPackage.currentVersion}</span> • Latest:{' '}
-                        <span className="font-mono text-slate-200">{selectedScaPackage.latestVersion}</span>
+                      <p className="text-xs text-slate-600">
+                        Installed: <span className="font-mono text-slate-900">{selectedScaPackage.currentVersion}</span> • Latest:{' '}
+                        <span className="font-mono text-slate-900">{selectedScaPackage.latestVersion}</span>
                       </p>
                     </div>
 
                     {selectedScaPackage.fixVersion && (
                       <div className="text-right">
-                        <span className="text-[10px] text-slate-400 block">Recommended Upgrade:</span>
+                        <span className="text-[10px] text-slate-600 block">Recommended Upgrade:</span>
                         <span className="text-xs font-bold text-emerald-400 font-mono">v{selectedScaPackage.fixVersion}</span>
                       </div>
                     )}
@@ -1450,8 +1452,8 @@ export const AppSecDashboard: React.FC = () => {
 
                   {/* License Risk Warning */}
                   {selectedScaPackage.licenseRisk === 'VIRAL_COPYLEFT' && (
-                    <div className="p-3 bg-rose-950/30 border border-rose-500/30 rounded-xl text-xs flex items-center gap-2 text-rose-300">
-                      <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />
+                    <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-xs flex items-center gap-2 text-rose-800">
+                      <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0" />
                       <div>
                         <strong>License Risk Warning (GPL-3.0 Copyleft): </strong>
                         Distribution of commercial software bundling this dependency may require open-sourcing the entire codebase.
@@ -1462,34 +1464,34 @@ export const AppSecDashboard: React.FC = () => {
                   {/* Vulnerabilities List */}
                   {selectedScaPackage.vulnerabilities.length > 0 ? (
                     <div className="space-y-3">
-                      <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                      <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
                         Known Vulnerabilities (NVD / CVE)
                       </h4>
                       {selectedScaPackage.vulnerabilities.map((vuln) => (
-                        <div key={vuln.cveId} className="p-4 bg-slate-900 border border-slate-800 rounded-xl space-y-2">
+                        <div key={vuln.cveId} className="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
                               <span className="text-xs font-bold text-purple-300 font-mono">{vuln.cveId}</span>
                               {vuln.ghsaId && (
-                                <span className="text-[10px] text-slate-400 font-mono">{vuln.ghsaId}</span>
+                                <span className="text-[10px] text-slate-600 font-mono">{vuln.ghsaId}</span>
                               )}
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="text-[10px] font-mono text-slate-400">CVSS {vuln.cvssScore}</span>
+                              <span className="text-[10px] font-mono text-slate-600">CVSS {vuln.cvssScore}</span>
                               {getSeverityBadge(vuln.severity)}
                             </div>
                           </div>
 
                           <h5 className="text-xs font-bold text-white">{vuln.title}</h5>
-                          <p className="text-xs text-slate-300 leading-relaxed">{vuln.description}</p>
+                          <p className="text-xs text-slate-800 leading-relaxed">{vuln.description}</p>
 
-                          <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono">
-                            <span className="text-slate-400">Affected: {vuln.affectedRange}</span>
+                          <div className="pt-2 border-t border-slate-200/80 flex items-center justify-between text-xs font-mono">
+                            <span className="text-slate-600">Affected: {vuln.affectedRange}</span>
                             <span className="text-emerald-400">Patched in: &gt;= {vuln.fixedIn}</span>
                           </div>
 
                           {vuln.patchCommand && (
-                            <div className="mt-2 p-2 bg-slate-900 rounded border border-slate-800 text-[11px] font-mono text-slate-300 flex justify-between items-center">
+                            <div className="mt-2 p-2 bg-white rounded border border-slate-200 text-[11px] font-mono text-slate-800 flex justify-between items-center">
                               <span>$ {vuln.patchCommand}</span>
                               <button
                                 onClick={() => copyToClipboard(vuln.patchCommand!, 'patch-cmd')}
@@ -1503,14 +1505,14 @@ export const AppSecDashboard: React.FC = () => {
                       ))}
                     </div>
                   ) : (
-                    <div className="p-6 text-center text-slate-400 bg-slate-900 border border-slate-800 rounded-xl">
+                    <div className="p-6 text-center text-slate-600 bg-white border border-slate-200 rounded-xl">
                       <CheckCircle2 className="w-6 h-6 text-emerald-400 mx-auto mb-2" />
                       No known CVE security advisories reported for this package version.
                     </div>
                   )}
                 </div>
               ) : (
-                <div className="p-8 text-center text-slate-500 bg-slate-900 border border-slate-800 rounded-xl">
+                <div className="p-8 text-center text-slate-500 bg-white border border-slate-200 rounded-xl">
                   Select a dependency to review CVE advisories, EPSS exploitability, and license risks.
                 </div>
               )}
@@ -1532,19 +1534,19 @@ export const AppSecDashboard: React.FC = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {currentProject.secretFindings.map((sec) => (
-                  <div key={sec.id} className="p-4 bg-slate-900 border border-slate-800 rounded-xl space-y-3">
+                  <div key={sec.id} className="p-4 bg-white border border-slate-200 rounded-xl space-y-3">
                     <div className="flex items-center justify-between">
                       {getSeverityBadge(sec.severity)}
-                      <span className="text-[10px] font-mono text-slate-400">Shannon Entropy: {sec.entropy}</span>
+                      <span className="text-[10px] font-mono text-slate-600">Shannon Entropy: {sec.entropy}</span>
                     </div>
                     <h4 className="text-xs font-bold text-white">{sec.title}</h4>
-                    <pre className="p-2 bg-slate-900 rounded border border-amber-500/30 text-xs font-mono text-amber-300 overflow-x-auto">
+                    <pre className="p-2 bg-white rounded border border-amber-500/30 text-xs font-mono text-amber-300 overflow-x-auto">
                       {sec.maskedSecret}
                     </pre>
-                    <div className="text-xs text-slate-400 font-mono">
+                    <div className="text-xs text-slate-600 font-mono">
                       File: {sec.filePath}:{sec.lineNumber}
                     </div>
-                    <p className="text-xs text-slate-300 bg-slate-900 p-2.5 rounded border border-slate-800">
+                    <p className="text-xs text-slate-800 bg-white p-2.5 rounded border border-slate-200">
                       <strong className="text-amber-400">Action: </strong>
                       {sec.remediation}
                     </p>
@@ -1561,7 +1563,7 @@ export const AppSecDashboard: React.FC = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {currentProject.iacFindings.map((iac) => (
-                  <div key={iac.id} className="p-4 bg-slate-900 border border-slate-800 rounded-xl space-y-2.5">
+                  <div key={iac.id} className="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5">
                     <div className="flex items-center justify-between">
                       <span className="px-2 py-0.5 bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 rounded text-[10px] font-mono">
                         {iac.framework}
@@ -1569,9 +1571,9 @@ export const AppSecDashboard: React.FC = () => {
                       {getSeverityBadge(iac.severity)}
                     </div>
                     <h4 className="text-xs font-bold text-white">{iac.title}</h4>
-                    <p className="text-xs text-slate-400 font-mono">{iac.filePath} ({iac.resourceName})</p>
-                    <p className="text-xs text-slate-300">{iac.description}</p>
-                    <p className="text-xs text-emerald-300 bg-slate-900 p-2.5 rounded border border-slate-800">
+                    <p className="text-xs text-slate-600 font-mono">{iac.filePath} ({iac.resourceName})</p>
+                    <p className="text-xs text-slate-800">{iac.description}</p>
+                    <p className="text-xs text-emerald-300 bg-white p-2.5 rounded border border-slate-200">
                       <strong className="text-emerald-400">Remediation: </strong>
                       {iac.remediation}
                     </p>
@@ -1586,13 +1588,13 @@ export const AppSecDashboard: React.FC = () => {
         {/* 6. AI SECURITY COPILOT & REMEDIATION SUB-TAB */}
         {/* ======================================================== */}
         {activeTab === 'ai_copilot' && (
-          <div className="p-5 bg-slate-900 border border-slate-800 rounded-xl max-w-4xl mx-auto space-y-4 flex flex-col h-[600px]">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div className="p-5 bg-white border border-slate-200 rounded-xl max-w-4xl mx-auto space-y-4 flex flex-col h-[600px]">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <div className="flex items-center gap-2">
                 <Bot className="w-5 h-5 text-rose-400" />
                 <div>
                   <h3 className="text-sm font-bold text-white">Cybershield AppSec Copilot (Gemini 3.7 Flash)</h3>
-                  <p className="text-[11px] text-slate-400">Contextual vulnerability triage, secure refactoring & compliance advisory</p>
+                  <p className="text-[11px] text-slate-600">Contextual vulnerability triage, secure refactoring & compliance advisory</p>
                 </div>
               </div>
               <span className="px-2 py-0.5 bg-rose-500/20 text-rose-300 text-[10px] font-mono rounded">
@@ -1618,7 +1620,7 @@ export const AppSecDashboard: React.FC = () => {
                     className={`p-3.5 rounded-xl max-w-[85%] leading-relaxed ${
                       msg.sender === 'user'
                         ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-                        : 'bg-slate-900 border border-slate-800 text-slate-200'
+                        : 'bg-white border border-slate-200 text-slate-900'
                     }`}
                   >
                     <p className="whitespace-pre-wrap">{msg.text}</p>
@@ -1626,7 +1628,7 @@ export const AppSecDashboard: React.FC = () => {
                 </div>
               ))}
               {isCopilotThinking && (
-                <div className="flex items-center gap-2 text-xs text-slate-400 italic">
+                <div className="flex items-center gap-2 text-xs text-slate-600 italic">
                   <RefreshCw className="w-3.5 h-3.5 animate-spin text-rose-400" />
                   Analyzing AppSec findings & generating secure solution...
                 </div>
@@ -1634,14 +1636,14 @@ export const AppSecDashboard: React.FC = () => {
             </div>
 
             {/* Input Bar */}
-            <div className="flex gap-2 pt-2 border-t border-slate-800">
+            <div className="flex gap-2 pt-2 border-t border-slate-200">
               <input
                 type="text"
                 value={copilotInput}
                 onChange={(e) => setCopilotInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSendCopilotMessage()}
                 placeholder="Ask about fixing SQL injection, BOLA middleware, CycloneDX export, or SOC2 compliance..."
-                className="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2 text-xs text-slate-200 focus:outline-none focus:border-rose-500"
+                className="flex-1 bg-white border border-slate-200 rounded-lg px-3.5 py-2 text-xs text-slate-900 focus:outline-none focus:border-rose-500"
               />
               <button
                 onClick={handleSendCopilotMessage}
@@ -1660,7 +1662,7 @@ export const AppSecDashboard: React.FC = () => {
         {activeTab === 'reports' && (
           <div className="max-w-4xl mx-auto space-y-6">
             {/* CI/CD Quality Gate Policy */}
-            <div className="p-5 bg-slate-900 border border-slate-800 rounded-xl space-y-3">
+            <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-3">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-bold text-white flex items-center gap-2">
                   <Sliders className="w-4 h-4 text-indigo-400" />
@@ -1676,11 +1678,11 @@ export const AppSecDashboard: React.FC = () => {
                   Policy Status: {isQualityGatePassed ? 'PASSING' : 'FAILING (PR BLOCKED)'}
                 </span>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-600">
                 Enforce security thresholds in your GitHub Actions / GitLab CI pipeline to automatically reject pull requests containing unmitigated Critical vulnerabilities.
               </p>
 
-              <div className="p-3 bg-slate-900 rounded-lg border border-slate-800 text-xs font-mono text-slate-300 space-y-1.5">
+              <div className="p-3 bg-white rounded-lg border border-slate-200 text-xs font-mono text-slate-800 space-y-1.5">
                 <div className="flex justify-between">
                   <span>Rule 1: Max Critical SAST / DAST Findings Allowed</span>
                   <span className="font-bold text-rose-400">0 (Current: {totalCritical})</span>
@@ -1697,7 +1699,7 @@ export const AppSecDashboard: React.FC = () => {
             </div>
 
             {/* GitHub Actions CI/CD YAML Snippet */}
-            <div className="p-5 bg-slate-900 border border-slate-800 rounded-xl space-y-3">
+            <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-3">
               <div className="flex justify-between items-center">
                 <h3 className="text-sm font-bold text-white flex items-center gap-2">
                   <Terminal className="w-4 h-4 text-indigo-400" />
@@ -1717,7 +1719,7 @@ export const AppSecDashboard: React.FC = () => {
                 </button>
               </div>
 
-              <pre className="p-3.5 bg-slate-900 rounded-xl border border-slate-800 text-xs font-mono text-slate-300 overflow-x-auto">
+              <pre className="p-3.5 bg-white rounded-xl border border-slate-200 text-xs font-mono text-slate-800 overflow-x-auto">
 {`name: Cybershield AppSec Gate
 on: [push, pull_request]
 
@@ -1745,7 +1747,7 @@ jobs:
             <div className="flex flex-wrap gap-3 justify-end">
               <button
                 onClick={exportSarifReport}
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-cyan-300 rounded-lg text-xs font-semibold flex items-center gap-2 border border-cyan-500/30 cursor-pointer"
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-700 text-cyan-300 rounded-lg text-xs font-semibold flex items-center gap-2 border border-cyan-500/30 cursor-pointer"
               >
                 <Code2 className="w-4 h-4 text-cyan-400" />
                 <span>Export SARIF 2.1.0 (GitHub / GitLab)</span>
@@ -1761,7 +1763,7 @@ jobs:
                   downloadAnchor.click();
                   downloadAnchor.remove();
                 }}
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold flex items-center gap-2 border border-slate-700 cursor-pointer"
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-700 text-slate-900 rounded-lg text-xs font-semibold flex items-center gap-2 border border-slate-200 cursor-pointer"
               >
                 <Download className="w-4 h-4 text-indigo-400" />
                 <span>Export JSON Audit Report</span>

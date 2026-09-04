@@ -3,15 +3,15 @@ title: "Revolutionizing AI Inference: Lightmatter's Envise Chip"
 date: "2023-06-18T22:24:50+05:30"
 slug: "revolutionizing-ai-inference-lightmatters-envise-chip"
 categories: ["ai", "photonic_computing"]
-original_url: "https://rishijeet.github.io/blog/revolutionizing-ai-inference-lightmatters-envise-chip/"
+original_url: "https://systemdesign.github.io/blog/revolutionizing-ai-inference-lightmatters-envise-chip/"
 word_count: 599
 reading_time: "3 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Revolutionizing AI Inference: Lightmatter's Envise Chip
 
-*Published on 2023-06-18 by Rishijeet Mishra | [https://rishijeet.github.io/blog/revolutionizing-ai-inference-lightmatters-envise-chip/](https://rishijeet.github.io/blog/revolutionizing-ai-inference-lightmatters-envise-chip/)*
+*Published on 2023-06-18 by System Design | [https://systemdesign.github.io/blog/revolutionizing-ai-inference-lightmatters-envise-chip/](https://systemdesign.github.io/blog/revolutionizing-ai-inference-lightmatters-envise-chip/)*
 
 Artificial Intelligence (AI) is rapidly transforming various industries, from autonomous driving and robotics to healthcare and customer service. As the demand for AI applications grows, so does the need for more powerful and energy-efficient processors. In this context, Lightmatter, a company at the forefront of photonic processors, has developed the Envise chip—an innovative solution that promises unprecedented performance and energy efficiency in AI inference.
 
@@ -23,7 +23,7 @@ Unmatched Specifications
 
 The Envise chip boasts several cutting-edge features that contribute to its remarkable performance. Its on-chip activation and weight storage eliminate the need to transfer data to external memory, enabling state-of-the-art neural network execution within the processor itself. Additionally, the chip utilizes a standards-based host and interconnect interface, offering seamless integration into existing systems. The inclusion of RISC cores per Envise processor provides generic off-load capabilities, enhancing the chip's versatility. Its ultra-high-performance out-of-order super-scalar processing architecture further optimizes computation efficiency.
 
-![Alt text](https://rishijeet.github.io/images/Photonics.jpg)
+![Alt text](https://systemdesign.github.io/images/Photonics.jpg)
 
 Source: Lightmatter
 
@@ -39,7 +39,7 @@ Looking Ahead
 
 The Envise chip represents a significant milestone in the advancement of AI inference technology. With its impressive performance, energy efficiency, and versatile applications, it has the potential to reshape industries and accelerate AI adoption. Lightmatter's dedication to bringing its product to market, as demonstrated by its recent funding and strategic board appointments, underscores its commitment to revolutionizing the AI landscape.
 
-![Alt text](https://rishijeet.github.io/images/Hot-Chips-32-Lightmatter-Software.jpg)
+![Alt text](https://systemdesign.github.io/images/Hot-Chips-32-Lightmatter-Software.jpg)
 
 Source: Lightmatter
 

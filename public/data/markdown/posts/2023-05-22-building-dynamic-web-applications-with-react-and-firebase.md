@@ -3,15 +3,15 @@ title: "Building Dynamic Web Applications with React and Firebase"
 date: "2023-05-22T13:22:00+05:30"
 slug: "building-dynamic-web-applications-with-react-and-firebase"
 categories: ["reactjs", "firebase"]
-original_url: "https://rishijeet.github.io/blog/building-dynamic-web-applications-with-react-and-firebase/"
+original_url: "https://systemdesign.github.io/blog/building-dynamic-web-applications-with-react-and-firebase/"
 word_count: 573
 reading_time: "3 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Building Dynamic Web Applications with React and Firebase
 
-*Published on 2023-05-22 by Rishijeet Mishra | [https://rishijeet.github.io/blog/building-dynamic-web-applications-with-react-and-firebase/](https://rishijeet.github.io/blog/building-dynamic-web-applications-with-react-and-firebase/)*
+*Published on 2023-05-22 by System Design | [https://systemdesign.github.io/blog/building-dynamic-web-applications-with-react-and-firebase/](https://systemdesign.github.io/blog/building-dynamic-web-applications-with-react-and-firebase/)*
 
 In recent years, React has emerged as a popular JavaScript library for building user interfaces, while Firebase has become a powerful platform for developing and deploying web applications. When combined, React and Firebase provide developers with a robust toolkit for creating dynamic and real-time web applications. In this blog, we will explore the integration of React and Firebase, highlighting the benefits and demonstrating how they work seamlessly together.
 

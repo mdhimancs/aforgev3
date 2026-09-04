@@ -3,15 +3,15 @@ title: "AI Deep Learning: Unleashing the Power of Neural Networks"
 date: "2023-05-23T23:35:46+05:30"
 slug: "ai-deep-learning-unleashing-the-power-of-neural-networks"
 categories: ["ai"]
-original_url: "https://rishijeet.github.io/blog/ai-deep-learning-unleashing-the-power-of-neural-networks/"
+original_url: "https://systemdesign.github.io/blog/ai-deep-learning-unleashing-the-power-of-neural-networks/"
 word_count: 894
 reading_time: "4 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # AI Deep Learning: Unleashing the Power of Neural Networks
 
-*Published on 2023-05-23 by Rishijeet Mishra | [https://rishijeet.github.io/blog/ai-deep-learning-unleashing-the-power-of-neural-networks/](https://rishijeet.github.io/blog/ai-deep-learning-unleashing-the-power-of-neural-networks/)*
+*Published on 2023-05-23 by System Design | [https://systemdesign.github.io/blog/ai-deep-learning-unleashing-the-power-of-neural-networks/](https://systemdesign.github.io/blog/ai-deep-learning-unleashing-the-power-of-neural-networks/)*
 
 Artificial intelligence (AI) and its subset, deep learning, have revolutionized numerous industries, from healthcare to autonomous vehicles. Deep learning, an approach within AI, has garnered significant attention for its ability to process vast amounts of data and extract complex patterns. In this advanced tech article, we will delve into the core concepts and techniques of deep learning, exploring its architecture, training process, and real-world applications.
 

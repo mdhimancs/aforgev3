@@ -3,15 +3,15 @@ title: "Vector Database: Transforming Data Storage and Retrieval in the AI Era"
 date: "2023-11-05T22:09:04+05:30"
 slug: "vector-database-transforming-data-storage-and-retrieval-in-the-ai-era"
 categories: ["llm", "database", "ai"]
-original_url: "https://rishijeet.github.io/blog/vector-database-transforming-data-storage-and-retrieval-in-the-ai-era/"
+original_url: "https://systemdesign.github.io/blog/vector-database-transforming-data-storage-and-retrieval-in-the-ai-era/"
 word_count: 1595
 reading_time: "8 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Vector Database: Transforming Data Storage and Retrieval in the AI Era
 
-*Published on 2023-11-05 by Rishijeet Mishra | [https://rishijeet.github.io/blog/vector-database-transforming-data-storage-and-retrieval-in-the-ai-era/](https://rishijeet.github.io/blog/vector-database-transforming-data-storage-and-retrieval-in-the-ai-era/)*
+*Published on 2023-11-05 by System Design | [https://systemdesign.github.io/blog/vector-database-transforming-data-storage-and-retrieval-in-the-ai-era/](https://systemdesign.github.io/blog/vector-database-transforming-data-storage-and-retrieval-in-the-ai-era/)*
 
 The AI revolution has ushered in a new era of innovation, promising breakthroughs across various industries. However, with these advancements come unique challenges, particularly in handling and processing data efficiently. One of the key data types that have gained prominence in AI applications is vector embeddings. Vector databases play a pivotal role in managing and optimizing the retrieval of these embeddings. In this article, we will explore the architecture of vector databases and their crucial role in AI applications.
 
@@ -19,7 +19,7 @@ The AI revolution has ushered in a new era of innovation, promising breakthrough
 
 A vector database is a specialized database designed to index and store vector embeddings for efficient retrieval and similarity search. These databases offer not only CRUD (Create, Read, Update, Delete) operations but also advanced capabilities like metadata filtering and horizontal scaling. They are essential for AI applications that rely on vector embeddings to understand patterns, relationships, and underlying structures in data.
 
-![Alt text](https://rishijeet.github.io/images/vector_db2.png)
+![Alt text](https://systemdesign.github.io/images/vector_db2.png)
 
 Source: Elastic
 
@@ -39,7 +39,7 @@ In traditional databases, queries typically seek exact matches between query val
 
 A typical vector database pipeline consists of the following stages:
 
-![Alt text](https://rishijeet.github.io/images/vector_db_pipeline.png)
+![Alt text](https://systemdesign.github.io/images/vector_db_pipeline.png)
 
 Source: Pinecone
 
@@ -63,7 +63,7 @@ Random projection is a technique that aims to project high-dimensional vectors i
 
 It's essential to note that random projection is an approximate method, and the quality of the projection depends on the properties of the projection matrix. Generating a truly random projection matrix can be computationally expensive, especially for large datasets.
 
-![Alt text](https://rishijeet.github.io/images/vector_rp.png)
+![Alt text](https://systemdesign.github.io/images/vector_rp.png)
 
 Source: Pinecone
 
@@ -81,7 +81,7 @@ Product quantization (PQ) is a lossy compression technique tailored for high-dim
 
 The number of representative vectors in the codebook involves a trade-off between representation accuracy and computational cost. A larger codebook improves accuracy but increases computational expenses.
 
-![Alt text](https://rishijeet.github.io/images/vector_pq.png)
+![Alt text](https://systemdesign.github.io/images/vector_pq.png)
 
 Source: Towards Data Science
 
@@ -95,7 +95,7 @@ Locality-sensitive hashing (LSH) is optimized for approximate nearest-neighbor s
 
 LSH is an approximate method, and the quality of the approximation depends on the properties of the hash functions. Using more hash functions improves approximation quality but can be computationally expensive, especially for large datasets.
 
-![Alt text](https://rishijeet.github.io/images/vector_lsh.png)
+![Alt text](https://systemdesign.github.io/images/vector_lsh.png)
 
 Source: Pinecone
 
@@ -109,7 +109,7 @@ HNSW creates a hierarchical, tree-like structure where each node represents a se
 
 - Query Process: When querying an HNSW index, the algorithm navigates the hierarchical structure, visiting nodes that are likely to contain the closest vectors to the query vector.
 
-![Alt text](https://rishijeet.github.io/images/vector_hnsw.png)
+![Alt text](https://systemdesign.github.io/images/vector_hnsw.png)
 
 Source: Pinecone
 
@@ -133,7 +133,7 @@ Each vector stored in the database includes associated metadata. Vector database
 
 - Post-filtering: Filters are applied after the vector search. This ensures all relevant results are considered but may introduce additional processing overhead.
 
-![Alt text](https://rishijeet.github.io/images/vector_filter.png)
+![Alt text](https://systemdesign.github.io/images/vector_filter.png)
 
 Source: Pinecone
 

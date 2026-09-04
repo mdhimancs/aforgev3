@@ -3,15 +3,15 @@ title: "Distributed Computing - Quorum"
 date: "2016-09-04T18:40:02+05:30"
 slug: "distributed-computing"
 categories: ["distributed"]
-original_url: "https://rishijeet.github.io/blog/distributed-computing/"
+original_url: "https://systemdesign.github.io/blog/distributed-computing/"
 word_count: 537
 reading_time: "3 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Distributed Computing - Quorum
 
-*Published on 2016-09-04 by Rishijeet Mishra | [https://rishijeet.github.io/blog/distributed-computing/](https://rishijeet.github.io/blog/distributed-computing/)*
+*Published on 2016-09-04 by System Design | [https://systemdesign.github.io/blog/distributed-computing/](https://systemdesign.github.io/blog/distributed-computing/)*
 
 In a distributed database system, a transaction could be executing its operations at multiple sites. Since atomicity requires every distributed transaction to be atomic, the transaction must have the same fate (commit or abort) at every site. In case of network partitioning, sites are partitioned and the partitions may not be able to communicate with each other. This is where a quorum-based technique comes in. The fundamental idea is that a transaction is executed if the majority of sites vote to execute it.
 

@@ -3,19 +3,19 @@ title: "Introduction to GraalVM"
 date: "2024-08-01T23:11:16+05:30"
 slug: "introduction-to-graalvm"
 categories: ["graalvm", "performance", "microservice"]
-original_url: "https://rishijeet.github.io/blog/introduction-to-graalvm/"
+original_url: "https://systemdesign.github.io/blog/introduction-to-graalvm/"
 word_count: 1044
 reading_time: "5 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Introduction to GraalVM
 
-*Published on 2024-08-01 by Rishijeet Mishra | [https://rishijeet.github.io/blog/introduction-to-graalvm/](https://rishijeet.github.io/blog/introduction-to-graalvm/)*
+*Published on 2024-08-01 by System Design | [https://systemdesign.github.io/blog/introduction-to-graalvm/](https://systemdesign.github.io/blog/introduction-to-graalvm/)*
 
 GraalVM is a high-performance runtime that provides significant improvements in application performance and efficiency. It is designed to execute applications written in Java, JavaScript, LLVM-based languages such as C and C++, and other dynamic languages. What sets GraalVM apart from traditional JVMs is its advanced Just-In-Time (JIT) compiler and its ability to perform ahead-of-time (AOT) compilation, which can yield impressive performance gains.
 
-![Alt text](https://rishijeet.github.io/images/2024/graalvm.png)
+![Alt text](https://systemdesign.github.io/images/2024/graalvm.png)
 
 Source: Internet
 

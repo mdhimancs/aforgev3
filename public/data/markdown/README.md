@@ -1,8 +1,8 @@
-# Rishijeet Mishra - Blog Archive
-Archive generated on 2026-09-02 from https://rishijeet.github.io/blog
+# System Design - Blog Archive
+Archive generated on 2026-09-02 from https://systemdesign.github.io/blog
 
 Total Articles: 109
-Author: Rishijeet Mishra
+Author: System Design
 
 ## Categories:
 - **ai** (34 posts)

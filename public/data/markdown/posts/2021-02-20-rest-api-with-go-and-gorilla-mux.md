@@ -3,15 +3,15 @@ title: "Rest API with Go & Gorilla Mux"
 date: "2021-02-20T23:12:49+05:30"
 slug: "rest-api-with-go-and-gorilla-mux"
 categories: ["go", "gorilla", "technology"]
-original_url: "https://rishijeet.github.io/blog/rest-api-with-go-and-gorilla-mux/"
+original_url: "https://systemdesign.github.io/blog/rest-api-with-go-and-gorilla-mux/"
 word_count: 484
 reading_time: "2 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Rest API with Go & Gorilla Mux
 
-*Published on 2021-02-20 by Rishijeet Mishra | [https://rishijeet.github.io/blog/rest-api-with-go-and-gorilla-mux/](https://rishijeet.github.io/blog/rest-api-with-go-and-gorilla-mux/)*
+*Published on 2021-02-20 by System Design | [https://systemdesign.github.io/blog/rest-api-with-go-and-gorilla-mux/](https://systemdesign.github.io/blog/rest-api-with-go-and-gorilla-mux/)*
 
 Gorilla is a web toolkit for the Go programming language. The gorilla/mux implements a request router and dispatcher for matching incomings requests to the respective handlers.
 

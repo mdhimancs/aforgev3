@@ -3,15 +3,15 @@ title: "Tuning Apache Kafka’s performance"
 date: "2019-07-11T11:42:32+05:30"
 slug: "tuning-apache-kafkas-performance"
 categories: ["kafka", "messaging", "technology"]
-original_url: "https://rishijeet.github.io/blog/tuning-apache-kafkas-performance/"
+original_url: "https://systemdesign.github.io/blog/tuning-apache-kafkas-performance/"
 word_count: 699
 reading_time: "3 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Tuning Apache Kafka’s performance
 
-*Published on 2019-07-11 by Rishijeet Mishra | [https://rishijeet.github.io/blog/tuning-apache-kafkas-performance/](https://rishijeet.github.io/blog/tuning-apache-kafkas-performance/)*
+*Published on 2019-07-11 by System Design | [https://systemdesign.github.io/blog/tuning-apache-kafkas-performance/](https://systemdesign.github.io/blog/tuning-apache-kafkas-performance/)*
 
 Well, Apache Kafka is one of the best pub-sub messaging system used widely across several technology’s based industries. Originated at LinkedIn and was open sourced in early 2011.
 

@@ -3,15 +3,15 @@ title: "Advanced Apache Kafka Anatomy: Delving Deep into the Core Components"
 date: "2024-06-27T09:55:12+05:30"
 slug: "advanced-apache-kafka-anatomy-delving-deep-into-the-core-components"
 categories: ["kafka", "architecture"]
-original_url: "https://rishijeet.github.io/blog/advanced-apache-kafka-anatomy-delving-deep-into-the-core-components/"
+original_url: "https://systemdesign.github.io/blog/advanced-apache-kafka-anatomy-delving-deep-into-the-core-components/"
 word_count: 884
 reading_time: "4 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Advanced Apache Kafka Anatomy: Delving Deep into the Core Components
 
-*Published on 2024-06-27 by Rishijeet Mishra | [https://rishijeet.github.io/blog/advanced-apache-kafka-anatomy-delving-deep-into-the-core-components/](https://rishijeet.github.io/blog/advanced-apache-kafka-anatomy-delving-deep-into-the-core-components/)*
+*Published on 2024-06-27 by System Design | [https://systemdesign.github.io/blog/advanced-apache-kafka-anatomy-delving-deep-into-the-core-components/](https://systemdesign.github.io/blog/advanced-apache-kafka-anatomy-delving-deep-into-the-core-components/)*
 
 Apache Kafka has become a cornerstone of modern data architectures, renowned for its ability to handle high-throughput, low-latency data streams. While its fundamental concepts are widely understood, a deeper dive into Kafka’s advanced components and features reveals the true power and flexibility of this distributed event streaming platform. This blog aims to unravel the advanced anatomy of Apache Kafka, offering insights into its core components, configurations, and best practices for optimizing performance.
 
@@ -21,7 +21,7 @@ Apache Kafka has become a cornerstone of modern data architectures, renowned for
 
 Brokers are the backbone of a Kafka cluster, responsible for managing data storage, processing requests from clients, and replicating data to ensure fault tolerance.
 
-![Alt text](https://rishijeet.github.io/images/2024/kafka_broker.png)
+![Alt text](https://systemdesign.github.io/images/2024/kafka_broker.png)
 
 Source: Internet
 
@@ -41,7 +41,7 @@ Topics are categories to which records are published. Each topic can be divided 
 
 Producers are responsible for publishing records to Kafka topics.
 
-![Alt text](https://rishijeet.github.io/images/2024/kafka_producers.png)
+![Alt text](https://systemdesign.github.io/images/2024/kafka_producers.png)
 
 Source: Internet
 
@@ -71,7 +71,7 @@ ZooKeeper is a critical component in Kafka's ecosystem, used for cluster coordin
 
 Kafka Connect is a robust framework for integrating Kafka with external systems.
 
-![Alt text](https://rishijeet.github.io/images/2024/kafka_connect.png)
+![Alt text](https://systemdesign.github.io/images/2024/kafka_connect.png)
 
 Source: Internet
 
@@ -83,7 +83,7 @@ Source: Internet
 
 Kafka Streams is a powerful library for building stream processing applications on top of Kafka.
 
-![Alt text](https://rishijeet.github.io/images/2024/kafka_streams.png)
+![Alt text](https://systemdesign.github.io/images/2024/kafka_streams.png)
 
 Source: Internet
 
@@ -95,7 +95,7 @@ Source: Internet
 
 Schema Registry is a centralized service for managing and validating schemas used by Kafka producers and consumers.
 
-![Alt text](https://rishijeet.github.io/images/2024/schema-registry-and-kafka.png)
+![Alt text](https://systemdesign.github.io/images/2024/schema-registry-and-kafka.png)
 
 Source: Internet
 

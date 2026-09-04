@@ -3,15 +3,15 @@ title: "Webhook vs. WebSocket: Choosing the Right Communication Mechanism for Yo
 date: "2023-11-04T20:56:03+05:30"
 slug: "webhook-vs-websocket-choosing-the-right-communication-mechanism-for-your-application"
 categories: ["api", "webhook", "websocket", "security"]
-original_url: "https://rishijeet.github.io/blog/webhook-vs-websocket-choosing-the-right-communication-mechanism-for-your-application/"
+original_url: "https://systemdesign.github.io/blog/webhook-vs-websocket-choosing-the-right-communication-mechanism-for-your-application/"
 word_count: 599
 reading_time: "3 min"
-author: "Rishijeet Mishra"
+author: "System Design"
 ---
 
 # Webhook vs. WebSocket: Choosing the Right Communication Mechanism for Your Application
 
-*Published on 2023-11-04 by Rishijeet Mishra | [https://rishijeet.github.io/blog/webhook-vs-websocket-choosing-the-right-communication-mechanism-for-your-application/](https://rishijeet.github.io/blog/webhook-vs-websocket-choosing-the-right-communication-mechanism-for-your-application/)*
+*Published on 2023-11-04 by System Design | [https://systemdesign.github.io/blog/webhook-vs-websocket-choosing-the-right-communication-mechanism-for-your-application/](https://systemdesign.github.io/blog/webhook-vs-websocket-choosing-the-right-communication-mechanism-for-your-application/)*
 
 In today's digital age, communication between applications is crucial, and it's the APIs (Application Programming Interfaces) that act as the mediators. APIs provide a standardized way for software modules, applications, and devices to exchange data and instructions. However, not all communication needs can be met by APIs alone. In this article, we'll explore three different communication mechanisms: API, WebHook, and WebSocket, and help you understand when to use each one.
 
@@ -50,7 +50,7 @@ API Interfaces:
 - Suitable for CRUD operations from mobile and web apps, data transfer using XML or JSON, and frequent data changes.
 - Useful for applications that demand instant responses to user requests (e.g., live chat applications, messenger apps, IoT devices, and wearable devices).
 
-![Alt text](https://rishijeet.github.io/images/API%20Interface.jpg)
+![Alt text](https://systemdesign.github.io/images/API%20Interface.jpg)
 
 Source: wallarm
 
@@ -59,7 +59,7 @@ WebSockets:
 - Promotes bidirectional communication and maintains an open connection.
 - Suited for collaborative and chat-centric applications (e.g., modern browsers, data visualization tools, and chat applications).
 
-![Alt text](https://rishijeet.github.io/images/websockets.jpg)
+![Alt text](https://systemdesign.github.io/images/websockets.jpg)
 
 Source: mirrorfly
 
@@ -68,7 +68,7 @@ WebHooks:
 - Ideal when your application needs to fetch data from a third-party application.
 - Preferred for applications deployed on the cloud, where open communication is not necessary (e.g., Discord Bots).
 
-![Alt text](https://rishijeet.github.io/images/webhooks.jpg)
+![Alt text](https://systemdesign.github.io/images/webhooks.jpg)
 
 Source: wallarm
 
