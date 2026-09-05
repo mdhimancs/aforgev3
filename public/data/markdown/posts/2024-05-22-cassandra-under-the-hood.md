@@ -3,7 +3,7 @@ title: "Cassandra - Under the hood"
 date: "2024-05-22T23:48:44+05:30"
 slug: "cassandra-under-the-hood"
 categories: ["database", "cassandra", "nosql"]
-original_url: "https://systemdesign.github.io/blog/cassandra-under-the-hood/"
+original_url: "https://rishijeet.github.io/blog/cassandra-under-the-hood/"
 word_count: 1184
 reading_time: "6 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # Cassandra - Under the hood
 
-*Published on 2024-05-22 by System Design | [https://systemdesign.github.io/blog/cassandra-under-the-hood/](https://systemdesign.github.io/blog/cassandra-under-the-hood/)*
+*Published on 2024-05-22 by System Design | [https://rishijeet.github.io/blog/cassandra-under-the-hood/](https://rishijeet.github.io/blog/cassandra-under-the-hood/)*
 
 Apache Cassandra is designed to handle large amounts of data across many commodity servers without any single point of failure. This architecture allows it to provide high availability and fault tolerance, making it an excellent choice for large-scale, mission-critical applications. Below, we'll delve into the key components and architecture of Cassandra.
 

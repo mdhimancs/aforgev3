@@ -3,7 +3,7 @@ title: "Advantages of Enable Checkpointing in Apache Flink"
 date: "2024-05-19T21:32:50+05:30"
 slug: "advantages-of-enable-checkpointing-in-apache-flink"
 categories: ["apache-flink", "streaming-data"]
-original_url: "https://systemdesign.github.io/blog/advantages-of-enable-checkpointing-in-apache-flink/"
+original_url: "https://rishijeet.github.io/blog/advantages-of-enable-checkpointing-in-apache-flink/"
 word_count: 513
 reading_time: "3 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # Advantages of Enable Checkpointing in Apache Flink
 
-*Published on 2024-05-19 by System Design | [https://systemdesign.github.io/blog/advantages-of-enable-checkpointing-in-apache-flink/](https://systemdesign.github.io/blog/advantages-of-enable-checkpointing-in-apache-flink/)*
+*Published on 2024-05-19 by System Design | [https://rishijeet.github.io/blog/advantages-of-enable-checkpointing-in-apache-flink/](https://rishijeet.github.io/blog/advantages-of-enable-checkpointing-in-apache-flink/)*
 
 Enabling checkpointing in Apache Flink provides significant advantages for ensuring the reliability, consistency, and fault-tolerance of stream processing applications. Below, I detail the benefits and provide a code example.
 

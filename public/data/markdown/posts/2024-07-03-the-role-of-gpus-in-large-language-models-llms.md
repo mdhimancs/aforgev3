@@ -3,7 +3,7 @@ title: "The Role of GPUs in Large Language Models (LLMs): Types, Requirements & 
 date: "2024-07-03T10:32:17+05:30"
 slug: "the-role-of-gpus-in-large-language-models-llms"
 categories: ["llm", "gpu", "ai"]
-original_url: "https://systemdesign.github.io/blog/the-role-of-gpus-in-large-language-models-llms/"
+original_url: "https://rishijeet.github.io/blog/the-role-of-gpus-in-large-language-models-llms/"
 word_count: 1269
 reading_time: "6 min"
 author: "System Design"
@@ -11,11 +11,11 @@ author: "System Design"
 
 # The Role of GPUs in Large Language Models (LLMs): Types, Requirements & Costs
 
-*Published on 2024-07-03 by System Design | [https://systemdesign.github.io/blog/the-role-of-gpus-in-large-language-models-llms/](https://systemdesign.github.io/blog/the-role-of-gpus-in-large-language-models-llms/)*
+*Published on 2024-07-03 by System Design | [https://rishijeet.github.io/blog/the-role-of-gpus-in-large-language-models-llms/](https://rishijeet.github.io/blog/the-role-of-gpus-in-large-language-models-llms/)*
 
 Large Language Models (LLMs) like GPT-3, BERT, and T5 have revolutionized natural language processing (NLP). However, training and fine-tuning these models require substantial computational resources. Graphics Processing Units (GPUs) are critical in this context, providing the necessary power to handle the vast amounts of data and complex calculations involved. In this blog, we will explore why GPUs are essential for LLMs, the types of GPUs required, and the associated costs.
 
-![Alt text](https://systemdesign.github.io/images/2024/nvidia_a100.jpg)
+![Alt text](https://rishijeet.github.io/images/2024/nvidia_a100.jpg)
 
 Source: Internet
 
@@ -41,7 +41,7 @@ facilitating the rapid movement of large amounts of data, which is essential for
 Many deep learning frameworks (e.g., TensorFlow, PyTorch) offer GPU-optimized libraries, enabling efficient
 implementation of complex neural network operations and reducing training time.
 
-![Alt text](https://systemdesign.github.io/images/2024/nvidia_time_sol.svg)
+![Alt text](https://rishijeet.github.io/images/2024/nvidia_time_sol.svg)
 
 Source: Internet
 
@@ -114,7 +114,7 @@ It is based on the Ampere architecture and is popular among researchers and enth
 
 - Cost: Approximately $1,500 - $2,500 per GPU
 
-![Alt text](https://systemdesign.github.io/images/2024/nvidia_perf.svg)
+![Alt text](https://rishijeet.github.io/images/2024/nvidia_perf.svg)
 
 Source: Internet
 

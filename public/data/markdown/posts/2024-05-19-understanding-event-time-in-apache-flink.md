@@ -3,7 +3,7 @@ title: "Understanding Event Time in Apache Flink"
 date: "2024-05-19T20:22:47+05:30"
 slug: "understanding-event-time-in-apache-flink"
 categories: ["apache-flink", "streaming-data"]
-original_url: "https://systemdesign.github.io/blog/understanding-event-time-in-apache-flink/"
+original_url: "https://rishijeet.github.io/blog/understanding-event-time-in-apache-flink/"
 word_count: 755
 reading_time: "4 min"
 author: "System Design"
@@ -11,13 +11,13 @@ author: "System Design"
 
 # Understanding Event Time in Apache Flink
 
-*Published on 2024-05-19 by System Design | [https://systemdesign.github.io/blog/understanding-event-time-in-apache-flink/](https://systemdesign.github.io/blog/understanding-event-time-in-apache-flink/)*
+*Published on 2024-05-19 by System Design | [https://rishijeet.github.io/blog/understanding-event-time-in-apache-flink/](https://rishijeet.github.io/blog/understanding-event-time-in-apache-flink/)*
 
 ### What is Event Time?
 
 Event Time is one of the three time semantics in Apache Flink, along with Ingestion Time and Processing Time. Event Time refers to the time at which each individual event actually occurred, typically extracted from the event itself. This contrasts with Processing Time, which refers to the time at which events are processed by the Flink system, and Ingestion Time, which is the time at which events enter the Flink pipeline.
 
-![Alt text](https://systemdesign.github.io/images/event_processing_time.svg)
+![Alt text](https://rishijeet.github.io/images/event_processing_time.svg)
 
 Source: Apache Flink
 

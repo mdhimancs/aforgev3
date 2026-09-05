@@ -132,7 +132,7 @@ export function GrcAuditView() {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-base font-bold tracking-tight text-slate-900">
+              <h2 className="text-base font-bold tracking-tight text-black">
                 NIST • EU AI Act • GDPR • Continuous GRC Hub
               </h2>
               <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-indigo-50 text-indigo-700 border border-indigo-200 uppercase">
@@ -306,7 +306,7 @@ export function GrcAuditView() {
           {/* Main Controls List (2 Columns wide on LG) */}
           <div className="lg:col-span-2 p-4 rounded-xl border border-slate-200 bg-white shadow-2xs">
             <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-200">
-              <h3 className="text-xs font-bold uppercase tracking-wider flex items-center gap-2 text-slate-800">
+              <h3 className="text-xs font-bold uppercase tracking-wider flex items-center gap-2 text-black">
                 <ShieldCheck className="w-4 h-4 text-indigo-600" />
                 <span>Automated Regulatory Control Register ({filteredControls.length})</span>
               </h3>
@@ -433,7 +433,7 @@ export function GrcAuditView() {
           {/* Cryptographic Evidence Ledger Register (1 Column wide on LG) */}
           <div className="p-4 rounded-xl border border-slate-200 bg-white shadow-2xs">
             <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-200">
-              <h3 className="text-xs font-bold uppercase tracking-wider flex items-center gap-2 text-slate-800">
+              <h3 className="text-xs font-bold uppercase tracking-wider flex items-center gap-2 text-black">
                 <Key className="w-4 h-4 text-amber-600" />
                 <span>SHA-256 Cryptographic Evidence Ledger</span>
               </h3>
@@ -454,7 +454,7 @@ export function GrcAuditView() {
                     </span>
                   </div>
 
-                  <h4 className="text-xs font-bold text-slate-900">
+                  <h4 className="text-xs font-bold text-black">
                     {ev.title}
                   </h4>
 

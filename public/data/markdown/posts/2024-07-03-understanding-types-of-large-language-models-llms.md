@@ -3,7 +3,7 @@ title: "Understanding Types of Large Language Models (LLMs)"
 date: "2024-07-03T10:13:27+05:30"
 slug: "understanding-types-of-large-language-models-llms"
 categories: ["llm", "ai"]
-original_url: "https://systemdesign.github.io/blog/understanding-types-of-large-language-models-llms/"
+original_url: "https://rishijeet.github.io/blog/understanding-types-of-large-language-models-llms/"
 word_count: 640
 reading_time: "3 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # Understanding Types of Large Language Models (LLMs)
 
-*Published on 2024-07-03 by System Design | [https://systemdesign.github.io/blog/understanding-types-of-large-language-models-llms/](https://systemdesign.github.io/blog/understanding-types-of-large-language-models-llms/)*
+*Published on 2024-07-03 by System Design | [https://rishijeet.github.io/blog/understanding-types-of-large-language-models-llms/](https://rishijeet.github.io/blog/understanding-types-of-large-language-models-llms/)*
 
 Large Language Models (LLMs) have revolutionized the field of natural language processing (NLP) with their ability to understand, generate, and interact with human language. These models are built using deep learning techniques and have been trained on vast amounts of text data. In this blog, we will explore the different types of LLMs, their architectures, and their applications.
 
@@ -21,7 +21,7 @@ Large Language Models (LLMs) have revolutionized the field of natural language p
 
 GPT models, developed by OpenAI, are among the most popular LLMs. They use a transformer-based architecture and are designed to generate human-like text. The models are pre-trained on a large corpus of text and then fine-tuned for specific tasks.
 
-![Alt text](https://systemdesign.github.io/images/2024/gpt.png)
+![Alt text](https://rishijeet.github.io/images/2024/gpt.png)
 
 Source: Internet
 
@@ -47,7 +47,7 @@ Source: Internet
 
 BERT, developed by Google, is designed for understanding the context of words in a sentence. Unlike GPT, which generates text, BERT excels at tasks requiring a deep understanding of text, such as question answering and sentiment analysis.
 
-![Alt text](https://systemdesign.github.io/images/2024/bert.jpg)
+![Alt text](https://rishijeet.github.io/images/2024/bert.jpg)
 
 Source: Internet
 
@@ -73,7 +73,7 @@ Source: Internet
 
 T5, also developed by Google, treats every NLP task as a text-to-text problem. This means both the input and the output are text strings, making it highly versatile for various tasks.
 
-![Alt text](https://systemdesign.github.io/images/2024/t5.png)
+![Alt text](https://rishijeet.github.io/images/2024/t5.png)
 
 Source: Internet
 
@@ -99,7 +99,7 @@ Source: Internet
 
 XLNet, developed by Google and Carnegie Mellon University, aims to improve upon BERT by addressing its limitations. It uses a permutation-based training method to capture bidirectional context without masking.
 
-![Alt text](https://systemdesign.github.io/images/2024/xlnet.png)
+![Alt text](https://rishijeet.github.io/images/2024/xlnet.png)
 
 Source: Internet
 
@@ -125,7 +125,7 @@ Source: Internet
 
 RoBERTa, developed by Facebook AI, is an optimized version of BERT. It focuses on improving BERT's performance by making changes to the training procedure.
 
-![Alt text](https://systemdesign.github.io/images/2024/roberta.png)
+![Alt text](https://rishijeet.github.io/images/2024/roberta.png)
 
 Source: Internet
 

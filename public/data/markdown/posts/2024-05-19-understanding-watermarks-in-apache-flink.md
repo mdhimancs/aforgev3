@@ -3,7 +3,7 @@ title: "Understanding Watermarks in Apache Flink"
 date: "2024-05-19T20:35:48+05:30"
 slug: "understanding-watermarks-in-apache-flink"
 categories: ["apache-flink", "streaming-data"]
-original_url: "https://systemdesign.github.io/blog/understanding-watermarks-in-apache-flink/"
+original_url: "https://rishijeet.github.io/blog/understanding-watermarks-in-apache-flink/"
 word_count: 906
 reading_time: "5 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # Understanding Watermarks in Apache Flink
 
-*Published on 2024-05-19 by System Design | [https://systemdesign.github.io/blog/understanding-watermarks-in-apache-flink/](https://systemdesign.github.io/blog/understanding-watermarks-in-apache-flink/)*
+*Published on 2024-05-19 by System Design | [https://rishijeet.github.io/blog/understanding-watermarks-in-apache-flink/](https://rishijeet.github.io/blog/understanding-watermarks-in-apache-flink/)*
 
 ## What are Watermarks?
 
@@ -29,11 +29,11 @@ Watermarks in Apache Flink are a mechanism to handle event time and out-of-order
 
 - Purpose: Watermarks help in handling late events and triggering event-time-based operations like windowing.
 
-![Alt text](https://systemdesign.github.io/images/stream_watermark_in_order.svg)
+![Alt text](https://rishijeet.github.io/images/stream_watermark_in_order.svg)
 
 Source: Apache Flink
 
-![Alt text](https://systemdesign.github.io/images/stream_watermark_out_of_order.svg)
+![Alt text](https://rishijeet.github.io/images/stream_watermark_out_of_order.svg)
 
 Source: Apache Flink
 
@@ -57,7 +57,7 @@ Here’s a simple source function generating events with timestamps:
 
 In a distributed environment, Flink processes streams in parallel. Each parallel sub-task can emit its own watermarks. Flink uses the minimum watermark of all parallel sub-tasks to ensure that no events are missed.
 
-![Alt text](https://systemdesign.github.io/images/parallel_streams_watermarks.svg)
+![Alt text](https://rishijeet.github.io/images/parallel_streams_watermarks.svg)
 
 Source: Apache Flink
 

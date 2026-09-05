@@ -231,7 +231,7 @@ export const VaptCenter: React.FC = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-lg font-bold tracking-tight text-slate-900">VAPT & Penetration Testing Workbench</h1>
+                <h1 className="text-lg font-bold tracking-tight text-black">VAPT & Penetration Testing Workbench</h1>
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-rose-50 text-rose-700 border border-rose-200 uppercase">
                   PTES • OWASP ASVS v4.0
                 </span>
@@ -379,7 +379,7 @@ export const VaptCenter: React.FC = () => {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <Terminal className="w-4 h-4 text-cyan-600" />
-                    <h3 className="text-sm font-bold text-slate-900">Target Probe Dispatcher</h3>
+                    <h3 className="text-sm font-bold text-black">Target Probe Dispatcher</h3>
                   </div>
                   <span className="text-xs text-slate-500 flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -493,7 +493,7 @@ export const VaptCenter: React.FC = () => {
                       )}
                       <div>
                         <div className="flex items-center gap-2">
-                          <h4 className="text-sm font-bold text-slate-900">
+                          <h4 className="text-sm font-bold text-black">
                             Probe Outcome: {probeResult.status}
                           </h4>
                           {getSeverityBadge(probeResult.severity)}
@@ -631,7 +631,7 @@ export const VaptCenter: React.FC = () => {
                         <span className="text-xs font-mono text-slate-500">{selectedFinding.owaspId}</span>
                         <span className="text-xs font-mono text-slate-500">{selectedFinding.cwe}</span>
                       </div>
-                      <h3 className="text-base font-bold text-slate-900">{selectedFinding.title}</h3>
+                      <h3 className="text-base font-bold text-black">{selectedFinding.title}</h3>
                       <p className="text-xs font-mono text-slate-500 mt-0.5">{selectedFinding.targetUrl}</p>
                     </div>
 
@@ -757,7 +757,7 @@ export const VaptCenter: React.FC = () => {
           <div className="max-w-4xl mx-auto bg-white border border-slate-200 rounded-xl p-6 shadow-2xs space-y-6">
             <div className="flex items-center justify-between pb-4 border-b border-slate-200">
               <div>
-                <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                <h3 className="text-base font-bold text-black flex items-center gap-2">
                   <Sliders className="w-4 h-4 text-indigo-600" />
                   <span>CVSS v3.1 Base Score Calculator</span>
                 </h3>
@@ -1004,7 +1004,7 @@ export const VaptCenter: React.FC = () => {
           <div className="max-w-4xl mx-auto bg-white border border-slate-200 rounded-xl p-6 shadow-2xs space-y-6">
             <div className="flex items-center justify-between pb-4 border-b border-slate-200">
               <div>
-                <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                <h3 className="text-base font-bold text-black flex items-center gap-2">
                   <Sliders className="w-4 h-4 text-cyan-600" />
                   <span>Target Scope & Rules of Engagement (RoE)</span>
                 </h3>
@@ -1088,7 +1088,7 @@ export const VaptCenter: React.FC = () => {
           <div className="max-w-4xl mx-auto bg-white border border-slate-200 rounded-xl p-6 shadow-2xs space-y-6">
             <div className="flex items-center justify-between pb-4 border-b border-slate-200">
               <div>
-                <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                <h3 className="text-base font-bold text-black flex items-center gap-2">
                   <FileCode className="w-4 h-4 text-cyan-600" />
                   <span>Executive VAPT Attestation Report</span>
                 </h3>

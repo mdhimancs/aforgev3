@@ -150,10 +150,10 @@ export const Canvas: React.FC<CanvasProps> = ({
           setConnectingFrom(null);
         }
       }}
-      className="flex-1 relative bg-[radial-gradient(#1e293b_1px,transparent_1px)] bg-[size:24px_24px] overflow-hidden cursor-default select-none"
+      className="flex-1 relative bg-[#fafafa] bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] bg-[size:24px_24px] overflow-hidden cursor-default select-none text-slate-800"
     >
       {/* Floating Toolbar Top-Right */}
-      <div className="absolute top-4 right-4 z-40 flex items-center gap-1.5 p-1 bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-xl shadow-xl">
+      <div className="absolute top-4 right-4 z-40 flex items-center gap-1.5 p-1 bg-white/90 backdrop-blur-md border border-slate-200 rounded-xl shadow-md">
         <button
           id="btn-add-node-canvas"
           onClick={onOpenAddModal}
@@ -167,18 +167,18 @@ export const Canvas: React.FC<CanvasProps> = ({
         <button
           id="btn-auto-arrange"
           onClick={onAutoArrange}
-          className="p-1.5 text-slate-400 hover:text-indigo-300 hover:bg-slate-800 rounded-lg transition-colors"
+          className="p-1.5 text-slate-600 hover:text-indigo-600 hover:bg-slate-100 rounded-lg transition-colors"
           title="Auto-organize graph layout"
         >
           <Wand2 className="w-3.5 h-3.5" />
         </button>
 
-        <div className="h-4 w-px bg-slate-800 mx-1"></div>
+        <div className="h-4 w-px bg-slate-200 mx-1"></div>
 
         <button
           id="btn-zoom-in"
           onClick={handleZoomIn}
-          className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+          className="p-1.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
           title="Zoom In"
         >
           <ZoomIn className="w-3.5 h-3.5" />
@@ -186,7 +186,7 @@ export const Canvas: React.FC<CanvasProps> = ({
         <button
           id="btn-zoom-out"
           onClick={handleZoomOut}
-          className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+          className="p-1.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
           title="Zoom Out"
         >
           <ZoomOut className="w-3.5 h-3.5" />

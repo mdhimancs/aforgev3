@@ -3,7 +3,7 @@ title: "Using Broadcast State Pattern in Flink for Fraud Detection"
 date: "2024-05-19T19:47:48+05:30"
 slug: "using-broadcast-state-pattern-in-flink-for-fraud-detection"
 categories: ["apache-flink", "fraud", "streaming-data"]
-original_url: "https://systemdesign.github.io/blog/using-broadcast-state-pattern-in-flink-for-fraud-detection/"
+original_url: "https://rishijeet.github.io/blog/using-broadcast-state-pattern-in-flink-for-fraud-detection/"
 word_count: 688
 reading_time: "3 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # Using Broadcast State Pattern in Flink for Fraud Detection
 
-*Published on 2024-05-19 by System Design | [https://systemdesign.github.io/blog/using-broadcast-state-pattern-in-flink-for-fraud-detection/](https://systemdesign.github.io/blog/using-broadcast-state-pattern-in-flink-for-fraud-detection/)*
+*Published on 2024-05-19 by System Design | [https://rishijeet.github.io/blog/using-broadcast-state-pattern-in-flink-for-fraud-detection/](https://rishijeet.github.io/blog/using-broadcast-state-pattern-in-flink-for-fraud-detection/)*
 
 The Broadcast State Pattern in Apache Flink is a powerful feature for real-time stream processing, particularly useful for scenarios like fraud detection. This pattern allows you to maintain a shared state that can be updated and accessed by multiple parallel instances of a stream processing operator. Here's how it can be applied to fraud detection:
 

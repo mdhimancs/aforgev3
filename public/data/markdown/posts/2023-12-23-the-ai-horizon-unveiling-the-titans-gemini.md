@@ -3,7 +3,7 @@ title: "The AI Horizon: Unveiling the Titans - Gemini, Llama2, Olympus, Ajax, an
 date: "2023-12-23T22:49:43+05:30"
 slug: "the-ai-horizon-unveiling-the-titans-gemini"
 categories: ["llm", "ai", "gpt"]
-original_url: "https://systemdesign.github.io/blog/the-ai-horizon-unveiling-the-titans-gemini/"
+original_url: "https://rishijeet.github.io/blog/the-ai-horizon-unveiling-the-titans-gemini/"
 word_count: 923
 reading_time: "5 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # The AI Horizon: Unveiling the Titans - Gemini, Llama2, Olympus, Ajax, and Orca 2
 
-*Published on 2023-12-23 by System Design | [https://systemdesign.github.io/blog/the-ai-horizon-unveiling-the-titans-gemini/](https://systemdesign.github.io/blog/the-ai-horizon-unveiling-the-titans-gemini/)*
+*Published on 2023-12-23 by System Design | [https://rishijeet.github.io/blog/the-ai-horizon-unveiling-the-titans-gemini/](https://rishijeet.github.io/blog/the-ai-horizon-unveiling-the-titans-gemini/)*
 
 ## Introduction
 

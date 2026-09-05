@@ -3,6 +3,8 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #fafafa;
+    color: #1e293b;
   }
   
   code, pre, kbd {
@@ -62,7 +64,7 @@
 .blog-article-content h2,
 .blog-article-content h3,
 .blog-article-content h4 {
-  color: #0f172a;
+  color: #000000;
   font-weight: 700;
   scroll-margin-top: 5.5rem;
 }
@@ -198,3 +200,88 @@
   background-color: #f8fafc;
 }
 
+/* Mermaid Diagram container */
+.blog-article-content .mermaid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+}
+
+/* Support dark mode for mermaid containers */
+.dark .blog-article-content .mermaid {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+/* Light Grey Theme Override for Night Mode (.dark class) */
+.dark {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+.dark bg-slate-900,
+.dark .bg-slate-900,
+.dark .bg-\[\#161d2a\],
+.dark .bg-slate-950 {
+  background-color: #ffffff !important;
+}
+
+.dark .bg-slate-800 {
+  background-color: #f8fafc !important;
+}
+
+.dark .text-white,
+.dark .text-slate-100,
+.dark .text-slate-200,
+.dark .text-slate-300 {
+  color: #0f172a !important;
+}
+
+.dark .text-slate-400,
+.dark .text-slate-500 {
+  color: #64748b !important;
+}
+
+.dark .border-slate-800,
+.dark .border-slate-700 {
+  border-color: #cbd5e1 !important;
+}
+
+
+
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+  }
+}
+
+@layer base {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="number"],
+  input[type="url"],
+  input[type="search"],
+  textarea,
+  select,
+  .CodeMirror,
+  .log-viewer {
+    background-color: #f1f5f9 !important; /* slate-100 */
+    border-color: #e2e8f0 !important; /* slate-200 */
+    color: #0f172a !important; /* slate-900 */
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #64748b !important; /* slate-500 */
+  }
+}

@@ -3,7 +3,7 @@ title: "Unleashing the Power of AI Transformer: Revolutionizing Artificial Intel
 date: "2023-05-22T18:57:12+05:30"
 slug: "unleashing-the-power-of-ai-transformer-revolutionizing-artificial-intelligence"
 categories: ["ai", "technology"]
-original_url: "https://systemdesign.github.io/blog/unleashing-the-power-of-ai-transformer-revolutionizing-artificial-intelligence/"
+original_url: "https://rishijeet.github.io/blog/unleashing-the-power-of-ai-transformer-revolutionizing-artificial-intelligence/"
 word_count: 593
 reading_time: "3 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # Unleashing the Power of AI Transformer: Revolutionizing Artificial Intelligence
 
-*Published on 2023-05-22 by System Design | [https://systemdesign.github.io/blog/unleashing-the-power-of-ai-transformer-revolutionizing-artificial-intelligence/](https://systemdesign.github.io/blog/unleashing-the-power-of-ai-transformer-revolutionizing-artificial-intelligence/)*
+*Published on 2023-05-22 by System Design | [https://rishijeet.github.io/blog/unleashing-the-power-of-ai-transformer-revolutionizing-artificial-intelligence/](https://rishijeet.github.io/blog/unleashing-the-power-of-ai-transformer-revolutionizing-artificial-intelligence/)*
 
 In recent years, the field of artificial intelligence (AI) has witnessed a groundbreaking advancement with the introduction of the AI Transformer model. Inspired by the Transformer architecture, which gained fame for its effectiveness in natural language processing tasks, the AI Transformer has emerged as a powerful tool that revolutionizes various domains, including language translation, image recognition, and speech synthesis. In this blog, we will explore the capabilities and impact of the AI Transformer model, shedding light on its remarkable contributions to the world of AI.
 

@@ -31,7 +31,7 @@ function AppContent() {
   );
 
   // View state: 'secops' | 'vapt' | 'appsec_scanner' | 'grc_compliance' | 'security_lab' | 'builder' | 'blog'
-  const [activeView, setActiveView] = useState<'secops' | 'vapt' | 'appsec_scanner' | 'grc_compliance' | 'security_lab' | 'builder' | 'blog'>('blog');
+  const [activeView, setActiveView] = useState<'secops' | 'vapt' | 'appsec_scanner' | 'grc_compliance' | 'security_lab' | 'builder' | 'blog'>('secops');
 
   // Modals state
   const [isDeployOpen, setIsDeployOpen] = useState(false);
@@ -307,8 +307,11 @@ function AppContent() {
 
   return (
     <div
-      className="flex flex-col h-screen w-screen font-sans overflow-hidden select-none bg-[#f8fafc] text-slate-800 transition-colors"
+      className="relative flex flex-col h-screen w-screen font-sans overflow-hidden select-none bg-[#f8fafc] text-slate-800 transition-colors bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px]"
     >
+      {/* Global Design Element: Top Gradient Accent Bar */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-600 via-indigo-500 to-cyan-400 z-50"></div>
+
       {/* Top Navbar */}
       <Navbar
         currentWorkflow={activeWorkflow}

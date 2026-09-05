@@ -412,7 +412,7 @@ export const IdeasHubModal: React.FC<IdeasHubModalProps> = ({ isOpen, onClose })
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-lg font-bold tracking-tight text-slate-900 dark:text-white">
+                <h2 className="text-lg font-bold tracking-tight text-black dark:text-white">
                   Ideas, Feature Notes & Roadmap
                 </h2>
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
@@ -582,7 +582,7 @@ export const IdeasHubModal: React.FC<IdeasHubModalProps> = ({ isOpen, onClose })
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-bold text-sm text-slate-900 dark:text-white mb-1.5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <h3 className="font-bold text-sm text-black dark:text-white mb-1.5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       {idea.title}
                     </h3>
 

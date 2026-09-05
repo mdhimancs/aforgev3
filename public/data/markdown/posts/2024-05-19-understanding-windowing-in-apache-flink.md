@@ -3,7 +3,7 @@ title: "Understanding Windowing in Apache Flink"
 date: "2024-05-19T20:57:38+05:30"
 slug: "understanding-windowing-in-apache-flink"
 categories: ["apache-flink", "streaming-data"]
-original_url: "https://systemdesign.github.io/blog/understanding-windowing-in-apache-flink/"
+original_url: "https://rishijeet.github.io/blog/understanding-windowing-in-apache-flink/"
 word_count: 926
 reading_time: "5 min"
 author: "System Design"
@@ -11,11 +11,11 @@ author: "System Design"
 
 # Understanding Windowing in Apache Flink
 
-*Published on 2024-05-19 by System Design | [https://systemdesign.github.io/blog/understanding-windowing-in-apache-flink/](https://systemdesign.github.io/blog/understanding-windowing-in-apache-flink/)*
+*Published on 2024-05-19 by System Design | [https://rishijeet.github.io/blog/understanding-windowing-in-apache-flink/](https://rishijeet.github.io/blog/understanding-windowing-in-apache-flink/)*
 
 Windowing is a fundamental concept in stream processing that allows you to group a continuous stream of events into finite chunks for processing. Apache Flink provides powerful windowing capabilities that support various window types and triggers for flexible, real-time data analysis.
 
-![Alt text](https://systemdesign.github.io/images/windows.svg)
+![Alt text](https://rishijeet.github.io/images/windows.svg)
 
 Source: Apache Flink
 

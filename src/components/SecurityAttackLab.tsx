@@ -233,7 +233,7 @@ export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, 
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-base font-bold text-slate-900 tracking-tight">
+              <h2 className="text-base font-bold text-black tracking-tight">
                 Automated Red-Team Assessment Lab
               </h2>
               <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-50 text-rose-700 border border-rose-200 font-mono">
@@ -439,7 +439,7 @@ export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, 
 
                       <div>
                         <div className="flex items-center gap-2">
-                          <h4 className="text-xs font-bold text-slate-900">{testCase.name}</h4>
+                          <h4 className="text-xs font-bold text-black">{testCase.name}</h4>
                           <span
                             className={`px-1.5 py-0.2 rounded text-[9px] font-mono font-bold border ${
                               testCase.severity === 'CRITICAL'
@@ -495,7 +495,7 @@ export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, 
               <div className="flex items-start justify-between pb-4 border-b border-slate-200">
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-sm font-bold text-slate-900">{selectedResult.name}</h3>
+                    <h3 className="text-sm font-bold text-black">{selectedResult.name}</h3>
                     <span
                       className={`px-2 py-0.5 rounded text-[10px] font-bold font-mono border ${
                         selectedResult.status === 'passed'
@@ -596,7 +596,7 @@ export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, 
               <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 mb-3 text-slate-400">
                 <ShieldAlert className="w-8 h-8 text-slate-400" />
               </div>
-              <h4 className="text-sm font-bold text-slate-800">No Probe Selected</h4>
+              <h4 className="text-sm font-bold text-black">No Probe Selected</h4>
               <p className="text-xs text-slate-500 max-w-sm mt-1">
                 Select a probe from the left list or click &quot;Run Automated Lab&quot; to execute the repeatable attack benchmark across all vectors.
               </p>
@@ -612,7 +612,7 @@ export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, 
             <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
               <div className="flex items-center gap-2">
                 <ShieldAlert className="w-4 h-4 text-rose-600" />
-                <h3 className="text-sm font-bold text-slate-900">Create Repeatable Adversarial Probe</h3>
+                <h3 className="text-sm font-bold text-black">Create Repeatable Adversarial Probe</h3>
               </div>
               <button
                 onClick={() => setShowAddCustomModal(false)}

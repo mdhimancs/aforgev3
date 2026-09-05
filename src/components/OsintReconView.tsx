@@ -194,13 +194,13 @@ export function OsintReconView() {
       {/* Navigation Sub-Tabs */}
       <div className={`px-4 py-2 border-b flex items-center gap-2 overflow-x-auto ${isLight ? 'bg-slate-200/50 border-slate-200' : 'bg-slate-900 border-slate-800'}`}>
         {[
-          { id: 'OVERVIEW', label: 'Attack Surface Summary', icon: Activity, activeClass: 'bg-blue-100 text-blue-900 border-blue-300 dark:bg-blue-950/80 dark:text-blue-200 dark:border-blue-700', iconColor: 'text-blue-600 dark:text-blue-400' },
-          { id: 'SUBDOMAINS', label: `Subdomains (${report.subdomains.length})`, icon: Server, activeClass: 'bg-cyan-100 text-cyan-900 border-cyan-300 dark:bg-cyan-950/80 dark:text-cyan-200 dark:border-cyan-700', iconColor: 'text-cyan-600 dark:text-cyan-400' },
-          { id: 'DNS_WHOIS', label: `DNS & WHOIS (${report.dnsRecords.length})`, icon: Database, activeClass: 'bg-purple-100 text-purple-900 border-purple-300 dark:bg-purple-950/80 dark:text-purple-200 dark:border-purple-700', iconColor: 'text-purple-600 dark:text-purple-400' },
-          { id: 'BREACHES', label: `Breaches & Leaks (${report.breachRecords.length})`, icon: ShieldAlert, activeClass: 'bg-rose-100 text-rose-900 border-rose-300 dark:bg-rose-950/80 dark:text-rose-200 dark:border-rose-700', iconColor: 'text-rose-600 dark:text-rose-400' },
-          { id: 'PORTS', label: `Port Exposures (${report.portExposures.length})`, icon: Crosshair, activeClass: 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950/80 dark:text-amber-200 dark:border-amber-700', iconColor: 'text-amber-600 dark:text-amber-400' },
-          { id: 'EMPLOYEES', label: `Exposed Staff (${report.employeeFootprint.length})`, icon: Users, activeClass: 'bg-indigo-100 text-indigo-900 border-indigo-300 dark:bg-indigo-950/80 dark:text-indigo-200 dark:border-indigo-700', iconColor: 'text-indigo-600 dark:text-indigo-400' },
-          { id: 'DOSSIER', label: 'AI Executive Dossier', icon: FileText, activeClass: 'bg-teal-100 text-teal-900 border-teal-300 dark:bg-teal-950/80 dark:text-teal-200 dark:border-teal-700', iconColor: 'text-teal-600 dark:text-teal-400' }
+          { id: 'OVERVIEW', label: 'Attack Surface Summary', icon: Activity, activeClass: 'bg-blue-50 text-blue-900 border-b-2 border-blue-600 dark:bg-blue-950/50 dark:text-blue-200 dark:border-blue-500', iconColor: 'text-blue-600 dark:text-blue-400' },
+          { id: 'SUBDOMAINS', label: `Subdomains (${report.subdomains.length})`, icon: Server, activeClass: 'bg-cyan-50 text-cyan-900 border-b-2 border-cyan-600 dark:bg-cyan-950/50 dark:text-cyan-200 dark:border-cyan-500', iconColor: 'text-cyan-600 dark:text-cyan-400' },
+          { id: 'DNS_WHOIS', label: `DNS & WHOIS (${report.dnsRecords.length})`, icon: Database, activeClass: 'bg-purple-50 text-purple-900 border-b-2 border-purple-600 dark:bg-purple-950/50 dark:text-purple-200 dark:border-purple-500', iconColor: 'text-purple-600 dark:text-purple-400' },
+          { id: 'BREACHES', label: `Breaches & Leaks (${report.breachRecords.length})`, icon: ShieldAlert, activeClass: 'bg-rose-50 text-rose-900 border-b-2 border-rose-600 dark:bg-rose-950/50 dark:text-rose-200 dark:border-rose-500', iconColor: 'text-rose-600 dark:text-rose-400' },
+          { id: 'PORTS', label: `Port Exposures (${report.portExposures.length})`, icon: Crosshair, activeClass: 'bg-amber-50 text-amber-900 border-b-2 border-amber-600 dark:bg-amber-950/50 dark:text-amber-200 dark:border-amber-500', iconColor: 'text-amber-600 dark:text-amber-400' },
+          { id: 'EMPLOYEES', label: `Exposed Staff (${report.employeeFootprint.length})`, icon: Users, activeClass: 'bg-indigo-50 text-indigo-900 border-b-2 border-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-200 dark:border-indigo-500', iconColor: 'text-indigo-600 dark:text-indigo-400' },
+          { id: 'DOSSIER', label: 'AI Executive Dossier', icon: FileText, activeClass: 'bg-teal-50 text-teal-900 border-b-2 border-teal-600 dark:bg-teal-950/50 dark:text-teal-200 dark:border-teal-500', iconColor: 'text-teal-600 dark:text-teal-400' }
         ].map(tab => {
           const IconComponent = tab.icon;
           const isSelected = activeTab === tab.id;

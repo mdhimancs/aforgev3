@@ -107,7 +107,7 @@ export function SpireStripeHub() {
             onClick={() => setActiveTab('SPIRE')}
             className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all border shadow-2xs cursor-pointer ${
               activeTab === 'SPIRE'
-                ? 'bg-indigo-100 text-indigo-900 border-indigo-300 dark:bg-indigo-950/80 dark:text-indigo-200 dark:border-indigo-700 font-extrabold'
+                ? 'bg-indigo-50 text-indigo-900 border-b-2 border-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-200 dark:border-indigo-500 font-extrabold'
                 : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >
@@ -118,7 +118,7 @@ export function SpireStripeHub() {
             onClick={() => setActiveTab('STRIPE')}
             className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all border shadow-2xs cursor-pointer ${
               activeTab === 'STRIPE'
-                ? 'bg-emerald-100 text-emerald-900 border-emerald-300 dark:bg-emerald-950/80 dark:text-emerald-200 dark:border-emerald-700 font-extrabold'
+                ? 'bg-emerald-50 text-emerald-900 border-b-2 border-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-200 dark:border-emerald-500 font-extrabold'
                 : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
           >

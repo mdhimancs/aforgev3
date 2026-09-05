@@ -3,7 +3,7 @@ title: "Blockchain - Really worth in elections ?"
 date: "2017-05-12T10:37:14+05:30"
 slug: "blockchain-really-worth-in-elections"
 categories: ["blockchain", "social", "technology"]
-original_url: "https://systemdesign.github.io/blog/blockchain-really-worth-in-elections/"
+original_url: "https://rishijeet.github.io/blog/blockchain-really-worth-in-elections/"
 word_count: 350
 reading_time: "2 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # Blockchain - Really worth in elections ?
 
-*Published on 2017-05-12 by System Design | [https://systemdesign.github.io/blog/blockchain-really-worth-in-elections/](https://systemdesign.github.io/blog/blockchain-really-worth-in-elections/)*
+*Published on 2017-05-12 by System Design | [https://rishijeet.github.io/blog/blockchain-really-worth-in-elections/](https://rishijeet.github.io/blog/blockchain-really-worth-in-elections/)*
 
 Issues with EVM ( Electronic Voting Machine ) have been the talk of the town for quite a while in India nowadays. Political parties have been taking about going back to voting mechanism using ballot boxes, wherein there would be very less possibility of non-legitimate voting. EVMs are prone to hacking, untrusted votes, digital errors as explained by these political parties.
 
@@ -33,7 +33,7 @@ Adopting to the Blockchain technology will not only ensure, that the vote casted
 
 Importantly it will reduce the cost of elections drastically and the government could utilise its funds in other major projects. Note, the Loksabha election 2014 costed around 3,500 crore.
 
-![Alt text](https://systemdesign.github.io/images/myimages/voting_places.png)
+![Alt text](https://rishijeet.github.io/images/myimages/voting_places.png)
 
 Simple mechanism to understand this from blockchain perspective.
 

@@ -145,7 +145,7 @@ export function CspmCiemView() {
                     </span>
                     <span className="text-[11px] font-mono text-slate-500">{tc.affectedAsset}</span>
                   </div>
-                  <h4 className="text-xs font-bold text-slate-900 dark:text-slate-100 mb-1">{tc.title}</h4>
+                  <h4 className="text-xs font-bold text-black dark:text-slate-100 mb-1">{tc.title}</h4>
                   <p className="text-[11px] text-slate-600 dark:text-slate-400 mb-2 leading-tight">{tc.vectorSummary}</p>
 
                   <div className="space-y-1 mb-2.5">

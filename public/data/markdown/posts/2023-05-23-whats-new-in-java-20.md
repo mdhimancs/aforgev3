@@ -3,7 +3,7 @@ title: "What's new in Java 20?"
 date: "2023-05-23T23:03:47+05:30"
 slug: "whats-new-in-java-20"
 categories: ["java"]
-original_url: "https://systemdesign.github.io/blog/whats-new-in-java-20/"
+original_url: "https://rishijeet.github.io/blog/whats-new-in-java-20/"
 word_count: 511
 reading_time: "3 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # What's new in Java 20?
 
-*Published on 2023-05-23 by System Design | [https://systemdesign.github.io/blog/whats-new-in-java-20/](https://systemdesign.github.io/blog/whats-new-in-java-20/)*
+*Published on 2023-05-23 by System Design | [https://rishijeet.github.io/blog/whats-new-in-java-20/](https://rishijeet.github.io/blog/whats-new-in-java-20/)*
 
 Java, being one of the most widely used programming languages, continues to evolve with each new release, bringing enhancements, features, and improvements to the development community. In this tech article, we will explore the exciting new features introduced in Java 20, highlighting the advancements that developers can leverage to build robust, efficient, and modern applications.
 

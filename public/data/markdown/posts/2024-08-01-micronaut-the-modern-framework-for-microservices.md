@@ -3,7 +3,7 @@ title: "Micronaut: The Modern Framework for Microservices"
 date: "2024-08-01T23:37:24+05:30"
 slug: "micronaut-the-modern-framework-for-microservices"
 categories: ["micronaut", "microservice", "jvm"]
-original_url: "https://systemdesign.github.io/blog/micronaut-the-modern-framework-for-microservices/"
+original_url: "https://rishijeet.github.io/blog/micronaut-the-modern-framework-for-microservices/"
 word_count: 1004
 reading_time: "5 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # Micronaut: The Modern Framework for Microservices
 
-*Published on 2024-08-01 by System Design | [https://systemdesign.github.io/blog/micronaut-the-modern-framework-for-microservices/](https://systemdesign.github.io/blog/micronaut-the-modern-framework-for-microservices/)*
+*Published on 2024-08-01 by System Design | [https://rishijeet.github.io/blog/micronaut-the-modern-framework-for-microservices/](https://rishijeet.github.io/blog/micronaut-the-modern-framework-for-microservices/)*
 
 Micronaut is a JVM-based framework designed for building modular, easily testable microservices and serverless applications. It is built with modern development practices and performance optimizations in mind. Here, we’ll explore Micronaut in depth, focusing on its core features, architecture, and advanced mechanisms that set it apart from traditional frameworks.
 

@@ -3,7 +3,7 @@ title: "Exploring Quarkus Performance"
 date: "2024-07-31T10:00:32+05:30"
 slug: "exploring-quarkus-performance"
 categories: ["quarkus", "microservice"]
-original_url: "https://systemdesign.github.io/blog/exploring-quarkus-performance/"
+original_url: "https://rishijeet.github.io/blog/exploring-quarkus-performance/"
 word_count: 537
 reading_time: "3 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # Exploring Quarkus Performance
 
-*Published on 2024-07-31 by System Design | [https://systemdesign.github.io/blog/exploring-quarkus-performance/](https://systemdesign.github.io/blog/exploring-quarkus-performance/)*
+*Published on 2024-07-31 by System Design | [https://rishijeet.github.io/blog/exploring-quarkus-performance/](https://rishijeet.github.io/blog/exploring-quarkus-performance/)*
 
 Quarkus is an open-source Kubernetes-native Java framework tailored for GraalVM and OpenJDK HotSpot. It is designed to optimize Java specifically for containers, making it an ideal platform for serverless, cloud-native, and microservices environments. In this blog, we will delve into the performance benefits of Quarkus, backed by metrics and code snippets to illustrate its capabilities.
 

@@ -3,7 +3,7 @@ title: "Is Microsoft biased towards Linux"
 date: "2016-03-11T09:45:09+05:30"
 slug: "is-microsoft-biased-towards-linux"
 categories: ["microsoft", "linux"]
-original_url: "https://systemdesign.github.io/blog/is-microsoft-biased-towards-linux/"
+original_url: "https://rishijeet.github.io/blog/is-microsoft-biased-towards-linux/"
 word_count: 296
 reading_time: "1 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # Is Microsoft biased towards Linux
 
-*Published on 2016-03-11 by System Design | [https://systemdesign.github.io/blog/is-microsoft-biased-towards-linux/](https://systemdesign.github.io/blog/is-microsoft-biased-towards-linux/)*
+*Published on 2016-03-11 by System Design | [https://rishijeet.github.io/blog/is-microsoft-biased-towards-linux/](https://rishijeet.github.io/blog/is-microsoft-biased-towards-linux/)*
 
 I see news about Microsoft crafted a switch OS on Debian Linux platform,  announcing its SQL server of Linux and may be some more. Though this is a surprising news as Microsoft windows has released its best OS so far, which is more stable and fast compare to its ancestors, so what could be the reason to move towards Linux is a question. Is this related to the security aspect of the operating system or is it the open source nature of the platform and the community support it has or is it just the recent decision to move towards it ? Whatever it is, I see this as a strong move towards making its environment and platform more robust and performant.
 

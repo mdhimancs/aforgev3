@@ -71,7 +71,7 @@ import { MalwareCampaignsView } from './MalwareCampaignsView';
 
 export function AiSecOpsNexus() {
   const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const isLight = true; // Always apply the pristine light theme matching Security Design Blog
 
   // Sub-tabs: 'osint' | 'spire_stripe' | 'cspm' | 'tpcrm' | 'dspm' | 'grc' | 'darkweb' | 'ueba' | 'dlp' | 'killchain' | 'attacktree' | 'threathunt' | 'siem' | 'soar' | 'xdr' | 'aipentest' | 'ids_ips_waf' | 'malware_campaigns'
   const [activeTab, setActiveTab] = useState<
@@ -93,7 +93,7 @@ export function AiSecOpsNexus() {
     | 'aipentest'
     | 'ids_ips_waf'
     | 'malware_campaigns'
-  >('ids_ips_waf');
+  >('siem');
 
   // SIEM State
   const [siemLogs, setSiemLogs] = useState<SiemLogEvent[]>(SAMPLE_SIEM_LOGS);
@@ -431,87 +431,76 @@ export function AiSecOpsNexus() {
 
   return (
     <div
-      className="flex flex-col flex-1 h-full w-full overflow-hidden font-sans bg-blue-50/30 text-slate-800 transition-colors"
+      className="flex flex-col flex-1 h-full w-full overflow-hidden font-sans bg-[#fafafa] text-slate-800 transition-colors"
     >
-      {/* Top Banner / Tab Navigation */}
+      {/* Compact Two-Row Integrated Header & Tab Selector Deck */}
       <div
-        className="flex flex-wrap items-center justify-between px-5 py-3.5 border-b border-blue-100 shrink-0 bg-white shadow-xs"
-      >
-        <div className="flex items-center gap-3">
-          <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 text-white shadow-sm shadow-indigo-500/20">
-            <Sparkles className="w-5 h-5" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-base font-bold tracking-tight">
-                AI Cyber Fusion Nexus
-              </h1>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
-                Gemini 3.7 Core
-              </span>
-            </div>
-            <p className={`text-xs ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>
-              Exploring the usage of AI in SIEM, SOAR, XDR, and Autonomous PenTesting & VAPT
-            </p>
-          </div>
-        </div>
-
-        {/* Right Action: Toggle Copilot */}
-        <div className="flex items-center gap-2">
-          <button
-            id="btn-toggle-copilot-drawer"
-            onClick={() => setIsCopilotOpen((prev) => !prev)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
-              isCopilotOpen
-                ? 'bg-blue-50 border-blue-300 text-blue-700'
-                : 'bg-white border-slate-300 text-slate-700 hover:bg-slate-50'
-            }`}
-          >
-            <Bot className="w-3.5 h-3.5 text-blue-500" />
-            <span>{isCopilotOpen ? 'Hide AI Copilot' : 'Open AI Copilot'}</span>
-          </button>
-        </div>
-      </div>
-
-      {/* Interactive Two-Level Cyber Domain & Tool Underline Tabs Selector */}
-      <div
-        id="fusion-center-domains-deck"
-        className={`shrink-0 border-b p-3 ${
-          isLight ? 'bg-slate-50 border-blue-100' : 'bg-[#161d2a] border-slate-800'
+        id="ai-cyber-fusion-nexus-header"
+        className={`shrink-0 border-b ${
+          isLight ? 'bg-white border-blue-100 shadow-2xs' : 'bg-[#161d2a] border-slate-800'
         }`}
       >
-        {/* LEVEL 1: Main Cybersecurity Domain Aegis-Style Tabs */}
-        <div className="mb-3">
-          <div className="flex items-center justify-between mb-1.5 px-1">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-              1. Select Cyber Command Domain
-            </span>
-            <span className="text-[10px] font-mono text-indigo-500 font-bold">
-              Level 1 Selector
-            </span>
+        {/* Row 1: Title, Badge, Description, & Copilot Toggle */}
+        <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100 dark:border-slate-800/80">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 text-white shadow-sm shadow-indigo-500/20 shrink-0">
+              <Sparkles className="w-4 h-4" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-sm font-bold tracking-tight text-black dark:text-white">
+                  AI Cyber Fusion Nexus
+                </h1>
+                <span className="px-2 py-0.2 rounded text-[10px] font-bold uppercase tracking-wider bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+                  Gemini 3.7 Core
+                </span>
+              </div>
+              <p className={`text-[11px] ${isLight ? 'text-slate-500' : 'text-slate-400'} truncate max-w-xl`}>
+                Exploring AI in SIEM, SOAR, XDR, and Autonomous PenTesting & VAPT
+              </p>
+            </div>
           </div>
-          
-          <div className="flex items-center gap-2 overflow-x-auto pb-1.5" style={{ scrollbarWidth: 'thin' }}>
+
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              id="btn-toggle-copilot-drawer"
+              onClick={() => setIsCopilotOpen((prev) => !prev)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
+                isCopilotOpen
+                  ? 'bg-blue-50 border-blue-300 text-blue-700 dark:bg-blue-950/60 dark:border-blue-700 dark:text-blue-300'
+                  : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 dark:bg-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800'
+              }`}
+            >
+              <Bot className="w-3.5 h-3.5 text-blue-500" />
+              <span>{isCopilotOpen ? 'Hide AI Copilot' : 'Open AI Copilot'}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Row 2: Integrated Clean Tab Selectors Deck */}
+        <div className="px-5 py-2.5 flex flex-col gap-2 bg-slate-50/60 dark:bg-slate-900/50">
+          {/* Domain Command Level Tabs */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1" style={{ scrollbarWidth: 'thin' }}>
             {[
               {
                 id: 'siem_soar',
                 title: 'SIEM & SOAR (SOC)',
                 icon: <ShieldCheck className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />,
-                activeClass: 'bg-blue-100 text-blue-900 border-blue-300 dark:bg-blue-950/80 dark:text-blue-200 dark:border-blue-700',
-                badgeActiveClass: 'bg-blue-200 text-blue-900 dark:bg-blue-900/80 dark:text-blue-200',
+                activeClass: 'bg-blue-600 text-white shadow-xs font-bold border-blue-600',
+                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80',
                 apps: [
-                  { id: 'ids_ips_waf', label: 'IDS/IPS/WAF Shield', icon: <ShieldCheck className="w-3.5 h-3.5" /> },
                   { id: 'siem', label: 'SIEM Log Analytics', icon: <Activity className="w-3.5 h-3.5" /> },
+                  { id: 'ueba', label: 'UEBA Behaviour Analytics', icon: <UserX className="w-3.5 h-3.5" /> },
                   { id: 'soar', label: 'SOAR Automation', icon: <Zap className="w-3.5 h-3.5" /> },
-                  { id: 'ueba', label: 'UEBA Behavior Analytics', icon: <UserX className="w-3.5 h-3.5" /> },
+                  { id: 'ids_ips_waf', label: 'IDS/IPS/WAF Shield', icon: <ShieldCheck className="w-3.5 h-3.5" /> },
                 ] as const,
               },
               {
                 id: 'threat_intel',
                 title: 'Active Threat Intel',
                 icon: <Bug className="w-3.5 h-3.5 text-rose-600 dark:text-rose-400" />,
-                activeClass: 'bg-rose-100 text-rose-900 border-rose-300 dark:bg-rose-950/80 dark:text-rose-200 dark:border-rose-700',
-                badgeActiveClass: 'bg-rose-200 text-rose-900 dark:bg-rose-900/80 dark:text-rose-200',
+                activeClass: 'bg-rose-600 text-white shadow-xs font-bold border-rose-600',
+                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80',
                 apps: [
                   { id: 'darkweb', label: 'Dark Web Scraper', icon: <Lock className="w-3.5 h-3.5" /> },
                   { id: 'osint', label: 'OSINT Surface Recon', icon: <Globe className="w-3.5 h-3.5" /> },
@@ -520,10 +509,10 @@ export function AiSecOpsNexus() {
               },
               {
                 id: 'modeling',
-                title: 'Forensic Modeling',
+                title: 'Forensic Modelling',
                 icon: <Crosshair className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />,
-                activeClass: 'bg-purple-100 text-purple-900 border-purple-300 dark:bg-purple-950/80 dark:text-purple-200 dark:border-purple-700',
-                badgeActiveClass: 'bg-purple-200 text-purple-900 dark:bg-purple-900/80 dark:text-purple-200',
+                activeClass: 'bg-purple-600 text-white shadow-xs font-bold border-purple-600',
+                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80',
                 apps: [
                   { id: 'attacktree', label: 'Attack Tree Solver', icon: <GitFork className="w-3.5 h-3.5" /> },
                   { id: 'killchain', label: 'Cyber Kill Chain Map', icon: <Crosshair className="w-3.5 h-3.5" /> },
@@ -535,8 +524,8 @@ export function AiSecOpsNexus() {
                 id: 'appsec',
                 title: 'AppSec & VAPT',
                 icon: <Terminal className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />,
-                activeClass: 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950/80 dark:text-amber-200 dark:border-amber-700',
-                badgeActiveClass: 'bg-amber-200 text-amber-900 dark:bg-amber-900/80 dark:text-amber-200',
+                activeClass: 'bg-amber-600 text-white shadow-xs font-bold border-amber-600',
+                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80',
                 apps: [
                   { id: 'aipentest', label: 'AI Red-Team Pentest', icon: <Terminal className="w-3.5 h-3.5" /> },
                   { id: 'tpcrm', label: 'Third-Party Risk (TPCRM)', icon: <ShieldAlert className="w-3.5 h-3.5" /> },
@@ -546,8 +535,8 @@ export function AiSecOpsNexus() {
                 id: 'cloud_data',
                 title: 'Cloud & Data Posture',
                 icon: <Cloud className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />,
-                activeClass: 'bg-cyan-100 text-cyan-900 border-cyan-300 dark:bg-cyan-950/80 dark:text-cyan-200 dark:border-cyan-700',
-                badgeActiveClass: 'bg-cyan-200 text-cyan-900 dark:bg-cyan-900/80 dark:text-cyan-200',
+                activeClass: 'bg-cyan-600 text-white shadow-xs font-bold border-cyan-600',
+                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80',
                 apps: [
                   { id: 'cspm', label: 'CSPM & CIEM Cloud', icon: <Cloud className="w-3.5 h-3.5" /> },
                   { id: 'dspm', label: 'DSPM Data Inventory', icon: <Database className="w-3.5 h-3.5" /> },
@@ -558,8 +547,8 @@ export function AiSecOpsNexus() {
                 id: 'compliance',
                 title: 'GRC Audits',
                 icon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />,
-                activeClass: 'bg-emerald-100 text-emerald-900 border-emerald-300 dark:bg-emerald-950/80 dark:text-emerald-200 dark:border-emerald-700',
-                badgeActiveClass: 'bg-emerald-200 text-emerald-900 dark:bg-emerald-900/80 dark:text-emerald-200',
+                activeClass: 'bg-emerald-600 text-white shadow-xs font-bold border-emerald-600',
+                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80',
                 apps: [
                   { id: 'grc', label: 'GRC Compliance Center', icon: <CheckCircle2 className="w-3.5 h-3.5" /> },
                 ] as const,
@@ -568,10 +557,10 @@ export function AiSecOpsNexus() {
                 id: 'infrastructure',
                 title: 'Infrastructure',
                 icon: <CreditCard className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />,
-                activeClass: 'bg-indigo-100 text-indigo-900 border-indigo-300 dark:bg-indigo-950/80 dark:text-indigo-200 dark:border-indigo-700',
-                badgeActiveClass: 'bg-indigo-200 text-indigo-900 dark:bg-indigo-900/80 dark:text-indigo-200',
+                activeClass: 'bg-indigo-600 text-white shadow-xs font-bold border-indigo-600',
+                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80',
                 apps: [
-                  { id: 'spire_stripe', label: 'Spire & Stripe Billing', icon: <CreditCard className="w-3.5 h-3.5" /> },
+                  { id: 'spire_stripe', label: 'SPIRE & STRIPE Billing', icon: <CreditCard className="w-3.5 h-3.5" /> },
                 ] as const,
               },
             ].map((group) => {
@@ -581,21 +570,21 @@ export function AiSecOpsNexus() {
                   key={group.id}
                   id={`btn-domain-group-${group.id}`}
                   onClick={() => setActiveTab(group.apps[0].id as any)}
-                  className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer whitespace-nowrap border shadow-2xs ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer whitespace-nowrap border ${
                     isGroupActive
-                      ? `${group.activeClass} font-extrabold`
-                      : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                      ? group.activeClass
+                      : group.inactiveClass
                   }`}
-                  title={`Select ${group.title} domain (${group.apps[0].label})`}
+                  title={`Select ${group.title} domain`}
                 >
-                  <div className="shrink-0">
+                  <span className={isGroupActive ? 'text-white' : ''}>
                     {group.icon}
-                  </div>
+                  </span>
                   <span>{group.title}</span>
-                  <span className={`text-[10px] font-mono font-bold px-1.5 py-0.2 rounded-full border ${
-                    isGroupActive 
-                      ? `${group.badgeActiveClass} border-current/20` 
-                      : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'
+                  <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
+                    isGroupActive
+                      ? 'bg-white/20 text-white'
+                      : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
                   }`}>
                     {group.apps.length}
                   </span>
@@ -603,94 +592,86 @@ export function AiSecOpsNexus() {
               );
             })}
           </div>
-        </div>
 
-        {/* LEVEL 2: Dynamic Sub-navigation Aegis-Style Tabs */}
-        {(() => {
-          const activeGroup = [
-            {
+          {/* Sub-Tool Level Tabs for Active Domain */}
+          {(() => {
+            const activeGroup = [
+              {
+                id: 'siem_soar',
+                title: 'SIEM & SOAR (SOC)',
+                apps: [
+                  { id: 'siem', label: 'SIEM Log Analytics', icon: <Activity className="w-3.5 h-3.5 text-blue-500" /> },
+                  { id: 'ueba', label: 'UEBA Behaviour Analytics', icon: <UserX className="w-3.5 h-3.5 text-blue-500" /> },
+                  { id: 'soar', label: 'SOAR Automation', icon: <Zap className="w-3.5 h-3.5 text-blue-500" /> },
+                  { id: 'ids_ips_waf', label: 'IDS/IPS/WAF Shield', icon: <ShieldCheck className="w-3.5 h-3.5 text-blue-500" /> },
+                ] as const,
+              },
+              {
+                id: 'threat_intel',
+                title: 'Active Threat Intel',
+                apps: [
+                  { id: 'darkweb', label: 'Dark Web Scraper', icon: <Lock className="w-3.5 h-3.5 text-rose-500" /> },
+                  { id: 'osint', label: 'OSINT Surface Recon', icon: <Globe className="w-3.5 h-3.5 text-rose-500" /> },
+                  { id: 'malware_campaigns', label: 'APT Malware Feeds', icon: <Bug className="w-3.5 h-3.5 text-rose-500" /> },
+                ] as const,
+              },
+              {
+                id: 'modeling',
+                title: 'Forensic Modelling',
+                apps: [
+                  { id: 'attacktree', label: 'Attack Tree Solver', icon: <GitFork className="w-3.5 h-3.5 text-purple-500" /> },
+                  { id: 'killchain', label: 'Cyber Kill Chain Map', icon: <Crosshair className="w-3.5 h-3.5 text-purple-500" /> },
+                  { id: 'threathunt', label: 'Threat Hunting Hub', icon: <Search className="w-3.5 h-3.5 text-purple-500" /> },
+                  { id: 'xdr', label: 'XDR Incident Story', icon: <Layers className="w-3.5 h-3.5 text-purple-500" /> },
+                ] as const,
+              },
+              {
+                id: 'appsec',
+                title: 'AppSec & VAPT',
+                apps: [
+                  { id: 'aipentest', label: 'AI Red-Team Pentest', icon: <Terminal className="w-3.5 h-3.5 text-amber-500" /> },
+                  { id: 'tpcrm', label: 'Third-Party Risk (TPCRM)', icon: <ShieldAlert className="w-3.5 h-3.5 text-amber-500" /> },
+                ] as const,
+              },
+              {
+                id: 'cloud_data',
+                title: 'Cloud & Data Posture',
+                apps: [
+                  { id: 'cspm', label: 'CSPM & CIEM Cloud', icon: <Cloud className="w-3.5 h-3.5 text-cyan-500" /> },
+                  { id: 'dspm', label: 'DSPM Data Inventory', icon: <Database className="w-3.5 h-3.5 text-cyan-500" /> },
+                  { id: 'dlp', label: 'DLP Data Protection', icon: <Shield className="w-3.5 h-3.5 text-cyan-500" /> },
+                ] as const,
+              },
+              {
+                id: 'compliance',
+                title: 'GRC Audits',
+                apps: [
+                  { id: 'grc', label: 'GRC Compliance Center', icon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /> },
+                ] as const,
+              },
+              {
+                id: 'infrastructure',
+                title: 'Infrastructure',
+                apps: [
+                  { id: 'spire_stripe', label: 'SPIRE & STRIPE Billing', icon: <CreditCard className="w-3.5 h-3.5 text-indigo-500" /> },
+                ] as const,
+              },
+            ].find((g) => g.apps.some((app) => app.id === activeTab)) || {
               id: 'siem_soar',
               title: 'SIEM & SOAR (SOC)',
               apps: [
-                { id: 'ids_ips_waf', label: 'IDS/IPS/WAF Shield', icon: <ShieldCheck className="w-3.5 h-3.5 text-blue-500" /> },
                 { id: 'siem', label: 'SIEM Log Analytics', icon: <Activity className="w-3.5 h-3.5 text-blue-500" /> },
+                { id: 'ueba', label: 'UEBA Behaviour Analytics', icon: <UserX className="w-3.5 h-3.5 text-blue-500" /> },
                 { id: 'soar', label: 'SOAR Automation', icon: <Zap className="w-3.5 h-3.5 text-blue-500" /> },
-                { id: 'ueba', label: 'UEBA Behavior Analytics', icon: <UserX className="w-3.5 h-3.5 text-blue-500" /> },
+                { id: 'ids_ips_waf', label: 'IDS/IPS/WAF Shield', icon: <ShieldCheck className="w-3.5 h-3.5 text-blue-500" /> },
               ] as const,
-            },
-            {
-              id: 'threat_intel',
-              title: 'Active Threat Intel',
-              apps: [
-                { id: 'darkweb', label: 'Dark Web Scraper', icon: <Lock className="w-3.5 h-3.5 text-rose-500" /> },
-                { id: 'osint', label: 'OSINT Surface Recon', icon: <Globe className="w-3.5 h-3.5 text-rose-500" /> },
-                { id: 'malware_campaigns', label: 'APT Malware Feeds', icon: <Bug className="w-3.5 h-3.5 text-rose-500" /> },
-              ] as const,
-            },
-            {
-              id: 'modeling',
-              title: 'Forensic Modeling',
-              apps: [
-                { id: 'attacktree', label: 'Attack Tree Solver', icon: <GitFork className="w-3.5 h-3.5 text-purple-500" /> },
-                { id: 'killchain', label: 'Cyber Kill Chain Map', icon: <Crosshair className="w-3.5 h-3.5 text-purple-500" /> },
-                { id: 'threathunt', label: 'Threat Hunting Hub', icon: <Search className="w-3.5 h-3.5 text-purple-500" /> },
-                { id: 'xdr', label: 'XDR Incident Story', icon: <Layers className="w-3.5 h-3.5 text-purple-500" /> },
-              ] as const,
-            },
-            {
-              id: 'appsec',
-              title: 'AppSec & VAPT',
-              apps: [
-                { id: 'aipentest', label: 'AI Red-Team Pentest', icon: <Terminal className="w-3.5 h-3.5 text-amber-500" /> },
-                { id: 'tpcrm', label: 'Third-Party Risk (TPCRM)', icon: <ShieldAlert className="w-3.5 h-3.5 text-amber-500" /> },
-              ] as const,
-            },
-            {
-              id: 'cloud_data',
-              title: 'Cloud & Data Posture',
-              apps: [
-                { id: 'cspm', label: 'CSPM & CIEM Cloud', icon: <Cloud className="w-3.5 h-3.5 text-cyan-500" /> },
-                { id: 'dspm', label: 'DSPM Data Inventory', icon: <Database className="w-3.5 h-3.5 text-cyan-500" /> },
-                { id: 'dlp', label: 'DLP Data Protection', icon: <Shield className="w-3.5 h-3.5 text-cyan-500" /> },
-              ] as const,
-            },
-            {
-              id: 'compliance',
-              title: 'GRC Audits',
-              apps: [
-                { id: 'grc', label: 'GRC Compliance Center', icon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /> },
-              ] as const,
-            },
-            {
-              id: 'infrastructure',
-              title: 'Infrastructure',
-              apps: [
-                { id: 'spire_stripe', label: 'Spire & Stripe Billing', icon: <CreditCard className="w-3.5 h-3.5 text-indigo-500" /> },
-              ] as const,
-            },
-          ].find((g) => g.apps.some((app) => app.id === activeTab)) || {
-            id: 'siem_soar',
-            title: 'SIEM & SOAR (SOC)',
-            apps: [
-              { id: 'ids_ips_waf', label: 'IDS/IPS/WAF Shield', icon: <ShieldCheck className="w-3.5 h-3.5 text-blue-500" /> },
-              { id: 'siem', label: 'SIEM Log Analytics', icon: <Activity className="w-3.5 h-3.5 text-blue-500" /> },
-              { id: 'soar', label: 'SOAR Automation', icon: <Zap className="w-3.5 h-3.5 text-blue-500" /> },
-              { id: 'ueba', label: 'UEBA Behavior Analytics', icon: <UserX className="w-3.5 h-3.5 text-blue-500" /> },
-            ] as const,
-          };
+            };
 
-          return (
-            <div className="pt-1.5 border-t border-slate-200/80 dark:border-slate-800/80">
-              <div className="flex items-center justify-between mb-1.5 px-1">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-                  2. Active Dashboard Tool under <strong className="text-slate-700 dark:text-slate-300 font-extrabold">{activeGroup.title}</strong>
+            return (
+              <div className="flex items-center gap-1.5 overflow-x-auto pt-1 border-t border-slate-200/60 dark:border-slate-800/60" style={{ scrollbarWidth: 'thin' }}>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 shrink-0 mr-1">
+                  Tools:
                 </span>
-                <span className="text-[10px] font-mono text-blue-500 font-bold">
-                  Level 2 Selector
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'thin' }}>
                 {activeGroup.apps.map((app) => {
                   const isAppActive = activeTab === app.id;
                   return (
@@ -698,27 +679,24 @@ export function AiSecOpsNexus() {
                       key={app.id}
                       id={`btn-subapp-${app.id}`}
                       onClick={() => setActiveTab(app.id as any)}
-                      className={`flex items-center gap-2 px-3 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer whitespace-nowrap border shadow-2xs ${
+                      className={`flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-md transition-all cursor-pointer whitespace-nowrap border ${
                         isAppActive
-                          ? 'bg-slate-200 text-slate-900 border-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-600 shadow-2xs font-extrabold ring-1 ring-slate-400/30'
-                          : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                          ? 'bg-slate-900 text-white border-slate-900 font-bold shadow-2xs dark:bg-slate-100 dark:text-slate-900 dark:border-slate-100'
+                          : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-900 border-slate-300 dark:border-slate-300 hover:bg-slate-100 dark:hover:bg-slate-200'
                       }`}
-                      title={`Open ${app.label} tool`}
+                      title={`Open ${app.label}`}
                     >
                       <span className="shrink-0">
                         {app.icon}
                       </span>
                       <span>{app.label}</span>
-                      {isAppActive && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 ml-0.5 animate-pulse" />
-                      )}
                     </button>
                   );
                 })}
               </div>
-            </div>
-          );
-        })()}
+            );
+          })()}
+        </div>
       </div>
 
       {/* Main Content Area */}
@@ -1578,7 +1556,7 @@ export function AiSecOpsNexus() {
                   <Bot className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-xs font-bold text-slate-800">AI SecOps Copilot</h3>
+                  <h3 className="text-xs font-bold text-black">AI SecOps Copilot</h3>
                   <span className="text-[10px] text-emerald-600 font-mono">● Online & Reasoning</span>
                 </div>
               </div>

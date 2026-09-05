@@ -484,7 +484,7 @@ export function IdsIpsWafView() {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-base font-bold tracking-tight text-slate-900">
+              <h2 className="text-base font-bold tracking-tight text-black">
                 Next-Gen WAF • IDS • IPS Security Shield
               </h2>
               <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase border ${
@@ -662,7 +662,7 @@ export function IdsIpsWafView() {
                 onClick={() => setActiveTab('waf')}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border shadow-2xs ${
                   activeTab === 'waf'
-                    ? 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950/80 dark:text-amber-200 dark:border-amber-700 font-extrabold'
+                    ? 'bg-amber-50 text-amber-900 border-b-2 border-amber-600 dark:bg-amber-950/50 dark:text-amber-200 dark:border-amber-500 font-extrabold'
                     : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
@@ -674,7 +674,7 @@ export function IdsIpsWafView() {
                 onClick={() => setActiveTab('ids_ips')}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border shadow-2xs ${
                   activeTab === 'ids_ips'
-                    ? 'bg-cyan-100 text-cyan-900 border-cyan-300 dark:bg-cyan-950/80 dark:text-cyan-200 dark:border-cyan-700 font-extrabold'
+                    ? 'bg-cyan-50 text-cyan-900 border-b-2 border-cyan-600 dark:bg-cyan-950/50 dark:text-cyan-200 dark:border-cyan-500 font-extrabold'
                     : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
@@ -686,7 +686,7 @@ export function IdsIpsWafView() {
                 onClick={() => setActiveTab('logs')}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border shadow-2xs ${
                   activeTab === 'logs'
-                    ? 'bg-purple-100 text-purple-900 border-purple-300 dark:bg-purple-950/80 dark:text-purple-200 dark:border-purple-700 font-extrabold'
+                    ? 'bg-purple-50 text-purple-900 border-b-2 border-purple-600 dark:bg-purple-950/50 dark:text-purple-200 dark:border-purple-500 font-extrabold'
                     : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
@@ -698,7 +698,7 @@ export function IdsIpsWafView() {
                 onClick={() => setActiveTab('ban_list')}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border shadow-2xs ${
                   activeTab === 'ban_list'
-                    ? 'bg-rose-100 text-rose-900 border-rose-300 dark:bg-rose-950/80 dark:text-rose-200 dark:border-rose-700 font-extrabold'
+                    ? 'bg-rose-50 text-rose-900 border-b-2 border-rose-600 dark:bg-rose-950/50 dark:text-rose-200 dark:border-rose-500 font-extrabold'
                     : 'bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >

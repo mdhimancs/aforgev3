@@ -1,5 +1,5 @@
 # System Design - Blog Archive
-Archive generated on 2026-09-02 from https://systemdesign.github.io/blog
+Archive generated on 2026-09-02 from https://rishijeet.github.io/blog
 
 Total Articles: 109
 Author: System Design

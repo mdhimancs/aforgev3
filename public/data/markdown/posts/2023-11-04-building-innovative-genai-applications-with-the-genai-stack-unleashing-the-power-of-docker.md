@@ -3,7 +3,7 @@ title: "Building Innovative GenAI Applications with the GenAI Stack: Unleashing 
 date: "2023-11-04T22:49:05+05:30"
 slug: "building-innovative-genai-applications-with-the-genai-stack-unleashing-the-power-of-docker"
 categories: ["genai", "ai", "llm"]
-original_url: "https://systemdesign.github.io/blog/building-innovative-genai-applications-with-the-genai-stack-unleashing-the-power-of-docker/"
+original_url: "https://rishijeet.github.io/blog/building-innovative-genai-applications-with-the-genai-stack-unleashing-the-power-of-docker/"
 word_count: 1011
 reading_time: "5 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # Building Innovative GenAI Applications with the GenAI Stack: Unleashing the Power of Docker
 
-*Published on 2023-11-04 by System Design | [https://systemdesign.github.io/blog/building-innovative-genai-applications-with-the-genai-stack-unleashing-the-power-of-docker/](https://systemdesign.github.io/blog/building-innovative-genai-applications-with-the-genai-stack-unleashing-the-power-of-docker/)*
+*Published on 2023-11-04 by System Design | [https://rishijeet.github.io/blog/building-innovative-genai-applications-with-the-genai-stack-unleashing-the-power-of-docker/](https://rishijeet.github.io/blog/building-innovative-genai-applications-with-the-genai-stack-unleashing-the-power-of-docker/)*
 
 In the fast-evolving landscape of artificial intelligence, Generative AI (GenAI) is at the forefront, opening up exciting opportunities for developers and businesses. One of the most significant challenges in GenAI development is creating a robust, efficient, and scalable infrastructure that harnesses the power of AI models. To address this challenge, the GenAI Stack has emerged as a game-changer, combining cutting-edge technologies like Docker, LangChain, Neo4j, and Ollama. In this article, we will delve into the intricacies of these technologies and explore how they work together to build innovative GenAI applications.
 
@@ -39,7 +39,7 @@ Docker has revolutionized application deployment and management. It introduces t
 
 - Resource Efficiency: Containers consume fewer resources compared to traditional virtual machines, allowing for better resource utilization.
 
-![Alt text](https://systemdesign.github.io/images/docker.png)
+![Alt text](https://rishijeet.github.io/images/docker.png)
 
 Source: Whizlabs
 
@@ -57,7 +57,7 @@ LangChain is the orchestrator of GenAI applications within the GenAI Stack. It i
 
 - Development Environment: LangChain provides a development environment that supports rapid feedback loops, making it easier for developers to iterate on their applications.
 
-![Alt text](https://systemdesign.github.io/images/langchain.png)
+![Alt text](https://rishijeet.github.io/images/langchain.png)
 
 Source: Packt
 
@@ -73,7 +73,7 @@ Knowledge graphs have become a pivotal component in GenAI applications. Neo4j, a
 
 - Scalability: Neo4j can scale horizontally to accommodate growing data and application demands.
 
-![Alt text](https://systemdesign.github.io/images/neo4j.svg)
+![Alt text](https://rishijeet.github.io/images/neo4j.svg)
 
 Source: Neo4j
 
@@ -89,7 +89,7 @@ Large Language Models (LLMs) are at the heart of GenAI applications. Ollama, an 
 
 - Local Deployment: Developers can run Ollama on their infrastructure or even on a local machine, making it a versatile choice for GenAI development.
 
-![Alt text](https://systemdesign.github.io/images/ollama.png)
+![Alt text](https://rishijeet.github.io/images/ollama.png)
 
 Source: Ollama
 

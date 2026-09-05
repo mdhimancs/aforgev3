@@ -3,7 +3,7 @@ title: "Event-Driven Architecture: Unlocking Modern Application Potential"
 date: "2024-06-26T09:27:40+05:30"
 slug: "event-driven-architecture-unlocking-modern-application-potential"
 categories: ["architecture", "event", "mq", "kafka"]
-original_url: "https://systemdesign.github.io/blog/event-driven-architecture-unlocking-modern-application-potential/"
+original_url: "https://rishijeet.github.io/blog/event-driven-architecture-unlocking-modern-application-potential/"
 word_count: 992
 reading_time: "5 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # Event-Driven Architecture: Unlocking Modern Application Potential
 
-*Published on 2024-06-26 by System Design | [https://systemdesign.github.io/blog/event-driven-architecture-unlocking-modern-application-potential/](https://systemdesign.github.io/blog/event-driven-architecture-unlocking-modern-application-potential/)*
+*Published on 2024-06-26 by System Design | [https://rishijeet.github.io/blog/event-driven-architecture-unlocking-modern-application-potential/](https://rishijeet.github.io/blog/event-driven-architecture-unlocking-modern-application-potential/)*
 
 In today's fast-paced digital landscape, real-time data processing and responsive systems are becoming increasingly crucial. Traditional request-response architectures often struggle to keep up with the demands of modern applications, which require scalable, resilient, and decoupled systems. Enter event-based architecture—a paradigm that addresses these challenges by enabling systems to react to changes and events as they happen.
 
@@ -21,7 +21,7 @@ In this blog, we'll explore the key concepts, benefits, and components of modern
 
 Event-based architecture is a design pattern in which system components communicate by producing and consuming events. An event is a significant change in state or an occurrence that is meaningful to the system, such as a user action, a data update, or an external trigger. Instead of directly calling methods or services, components publish events to an event bus, and other components subscribe to these events to perform actions in response.
 
-![Alt text](https://systemdesign.github.io/images/2024/glossary-eda.svg)
+![Alt text](https://rishijeet.github.io/images/2024/glossary-eda.svg)
 
 Source: Hazelcast
 
@@ -51,7 +51,7 @@ Event processing involves filtering, aggregating, and transforming events to der
 
 Let's map the modern event-based architecture to a coffee shop scenario with four key services: Product Service, Counter Service, Barista Service, and Kitchen Service. This analogy will help visualize how event-based systems work in a real-world context.
 
-![Alt text](https://systemdesign.github.io/images/2024/coffeeshop.svg)
+![Alt text](https://rishijeet.github.io/images/2024/coffeeshop.svg)
 
 Source: [Github](https://github.com/thangchung/go-coffeeshop)
 

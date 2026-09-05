@@ -294,7 +294,7 @@ export function AegisShieldView() {
 
             <div>
               <div className="flex items-center gap-3">
-                <h3 className="text-xl font-extrabold text-slate-900 tracking-tight">
+                <h3 className="text-xl font-extrabold text-black tracking-tight">
                   AEGIS Autonomous AI & AppSec Defense Shield
                 </h3>
                 <span className="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-full text-xs font-bold flex items-center gap-1.5">
@@ -481,7 +481,7 @@ export function AegisShieldView() {
             {/* Step-by-Step Defense Pipeline Trace */}
             <div className="p-4 bg-white border border-slate-200 rounded-xl space-y-3 shadow-2xs">
               <div className="flex items-center justify-between">
-                <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-2">
+                <h4 className="text-xs font-bold text-black uppercase tracking-wider flex items-center gap-2">
                   <Layers className="w-4 h-4 text-purple-600" />
                   AEGIS Multi-Stage Inspection Pipeline
                 </h4>
@@ -608,7 +608,7 @@ export function AegisShieldView() {
           {/* Left: Interception Log Stream */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+              <h4 className="text-xs font-bold text-black uppercase tracking-wider">
                 Intercepted Events ({filteredEvents.length})
               </h4>
 
@@ -683,7 +683,7 @@ export function AegisShieldView() {
                   <div>
                     <div className="flex items-center gap-2.5 mb-1.5">
                       {getSeverityBadge(selectedEvent.severity)}
-                      <h3 className="text-base font-bold text-slate-900 font-mono">{selectedEvent.attackVector}</h3>
+                      <h3 className="text-base font-bold text-black font-mono">{selectedEvent.attackVector}</h3>
                       {getVerdictBadge(selectedEvent.verdict)}
                     </div>
                     <p className="text-xs text-indigo-700 font-mono flex items-center gap-2 font-semibold">
@@ -757,7 +757,7 @@ export function AegisShieldView() {
             <div className="p-4 bg-white border border-slate-200 rounded-xl space-y-4 shadow-2xs">
               <div className="flex items-center justify-between border-b border-slate-200 pb-3">
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900">Active Defense Guardrails Configuration</h4>
+                  <h4 className="text-sm font-bold text-black">Active Defense Guardrails Configuration</h4>
                   <p className="text-xs text-slate-500 mt-0.5">
                     Adjust real-time filtering thresholds across prompt injection, PII redaction, tool command sandboxing, and RASP.
                   </p>
@@ -961,7 +961,7 @@ export function AegisShieldView() {
           {/* Right Column: Policy Status Summary */}
           <div className="lg:col-span-4 space-y-4">
             <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-4 shadow-2xs">
-              <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-2">
+              <h4 className="text-xs font-bold text-black uppercase tracking-wider flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-600" />
                 Policy Enforcement Status
               </h4>

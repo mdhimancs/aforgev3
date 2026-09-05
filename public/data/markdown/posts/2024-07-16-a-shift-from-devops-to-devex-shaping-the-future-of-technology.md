@@ -3,7 +3,7 @@ title: "A Shift from DevOps to DevEx: Shaping the Future of Technology"
 date: "2024-07-16T10:14:26+05:30"
 slug: "a-shift-from-devops-to-devex-shaping-the-future-of-technology"
 categories: ["devops", "devex", "aiops", "mlops", "devsecops", "noops"]
-original_url: "https://systemdesign.github.io/blog/a-shift-from-devops-to-devex-shaping-the-future-of-technology/"
+original_url: "https://rishijeet.github.io/blog/a-shift-from-devops-to-devex-shaping-the-future-of-technology/"
 word_count: 642
 reading_time: "3 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # A Shift from DevOps to DevEx: Shaping the Future of Technology
 
-*Published on 2024-07-16 by System Design | [https://systemdesign.github.io/blog/a-shift-from-devops-to-devex-shaping-the-future-of-technology/](https://systemdesign.github.io/blog/a-shift-from-devops-to-devex-shaping-the-future-of-technology/)*
+*Published on 2024-07-16 by System Design | [https://rishijeet.github.io/blog/a-shift-from-devops-to-devex-shaping-the-future-of-technology/](https://rishijeet.github.io/blog/a-shift-from-devops-to-devex-shaping-the-future-of-technology/)*
 
 DevOps has transformed the software development lifecycle by integrating development and operations, fostering collaboration, and automating processes to enhance efficiency. However, as technology evolves, there is a growing focus on Developer Experience (DevEx), which aims to optimize the overall experience of developers. This shift promises not only enhanced productivity but also greater innovation and job satisfaction.
 
@@ -47,7 +47,7 @@ likely to recommend their organizations as a great place to work.
 
 - Improved collaboration tools and processes lead to more innovative solutions and higher quality software.
 
-![Alt text](https://systemdesign.github.io/images/2024/devex_met.webp)
+![Alt text](https://rishijeet.github.io/images/2024/devex_met.webp)
 
 Source: Internet
 
@@ -77,7 +77,7 @@ Rapid feedback on code changes and deployments helps developers iterate quickly 
 
 - Tools that provide real-time insights into performance and user feedback are valuable.
 
-![Alt text](https://systemdesign.github.io/images/2024/devex.avif)
+![Alt text](https://rishijeet.github.io/images/2024/devex.avif)
 
 Source: Internet
 

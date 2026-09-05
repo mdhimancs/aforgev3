@@ -3,7 +3,7 @@ title: "Exploring gRPC: The Next Generation of Remote Procedure Calls"
 date: "2024-06-26T09:54:48+05:30"
 slug: "exploring-grpc-the-next-generation-of-remote-procedure-calls"
 categories: ["grpc", "rest", "http"]
-original_url: "https://systemdesign.github.io/blog/exploring-grpc-the-next-generation-of-remote-procedure-calls/"
+original_url: "https://rishijeet.github.io/blog/exploring-grpc-the-next-generation-of-remote-procedure-calls/"
 word_count: 733
 reading_time: "4 min"
 author: "System Design"
@@ -11,7 +11,7 @@ author: "System Design"
 
 # Exploring gRPC: The Next Generation of Remote Procedure Calls
 
-*Published on 2024-06-26 by System Design | [https://systemdesign.github.io/blog/exploring-grpc-the-next-generation-of-remote-procedure-calls/](https://systemdesign.github.io/blog/exploring-grpc-the-next-generation-of-remote-procedure-calls/)*
+*Published on 2024-06-26 by System Design | [https://rishijeet.github.io/blog/exploring-grpc-the-next-generation-of-remote-procedure-calls/](https://rishijeet.github.io/blog/exploring-grpc-the-next-generation-of-remote-procedure-calls/)*
 
 In the realm of distributed systems and microservices, effective communication between services is paramount. For many years, REST (Representational State Transfer) has been the dominant paradigm for building APIs. However, gRPC (gRPC Remote Procedure Calls) is emerging as a powerful alternative, offering several advantages over traditional REST APIs. In this blog, we'll explore what gRPC is, how it works, and why it might be a better choice than REST for certain applications.
 
@@ -19,7 +19,7 @@ In the realm of distributed systems and microservices, effective communication b
 
 gRPC, originally developed by Google, is an open-source framework that enables high-performance remote procedure calls (RPC). It leverages HTTP/2 for transport, Protocol Buffers (Protobuf) as the interface definition language (IDL), and provides features like bi-directional streaming, authentication, and load balancing out-of-the-box.
 
-![Alt text](https://systemdesign.github.io/images/2024/grpc.png)
+![Alt text](https://rishijeet.github.io/images/2024/grpc.png)
 
 Source: gRPC
 
@@ -56,7 +56,7 @@ languages.
 
 - Binary Protocol: Protobuf is a binary format, making it more compact and faster to serialize/deserialize than JSON, which is text-based.
 
-![Alt text](https://systemdesign.github.io/images/2024/grpc_rest.png)
+![Alt text](https://rishijeet.github.io/images/2024/grpc_rest.png)
 
 Source: Refine
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { useTheme } from '../../context/ThemeContext';
 import {
   ChevronLeft,
   ChevronRight,
@@ -55,6 +56,7 @@ interface HeadingItem {
 }
 
 export const BlogReader: React.FC = () => {
+  const { theme } = useTheme();
   const [posts, setPosts] = useState<PostSummary[]>([]);
   const [selectedPost, setSelectedPost] = useState<FullPost | null>(null);
   const [loading, setLoading] = useState(true);
@@ -114,7 +116,74 @@ export const BlogReader: React.FC = () => {
     }
   };
 
-  // Parse headings and inject anchor IDs into HTML
+  // Helper function to decode HTML entities and standard clean-up for the mermaid code
+  const decodeHtmlEntities = (str: string): string => {
+    return str
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&#8211;/g, '--')
+      .replace(/&#8212;/g, '--')
+      .replace(/&#8220;/g, '"')
+      .replace(/&#8221;/g, '"')
+      .replace(/&#8216;/g, "'")
+      .replace(/&#8217;/g, "'")
+      .replace(/[\u2013\u2014]/g, '--')
+      .replace(/[\u201c\u201d]/g, '"')
+      .replace(/[\u2018\u2019]/g, "'");
+  };
+
+  const getMermaidImageUrl = (code: string, isDark: boolean): string => {
+    const sanitized = decodeHtmlEntities(code).trim();
+    const obj = {
+      code: sanitized,
+      mermaid: {
+        theme: 'base',
+        themeVariables: {
+          fontSize: '12px', // Compact font size for dense diagrams
+          fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
+          background: isDark ? '#1e293b' : '#ffffff',
+          primaryColor: isDark ? '#334155' : '#ffffff',
+          primaryTextColor: isDark ? '#f8fafc' : '#0f172a',
+          primaryBorderColor: isDark ? '#475569' : '#cbd5e1',
+          lineColor: isDark ? '#f8fafc' : '#0f172a', // Higher contrast lines
+          arrowheadColor: isDark ? '#f8fafc' : '#0f172a', // High contrast arrows
+          secondaryColor: isDark ? '#1e293b' : '#f1f5f9',
+          tertiaryColor: isDark ? '#0f172a' : '#ffffff',
+          nodeBorder: isDark ? '#475569' : '#cbd5e1'
+        },
+        flowchart: {
+          htmlLabels: true,
+          useMaxWidth: false,
+          curve: 'linear', // Linear lines are clearer for HLD architectural flows
+          nodeSpacing: 50,
+          rankSpacing: 50
+        }
+      }
+    };
+    const jsonStr = JSON.stringify(obj);
+    
+    // UTF-8 safe base64 encoding
+    let base64 = '';
+    try {
+      const utf8Bytes = new TextEncoder().encode(jsonStr);
+      let binary = '';
+      const len = utf8Bytes.byteLength;
+      for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(utf8Bytes[i]);
+      }
+      base64 = window.btoa(binary);
+    } catch (e) {
+      base64 = window.btoa(unescape(encodeURIComponent(jsonStr)));
+    }
+    
+    // Using high-fidelity /svg/ endpoint instead of raster /img/
+    return `https://mermaid.ink/svg/${base64}`;
+  };
+
+  // Parse headings, inject anchor IDs, and dynamically replace Mermaid flowcharts with static high-quality images
   const { processedHtml, headings } = useMemo(() => {
     if (!selectedPost?.contentHtml) {
       return { processedHtml: '', headings: [] as HeadingItem[] };
@@ -123,7 +192,8 @@ export const BlogReader: React.FC = () => {
     const headingList: HeadingItem[] = [];
     let count = 0;
 
-    const modifiedHtml = selectedPost.contentHtml.replace(
+    // 1. Inject IDs into headers for Table of Contents
+    let modifiedHtml = selectedPost.contentHtml.replace(
       /<(h[2-4])([^>]*)>(.*?)<\/\1>/gi,
       (match, tag, attrs, innerText) => {
         const cleanText = innerText.replace(/<[^>]*>/g, '').trim();
@@ -137,8 +207,73 @@ export const BlogReader: React.FC = () => {
       }
     );
 
+    // 2. Replace all <div class="mermaid">...</div> blocks with static Mermaid.ink images with interactive zoom toolbars
+    const isDark = theme === 'dark';
+    modifiedHtml = modifiedHtml.replace(
+      /<div class="mermaid">([\s\S]*?)<\/div>/gi,
+      (match, content) => {
+        const imageUrl = getMermaidImageUrl(content, isDark);
+        return `
+          <div class="mermaid-image-wrapper my-8 flex flex-col p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden">
+            <!-- Inline Custom Interactive Toolbar -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full border-b border-slate-100 dark:border-slate-800 pb-3 mb-4 gap-2">
+              <div class="flex items-center gap-2">
+                <span class="flex h-2 w-2 rounded-full bg-indigo-500 animate-pulse"></span>
+                <span class="text-xs font-semibold text-slate-600 dark:text-slate-300 tracking-wide uppercase">System Architecture Flowchart</span>
+              </div>
+              
+              <div class="flex items-center gap-1.5 self-end sm:self-auto">
+                <button 
+                  onclick="const img = this.closest('.mermaid-image-wrapper').querySelector('.mermaid-img'); let scale = parseFloat(img.getAttribute('data-zoom') || '1'); scale = Math.max(0.6, scale - 0.2); img.setAttribute('data-zoom', scale); img.style.transform = 'scale(' + scale + ')'; img.style.minWidth = (scale * 100) + '%';" 
+                  class="px-2 py-1 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800/80 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded transition-all text-[11px] font-medium flex items-center gap-1"
+                  title="Zoom Out"
+                >
+                  ➖ Zoom -
+                </button>
+                <button 
+                  onclick="const img = this.closest('.mermaid-image-wrapper').querySelector('.mermaid-img'); let scale = parseFloat(img.getAttribute('data-zoom') || '1'); scale = Math.min(3.0, scale + 0.2); img.setAttribute('data-zoom', scale); img.style.transform = 'scale(' + scale + ')'; img.style.minWidth = (scale * 100) + '%';" 
+                  class="px-2 py-1 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800/80 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded transition-all text-[11px] font-medium flex items-center gap-1"
+                  title="Zoom In"
+                >
+                  ➕ Zoom +
+                </button>
+                <button 
+                  onclick="const img = this.closest('.mermaid-image-wrapper').querySelector('.mermaid-img'); img.setAttribute('data-zoom', '1'); img.style.transform = 'none'; img.style.minWidth = '100%';" 
+                  class="px-2 py-1 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800/80 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded transition-all text-[11px] font-medium"
+                  title="Reset Scale"
+                >
+                  🔄 Reset
+                </button>
+                <a 
+                  href="${imageUrl}" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="px-2 py-1 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/40 dark:hover:bg-indigo-950 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900 rounded transition-all text-[11px] font-medium flex items-center gap-1"
+                >
+                  🔍 High-Res ↗
+                </a>
+              </div>
+            </div>
+
+            <!-- Viewport with dynamic scrolling and infinite crisp SVG sizing -->
+            <div class="w-full overflow-auto p-4 bg-slate-50/50 dark:bg-slate-950/40 border border-slate-100 dark:border-slate-800/60 rounded-lg flex justify-start items-center" style="max-height: 520px; min-height: 240px;">
+              <img 
+                src="${imageUrl}" 
+                alt="System Architecture Diagram" 
+                class="mermaid-img mx-auto transition-all duration-200 ease-out origin-center select-none" 
+                style="max-width: none; width: auto; min-width: 100%; max-height: 100%; transform: none;"
+                data-zoom="1"
+                referrerpolicy="no-referrer"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        `;
+      }
+    );
+
     return { processedHtml: modifiedHtml, headings: headingList };
-  }, [selectedPost?.contentHtml]);
+  }, [selectedPost?.contentHtml, theme]);
 
   // Handle scroll tracking in article view
   const handleArticleScroll = () => {
@@ -409,7 +544,7 @@ export const BlogReader: React.FC = () => {
               </div>
 
               {/* Title */}
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-black tracking-tight leading-tight mb-4">
                 {selectedPost.title}
               </h1>
 
@@ -455,6 +590,7 @@ export const BlogReader: React.FC = () => {
 
               {/* Article Content Render */}
               <article
+                key={selectedPost.slug}
                 className="blog-article-content"
                 dangerouslySetInnerHTML={{ __html: processedHtml }}
               />
@@ -578,7 +714,7 @@ export const BlogReader: React.FC = () => {
           {/* Title & Stats */}
           <div>
             <div className="flex items-center gap-2.5">
-              <h1 className="text-base sm:text-lg font-black text-slate-900 flex items-center gap-2">
+              <h1 className="text-base sm:text-lg font-black text-black flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-emerald-600" />
                 <span>Security & System Design Blog</span>
               </h1>
@@ -703,40 +839,40 @@ export const BlogReader: React.FC = () => {
               <div className="grid grid-cols-4 gap-1 p-1 bg-white rounded-lg border border-slate-200 text-center">
                 <button
                   onClick={() => setIndexTab('categories')}
-                  className={`py-1 text-[11px] font-bold rounded cursor-pointer transition-colors ${
+                  className={`py-1 text-[11px] font-bold rounded cursor-pointer transition-all border-b-2 ${
                     indexTab === 'categories'
-                      ? 'bg-emerald-50 text-emerald-900'
-                      : 'text-slate-500 hover:text-slate-800'
+                      ? 'bg-emerald-50 text-emerald-900 border-emerald-600 font-extrabold shadow-2xs'
+                      : 'border-transparent text-slate-500 hover:text-slate-800'
                   }`}
                 >
                   Topics
                 </button>
                 <button
                   onClick={() => setIndexTab('az')}
-                  className={`py-1 text-[11px] font-bold rounded cursor-pointer transition-colors ${
+                  className={`py-1 text-[11px] font-bold rounded cursor-pointer transition-all border-b-2 ${
                     indexTab === 'az'
-                      ? 'bg-emerald-50 text-emerald-900'
-                      : 'text-slate-500 hover:text-slate-800'
+                      ? 'bg-emerald-50 text-emerald-900 border-emerald-600 font-extrabold shadow-2xs'
+                      : 'border-transparent text-slate-500 hover:text-slate-800'
                   }`}
                 >
                   A-Z
                 </button>
                 <button
                   onClick={() => setIndexTab('years')}
-                  className={`py-1 text-[11px] font-bold rounded cursor-pointer transition-colors ${
+                  className={`py-1 text-[11px] font-bold rounded cursor-pointer transition-all border-b-2 ${
                     indexTab === 'years'
-                      ? 'bg-emerald-50 text-emerald-900'
-                      : 'text-slate-500 hover:text-slate-800'
+                      ? 'bg-emerald-50 text-emerald-900 border-emerald-600 font-extrabold shadow-2xs'
+                      : 'border-transparent text-slate-500 hover:text-slate-800'
                   }`}
                 >
                   Timeline
                 </button>
                 <button
                   onClick={() => setIndexTab('master_list')}
-                  className={`py-1 text-[11px] font-bold rounded cursor-pointer transition-colors ${
+                  className={`py-1 text-[11px] font-bold rounded cursor-pointer transition-all border-b-2 ${
                     indexTab === 'master_list'
-                      ? 'bg-emerald-50 text-emerald-900'
-                      : 'text-slate-500 hover:text-slate-800'
+                      ? 'bg-emerald-50 text-emerald-900 border-emerald-600 font-extrabold shadow-2xs'
+                      : 'border-transparent text-slate-500 hover:text-slate-800'
                   }`}
                 >
                   109 Index
@@ -980,7 +1116,7 @@ export const BlogReader: React.FC = () => {
           {filteredPosts.length === 0 && (
             <div className="text-center py-16 bg-white border border-slate-200 rounded-2xl p-8">
               <Search className="w-8 h-8 text-slate-300 mx-auto mb-3" />
-              <h3 className="text-base font-bold text-slate-800">No articles matched your criteria</h3>
+              <h3 className="text-base font-bold text-black">No articles matched your criteria</h3>
               <p className="text-xs text-slate-500 max-w-sm mx-auto mt-1 mb-4">
                 Try adjusting your search terms or clear selected category/year filters to browse all 109 architectural publications.
               </p>
