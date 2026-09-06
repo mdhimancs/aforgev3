@@ -1,0 +1,2839 @@
+// Static embedded index for 100% offline & exported reliability
+export const BLOG_SITE_INFO = {
+  "title": "System Design | Technologist | Tech Trends & Development Blog",
+  "author": "System Design",
+  "bio": "Technologist, Software Architect & Engineer. Insights on System Design, Distributed Systems, AI, and Cloud Architecture.",
+  "url": "https://rishijeet.github.io/blog/",
+  "github": "https://github.com/systemdesign",
+  "totalPosts": 109,
+  "extractedAt": "2026-09-02T11:41:00Z"
+};
+
+export const BLOG_CATEGORIES = [
+  {
+    "name": "ai",
+    "count": 34
+  },
+  {
+    "name": "architecture",
+    "count": 30
+  },
+  {
+    "name": "technology",
+    "count": 30
+  },
+  {
+    "name": "system_design",
+    "count": 28
+  },
+  {
+    "name": "llm",
+    "count": 27
+  },
+  {
+    "name": "genai",
+    "count": 11
+  },
+  {
+    "name": "case_study",
+    "count": 9
+  },
+  {
+    "name": "ml",
+    "count": 7
+  },
+  {
+    "name": "rag",
+    "count": 7
+  },
+  {
+    "name": "microservice",
+    "count": 6
+  },
+  {
+    "name": "apache-flink",
+    "count": 5
+  },
+  {
+    "name": "streaming-data",
+    "count": 5
+  },
+  {
+    "name": "booking",
+    "count": 5
+  },
+  {
+    "name": "agentic_ai",
+    "count": 5
+  },
+  {
+    "name": "kafka",
+    "count": 4
+  },
+  {
+    "name": "fintech",
+    "count": 4
+  },
+  {
+    "name": "google",
+    "count": 4
+  },
+  {
+    "name": "social_media",
+    "count": 4
+  },
+  {
+    "name": "engineers",
+    "count": 3
+  },
+  {
+    "name": "banks",
+    "count": 3
+  },
+  {
+    "name": "python",
+    "count": 3
+  },
+  {
+    "name": "mcp",
+    "count": 3
+  },
+  {
+    "name": "oil",
+    "count": 2
+  },
+  {
+    "name": "blockchain",
+    "count": 2
+  },
+  {
+    "name": "fmcg",
+    "count": 2
+  },
+  {
+    "name": "startup",
+    "count": 2
+  },
+  {
+    "name": "database",
+    "count": 2
+  },
+  {
+    "name": "energy",
+    "count": 2
+  },
+  {
+    "name": "data_center",
+    "count": 2
+  },
+  {
+    "name": "a2a",
+    "count": 2
+  },
+  {
+    "name": "distributed",
+    "count": 2
+  },
+  {
+    "name": "scandals",
+    "count": 2
+  },
+  {
+    "name": "gpt",
+    "count": 2
+  },
+  {
+    "name": "event",
+    "count": 2
+  },
+  {
+    "name": "kotlin",
+    "count": 2
+  },
+  {
+    "name": "http",
+    "count": 2
+  },
+  {
+    "name": "quantum",
+    "count": 2
+  },
+  {
+    "name": "quantum_computing",
+    "count": 2
+  },
+  {
+    "name": "quantum_leap",
+    "count": 2
+  },
+  {
+    "name": "travel",
+    "count": 2
+  },
+  {
+    "name": "meta",
+    "count": 2
+  },
+  {
+    "name": "youtube",
+    "count": 2
+  },
+  {
+    "name": "cot",
+    "count": 2
+  },
+  {
+    "name": "agi",
+    "count": 2
+  },
+  {
+    "name": "story",
+    "count": 2
+  },
+  {
+    "name": "web3.0",
+    "count": 2
+  },
+  {
+    "name": "iot",
+    "count": 2
+  },
+  {
+    "name": "devops",
+    "count": 1
+  },
+  {
+    "name": "devex",
+    "count": 1
+  },
+  {
+    "name": "aiops",
+    "count": 1
+  },
+  {
+    "name": "mlops",
+    "count": 1
+  },
+  {
+    "name": "devsecops",
+    "count": 1
+  },
+  {
+    "name": "noops",
+    "count": 1
+  },
+  {
+    "name": "dag",
+    "count": 1
+  },
+  {
+    "name": "petroleum",
+    "count": 1
+  },
+  {
+    "name": "social",
+    "count": 1
+  },
+  {
+    "name": "reactjs",
+    "count": 1
+  },
+  {
+    "name": "firebase",
+    "count": 1
+  },
+  {
+    "name": "cassandra",
+    "count": 1
+  },
+  {
+    "name": "nosql",
+    "count": 1
+  },
+  {
+    "name": "rust",
+    "count": 1
+  },
+  {
+    "name": "startups",
+    "count": 1
+  },
+  {
+    "name": "nlp",
+    "count": 1
+  },
+  {
+    "name": "mq",
+    "count": 1
+  },
+  {
+    "name": "coroutines",
+    "count": 1
+  },
+  {
+    "name": "concurrency",
+    "count": 1
+  },
+  {
+    "name": "grpc",
+    "count": 1
+  },
+  {
+    "name": "rest",
+    "count": 1
+  },
+  {
+    "name": "quarkus",
+    "count": 1
+  },
+  {
+    "name": "fancybox",
+    "count": 1
+  },
+  {
+    "name": "image",
+    "count": 1
+  },
+  {
+    "name": "silicon",
+    "count": 1
+  },
+  {
+    "name": "chip",
+    "count": 1
+  },
+  {
+    "name": "crypto",
+    "count": 1
+  },
+  {
+    "name": "deepseek",
+    "count": 1
+  },
+  {
+    "name": "airbnb",
+    "count": 1
+  },
+  {
+    "name": "aws",
+    "count": 1
+  },
+  {
+    "name": "s3",
+    "count": 1
+  },
+  {
+    "name": "apple",
+    "count": 1
+  },
+  {
+    "name": "bookmyshow",
+    "count": 1
+  },
+  {
+    "name": "wallet",
+    "count": 1
+  },
+  {
+    "name": "payment",
+    "count": 1
+  },
+  {
+    "name": "chatgpt",
+    "count": 1
+  },
+  {
+    "name": "search",
+    "count": 1
+  },
+  {
+    "name": "airline",
+    "count": 1
+  },
+  {
+    "name": "instagram",
+    "count": 1
+  },
+  {
+    "name": "netflix",
+    "count": 1
+  },
+  {
+    "name": "nginx",
+    "count": 1
+  },
+  {
+    "name": "pastebin",
+    "count": 1
+  },
+  {
+    "name": "slack",
+    "count": 1
+  },
+  {
+    "name": "spotify",
+    "count": 1
+  },
+  {
+    "name": "trading_system",
+    "count": 1
+  },
+  {
+    "name": "ultra_low_latency",
+    "count": 1
+  },
+  {
+    "name": "tinder",
+    "count": 1
+  },
+  {
+    "name": "chat",
+    "count": 1
+  },
+  {
+    "name": "uber",
+    "count": 1
+  },
+  {
+    "name": "whatsapp",
+    "count": 1
+  },
+  {
+    "name": "message",
+    "count": 1
+  },
+  {
+    "name": "x",
+    "count": 1
+  },
+  {
+    "name": "zomato",
+    "count": 1
+  },
+  {
+    "name": "graalvm",
+    "count": 1
+  },
+  {
+    "name": "performance",
+    "count": 1
+  },
+  {
+    "name": "microsoft",
+    "count": 1
+  },
+  {
+    "name": "linux",
+    "count": 1
+  },
+  {
+    "name": "jekyll",
+    "count": 1
+  },
+  {
+    "name": "blog",
+    "count": 1
+  },
+  {
+    "name": "ktor",
+    "count": 1
+  },
+  {
+    "name": "async",
+    "count": 1
+  },
+  {
+    "name": "android",
+    "count": 1
+  },
+  {
+    "name": "e-trading",
+    "count": 1
+  },
+  {
+    "name": "hft",
+    "count": 1
+  },
+  {
+    "name": "machine_learning",
+    "count": 1
+  },
+  {
+    "name": "memory",
+    "count": 1
+  },
+  {
+    "name": "micronaut",
+    "count": 1
+  },
+  {
+    "name": "jvm",
+    "count": 1
+  },
+  {
+    "name": "cuda",
+    "count": 1
+  },
+  {
+    "name": "mlx",
+    "count": 1
+  },
+  {
+    "name": "ai_agents",
+    "count": 1
+  },
+  {
+    "name": "pycon",
+    "count": 1
+  },
+  {
+    "name": "go",
+    "count": 1
+  },
+  {
+    "name": "gorilla",
+    "count": 1
+  },
+  {
+    "name": "photonic_computing",
+    "count": 1
+  },
+  {
+    "name": "case_management",
+    "count": 1
+  },
+  {
+    "name": "smart_dispute",
+    "count": 1
+  },
+  {
+    "name": "software",
+    "count": 1
+  },
+  {
+    "name": "developers",
+    "count": 1
+  },
+  {
+    "name": "future",
+    "count": 1
+  },
+  {
+    "name": "gpu",
+    "count": 1
+  },
+  {
+    "name": "research",
+    "count": 1
+  },
+  {
+    "name": "messaging",
+    "count": 1
+  },
+  {
+    "name": "bloom_filter",
+    "count": 1
+  },
+  {
+    "name": "algorithm",
+    "count": 1
+  },
+  {
+    "name": "data_structure",
+    "count": 1
+  },
+  {
+    "name": "fraud",
+    "count": 1
+  },
+  {
+    "name": "xai",
+    "count": 1
+  },
+  {
+    "name": "vert.x",
+    "count": 1
+  },
+  {
+    "name": "reactive",
+    "count": 1
+  },
+  {
+    "name": "vmware",
+    "count": 1
+  },
+  {
+    "name": "windows",
+    "count": 1
+  },
+  {
+    "name": "api",
+    "count": 1
+  },
+  {
+    "name": "webhook",
+    "count": 1
+  },
+  {
+    "name": "websocket",
+    "count": 1
+  },
+  {
+    "name": "security",
+    "count": 1
+  },
+  {
+    "name": "java",
+    "count": 1
+  },
+  {
+    "name": "2025",
+    "count": 1
+  },
+  {
+    "name": "slm",
+    "count": 1
+  }
+];
+
+export const EMBEDDED_BLOG_POSTS = [
+  {
+    "id": "beyond-chatgpt-why-the-ai-industry-is-still-just-getting-started",
+    "slug": "beyond-chatgpt-why-the-ai-industry-is-still-just-getting-started",
+    "title": "Beyond ChatGPT: Why the AI Industry Is Still Just Getting Started?",
+    "date": "2026-08-01T20:14:44+05:30",
+    "formattedDate": "2026-08-01",
+    "year": "2026",
+    "categories": [
+      "ai",
+      "llm",
+      "engineers",
+      "genai"
+    ],
+    "excerpt": "Ask a random person on the street to name an AI company, and nine out of ten will say ChatGPT. Maybe a couple will mention Google or Midjourney if they are feeling adventurous. That&rsquo;s it. That&rsquo;s the whole list in most people&rsquo;s heads. Source: AI And honestly, it ...",
+    "wordCount": 2796,
+    "readingTime": "14 min",
+    "readingTimeMinutes": 14,
+    "originalUrl": "https://rishijeet.github.io/blog/beyond-chatgpt-why-the-ai-industry-is-still-just-getting-started/",
+    "coverImage": "https://rishijeet.github.io/images/2026/ai_is_not_chatgpt.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "ai-wont-make-you-a-better-engineer-how-you-use-it-might",
+    "slug": "ai-wont-make-you-a-better-engineer-how-you-use-it-might",
+    "title": "AI Won't Make You a Better Engineer. How You Use It Might",
+    "date": "2026-06-20T11:28:39+05:30",
+    "formattedDate": "2026-06-20",
+    "year": "2026",
+    "categories": [
+      "ai",
+      "llm",
+      "engineers",
+      "genai"
+    ],
+    "excerpt": "Over 90% of developers at some companies are using AI coding assistants. GitHub says AI now writes nearly half of all new code on its platform. Gartner thinks that number hits 60% by end of 2026. By every measure, we&rsquo;ve crossed the point where AI in software development is ...",
+    "wordCount": 2469,
+    "readingTime": "12 min",
+    "readingTimeMinutes": 12,
+    "originalUrl": "https://rishijeet.github.io/blog/ai-wont-make-you-a-better-engineer-how-you-use-it-might/",
+    "coverImage": "https://rishijeet.github.io/images/2026/ai_engineer_skills.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "how-cashkaro-works",
+    "slug": "how-cashkaro-works",
+    "title": "How CashKaro Works",
+    "date": "2026-06-12T09:43:24+05:30",
+    "formattedDate": "2026-06-12",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "wallet",
+      "payment",
+      "technology"
+    ],
+    "excerpt": "If you have ever used a cashback platform and wondered how the money actually flows from a merchant back to your wallet, you are not alone. Most users think of it as a simple discount. You click a link, buy something, and money appears in your account a few weeks later. But benea...",
+    "wordCount": 8192,
+    "readingTime": "41 min",
+    "readingTimeMinutes": 41,
+    "originalUrl": "https://rishijeet.github.io/blog/how-cashkaro-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/cashkaro-banner.jpg",
+    "isSystemDesign": true
+  },
+  {
+    "id": "the-best-engineer-on-your-team-might-be-writing-less-code-than-everyone-else",
+    "slug": "the-best-engineer-on-your-team-might-be-writing-less-code-than-everyone-else",
+    "title": "The Best Engineer on Your Team Might Be Writing Less Code Than Everyone Else",
+    "date": "2026-06-05T08:19:41+05:30",
+    "formattedDate": "2026-06-05",
+    "year": "2026",
+    "categories": [
+      "ai",
+      "llm",
+      "engineers",
+      "genai"
+    ],
+    "excerpt": "There is an uncomfortable conversation happening in engineering leadership circles right now, and most organizations are not having it openly enough. It goes roughly like this: we have deployed AI coding assistants across the team, commit velocity has increased, lines of code per...",
+    "wordCount": 6138,
+    "readingTime": "31 min",
+    "readingTimeMinutes": 31,
+    "originalUrl": "https://rishijeet.github.io/blog/the-best-engineer-on-your-team-might-be-writing-less-code-than-everyone-else/",
+    "coverImage": "https://rishijeet.github.io/images/2026/best_engineer_hero.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "how-makemytrip-travel-planner-works",
+    "slug": "how-makemytrip-travel-planner-works",
+    "title": "How MakeMyTrip Travel Planner Works?",
+    "date": "2026-05-31T18:53:45+05:30",
+    "formattedDate": "2026-05-31",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "travel",
+      "booking",
+      "technology"
+    ],
+    "excerpt": "Most engineers, when they think about travel technology, imagine a flight search engine. You pick a source, a destination, a date, and the system returns a list of flights sorted by price. That is a solved problem. The hard part is what comes after. A vacation planning platform i...",
+    "wordCount": 8107,
+    "readingTime": "41 min",
+    "readingTimeMinutes": 41,
+    "originalUrl": "https://rishijeet.github.io/blog/how-makemytrip-travel-planner-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/makemytrip-banner.avif",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-bookmyshow-works",
+    "slug": "how-bookmyshow-works",
+    "title": "How BookMyShow Works?",
+    "date": "2026-05-31T13:40:29+05:30",
+    "formattedDate": "2026-05-31",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "bookmyshow",
+      "booking",
+      "technology"
+    ],
+    "excerpt": "BookMyShow looks simple from the outside. You open the app, pick a movie, choose your seats, pay, and get a ticket. The whole thing takes about two minutes. But underneath that simple experience is one of the most technically demanding systems on the internet — a platform that ne...",
+    "wordCount": 6815,
+    "readingTime": "34 min",
+    "readingTimeMinutes": 34,
+    "originalUrl": "https://rishijeet.github.io/blog/how-bookmyshow-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/bookmyshow-banner.jpg",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-indigo-booking-works",
+    "slug": "how-indigo-booking-works",
+    "title": "How Indigo Booking Works?",
+    "date": "2026-05-31T12:02:55+05:30",
+    "formattedDate": "2026-05-31",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "airline",
+      "booking",
+      "technology",
+      "travel"
+    ],
+    "excerpt": "IndiGo is India&rsquo;s largest airline by market share, operating hundreds of flights daily across domestic and international routes. If you&rsquo;ve ever booked a flight on goindigo.in or the IndiGo app, you interacted with one of the most sophisticated transactional systems in...",
+    "wordCount": 6286,
+    "readingTime": "31 min",
+    "readingTimeMinutes": 31,
+    "originalUrl": "https://rishijeet.github.io/blog/how-indigo-booking-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/indigo-banner.jpg",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-youtube-scaled-to-billions-of-users-using-mysql",
+    "slug": "how-youtube-scaled-to-billions-of-users-using-mysql",
+    "title": "How YouTube Scaled to Billions of Users Using MySQL?",
+    "date": "2026-05-30T13:26:58+05:30",
+    "formattedDate": "2026-05-30",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "google",
+      "youtube",
+      "technology"
+    ],
+    "excerpt": "There is a common belief in software engineering circles that relational databases cannot scale. The moment you say &ldquo;MySQL&rdquo; in a room full of distributed systems engineers, someone will inevitably raise an eyebrow and say &ldquo;that won&rsquo;t hold up at scale.&rdqu...",
+    "wordCount": 7738,
+    "readingTime": "39 min",
+    "readingTimeMinutes": 39,
+    "originalUrl": "https://rishijeet.github.io/blog/how-youtube-scaled-to-billions-of-users-using-mysql/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/youtube-mysql.jpg",
+    "isSystemDesign": true
+  },
+  {
+    "id": "ai-adoption-vs-ai-reality",
+    "slug": "ai-adoption-vs-ai-reality",
+    "title": "AI Adoption vs AI Reality",
+    "date": "2026-05-29T17:53:56+05:30",
+    "formattedDate": "2026-05-29",
+    "year": "2026",
+    "categories": [
+      "llm",
+      "genai",
+      "ai",
+      "ml"
+    ],
+    "excerpt": "There is a version of the AI story that goes like this: companies saw ChatGPT, realized the future had arrived, moved fast, deployed AI everywhere, and transformed their businesses. That version makes for good investor decks. The reality is messier, more expensive, and far more i...",
+    "wordCount": 7101,
+    "readingTime": "36 min",
+    "readingTimeMinutes": 36,
+    "originalUrl": "https://rishijeet.github.io/blog/ai-adoption-vs-ai-reality/",
+    "coverImage": "https://rishijeet.github.io/images/2026/ai_adoption_vs_ai_reality.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "how-slack-works",
+    "slug": "how-slack-works",
+    "title": "How Slack Works?",
+    "date": "2026-05-23T16:55:37+05:30",
+    "formattedDate": "2026-05-23",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "slack",
+      "technology"
+    ],
+    "excerpt": "There is a version of Slack that most engineers imagine when they first think about how it works. You type a message, hit Enter, and it shows up on someone else&rsquo;s screen. Simple enough. But the moment you start pulling at the threads of that interaction, things get complica...",
+    "wordCount": 7947,
+    "readingTime": "40 min",
+    "readingTimeMinutes": 40,
+    "originalUrl": "https://rishijeet.github.io/blog/how-slack-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/slack-banner.jpg",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-apple-airtags-work",
+    "slug": "how-apple-airtags-work",
+    "title": "How Apple Airtags Work?",
+    "date": "2026-05-23T13:36:17+05:30",
+    "formattedDate": "2026-05-23",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "apple",
+      "technology"
+    ],
+    "excerpt": "There is a small white disc sitting on your key ring right now. It weighs eleven grams. It has no GPS chip, no cellular radio, and no Wi-Fi antenna. Its battery lasts over a year. And yet, if you drop your keys somewhere in downtown Tokyo, there is a very good chance you will get...",
+    "wordCount": 7249,
+    "readingTime": "36 min",
+    "readingTimeMinutes": 36,
+    "originalUrl": "https://rishijeet.github.io/blog/how-apple-airtags-work/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/airtags.webp",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-google-docs-works",
+    "slug": "how-google-docs-works",
+    "title": "How Google Docs Works?",
+    "date": "2026-05-22T09:20:01+05:30",
+    "formattedDate": "2026-05-22",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "google",
+      "technology"
+    ],
+    "excerpt": "There is a moment every developer takes for granted. You open a Google Doc, your colleague is already in it, and you both start typing at the same time. The cursor moves, text appears, changes propagate in near real-time, and nothing breaks. It just works. What happens underneath...",
+    "wordCount": 7077,
+    "readingTime": "35 min",
+    "readingTimeMinutes": 35,
+    "originalUrl": "https://rishijeet.github.io/blog/how-google-docs-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/googledocs-banner.png",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-instagram-works",
+    "slug": "how-instagram-works",
+    "title": "How Instagram Works?",
+    "date": "2026-05-22T08:59:03+05:30",
+    "formattedDate": "2026-05-22",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "meta",
+      "instagram",
+      "technology",
+      "social_media"
+    ],
+    "excerpt": "Instagram serves over two billion active users every month. On any given day, people upload hundreds of millions of photos and videos, watch billions of reels, send hundreds of millions of messages, and scroll through feeds that feel magically personalized to each person. Behind ...",
+    "wordCount": 7388,
+    "readingTime": "37 min",
+    "readingTimeMinutes": 37,
+    "originalUrl": "https://rishijeet.github.io/blog/how-instagram-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/instagram-banner.jpg",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-meta-serverless-works",
+    "slug": "how-meta-serverless-works",
+    "title": "How Meta Serverless Works?",
+    "date": "2026-05-21T08:36:37+05:30",
+    "formattedDate": "2026-05-21",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "meta",
+      "technology"
+    ],
+    "excerpt": "Somewhere inside a hyperscale data center, a user taps a button on Instagram and an invisible chain reaction begins across thousands of machines. A piece of code spins up, runs for a few milliseconds, and vanishes almost instantly. No engineer manually provisioned a server for th...",
+    "wordCount": 6566,
+    "readingTime": "33 min",
+    "readingTimeMinutes": 33,
+    "originalUrl": "https://rishijeet.github.io/blog/how-meta-serverless-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/meta-banner.jpg",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-x-timeline-works",
+    "slug": "how-x-timeline-works",
+    "title": "How X Timeline Works?",
+    "date": "2026-05-21T08:23:07+05:30",
+    "formattedDate": "2026-05-21",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "x",
+      "technology",
+      "social_media"
+    ],
+    "excerpt": "There is a moment, every time you open X, that feels effortless. A feed of tweets appears. Some are from people you follow. Others are from accounts you have never seen before but somehow feel relevant. A viral post catches your eye. A trending topic surfaces at just the right ti...",
+    "wordCount": 6620,
+    "readingTime": "33 min",
+    "readingTimeMinutes": 33,
+    "originalUrl": "https://rishijeet.github.io/blog/how-x-timeline-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/x-banner.jpeg",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-url-shortener-works",
+    "slug": "how-url-shortener-works",
+    "title": "How URL Shortener Works?",
+    "date": "2026-05-21T08:04:47+05:30",
+    "formattedDate": "2026-05-21",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "technology"
+    ],
+    "excerpt": "There is a particular kind of engineering problem that looks deceptively small from the outside. You paste a long URL into a box, click a button, and get back something like https://bit.ly/3xKp9Ld . The whole interaction takes less than a second. Behind that second, though, is a ...",
+    "wordCount": 6686,
+    "readingTime": "33 min",
+    "readingTimeMinutes": 33,
+    "originalUrl": "https://rishijeet.github.io/blog/how-url-shortener-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/url.png",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-zomato-works",
+    "slug": "how-zomato-works",
+    "title": "How Zomato Works?",
+    "date": "2026-05-20T08:34:32+05:30",
+    "formattedDate": "2026-05-20",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "zomato"
+    ],
+    "excerpt": "The moment you tap “Place Order” on Zomato, a massive chain of events begins instantly behind the scenes. Within seconds, the system identifies your location, finds the right restaurant, assigns a nearby delivery partner, processes your payment, and starts estimating delivery tim...",
+    "wordCount": 5743,
+    "readingTime": "29 min",
+    "readingTimeMinutes": 29,
+    "originalUrl": "https://rishijeet.github.io/blog/how-zomato-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/zomato-banner.png",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-netflix-works",
+    "slug": "how-netflix-works",
+    "title": "How Netflix Works?",
+    "date": "2026-05-20T08:21:54+05:30",
+    "formattedDate": "2026-05-20",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "netflix"
+    ],
+    "excerpt": "Every second, somewhere in the world, a person presses play on Netflix and expects the impossible to feel effortless. In the brief instant before the first frame appears, an enormous distributed system has already selected the optimal video quality, routed the request to the near...",
+    "wordCount": 7332,
+    "readingTime": "37 min",
+    "readingTimeMinutes": 37,
+    "originalUrl": "https://rishijeet.github.io/blog/how-netflix-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/netflix-banner.png",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-spotify-works",
+    "slug": "how-spotify-works",
+    "title": "How Spotify Works?",
+    "date": "2026-05-18T08:48:39+05:30",
+    "formattedDate": "2026-05-18",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "spotify"
+    ],
+    "excerpt": "A fraction of a second before music starts flowing through your headphones, an invisible chain of systems has already sprung into action. Your device must figure out what track to play next, determine whether the audio is stored locally or needs to be fetched, connect to the near...",
+    "wordCount": 7244,
+    "readingTime": "36 min",
+    "readingTimeMinutes": 36,
+    "originalUrl": "https://rishijeet.github.io/blog/how-spotify-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/spotify.png",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-stock-exchange-works",
+    "slug": "how-stock-exchange-works",
+    "title": "How Stock Exchange Works?",
+    "date": "2026-05-18T08:40:23+05:30",
+    "formattedDate": "2026-05-18",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "trading_system",
+      "ultra_low_latency"
+    ],
+    "excerpt": "There is a moment, roughly once every market quarter, where some piece of news hits the wire and millions of traders hit their buy or sell buttons simultaneously. The exchange absorbs that shock. Prices move. Trades match. Confirmations fly back in milliseconds. Nobody on the out...",
+    "wordCount": 6916,
+    "readingTime": "35 min",
+    "readingTimeMinutes": 35,
+    "originalUrl": "https://rishijeet.github.io/blog/how-stock-exchange-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/stock-exchange.webp",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-amazon-s3-works",
+    "slug": "how-amazon-s3-works",
+    "title": "How Amazon S3 Works?",
+    "date": "2026-05-17T14:17:39+05:30",
+    "formattedDate": "2026-05-17",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "aws",
+      "s3",
+      "technology"
+    ],
+    "excerpt": "There is a particular kind of quiet confidence in systems that just work. You upload a file, get a URL back, and years later that file is still exactly where you left it. No corruption. No missing bytes. The same object, bit-for-bit identical, retrieved in milliseconds from the o...",
+    "wordCount": 6555,
+    "readingTime": "33 min",
+    "readingTimeMinutes": 33,
+    "originalUrl": "https://rishijeet.github.io/blog/how-amazon-s3-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/s3.webp",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-kafka-works",
+    "slug": "how-kafka-works",
+    "title": "How Kafka Works?",
+    "date": "2026-05-17T10:59:43+05:30",
+    "formattedDate": "2026-05-17",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "kafka",
+      "technology"
+    ],
+    "excerpt": "There is a moment in every backend engineer&rsquo;s career when a simple queue stops being enough. Maybe you&rsquo;re logging user activity to a database and the writes start choking the system. Maybe you&rsquo;re moving data between microservices with REST calls and latency star...",
+    "wordCount": 5843,
+    "readingTime": "29 min",
+    "readingTimeMinutes": 29,
+    "originalUrl": "https://rishijeet.github.io/blog/how-kafka-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/kafka.avif",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-pastebin-works",
+    "slug": "how-pastebin-works",
+    "title": "How Pastebin Works?",
+    "date": "2026-05-17T08:37:50+05:30",
+    "formattedDate": "2026-05-17",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "pastebin",
+      "technology"
+    ],
+    "excerpt": "There is something deceptively simple about Pastebin. You paste some text, click a button, and get a short URL back. You share that URL with someone else, they open it, and they see your text. That is the entire product in one sentence. And yet, building Pastebin at the scale of ...",
+    "wordCount": 5659,
+    "readingTime": "28 min",
+    "readingTimeMinutes": 28,
+    "originalUrl": "https://rishijeet.github.io/blog/how-pastebin-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/pastebin.jpeg",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-tinder-works",
+    "slug": "how-tinder-works",
+    "title": "How Tinder Works",
+    "date": "2026-05-16T15:04:27+05:30",
+    "formattedDate": "2026-05-16",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "tinder",
+      "technology",
+      "chat",
+      "social_media"
+    ],
+    "excerpt": "There is a moment every Tinder engineer has probably thought about: a user swipes right, and within a second, both people get a match notification. That notification feels instant, almost magical. But behind that single interaction is an entire distributed system firing in coordi...",
+    "wordCount": 5984,
+    "readingTime": "30 min",
+    "readingTimeMinutes": 30,
+    "originalUrl": "https://rishijeet.github.io/blog/how-tinder-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/tinder.jpg",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-nginx-works",
+    "slug": "how-nginx-works",
+    "title": "How NGINX Works?",
+    "date": "2026-05-16T14:13:47+05:30",
+    "formattedDate": "2026-05-16",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "nginx",
+      "technology",
+      "http",
+      "distributed"
+    ],
+    "excerpt": "There is a good chance that every HTTP request you have made today passed through NGINX at some point. It might have been serving a static file, forwarding your request to a backend application, terminating TLS, or quietly balancing your traffic across a dozen servers. NGINX sits...",
+    "wordCount": 5802,
+    "readingTime": "29 min",
+    "readingTimeMinutes": 29,
+    "originalUrl": "https://rishijeet.github.io/blog/how-nginx-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/nginx.jpeg",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-google-search-works",
+    "slug": "how-google-search-works",
+    "title": "How Google Search Works?",
+    "date": "2026-05-16T12:14:14+05:30",
+    "formattedDate": "2026-05-16",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "google",
+      "technology",
+      "search"
+    ],
+    "excerpt": "Let me ask you something. You type three words into a text box. Half a second later, you are staring at ten blue links, a knowledge panel, an image carousel, and a featured snippet that almost perfectly answers your question. That page was assembled, ranked, and delivered to you ...",
+    "wordCount": 6844,
+    "readingTime": "34 min",
+    "readingTimeMinutes": 34,
+    "originalUrl": "https://rishijeet.github.io/blog/how-google-search-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/google-search.webp",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-uber-computes-eta",
+    "slug": "how-uber-computes-eta",
+    "title": "How Uber Computes ETA?",
+    "date": "2026-05-16T08:57:52+05:30",
+    "formattedDate": "2026-05-16",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "uber",
+      "technology",
+      "booking"
+    ],
+    "excerpt": "The magic of Uber doesn’t begin when the car arrives. It begins the instant the app tells you &ldquo;how long&rdquo; the wait will be. A tiny estimate — “2 minutes away” or “6 minutes away” — flashes onto your screen so casually that most people never think twice about it. Yet pr...",
+    "wordCount": 5754,
+    "readingTime": "29 min",
+    "readingTimeMinutes": 29,
+    "originalUrl": "https://rishijeet.github.io/blog/how-uber-computes-eta/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/uber.svg",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-chatgpt-works",
+    "slug": "how-chatgpt-works",
+    "title": "How ChatGPT Works?",
+    "date": "2026-05-14T11:15:39+05:30",
+    "formattedDate": "2026-05-14",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "technology",
+      "chatgpt",
+      "llm"
+    ],
+    "excerpt": "There is a moment, maybe you have felt it yourself, where you type a question into ChatGPT and within seconds you get a response that feels remarkably thoughtful. It does not just return a keyword match. It understands context, it reasons through problems, it can write code and e...",
+    "wordCount": 6072,
+    "readingTime": "30 min",
+    "readingTimeMinutes": 30,
+    "originalUrl": "https://rishijeet.github.io/blog/how-chatgpt-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/chatgpt.avif",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-youtube-works",
+    "slug": "how-youtube-works",
+    "title": "How YouTube Works?",
+    "date": "2026-05-13T16:08:56+05:30",
+    "formattedDate": "2026-05-13",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "google",
+      "youtube",
+      "technology"
+    ],
+    "excerpt": "There is a moment every engineer has when they first truly think about what YouTube does. Not the product, but the machine. Someone in rural Indonesia uploads a phone video of a street cat doing something peculiar. Within minutes, that video is available in crisp 1080p to a user ...",
+    "wordCount": 5688,
+    "readingTime": "28 min",
+    "readingTimeMinutes": 28,
+    "originalUrl": "https://rishijeet.github.io/blog/how-youtube-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/youtube.png",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-airbnb-works",
+    "slug": "how-airbnb-works",
+    "title": "How Airbnb Works?",
+    "date": "2026-05-11T09:21:17+05:30",
+    "formattedDate": "2026-05-11",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "airbnb",
+      "booking",
+      "technology"
+    ],
+    "excerpt": "Every time you search for a place to stay in Tokyo, lock in a booking for next weekend in Lisbon, or message a host about parking — you&rsquo;re touching a system that handles millions of concurrent users, real-time availability across 7 million listings, payment transactions in ...",
+    "wordCount": 6532,
+    "readingTime": "33 min",
+    "readingTimeMinutes": 33,
+    "originalUrl": "https://rishijeet.github.io/blog/how-airbnb-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/airbnb.png",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-reddit-works",
+    "slug": "how-reddit-works",
+    "title": "How Reddit Works?",
+    "date": "2026-05-03T19:28:52+05:30",
+    "formattedDate": "2026-05-03",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "technology"
+    ],
+    "excerpt": "If you&rsquo;ve ever refreshed your Reddit feed at midnight, upvoted a post, or gone down a rabbit hole in a subreddit — you&rsquo;ve touched a system that serves hundreds of millions of users every day. But have you ever wondered what&rsquo;s actually happening under the hood? L...",
+    "wordCount": 4688,
+    "readingTime": "23 min",
+    "readingTimeMinutes": 23,
+    "originalUrl": "https://rishijeet.github.io/blog/how-reddit-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/reddit.png",
+    "isSystemDesign": true
+  },
+  {
+    "id": "how-whatsapp-works",
+    "slug": "how-whatsapp-works",
+    "title": "How WhatsApp Works?",
+    "date": "2026-05-01T22:30:48+05:30",
+    "formattedDate": "2026-05-01",
+    "year": "2026",
+    "categories": [
+      "system_design",
+      "architecture",
+      "technology",
+      "whatsapp",
+      "message",
+      "social_media"
+    ],
+    "excerpt": "WhatsApp started as a simple idea: replace SMS with something that worked over the internet. That idea, built out of a tiny team, grew into one of the most sophisticated real-time communication platforms on earth. Today it handles over 100 billion messages every single day, acros...",
+    "wordCount": 8778,
+    "readingTime": "44 min",
+    "readingTimeMinutes": 44,
+    "originalUrl": "https://rishijeet.github.io/blog/how-whatsapp-works/",
+    "coverImage": "https://rishijeet.github.io/images/system_design/whatsapp.png",
+    "isSystemDesign": true
+  },
+  {
+    "id": "a-desert-bean-and-an-oil-revolution",
+    "slug": "a-desert-bean-and-an-oil-revolution",
+    "title": "A Desert Bean and an Oil Revolution",
+    "date": "2026-04-11T17:31:23+05:30",
+    "formattedDate": "2026-04-11",
+    "year": "2026",
+    "categories": [
+      "oil",
+      "case_study"
+    ],
+    "excerpt": "How a nation that once begged OPEC for oil became the world&rsquo;s largest producer, with a little help from Rajasthan&rsquo;s desert farmers The Smell of Dependence Picture this. It is October 1973. Richard Nixon is in the White House. The Vietnam War is winding down. And in th...",
+    "wordCount": 2827,
+    "readingTime": "14 min",
+    "readingTimeMinutes": 14,
+    "originalUrl": "https://rishijeet.github.io/blog/a-desert-bean-and-an-oil-revolution/",
+    "coverImage": "https://rishijeet.github.io/images/2026/oil.jpg",
+    "isSystemDesign": false
+  },
+  {
+    "id": "black-gold-rules-the-world-everything-you-never-knew-about-oil",
+    "slug": "black-gold-rules-the-world-everything-you-never-knew-about-oil",
+    "title": "Black Gold Rules the World - Everything You Never Knew About Oil",
+    "date": "2026-04-11T09:45:11+05:30",
+    "formattedDate": "2026-04-11",
+    "year": "2026",
+    "categories": [
+      "oil",
+      "case_study",
+      "petroleum"
+    ],
+    "excerpt": "The world as we know it would not exist without petroleum. From the fuel in your car to the plastic in your phone case, oil is woven into almost every thread of modern civilization. But how did this thick, dark liquid buried miles underground become the most powerful commodity on...",
+    "wordCount": 2253,
+    "readingTime": "11 min",
+    "readingTimeMinutes": 11,
+    "originalUrl": "https://rishijeet.github.io/blog/black-gold-rules-the-world-everything-you-never-knew-about-oil/",
+    "coverImage": "https://rishijeet.github.io/images/2026/oil1.webp",
+    "isSystemDesign": false
+  },
+  {
+    "id": "the-future-of-software-engineering-in-the-age-of-ai",
+    "slug": "the-future-of-software-engineering-in-the-age-of-ai",
+    "title": "The Future of Software Engineering in the Age of AI",
+    "date": "2026-03-08T21:18:35+05:30",
+    "formattedDate": "2026-03-08",
+    "year": "2026",
+    "categories": [
+      "ai",
+      "agentic_ai",
+      "genai",
+      "software",
+      "developers",
+      "future"
+    ],
+    "excerpt": "Over the past year, one question keeps coming up in almost every tech discussion: Will AI replace software engineers? Source: AI We constantly see headlines about AI writing code, companies slowing down hiring, and tools that can generate entire applications in minutes. It is nat...",
+    "wordCount": 1149,
+    "readingTime": "6 min",
+    "readingTimeMinutes": 6,
+    "originalUrl": "https://rishijeet.github.io/blog/the-future-of-software-engineering-in-the-age-of-ai/",
+    "coverImage": "https://rishijeet.github.io/images/2026/future_of_ai.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "deepseek-mhc-fixing-the-hidden-chaos-in-giant-ais",
+    "slug": "deepseek-mhc-fixing-the-hidden-chaos-in-giant-ais",
+    "title": "DeepSeek mHC: Fixing the Hidden Chaos in Giant AIs",
+    "date": "2026-01-08T10:31:38+05:30",
+    "formattedDate": "2026-01-08",
+    "year": "2026",
+    "categories": [
+      "llm",
+      "genai",
+      "ai",
+      "ml"
+    ],
+    "excerpt": "If you&rsquo;re anything like me, you&rsquo;ve probably spent the last few years glued to the whirlwind of AI advancements. From ChatGPT blowing our minds to models getting bigger and smarter by the day, it&rsquo;s been a wild ride. But every now and then, something comes along t...",
+    "wordCount": 1750,
+    "readingTime": "9 min",
+    "readingTimeMinutes": 9,
+    "originalUrl": "https://rishijeet.github.io/blog/deepseek-mhc-fixing-the-hidden-chaos-in-giant-ais/",
+    "coverImage": "https://rishijeet.github.io/images/2026/mhc.webp",
+    "isSystemDesign": false
+  },
+  {
+    "id": "when-ai-quit-whispering-and-started-running-the-show",
+    "slug": "when-ai-quit-whispering-and-started-running-the-show",
+    "title": "When AI Quit Whispering and Started Running the Show",
+    "date": "2026-01-02T09:29:27+05:30",
+    "formattedDate": "2026-01-02",
+    "year": "2026",
+    "categories": [
+      "ai",
+      "story",
+      "2025",
+      "agentic_ai"
+    ],
+    "excerpt": "Listen to this post Your browser does not support the audio element. It&rsquo;s the last day of 2025, and I&rsquo;m hunched over my laptop in a Bengaluru apartment. The ceiling fans hum low, pushing back the winter chill. The air outside has that fake December bite—cool enough fo...",
+    "wordCount": 2447,
+    "readingTime": "12 min",
+    "readingTimeMinutes": 12,
+    "originalUrl": "https://rishijeet.github.io/blog/when-ai-quit-whispering-and-started-running-the-show/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "the-code-that-bit-back-surviving-ais-jagged-frontier-in-code-reviews",
+    "slug": "the-code-that-bit-back-surviving-ais-jagged-frontier-in-code-reviews",
+    "title": "The Code That Bit Back: Surviving AI's Jagged Frontier in Code Reviews",
+    "date": "2025-12-30T13:37:50+05:30",
+    "formattedDate": "2025-12-30",
+    "year": "2025",
+    "categories": [
+      "llm",
+      "ai",
+      "rag",
+      "agi",
+      "agentic_ai",
+      "story"
+    ],
+    "excerpt": "I remember the day our shiny new AI code reviewer went live like it was yesterday. It was a Tuesday in early 2025, and our team at EchoSoft—a mid-sized dev shop cranking out enterprise apps—had just pushed the button on integrating GPT-4o into our GitHub Actions pipeline. We&rsqu...",
+    "wordCount": 2079,
+    "readingTime": "10 min",
+    "readingTimeMinutes": 10,
+    "originalUrl": "https://rishijeet.github.io/blog/the-code-that-bit-back-surviving-ais-jagged-frontier-in-code-reviews/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "why-sapients-27m-parameter-hrm-matters-for-small-models-and-agi",
+    "slug": "why-sapients-27m-parameter-hrm-matters-for-small-models-and-agi",
+    "title": "When Size Isn’t Everything: Why Sapient’s 27M-Parameter HRM Matters for Small Models & AGI",
+    "date": "2025-11-30T19:29:17+05:30",
+    "formattedDate": "2025-11-30",
+    "year": "2025",
+    "categories": [
+      "llm",
+      "ai",
+      "slm",
+      "rag",
+      "agi",
+      "agentic_ai"
+    ],
+    "excerpt": "What is HRM (and why we should care) Singapore’s Sapient Intelligence introduced the Hierarchical Reasoning Model (HRM) — a 27M-parameter , brain-inspired, multi-timescale recurrent architecture trained with just 1,000 examples and no pre-training . According to the authors ( arx...",
+    "wordCount": 518,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/why-sapients-27m-parameter-hrm-matters-for-small-models-and-agi/",
+    "coverImage": "https://rishijeet.github.io/images/2025/hrm.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "the-trillion-dollar-question-is-ai-investment-a-bubble-or-the-future",
+    "slug": "the-trillion-dollar-question-is-ai-investment-a-bubble-or-the-future",
+    "title": "The $1.5 Trillion Question: Is AI Investment a Bubble or the Future?",
+    "date": "2025-10-19T10:16:24+05:30",
+    "formattedDate": "2025-10-19",
+    "year": "2025",
+    "categories": [
+      "ai",
+      "llm",
+      "research",
+      "startup"
+    ],
+    "excerpt": "The world is witnessing an investment phenomenon unlike anything since the dot-com boom. In 2024 alone, artificial intelligence companies attracted over $100 billion in venture capital funding, while semiconductor manufacturing has seen commitments exceeding $630 billion. Tech gi...",
+    "wordCount": 2929,
+    "readingTime": "15 min",
+    "readingTimeMinutes": 15,
+    "originalUrl": "https://rishijeet.github.io/blog/the-trillion-dollar-question-is-ai-investment-a-bubble-or-the-future/",
+    "coverImage": "https://rishijeet.github.io/images/2025/ai_circular_funding.jpg",
+    "isSystemDesign": false
+  },
+  {
+    "id": "attention-is-all-you-need-the-paper-that-revolutionized-ai",
+    "slug": "attention-is-all-you-need-the-paper-that-revolutionized-ai",
+    "title": "Attention Is All You Need: The Paper That Revolutionized AI",
+    "date": "2025-10-11T16:26:05+05:30",
+    "formattedDate": "2025-10-11",
+    "year": "2025",
+    "categories": [
+      "ai",
+      "llm",
+      "ml",
+      "rag"
+    ],
+    "excerpt": "In June 2017, eight researchers from Google Brain and Google Research published a paper that would fundamentally reshape artificial intelligence. Titled &ldquo;Attention Is All You Need,&rdquo; it introduced the Transformer architecture—a model that discarded the conventional wis...",
+    "wordCount": 2694,
+    "readingTime": "13 min",
+    "readingTimeMinutes": 13,
+    "originalUrl": "https://rishijeet.github.io/blog/attention-is-all-you-need-the-paper-that-revolutionized-ai/",
+    "coverImage": "https://rishijeet.github.io/images/2025/single-multi-head.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "from-sand-to-stars-the-amazing-journey-of-silicon-chips-to-quantum-computing",
+    "slug": "from-sand-to-stars-the-amazing-journey-of-silicon-chips-to-quantum-computing",
+    "title": "From Sand to Stars: The Amazing Journey of Silicon Chips to Quantum Computing",
+    "date": "2025-09-09T09:14:41+05:30",
+    "formattedDate": "2025-09-09",
+    "year": "2025",
+    "categories": [
+      "quantum",
+      "quantum_computing",
+      "quantum_leap",
+      "silicon",
+      "chip"
+    ],
+    "excerpt": "Imagine if I told you that the most powerful computers in the world are made from the same stuff you find at the beach. You&rsquo;d probably think I was kidding! But it&rsquo;s absolutely true. Silicon, the second most common element in Earth&rsquo;s crust, has been the secret in...",
+    "wordCount": 1851,
+    "readingTime": "9 min",
+    "readingTimeMinutes": 9,
+    "originalUrl": "https://rishijeet.github.io/blog/from-sand-to-stars-the-amazing-journey-of-silicon-chips-to-quantum-computing/",
+    "coverImage": "https://rishijeet.github.io/images/2025/wafer.avif",
+    "isSystemDesign": false
+  },
+  {
+    "id": "generative-ai-in-2025-global-trends-breakthroughs-and-future-horizons",
+    "slug": "generative-ai-in-2025-global-trends-breakthroughs-and-future-horizons",
+    "title": "Generative AI in 2025: Global Trends, Breakthroughs and Future Horizons",
+    "date": "2025-09-04T12:02:41+05:30",
+    "formattedDate": "2025-09-04",
+    "year": "2025",
+    "categories": [
+      "llm",
+      "genai",
+      "ai",
+      "ml"
+    ],
+    "excerpt": "Generative AI (GenAI) has transitioned from an experimental technology to a cornerstone of global innovation by 2025, reshaping industries, economies, and societal norms. This comprehensive overview draws on recent reports, surveys, and developments to explore the latest happenin...",
+    "wordCount": 1377,
+    "readingTime": "7 min",
+    "readingTimeMinutes": 7,
+    "originalUrl": "https://rishijeet.github.io/blog/generative-ai-in-2025-global-trends-breakthroughs-and-future-horizons/",
+    "coverImage": "https://rishijeet.github.io/images/2025/gen_ai_usage.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "quantum-computing-the-next-leap-beyond-classical-machines",
+    "slug": "quantum-computing-the-next-leap-beyond-classical-machines",
+    "title": "Quantum Computing: The Next Leap Beyond Classical Machines",
+    "date": "2025-09-01T20:56:37+05:30",
+    "formattedDate": "2025-09-01",
+    "year": "2025",
+    "categories": [
+      "quantum",
+      "quantum_computing",
+      "quantum_leap"
+    ],
+    "excerpt": "For decades, classical computers have been the backbone of innovation, powering everything from banking systems to spacecraft navigation. But as we continue to push the boundaries of science—whether simulating molecules for drug discovery, cracking complex optimization problems, ...",
+    "wordCount": 854,
+    "readingTime": "4 min",
+    "readingTimeMinutes": 4,
+    "originalUrl": "https://rishijeet.github.io/blog/quantum-computing-the-next-leap-beyond-classical-machines/",
+    "coverImage": "https://rishijeet.github.io/images/2025/qc.jpg",
+    "isSystemDesign": false
+  },
+  {
+    "id": "supercharge-reasoning-in-ai-hands-on-chain-of-thought-builds",
+    "slug": "supercharge-reasoning-in-ai-hands-on-chain-of-thought-builds",
+    "title": "Supercharge Reasoning in AI: Hands-On Chain of Thought Builds",
+    "date": "2025-08-29T13:26:07+05:30",
+    "formattedDate": "2025-08-29",
+    "year": "2025",
+    "categories": [
+      "cot",
+      "ai",
+      "llm",
+      "ml",
+      "rag"
+    ],
+    "excerpt": "Chain of Thought (CoT) is a prompting technique introduced in a 2022 paper by Google researchers (Wei et al., &ldquo;Chain-of-Thought Prompting Elicits Reasoning in Large Language Models&rdquo;). The core idea is simple: instead of asking an LLM for a direct answer, you instruct ...",
+    "wordCount": 1427,
+    "readingTime": "7 min",
+    "readingTimeMinutes": 7,
+    "originalUrl": "https://rishijeet.github.io/blog/supercharge-reasoning-in-ai-hands-on-chain-of-thought-builds/",
+    "coverImage": "https://rishijeet.github.io/images/2025/cot.webp",
+    "isSystemDesign": false
+  },
+  {
+    "id": "understanding-react-in-large-language-models",
+    "slug": "understanding-react-in-large-language-models",
+    "title": "Understanding ReAct in Large Language Models",
+    "date": "2025-08-28T08:48:16+05:30",
+    "formattedDate": "2025-08-28",
+    "year": "2025",
+    "categories": [
+      "ai",
+      "llm",
+      "mcp",
+      "a2a",
+      "rag",
+      "cot"
+    ],
+    "excerpt": "ReAct, short for Reasoning and Acting, is a paradigm for enhancing large language models (LLMs) by integrating verbal reasoning traces with task-specific actions. Introduced in a 2022 paper, it addresses limitations in chain-of-thought (CoT) prompting by allowing models to intera...",
+    "wordCount": 1551,
+    "readingTime": "8 min",
+    "readingTimeMinutes": 8,
+    "originalUrl": "https://rishijeet.github.io/blog/understanding-react-in-large-language-models/",
+    "coverImage": "https://rishijeet.github.io/images/2025/reAct.gif",
+    "isSystemDesign": false
+  },
+  {
+    "id": "deep-dive-into-context-mcp-a2a-and-rag",
+    "slug": "deep-dive-into-context-mcp-a2a-and-rag",
+    "title": "Deep Dive into Context: MCP, A2A and RAG",
+    "date": "2025-08-25T08:48:32+05:30",
+    "formattedDate": "2025-08-25",
+    "year": "2025",
+    "categories": [
+      "ai",
+      "rag",
+      "llm",
+      "a2a",
+      "mcp"
+    ],
+    "excerpt": "RAG combines retrieval from external sources with LLM generation to produce informed responses. For instance, it retrieves documents from a vector store before prompting the model. MCP, introduced by Anthropic, acts as a &ldquo;USB-C for AI,&rdquo; allowing models to dynamically ...",
+    "wordCount": 2057,
+    "readingTime": "10 min",
+    "readingTimeMinutes": 10,
+    "originalUrl": "https://rishijeet.github.io/blog/deep-dive-into-context-mcp-a2a-and-rag/",
+    "coverImage": "https://rishijeet.github.io/images/2025/mcp_rag_a2a.webp",
+    "isSystemDesign": false
+  },
+  {
+    "id": "efficient-fine-tuning-of-large-language-models-a-deep-dive-into-lora-and-qlora",
+    "slug": "efficient-fine-tuning-of-large-language-models-a-deep-dive-into-lora-and-qlora",
+    "title": "Efficient Fine-Tuning of Large Language Models: A Deep Dive into LoRA and QLoRA",
+    "date": "2025-08-17T18:27:01+05:30",
+    "formattedDate": "2025-08-17",
+    "year": "2025",
+    "categories": [
+      "llm",
+      "ai",
+      "ml"
+    ],
+    "excerpt": "In the era of large language models (LLMs) like GPT-3 and Llama, fine-tuning these behemoths for specific tasks has become a cornerstone of AI development. However, traditional full fine-tuning demands enormous computational resources, often requiring hundreds of GBs of GPU memor...",
+    "wordCount": 1035,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/efficient-fine-tuning-of-large-language-models-a-deep-dive-into-lora-and-qlora/",
+    "coverImage": "https://rishijeet.github.io/images/2025/lora_qlora.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "data-centers-in-the-united-states-and-ai-driven-developments",
+    "slug": "data-centers-in-the-united-states-and-ai-driven-developments",
+    "title": "Data Centers in the United States & AI-Driven Developments",
+    "date": "2025-07-27T23:25:21+05:30",
+    "formattedDate": "2025-07-27",
+    "year": "2025",
+    "categories": [
+      "llm",
+      "ai",
+      "energy",
+      "data_center"
+    ],
+    "excerpt": "Data centers are the backbone of the digital economy, housing the servers, storage systems, and networking equipment that power cloud computing, web services, and data-intensive applications. In the United States, data centers are strategically located to meet the demands of busi...",
+    "wordCount": 1240,
+    "readingTime": "6 min",
+    "readingTimeMinutes": 6,
+    "originalUrl": "https://rishijeet.github.io/blog/data-centers-in-the-united-states-and-ai-driven-developments/",
+    "coverImage": "https://rishijeet.github.io/images/2025/data_center.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "energy-requirements-for-ai-infrastructure-current-and-future-impacts",
+    "slug": "energy-requirements-for-ai-infrastructure-current-and-future-impacts",
+    "title": "Energy Requirements for AI Infrastructure: Current and Future Impacts",
+    "date": "2025-07-26T21:16:34+05:30",
+    "formattedDate": "2025-07-26",
+    "year": "2025",
+    "categories": [
+      "llm",
+      "ai",
+      "energy",
+      "data_center"
+    ],
+    "excerpt": "The rapid expansion of artificial intelligence (AI), particularly large language models (LLMs) and generative AI, has driven an unprecedented surge in energy demand due to the computational intensity of training and operating these systems. Eric Schmidt, former Google CEO, has hi...",
+    "wordCount": 1843,
+    "readingTime": "9 min",
+    "readingTimeMinutes": 9,
+    "originalUrl": "https://rishijeet.github.io/blog/energy-requirements-for-ai-infrastructure-current-and-future-impacts/",
+    "coverImage": "https://rishijeet.github.io/images/2025/Screenshot%202025-07-26%20at%208.43.24%E2%80%AFPM.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "from-text-to-tokens-the-complete-guide-to-tokenization-in-llms",
+    "slug": "from-text-to-tokens-the-complete-guide-to-tokenization-in-llms",
+    "title": "From Text to Tokens: The Complete Guide to Tokenization in LLMs",
+    "date": "2025-06-28T08:55:51+05:30",
+    "formattedDate": "2025-06-28",
+    "year": "2025",
+    "categories": [
+      "llm",
+      "ai"
+    ],
+    "excerpt": "In the ever-evolving field of artificial intelligence, large language models (LLMs) like GPT-4, Claude, Gemini, and LLaMA have reshaped how machines understand and generate human language. Behind the impressive capabilities of these models lies a deceptively simple but foundation...",
+    "wordCount": 1029,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/from-text-to-tokens-the-complete-guide-to-tokenization-in-llms/",
+    "coverImage": "https://rishijeet.github.io/images/2025/token.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "electric-illusion-the-rise-and-fall-of-blusmart",
+    "slug": "electric-illusion-the-rise-and-fall-of-blusmart",
+    "title": "Electric Illusion: The Rise and Fall of BluSmart",
+    "date": "2025-06-15T20:38:26+05:30",
+    "formattedDate": "2025-06-15",
+    "year": "2025",
+    "categories": [
+      "case_study",
+      "scandals",
+      "startups"
+    ],
+    "excerpt": "BluSmart was once a symbol of India&rsquo;s clean energy aspirations — an all-electric ride-hailing platform backed by marquee investors and government lenders. With its zero-emissions fleet and no-surge pricing model, it quickly gained popularity in cities like Delhi and Bengalu...",
+    "wordCount": 847,
+    "readingTime": "4 min",
+    "readingTimeMinutes": 4,
+    "originalUrl": "https://rishijeet.github.io/blog/electric-illusion-the-rise-and-fall-of-blusmart/",
+    "coverImage": "https://rishijeet.github.io/images/2025/blusmart-logo.webp",
+    "isSystemDesign": false
+  },
+  {
+    "id": "ftx-scandal-2023-timeline",
+    "slug": "ftx-scandal-2023-timeline",
+    "title": "FTX Scandal 2023: Timeline, Facts, and Key Players",
+    "date": "2025-06-14T13:49:37+05:30",
+    "formattedDate": "2025-06-14",
+    "year": "2025",
+    "categories": [
+      "case_study",
+      "scandals",
+      "crypto"
+    ],
+    "excerpt": "In the annals of modern financial history, few names have sparked as much controversy, disbelief, and chaos as Futures Exchange (FTX) . Once hailed as a shining star of the cryptocurrency world, FTX’s meteoric rise and catastrophic fall stunned investors, regulators, and the gene...",
+    "wordCount": 943,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/ftx-scandal-2023-timeline/",
+    "coverImage": "https://rishijeet.github.io/images/2025/ftx.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "smartcase-engine-a-modern-framework-for-intelligent-case-management",
+    "slug": "smartcase-engine-a-modern-framework-for-intelligent-case-management",
+    "title": "Smartcase Engine: A Modern Framework for Intelligent Case Management",
+    "date": "2025-05-27T22:54:42+05:30",
+    "formattedDate": "2025-05-27",
+    "year": "2025",
+    "categories": [
+      "ai",
+      "case_management",
+      "smart_dispute",
+      "llm",
+      "agentic_ai"
+    ],
+    "excerpt": "In today&rsquo;s dynamic business environment, efficient case management is paramount. Enter Smartcase Engine , an advanced case management framework designed to streamline complex case handling through real-time tracking, efficient workflows, and automated decision-making proces...",
+    "wordCount": 1011,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/smartcase-engine-a-modern-framework-for-intelligent-case-management/",
+    "coverImage": "https://rishijeet.github.io/images/2025/smartcase_engine.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "model-context-protocol-mcp-the-backbone-of-dynamic-ai-workflows",
+    "slug": "model-context-protocol-mcp-the-backbone-of-dynamic-ai-workflows",
+    "title": "Model Context Protocol (MCP): The Backbone of Dynamic AI Workflows",
+    "date": "2025-04-08T23:14:14+05:30",
+    "formattedDate": "2025-04-08",
+    "year": "2025",
+    "categories": [
+      "mcp",
+      "llm",
+      "genai",
+      "ai_agents"
+    ],
+    "excerpt": "As the AI landscape rapidly evolves, the demand for systems that support modular , context-aware , and efficient orchestration of models has grown. Enter the Model Context Protocol (MCP) — a rising standard that enables dynamic, multi-agent AI systems to exchange context, manage ...",
+    "wordCount": 926,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/model-context-protocol-mcp-the-backbone-of-dynamic-ai-workflows/",
+    "coverImage": "https://rishijeet.github.io/images/2025/mcp_server",
+    "isSystemDesign": false
+  },
+  {
+    "id": "high-flyer-pioneering-ai-in-finance",
+    "slug": "high-flyer-pioneering-ai-in-finance",
+    "title": "High-Flyer: Pioneering AI in Finance",
+    "date": "2025-03-30T20:13:12+05:30",
+    "formattedDate": "2025-03-30",
+    "year": "2025",
+    "categories": [
+      "ai",
+      "llm",
+      "genai",
+      "deepseek"
+    ],
+    "excerpt": "In the rapidly evolving landscape of artificial intelligence (AI), China&rsquo;s DeepSeek has emerged as a formidable contender, challenging established players and redefining industry standards. This ascent is deeply intertwined with High-Flyer, an AI-driven quantitative hedge f...",
+    "wordCount": 640,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/high-flyer-pioneering-ai-in-finance/",
+    "coverImage": "https://rishijeet.github.io/images/2025/deepseek.jpg",
+    "isSystemDesign": false
+  },
+  {
+    "id": "buddhi-pushing-the-boundaries-of-long-context-open-source-ai",
+    "slug": "buddhi-pushing-the-boundaries-of-long-context-open-source-ai",
+    "title": "Buddhi: Pushing the Boundaries of Long-Context Open-Source AI",
+    "date": "2025-03-25T08:24:38+05:30",
+    "formattedDate": "2025-03-25",
+    "year": "2025",
+    "categories": [
+      "ai",
+      "llm",
+      "genai"
+    ],
+    "excerpt": "AI Planet has introduced Buddhi-128K-Chat-7B, an open-source chat model distinguished by its expansive 128,000-token context window. This advancement enables the model to process and retain extensive contextual information, enhancing its performance in tasks requiring deep contex...",
+    "wordCount": 519,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/buddhi-pushing-the-boundaries-of-long-context-open-source-ai/",
+    "coverImage": "https://rishijeet.github.io/images/2025/buddhi.webp",
+    "isSystemDesign": false
+  },
+  {
+    "id": "coca-cola-a-legacy-of-success",
+    "slug": "coca-cola-a-legacy-of-success",
+    "title": "Coca-Cola: A Legacy of Success, Controversy, and Resilience",
+    "date": "2025-03-09T21:07:15+05:30",
+    "formattedDate": "2025-03-09",
+    "year": "2025",
+    "categories": [
+      "case_study",
+      "fmcg"
+    ],
+    "excerpt": "Coca-Cola is one of the most iconic brands in the world, with a history spanning over a century. It has become synonymous with soft drinks, creating a massive global presence. This case study explores Coca-Cola’s success story, key crises, and scandals, as well as how the company...",
+    "wordCount": 708,
+    "readingTime": "4 min",
+    "readingTimeMinutes": 4,
+    "originalUrl": "https://rishijeet.github.io/blog/coca-cola-a-legacy-of-success/",
+    "coverImage": "https://rishijeet.github.io/images/2025/coca_cola.jpg",
+    "isSystemDesign": false
+  },
+  {
+    "id": "case-study-the-collapse-of-silicon-valley-bank",
+    "slug": "case-study-the-collapse-of-silicon-valley-bank",
+    "title": "Case Study: The Collapse of Silicon Valley Bank",
+    "date": "2025-03-09T11:48:11+05:30",
+    "formattedDate": "2025-03-09",
+    "year": "2025",
+    "categories": [
+      "case_study",
+      "banks",
+      "fintech",
+      "startup"
+    ],
+    "excerpt": "Silicon Valley Bank (SVB) was one of the largest banks catering to the startup and venture capital ecosystem in the United States. Its sudden collapse in March 2023 sent shockwaves through the financial sector, prompting government intervention and raising concerns about the stab...",
+    "wordCount": 647,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/case-study-the-collapse-of-silicon-valley-bank/",
+    "coverImage": "https://rishijeet.github.io/images/2025/svb.webp",
+    "isSystemDesign": false
+  },
+  {
+    "id": "case-study-the-collapse-of-credit-suisse",
+    "slug": "case-study-the-collapse-of-credit-suisse",
+    "title": "Case Study: The Collapse of Credit Suisse",
+    "date": "2025-03-09T11:28:00+05:30",
+    "formattedDate": "2025-03-09",
+    "year": "2025",
+    "categories": [
+      "case_study",
+      "banks",
+      "fintech"
+    ],
+    "excerpt": "Credit Suisse, one of Switzerland’s most prestigious banks, fell from grace due to years of scandals, mismanagement, and financial instability. Once a symbol of Swiss banking excellence, the bank collapsed in 2023, forcing a historic takeover by UBS. This case study explores the ...",
+    "wordCount": 777,
+    "readingTime": "4 min",
+    "readingTimeMinutes": 4,
+    "originalUrl": "https://rishijeet.github.io/blog/case-study-the-collapse-of-credit-suisse/",
+    "coverImage": "https://rishijeet.github.io/images/2025/credit_suisse.webp",
+    "isSystemDesign": false
+  },
+  {
+    "id": "the-great-recession-a-tale-of-boom",
+    "slug": "the-great-recession-a-tale-of-boom",
+    "title": "The Great Recession: A Tale of Boom",
+    "date": "2025-02-28T21:37:56+05:30",
+    "formattedDate": "2025-02-28",
+    "year": "2025",
+    "categories": [
+      "case_study",
+      "fintech",
+      "banks"
+    ],
+    "excerpt": "Prologue: The Illusion of Prosperity In the early 2000s, the United States and much of the Western world were riding high on a wave of economic prosperity. The stock market was booming, home prices were soaring, and credit was available to almost anyone who wanted it. The America...",
+    "wordCount": 798,
+    "readingTime": "4 min",
+    "readingTimeMinutes": 4,
+    "originalUrl": "https://rishijeet.github.io/blog/the-great-recession-a-tale-of-boom/",
+    "coverImage": "https://rishijeet.github.io/images/2025/subprime.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "case-study-lipton-a-global-tea-powerhouse",
+    "slug": "case-study-lipton-a-global-tea-powerhouse",
+    "title": "Case Study: Lipton – A Global Tea Powerhouse",
+    "date": "2025-02-26T18:16:23+05:30",
+    "formattedDate": "2025-02-26",
+    "year": "2025",
+    "categories": [
+      "case_study",
+      "fmcg"
+    ],
+    "excerpt": "In the bustling streets of Glasgow, Scotland, in the 1870s, a young, ambitious entrepreneur named Sir Thomas Lipton had a vision—to make tea, once a luxury for the elite, accessible to everyone. Little did he know that his dream would evolve into a global tea empire that would re...",
+    "wordCount": 620,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/case-study-lipton-a-global-tea-powerhouse/",
+    "coverImage": "https://rishijeet.github.io/images/2025/lipton_logo.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "using-explainable-ai-xai-in-fintech",
+    "slug": "using-explainable-ai-xai-in-fintech",
+    "title": "Using Explainable AI (XAI) in Fintech",
+    "date": "2025-01-23T10:07:03+05:30",
+    "formattedDate": "2025-01-23",
+    "year": "2025",
+    "categories": [
+      "ai",
+      "xai",
+      "fintech"
+    ],
+    "excerpt": "Introduction to Explainable AI (XAI) Explainable AI (XAI) refers to the subset of artificial intelligence focused on making the decisions and predictions of AI models understandable and interpretable to humans. As AI systems grow in complexity, particularly with the use of deep l...",
+    "wordCount": 649,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/using-explainable-ai-xai-in-fintech/",
+    "coverImage": "https://rishijeet.github.io/images/2025/xai.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "mlx-vs-cuda-a-detailed-technical-comparison",
+    "slug": "mlx-vs-cuda-a-detailed-technical-comparison",
+    "title": "MLX vs CUDA: A Detailed Technical Comparison",
+    "date": "2025-01-21T07:45:30+05:30",
+    "formattedDate": "2025-01-21",
+    "year": "2025",
+    "categories": [
+      "cuda",
+      "ai",
+      "mlx",
+      "ml"
+    ],
+    "excerpt": "Machine learning frameworks and technologies continue to evolve, leading to the rise of competing platforms designed to maximize performance, flexibility, and ease of use for modern AI workloads. Two prominent frameworks, MLX (Machine Learning Exchange) and CUDA (Compute Unified ...",
+    "wordCount": 716,
+    "readingTime": "4 min",
+    "readingTimeMinutes": 4,
+    "originalUrl": "https://rishijeet.github.io/blog/mlx-vs-cuda-a-detailed-technical-comparison/",
+    "coverImage": "https://rishijeet.github.io/images/2025/cuda.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "apache-airflow-architecture-a-detailed-overview",
+    "slug": "apache-airflow-architecture-a-detailed-overview",
+    "title": "Apache Airflow Architecture: A Detailed Overview",
+    "date": "2024-10-08T09:35:07+05:30",
+    "formattedDate": "2024-10-08",
+    "year": "2024",
+    "categories": [
+      "dag",
+      "microservice"
+    ],
+    "excerpt": "Apache Airflow is a powerful open-source platform used to programmatically author, schedule, and monitor workflows. It is designed for complex data engineering tasks, pipeline automation, and orchestrating multiple processes. This article will break down Airflow&rsquo;s architect...",
+    "wordCount": 1028,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/apache-airflow-architecture-a-detailed-overview/",
+    "coverImage": "https://rishijeet.github.io/images/2024/apache_airflow.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "ktor-a-lightweight-framework-for-building-asynchronous-web-applications",
+    "slug": "ktor-a-lightweight-framework-for-building-asynchronous-web-applications",
+    "title": "Ktor: A Lightweight Framework for Building Asynchronous Web Applications",
+    "date": "2024-08-24T13:13:46+05:30",
+    "formattedDate": "2024-08-24",
+    "year": "2024",
+    "categories": [
+      "ktor",
+      "async",
+      "kotlin",
+      "microservice",
+      "android"
+    ],
+    "excerpt": "Ktor is a Kotlin-based framework developed by JetBrains for building asynchronous web applications and microservices. Unlike many traditional frameworks, Ktor is designed to be lightweight and flexible, allowing developers to create highly customized applications without unnecess...",
+    "wordCount": 1082,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/ktor-a-lightweight-framework-for-building-asynchronous-web-applications/",
+    "coverImage": "https://rishijeet.github.io/images/2024/ktor.webp",
+    "isSystemDesign": false
+  },
+  {
+    "id": "vert-dot-x-the-reactive-toolkit-for-modern-applications",
+    "slug": "vert-dot-x-the-reactive-toolkit-for-modern-applications",
+    "title": "Vert.x: The Reactive Toolkit for Modern Applications",
+    "date": "2024-08-03T23:22:56+05:30",
+    "formattedDate": "2024-08-03",
+    "year": "2024",
+    "categories": [
+      "vert.x",
+      "reactive",
+      "event",
+      "microservice"
+    ],
+    "excerpt": "In the realm of modern web applications, responsiveness and scalability are paramount. Vert.x, a toolkit for building reactive applications on the JVM, stands out due to its performance and flexibility. Vert.x is polyglot, allowing developers to use multiple languages such as Jav...",
+    "wordCount": 913,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/vert-dot-x-the-reactive-toolkit-for-modern-applications/",
+    "coverImage": "https://rishijeet.github.io/images/2024/vertx.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "exploring-coroutines-concurrency-made-easy",
+    "slug": "exploring-coroutines-concurrency-made-easy",
+    "title": "Exploring Coroutines: Concurrency Made Easy",
+    "date": "2024-08-03T18:29:50+05:30",
+    "formattedDate": "2024-08-03",
+    "year": "2024",
+    "categories": [
+      "coroutines",
+      "concurrency",
+      "kotlin"
+    ],
+    "excerpt": "Concurrency is a critical aspect of modern software development, enabling applications to perform multiple tasks simultaneously. Traditional approaches to concurrency, such as threads, often come with complexity and overhead. Coroutines offer a powerful alternative by providing a...",
+    "wordCount": 845,
+    "readingTime": "4 min",
+    "readingTimeMinutes": 4,
+    "originalUrl": "https://rishijeet.github.io/blog/exploring-coroutines-concurrency-made-easy/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "micronaut-the-modern-framework-for-microservices",
+    "slug": "micronaut-the-modern-framework-for-microservices",
+    "title": "Micronaut: The Modern Framework for Microservices",
+    "date": "2024-08-01T23:37:24+05:30",
+    "formattedDate": "2024-08-01",
+    "year": "2024",
+    "categories": [
+      "micronaut",
+      "microservice",
+      "jvm"
+    ],
+    "excerpt": "Micronaut is a JVM-based framework designed for building modular, easily testable microservices and serverless applications. It is built with modern development practices and performance optimizations in mind. Here, we’ll explore Micronaut in depth, focusing on its core features,...",
+    "wordCount": 1004,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/micronaut-the-modern-framework-for-microservices/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "introduction-to-graalvm",
+    "slug": "introduction-to-graalvm",
+    "title": "Introduction to GraalVM",
+    "date": "2024-08-01T23:11:16+05:30",
+    "formattedDate": "2024-08-01",
+    "year": "2024",
+    "categories": [
+      "graalvm",
+      "performance",
+      "microservice"
+    ],
+    "excerpt": "GraalVM is a high-performance runtime that provides significant improvements in application performance and efficiency. It is designed to execute applications written in Java, JavaScript, LLVM-based languages such as C and C++, and other dynamic languages. What sets GraalVM apart...",
+    "wordCount": 1044,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/introduction-to-graalvm/",
+    "coverImage": "https://rishijeet.github.io/images/2024/graalvm.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "exploring-quarkus-performance",
+    "slug": "exploring-quarkus-performance",
+    "title": "Exploring Quarkus Performance",
+    "date": "2024-07-31T10:00:32+05:30",
+    "formattedDate": "2024-07-31",
+    "year": "2024",
+    "categories": [
+      "quarkus",
+      "microservice"
+    ],
+    "excerpt": "Quarkus is an open-source Kubernetes-native Java framework tailored for GraalVM and OpenJDK HotSpot. It is designed to optimize Java specifically for containers, making it an ideal platform for serverless, cloud-native, and microservices environments. In this blog, we will delve ...",
+    "wordCount": 537,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/exploring-quarkus-performance/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "a-shift-from-devops-to-devex-shaping-the-future-of-technology",
+    "slug": "a-shift-from-devops-to-devex-shaping-the-future-of-technology",
+    "title": "A Shift from DevOps to DevEx: Shaping the Future of Technology",
+    "date": "2024-07-16T10:14:26+05:30",
+    "formattedDate": "2024-07-16",
+    "year": "2024",
+    "categories": [
+      "devops",
+      "devex",
+      "aiops",
+      "mlops",
+      "devsecops",
+      "noops"
+    ],
+    "excerpt": "DevOps has transformed the software development lifecycle by integrating development and operations, fostering collaboration, and automating processes to enhance efficiency. However, as technology evolves, there is a growing focus on Developer Experience (DevEx), which aims to op...",
+    "wordCount": 642,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/a-shift-from-devops-to-devex-shaping-the-future-of-technology/",
+    "coverImage": "https://rishijeet.github.io/images/2024/devex_met.webp",
+    "isSystemDesign": false
+  },
+  {
+    "id": "the-role-of-gpus-in-large-language-models-llms",
+    "slug": "the-role-of-gpus-in-large-language-models-llms",
+    "title": "The Role of GPUs in Large Language Models (LLMs): Types, Requirements & Costs",
+    "date": "2024-07-03T10:32:17+05:30",
+    "formattedDate": "2024-07-03",
+    "year": "2024",
+    "categories": [
+      "llm",
+      "gpu",
+      "ai"
+    ],
+    "excerpt": "Large Language Models (LLMs) like GPT-3, BERT, and T5 have revolutionized natural language processing (NLP). However, training and fine-tuning these models require substantial computational resources. Graphics Processing Units (GPUs) are critical in this context, providing the ne...",
+    "wordCount": 1269,
+    "readingTime": "6 min",
+    "readingTimeMinutes": 6,
+    "originalUrl": "https://rishijeet.github.io/blog/the-role-of-gpus-in-large-language-models-llms/",
+    "coverImage": "https://rishijeet.github.io/images/2024/nvidia_a100.jpg",
+    "isSystemDesign": false
+  },
+  {
+    "id": "understanding-types-of-large-language-models-llms",
+    "slug": "understanding-types-of-large-language-models-llms",
+    "title": "Understanding Types of Large Language Models (LLMs)",
+    "date": "2024-07-03T10:13:27+05:30",
+    "formattedDate": "2024-07-03",
+    "year": "2024",
+    "categories": [
+      "llm",
+      "ai"
+    ],
+    "excerpt": "Large Language Models (LLMs) have revolutionized the field of natural language processing (NLP) with their ability to understand, generate, and interact with human language. These models are built using deep learning techniques and have been trained on vast amounts of text data. ...",
+    "wordCount": 640,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/understanding-types-of-large-language-models-llms/",
+    "coverImage": "https://rishijeet.github.io/images/2024/gpt.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "advanced-apache-kafka-anatomy-delving-deep-into-the-core-components",
+    "slug": "advanced-apache-kafka-anatomy-delving-deep-into-the-core-components",
+    "title": "Advanced Apache Kafka Anatomy: Delving Deep into the Core Components",
+    "date": "2024-06-27T09:55:12+05:30",
+    "formattedDate": "2024-06-27",
+    "year": "2024",
+    "categories": [
+      "kafka",
+      "architecture"
+    ],
+    "excerpt": "Apache Kafka has become a cornerstone of modern data architectures, renowned for its ability to handle high-throughput, low-latency data streams. While its fundamental concepts are widely understood, a deeper dive into Kafka’s advanced components and features reveals the true pow...",
+    "wordCount": 884,
+    "readingTime": "4 min",
+    "readingTimeMinutes": 4,
+    "originalUrl": "https://rishijeet.github.io/blog/advanced-apache-kafka-anatomy-delving-deep-into-the-core-components/",
+    "coverImage": "https://rishijeet.github.io/images/2024/kafka_broker.png",
+    "isSystemDesign": true
+  },
+  {
+    "id": "exploring-grpc-the-next-generation-of-remote-procedure-calls",
+    "slug": "exploring-grpc-the-next-generation-of-remote-procedure-calls",
+    "title": "Exploring gRPC: The Next Generation of Remote Procedure Calls",
+    "date": "2024-06-26T09:54:48+05:30",
+    "formattedDate": "2024-06-26",
+    "year": "2024",
+    "categories": [
+      "grpc",
+      "rest",
+      "http"
+    ],
+    "excerpt": "In the realm of distributed systems and microservices, effective communication between services is paramount. For many years, REST (Representational State Transfer) has been the dominant paradigm for building APIs. However, gRPC (gRPC Remote Procedure Calls) is emerging as a powe...",
+    "wordCount": 733,
+    "readingTime": "4 min",
+    "readingTimeMinutes": 4,
+    "originalUrl": "https://rishijeet.github.io/blog/exploring-grpc-the-next-generation-of-remote-procedure-calls/",
+    "coverImage": "https://rishijeet.github.io/images/2024/grpc.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "event-driven-architecture-unlocking-modern-application-potential",
+    "slug": "event-driven-architecture-unlocking-modern-application-potential",
+    "title": "Event-Driven Architecture: Unlocking Modern Application Potential",
+    "date": "2024-06-26T09:27:40+05:30",
+    "formattedDate": "2024-06-26",
+    "year": "2024",
+    "categories": [
+      "architecture",
+      "event",
+      "mq",
+      "kafka"
+    ],
+    "excerpt": "In today&rsquo;s fast-paced digital landscape, real-time data processing and responsive systems are becoming increasingly crucial. Traditional request-response architectures often struggle to keep up with the demands of modern applications, which require scalable, resilient, and ...",
+    "wordCount": 992,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/event-driven-architecture-unlocking-modern-application-potential/",
+    "coverImage": "https://rishijeet.github.io/images/2024/glossary-eda.svg",
+    "isSystemDesign": true
+  },
+  {
+    "id": "understanding-the-bloom-filter",
+    "slug": "understanding-the-bloom-filter",
+    "title": "Understanding the Bloom filter",
+    "date": "2024-06-11T10:09:01+05:30",
+    "formattedDate": "2024-06-11",
+    "year": "2024",
+    "categories": [
+      "bloom_filter",
+      "algorithm",
+      "data_structure"
+    ],
+    "excerpt": "A Bloom filter is a probabilistic data structure used to test whether an element is a member of a set. It is highly space-efficient and allows for fast query operations, but it has a small risk of false positives (reporting that an element is in the set when it is not) while guar...",
+    "wordCount": 2360,
+    "readingTime": "12 min",
+    "readingTimeMinutes": 12,
+    "originalUrl": "https://rishijeet.github.io/blog/understanding-the-bloom-filter/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "cassandra-under-the-hood",
+    "slug": "cassandra-under-the-hood",
+    "title": "Cassandra - Under the hood",
+    "date": "2024-05-22T23:48:44+05:30",
+    "formattedDate": "2024-05-22",
+    "year": "2024",
+    "categories": [
+      "database",
+      "cassandra",
+      "nosql"
+    ],
+    "excerpt": "Apache Cassandra is designed to handle large amounts of data across many commodity servers without any single point of failure. This architecture allows it to provide high availability and fault tolerance, making it an excellent choice for large-scale, mission-critical applicatio...",
+    "wordCount": 1184,
+    "readingTime": "6 min",
+    "readingTimeMinutes": 6,
+    "originalUrl": "https://rishijeet.github.io/blog/cassandra-under-the-hood/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "advantages-of-enable-checkpointing-in-apache-flink",
+    "slug": "advantages-of-enable-checkpointing-in-apache-flink",
+    "title": "Advantages of Enable Checkpointing in Apache Flink",
+    "date": "2024-05-19T21:32:50+05:30",
+    "formattedDate": "2024-05-19",
+    "year": "2024",
+    "categories": [
+      "apache-flink",
+      "streaming-data"
+    ],
+    "excerpt": "Enabling checkpointing in Apache Flink provides significant advantages for ensuring the reliability, consistency, and fault-tolerance of stream processing applications. Below, I detail the benefits and provide a code example. Advantages of Checkpointing Fault Tolerance Checkpoint...",
+    "wordCount": 513,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/advantages-of-enable-checkpointing-in-apache-flink/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "understanding-windowing-in-apache-flink",
+    "slug": "understanding-windowing-in-apache-flink",
+    "title": "Understanding Windowing in Apache Flink",
+    "date": "2024-05-19T20:57:38+05:30",
+    "formattedDate": "2024-05-19",
+    "year": "2024",
+    "categories": [
+      "apache-flink",
+      "streaming-data"
+    ],
+    "excerpt": "Windowing is a fundamental concept in stream processing that allows you to group a continuous stream of events into finite chunks for processing. Apache Flink provides powerful windowing capabilities that support various window types and triggers for flexible, real-time data anal...",
+    "wordCount": 926,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/understanding-windowing-in-apache-flink/",
+    "coverImage": "https://rishijeet.github.io/images/windows.svg",
+    "isSystemDesign": false
+  },
+  {
+    "id": "understanding-watermarks-in-apache-flink",
+    "slug": "understanding-watermarks-in-apache-flink",
+    "title": "Understanding Watermarks in Apache Flink",
+    "date": "2024-05-19T20:35:48+05:30",
+    "formattedDate": "2024-05-19",
+    "year": "2024",
+    "categories": [
+      "apache-flink",
+      "streaming-data"
+    ],
+    "excerpt": "What are Watermarks? Watermarks in Apache Flink are a mechanism to handle event time and out-of-order events in stream processing. They represent a point in time in the data stream and indicate that no events with timestamps earlier than the watermark should be expected. Essentia...",
+    "wordCount": 906,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/understanding-watermarks-in-apache-flink/",
+    "coverImage": "https://rishijeet.github.io/images/stream_watermark_in_order.svg",
+    "isSystemDesign": false
+  },
+  {
+    "id": "understanding-event-time-in-apache-flink",
+    "slug": "understanding-event-time-in-apache-flink",
+    "title": "Understanding Event Time in Apache Flink",
+    "date": "2024-05-19T20:22:47+05:30",
+    "formattedDate": "2024-05-19",
+    "year": "2024",
+    "categories": [
+      "apache-flink",
+      "streaming-data"
+    ],
+    "excerpt": "What is Event Time? Event Time is one of the three time semantics in Apache Flink, along with Ingestion Time and Processing Time. Event Time refers to the time at which each individual event actually occurred, typically extracted from the event itself. This contrasts with Process...",
+    "wordCount": 755,
+    "readingTime": "4 min",
+    "readingTimeMinutes": 4,
+    "originalUrl": "https://rishijeet.github.io/blog/understanding-event-time-in-apache-flink/",
+    "coverImage": "https://rishijeet.github.io/images/event_processing_time.svg",
+    "isSystemDesign": false
+  },
+  {
+    "id": "using-broadcast-state-pattern-in-flink-for-fraud-detection",
+    "slug": "using-broadcast-state-pattern-in-flink-for-fraud-detection",
+    "title": "Using Broadcast State Pattern in Flink for Fraud Detection",
+    "date": "2024-05-19T19:47:48+05:30",
+    "formattedDate": "2024-05-19",
+    "year": "2024",
+    "categories": [
+      "apache-flink",
+      "fraud",
+      "streaming-data"
+    ],
+    "excerpt": "The Broadcast State Pattern in Apache Flink is a powerful feature for real-time stream processing, particularly useful for scenarios like fraud detection. This pattern allows you to maintain a shared state that can be updated and accessed by multiple parallel instances of a strea...",
+    "wordCount": 688,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/using-broadcast-state-pattern-in-flink-for-fraud-detection/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "efficient-thread-handling-in-rust-a-deep-dive",
+    "slug": "efficient-thread-handling-in-rust-a-deep-dive",
+    "title": "Efficient Thread Handling in Rust: A Deep Dive",
+    "date": "2024-04-16T19:43:17+05:30",
+    "formattedDate": "2024-04-16",
+    "year": "2024",
+    "categories": [
+      "rust"
+    ],
+    "excerpt": "Concurrency is a fundamental aspect of modern software development, and Rust provides robust abstractions for managing concurrent tasks through its ownership and borrowing system. Threads, a primary mechanism for concurrent programming in Rust, can be efficiently handled using va...",
+    "wordCount": 720,
+    "readingTime": "4 min",
+    "readingTimeMinutes": 4,
+    "originalUrl": "https://rishijeet.github.io/blog/efficient-thread-handling-in-rust-a-deep-dive/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "enhancing-natural-language-processing-with-retrieval-augmented-generation",
+    "slug": "enhancing-natural-language-processing-with-retrieval-augmented-generation",
+    "title": "Enhancing Natural Language Processing with Retrieval-Augmented Generation",
+    "date": "2024-01-13T20:34:07+05:30",
+    "formattedDate": "2024-01-13",
+    "year": "2024",
+    "categories": [
+      "rag",
+      "ai",
+      "gpt",
+      "nlp"
+    ],
+    "excerpt": "Natural Language Processing (NLP) has witnessed remarkable advancements in recent years, with the advent of sophisticated language models like GPT-3 (Generative Pre-trained Transformer 3). However, one of the challenges that still persists in NLP is the generation of coherent and...",
+    "wordCount": 881,
+    "readingTime": "4 min",
+    "readingTimeMinutes": 4,
+    "originalUrl": "https://rishijeet.github.io/blog/enhancing-natural-language-processing-with-retrieval-augmented-generation/",
+    "coverImage": "https://rishijeet.github.io/images/rag_new.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "the-ai-horizon-unveiling-the-titans-gemini",
+    "slug": "the-ai-horizon-unveiling-the-titans-gemini",
+    "title": "The AI Horizon: Unveiling the Titans - Gemini, Llama2, Olympus, Ajax, and Orca 2",
+    "date": "2023-12-23T22:49:43+05:30",
+    "formattedDate": "2023-12-23",
+    "year": "2023",
+    "categories": [
+      "llm",
+      "ai",
+      "gpt"
+    ],
+    "excerpt": "Introduction Artificial Intelligence (AI) has witnessed remarkable advancements in recent years, with various tech giants investing heavily in developing large language models (LLMs) to enhance natural language understanding and generation. This article delves into the technical ...",
+    "wordCount": 923,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/the-ai-horizon-unveiling-the-titans-gemini/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "vector-database-transforming-data-storage-and-retrieval-in-the-ai-era",
+    "slug": "vector-database-transforming-data-storage-and-retrieval-in-the-ai-era",
+    "title": "Vector Database: Transforming Data Storage and Retrieval in the AI Era",
+    "date": "2023-11-05T22:09:04+05:30",
+    "formattedDate": "2023-11-05",
+    "year": "2023",
+    "categories": [
+      "llm",
+      "database",
+      "ai"
+    ],
+    "excerpt": "The AI revolution has ushered in a new era of innovation, promising breakthroughs across various industries. However, with these advancements come unique challenges, particularly in handling and processing data efficiently. One of the key data types that have gained prominence in...",
+    "wordCount": 1595,
+    "readingTime": "8 min",
+    "readingTimeMinutes": 8,
+    "originalUrl": "https://rishijeet.github.io/blog/vector-database-transforming-data-storage-and-retrieval-in-the-ai-era/",
+    "coverImage": "https://rishijeet.github.io/images/vector_db2.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "building-innovative-genai-applications-with-the-genai-stack-unleashing-the-power-of-docker",
+    "slug": "building-innovative-genai-applications-with-the-genai-stack-unleashing-the-power-of-docker",
+    "title": "Building Innovative GenAI Applications with the GenAI Stack: Unleashing the Power of Docker",
+    "date": "2023-11-04T22:49:05+05:30",
+    "formattedDate": "2023-11-04",
+    "year": "2023",
+    "categories": [
+      "genai",
+      "ai",
+      "llm"
+    ],
+    "excerpt": "In the fast-evolving landscape of artificial intelligence, Generative AI (GenAI) is at the forefront, opening up exciting opportunities for developers and businesses. One of the most significant challenges in GenAI development is creating a robust, efficient, and scalable infrast...",
+    "wordCount": 1011,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/building-innovative-genai-applications-with-the-genai-stack-unleashing-the-power-of-docker/",
+    "coverImage": "https://rishijeet.github.io/images/docker.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "webhook-vs-websocket-choosing-the-right-communication-mechanism-for-your-application",
+    "slug": "webhook-vs-websocket-choosing-the-right-communication-mechanism-for-your-application",
+    "title": "Webhook vs. WebSocket: Choosing the Right Communication Mechanism for Your Application",
+    "date": "2023-11-04T20:56:03+05:30",
+    "formattedDate": "2023-11-04",
+    "year": "2023",
+    "categories": [
+      "api",
+      "webhook",
+      "websocket",
+      "security"
+    ],
+    "excerpt": "In today&rsquo;s digital age, communication between applications is crucial, and it&rsquo;s the APIs (Application Programming Interfaces) that act as the mediators. APIs provide a standardized way for software modules, applications, and devices to exchange data and instructions. ...",
+    "wordCount": 599,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/webhook-vs-websocket-choosing-the-right-communication-mechanism-for-your-application/",
+    "coverImage": "https://rishijeet.github.io/images/API%20Interface.jpg",
+    "isSystemDesign": false
+  },
+  {
+    "id": "revolutionizing-ai-inference-lightmatters-envise-chip",
+    "slug": "revolutionizing-ai-inference-lightmatters-envise-chip",
+    "title": "Revolutionizing AI Inference: Lightmatter's Envise Chip",
+    "date": "2023-06-18T22:24:50+05:30",
+    "formattedDate": "2023-06-18",
+    "year": "2023",
+    "categories": [
+      "ai",
+      "photonic_computing"
+    ],
+    "excerpt": "Artificial Intelligence (AI) is rapidly transforming various industries, from autonomous driving and robotics to healthcare and customer service. As the demand for AI applications grows, so does the need for more powerful and energy-efficient processors. In this context, Lightmat...",
+    "wordCount": 599,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/revolutionizing-ai-inference-lightmatters-envise-chip/",
+    "coverImage": "https://rishijeet.github.io/images/Photonics.jpg",
+    "isSystemDesign": false
+  },
+  {
+    "id": "ai-deep-learning-unleashing-the-power-of-neural-networks",
+    "slug": "ai-deep-learning-unleashing-the-power-of-neural-networks",
+    "title": "AI Deep Learning: Unleashing the Power of Neural Networks",
+    "date": "2023-05-23T23:35:46+05:30",
+    "formattedDate": "2023-05-23",
+    "year": "2023",
+    "categories": [
+      "ai"
+    ],
+    "excerpt": "Artificial intelligence (AI) and its subset, deep learning, have revolutionized numerous industries, from healthcare to autonomous vehicles. Deep learning, an approach within AI, has garnered significant attention for its ability to process vast amounts of data and extract comple...",
+    "wordCount": 894,
+    "readingTime": "4 min",
+    "readingTimeMinutes": 4,
+    "originalUrl": "https://rishijeet.github.io/blog/ai-deep-learning-unleashing-the-power-of-neural-networks/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "whats-new-in-java-20",
+    "slug": "whats-new-in-java-20",
+    "title": "What's new in Java 20?",
+    "date": "2023-05-23T23:03:47+05:30",
+    "formattedDate": "2023-05-23",
+    "year": "2023",
+    "categories": [
+      "java"
+    ],
+    "excerpt": "Java, being one of the most widely used programming languages, continues to evolve with each new release, bringing enhancements, features, and improvements to the development community. In this tech article, we will explore the exciting new features introduced in Java 20, highlig...",
+    "wordCount": 511,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/whats-new-in-java-20/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "machine-learning-and-ai-revolutionizing-the-e-trading-market",
+    "slug": "machine-learning-and-ai-revolutionizing-the-e-trading-market",
+    "title": "Machine Learning and AI Revolutionizing the e-Trading Market",
+    "date": "2023-05-23T21:44:08+05:30",
+    "formattedDate": "2023-05-23",
+    "year": "2023",
+    "categories": [
+      "ai",
+      "e-trading",
+      "hft",
+      "machine_learning"
+    ],
+    "excerpt": "The world of electronic trading (e-Trading) has undergone a profound transformation with the emergence of machine learning and artificial intelligence (AI). These technologies have revolutionized how financial markets operate, empowering traders with advanced tools and insights t...",
+    "wordCount": 617,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/machine-learning-and-ai-revolutionizing-the-e-trading-market/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "unleashing-the-power-of-ai-transformer-revolutionizing-artificial-intelligence",
+    "slug": "unleashing-the-power-of-ai-transformer-revolutionizing-artificial-intelligence",
+    "title": "Unleashing the Power of AI Transformer: Revolutionizing Artificial Intelligence",
+    "date": "2023-05-22T18:57:12+05:30",
+    "formattedDate": "2023-05-22",
+    "year": "2023",
+    "categories": [
+      "ai",
+      "technology"
+    ],
+    "excerpt": "In recent years, the field of artificial intelligence (AI) has witnessed a groundbreaking advancement with the introduction of the AI Transformer model. Inspired by the Transformer architecture, which gained fame for its effectiveness in natural language processing tasks, the AI ...",
+    "wordCount": 593,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/unleashing-the-power-of-ai-transformer-revolutionizing-artificial-intelligence/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "building-dynamic-web-applications-with-react-and-firebase",
+    "slug": "building-dynamic-web-applications-with-react-and-firebase",
+    "title": "Building Dynamic Web Applications with React and Firebase",
+    "date": "2023-05-22T13:22:00+05:30",
+    "formattedDate": "2023-05-22",
+    "year": "2023",
+    "categories": [
+      "reactjs",
+      "firebase"
+    ],
+    "excerpt": "In recent years, React has emerged as a popular JavaScript library for building user interfaces, while Firebase has become a powerful platform for developing and deploying web applications. When combined, React and Firebase provide developers with a robust toolkit for creating dy...",
+    "wordCount": 573,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/building-dynamic-web-applications-with-react-and-firebase/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "web-3-dot-0-how-does-it-impacts-iot",
+    "slug": "web-3-dot-0-how-does-it-impacts-iot",
+    "title": "Web 3.0 - How does it impacts IOT ?",
+    "date": "2023-05-22T13:13:54+05:30",
+    "formattedDate": "2023-05-22",
+    "year": "2023",
+    "categories": [
+      "web3.0",
+      "technology",
+      "iot"
+    ],
+    "excerpt": "Web 3.0 has a significant impact on the Internet of Things (IoT) by enhancing its capabilities, security, and interoperability. Here are some key ways in which Web 3.0 transforms the IoT landscape: Decentralized Data Management: Web 3.0 leverages blockchain technology to create d...",
+    "wordCount": 463,
+    "readingTime": "2 min",
+    "readingTimeMinutes": 2,
+    "originalUrl": "https://rishijeet.github.io/blog/web-3-dot-0-how-does-it-impacts-iot/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "web-3-dot-0-decentralizing-internet",
+    "slug": "web-3-dot-0-decentralizing-internet",
+    "title": "Web 3.0 - Decentralizing Internet",
+    "date": "2022-10-29T22:04:22+05:30",
+    "formattedDate": "2022-10-29",
+    "year": "2022",
+    "categories": [
+      "web3.0",
+      "technology",
+      "iot",
+      "blockchain"
+    ],
+    "excerpt": "The Internet has become an integral part of our lives, transforming the way we communicate, work, and access information. From the early days of Web 1.0, where static websites provided basic information, to the dynamic and interactive Web 2.0 era that brought social media, online...",
+    "wordCount": 455,
+    "readingTime": "2 min",
+    "readingTimeMinutes": 2,
+    "originalUrl": "https://rishijeet.github.io/blog/web-3-dot-0-decentralizing-internet/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "rest-api-with-go-and-gorilla-mux",
+    "slug": "rest-api-with-go-and-gorilla-mux",
+    "title": "Rest API with Go & Gorilla Mux",
+    "date": "2021-02-20T23:12:49+05:30",
+    "formattedDate": "2021-02-20",
+    "year": "2021",
+    "categories": [
+      "go",
+      "gorilla",
+      "technology"
+    ],
+    "excerpt": "Gorilla is a web toolkit for the Go programming language. The gorilla/mux implements a request router and dispatcher for matching incomings requests to the respective handlers. One of the cool feature it has is that the registered URLs can be built or reversed which helps maintai...",
+    "wordCount": 484,
+    "readingTime": "2 min",
+    "readingTimeMinutes": 2,
+    "originalUrl": "https://rishijeet.github.io/blog/rest-api-with-go-and-gorilla-mux/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "tuning-apache-kafkas-performance",
+    "slug": "tuning-apache-kafkas-performance",
+    "title": "Tuning Apache Kafka’s performance",
+    "date": "2019-07-11T11:42:32+05:30",
+    "formattedDate": "2019-07-11",
+    "year": "2019",
+    "categories": [
+      "kafka",
+      "messaging",
+      "technology"
+    ],
+    "excerpt": "Well, Apache Kafka is one of the best pub-sub messaging system used widely across several technology’s based industries. Originated at LinkedIn and was open sourced in early 2011. Ok, so what so special about Apache Kafka ? Here are the few things Kafka is meant to handle. High t...",
+    "wordCount": 699,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/tuning-apache-kafkas-performance/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "blockchain-really-worth-in-elections",
+    "slug": "blockchain-really-worth-in-elections",
+    "title": "Blockchain - Really worth in elections ?",
+    "date": "2017-05-12T10:37:14+05:30",
+    "formattedDate": "2017-05-12",
+    "year": "2017",
+    "categories": [
+      "blockchain",
+      "social",
+      "technology"
+    ],
+    "excerpt": "Issues with EVM ( Electronic Voting Machine ) have been the talk of the town for quite a while in India nowadays. Political parties have been taking about going back to voting mechanism using ballot boxes, wherein there would be very less possibility of non-legitimate voting. EVM...",
+    "wordCount": 350,
+    "readingTime": "2 min",
+    "readingTimeMinutes": 2,
+    "originalUrl": "https://rishijeet.github.io/blog/blockchain-really-worth-in-elections/",
+    "coverImage": "https://rishijeet.github.io/images/myimages/voting_places.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "fancybox2-to-fancybox3-for-image-gallery",
+    "slug": "fancybox2-to-fancybox3-for-image-gallery",
+    "title": "Fancybox2 to Fancybox3 for image gallery",
+    "date": "2017-05-12T09:58:37+05:30",
+    "formattedDate": "2017-05-12",
+    "year": "2017",
+    "categories": [
+      "fancybox",
+      "image"
+    ],
+    "excerpt": "I recently migrated my image gallery to Fancybox3 from Fancybox2. Fancybox3 has some of the advantages over its previous version. The important one I like is the fact that you have to code less. Import the javascript Wrap the images with class and the work is done. It supports th...",
+    "wordCount": 93,
+    "readingTime": "1 min",
+    "readingTimeMinutes": 1,
+    "originalUrl": "https://rishijeet.github.io/blog/fancybox2-to-fancybox3-for-image-gallery/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "distributed-computing",
+    "slug": "distributed-computing",
+    "title": "Distributed Computing - Quorum",
+    "date": "2016-09-04T18:40:02+05:30",
+    "formattedDate": "2016-09-04",
+    "year": "2016",
+    "categories": [
+      "distributed"
+    ],
+    "excerpt": "In a distributed database system, a transaction could be executing its operations at multiple sites. Since atomicity requires every distributed transaction to be atomic, the transaction must have the same fate (commit or abort) at every site. In case of network partitioning, site...",
+    "wordCount": 537,
+    "readingTime": "3 min",
+    "readingTimeMinutes": 3,
+    "originalUrl": "https://rishijeet.github.io/blog/distributed-computing/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "is-microsoft-biased-towards-linux",
+    "slug": "is-microsoft-biased-towards-linux",
+    "title": "Is Microsoft biased towards Linux",
+    "date": "2016-03-11T09:45:09+05:30",
+    "formattedDate": "2016-03-11",
+    "year": "2016",
+    "categories": [
+      "microsoft",
+      "linux"
+    ],
+    "excerpt": "I see news about Microsoft crafted a switch OS on Debian Linux platform, announcing its SQL server of Linux and may be some more. Though this is a surprising news as Microsoft windows has released its best OS so far, which is more stable and fast compare to its ancestors, so what...",
+    "wordCount": 296,
+    "readingTime": "1 min",
+    "readingTimeMinutes": 1,
+    "originalUrl": "https://rishijeet.github.io/blog/is-microsoft-biased-towards-linux/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "memory-management-in-python",
+    "slug": "memory-management-in-python",
+    "title": "Memory Management in Python",
+    "date": "2015-04-22T09:54:01+05:30",
+    "formattedDate": "2015-04-22",
+    "year": "2015",
+    "categories": [
+      "python",
+      "memory"
+    ],
+    "excerpt": "I came across the interesting write up somewhere on website on memory management in Python. Here are some data facts which I liked, Python allocates memory transparently, manages objects using a reference count system, and frees memory when an object’s reference count falls to ze...",
+    "wordCount": 1003,
+    "readingTime": "5 min",
+    "readingTimeMinutes": 5,
+    "originalUrl": "https://rishijeet.github.io/blog/memory-management-in-python/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "vmware-player-and-hyper-v-are-not-compatible",
+    "slug": "vmware-player-and-hyper-v-are-not-compatible",
+    "title": "VMware Player and Hyper-V are not compatible",
+    "date": "2015-04-12T11:28:34+05:30",
+    "formattedDate": "2015-04-12",
+    "year": "2015",
+    "categories": [
+      "vmware",
+      "windows"
+    ],
+    "excerpt": "I run my VMs using vmware player for multiple operating system like Ubuntu, CentOS, Fedora, Suse, Mint Linux. One fine day I noticed this error &ldquo;VMware Player and Hyper-V are not compatible&rdquo; from the vmplayer while starting Ubuntu. This was bit surprising for me as I ...",
+    "wordCount": 109,
+    "readingTime": "1 min",
+    "readingTimeMinutes": 1,
+    "originalUrl": "https://rishijeet.github.io/blog/vmware-player-and-hyper-v-are-not-compatible/",
+    "coverImage": null,
+    "isSystemDesign": false
+  },
+  {
+    "id": "jekyll-simply-so-simple",
+    "slug": "jekyll-simply-so-simple",
+    "title": "Jekyll Simply So Simple",
+    "date": "2014-09-15T22:36:38+05:30",
+    "formattedDate": "2014-09-15",
+    "year": "2014",
+    "categories": [
+      "jekyll",
+      "blog"
+    ],
+    "excerpt": "Jekyll one of the fast and simple static html page generator is really easy to start of with. I am so addicted to it now. Still exploring it more, there are so many features available and installing it is as easy as it can be. ~ $ gem install jekyll ~ $ jekyll new my - awesome - ...",
+    "wordCount": 72,
+    "readingTime": "1 min",
+    "readingTimeMinutes": 1,
+    "originalUrl": "https://rishijeet.github.io/blog/jekyll-simply-so-simple/",
+    "coverImage": "https://rishijeet.github.io/images/jekyll.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "pycon-india-2014",
+    "slug": "pycon-india-2014",
+    "title": "PyCon India 2014",
+    "date": "2014-09-15T21:57:01+05:30",
+    "formattedDate": "2014-09-15",
+    "year": "2014",
+    "categories": [
+      "python",
+      "pycon"
+    ],
+    "excerpt": "Yes, PyCon India 2014 is happening in Bangalore. Interesting topics are on there for you on day 2. Workshops are also been conducted as a part of day 1 program. I have attended the one in year 2012 and some of the topics were really good to know and worth attending. The topics wh...",
+    "wordCount": 112,
+    "readingTime": "1 min",
+    "readingTimeMinutes": 1,
+    "originalUrl": "https://rishijeet.github.io/blog/pycon-india-2014/",
+    "coverImage": "https://rishijeet.github.io/images/pycon.png",
+    "isSystemDesign": false
+  },
+  {
+    "id": "convert-from-epoch-to-human-readable-date",
+    "slug": "convert-from-epoch-to-human-readable-date",
+    "title": "Convert from epoch to human readable date",
+    "date": "2014-09-12T23:50:56+05:30",
+    "formattedDate": "2014-09-12",
+    "year": "2014",
+    "categories": [
+      "python"
+    ],
+    "excerpt": "I was stuck with an issue of converting the epoch time to human readable format, in my case the epoch time was in milli sec, and I was getting all sort of python ValueError: (22, 'Invalid argument') The fix was simple, to convert the epoch in milli sec to exact date +%s format by...",
+    "wordCount": 82,
+    "readingTime": "1 min",
+    "readingTimeMinutes": 1,
+    "originalUrl": "https://rishijeet.github.io/blog/convert-from-epoch-to-human-readable-date/",
+    "coverImage": null,
+    "isSystemDesign": false
+  }
+];

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useTheme } from '../../context/ThemeContext';
+import { EMBEDDED_BLOG_POSTS, BLOG_SITE_INFO } from '../../data/blogIndexData';
 import {
   ChevronLeft,
   ChevronRight,
@@ -55,11 +56,49 @@ interface HeadingItem {
   level: string;
 }
 
+// In-memory module cache for full posts dataset
+let fullDatasetCache: FullPost[] | null = null;
+
+// Helper to fetch full blog dataset across multiple candidate paths (subpaths, relative, base URL)
+async function fetchFullDataset(): Promise<FullPost[]> {
+  if (fullDatasetCache && fullDatasetCache.length > 0) {
+    return fullDatasetCache;
+  }
+
+  const base = (import.meta as any).env?.BASE_URL || '/';
+  const cleanBase = base.endsWith('/') ? base : `${base}/`;
+
+  const candidateUrls = [
+    `${cleanBase}data/system_design_blog_full.json`,
+    './data/system_design_blog_full.json',
+    'data/system_design_blog_full.json',
+    '/data/system_design_blog_full.json'
+  ];
+
+  for (const url of candidateUrls) {
+    try {
+      const res = await fetch(url);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.posts && Array.isArray(data.posts) && data.posts.length > 0) {
+          fullDatasetCache = data.posts;
+          return data.posts;
+        }
+      }
+    } catch {
+      // Continue to next URL candidate
+    }
+  }
+
+  return [];
+}
+
 export const BlogReader: React.FC = () => {
   const { theme } = useTheme();
-  const [posts, setPosts] = useState<PostSummary[]>([]);
+  // Initialize with embedded blog index so all 109 articles are instantly available in all environments
+  const [posts, setPosts] = useState<PostSummary[]>(EMBEDDED_BLOG_POSTS as PostSummary[]);
   const [selectedPost, setSelectedPost] = useState<FullPost | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [loadingPost, setLoadingPost] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
@@ -76,84 +115,115 @@ export const BlogReader: React.FC = () => {
   const catalogScrollRef = useRef<HTMLDivElement>(null);
   const articleScrollRef = useRef<HTMLDivElement>(null);
 
-  // Fetch initial posts list
+  // Background sync check for server API if running in fullstack mode
   useEffect(() => {
     fetch('/api/blog/posts')
       .then(res => {
-        if (!res.ok) throw new Error('API not available, fallback to static JSON');
+        if (!res.ok) return null;
         return res.json();
       })
       .then(data => {
-        setPosts(data.posts || []);
-        setLoading(false);
+        if (data?.posts && Array.isArray(data.posts) && data.posts.length > 0) {
+          setPosts(data.posts);
+        }
       })
-      .catch(err => {
-        console.warn('Backend API failed, loading from static file...', err);
-        fetch('/data/system_design_blog_full.json')
-          .then(res => res.json())
-          .then(data => {
-            const summaries = (data.posts || []).map((p: any) => ({
-              id: p.id,
-              slug: p.slug,
-              title: p.title,
-              date: p.date,
-              formattedDate: p.formattedDate,
-              year: p.year,
-              categories: p.categories,
-              excerpt: p.excerpt,
-              wordCount: p.wordCount,
-              readingTime: p.readingTime,
-              readingTimeMinutes: p.readingTimeMinutes,
-              originalUrl: p.originalUrl,
-              coverImage: p.coverImage,
-              isSystemDesign: p.isSystemDesign
-            }));
-            setPosts(summaries);
-            setLoading(false);
-          })
-          .catch(e => {
-            console.error('Failed to load static blog posts:', e);
-            setLoading(false);
-          });
+      .catch(() => {
+        // Embedded 109 articles are already active and functional
       });
   }, []);
 
   // Handle post selection and smooth scroll to top
-  const handlePostClick = (slug: string) => {
+  const handlePostClick = async (slug: string) => {
     setLoadingPost(true);
-    fetch(`/api/blog/posts/${slug}`)
-      .then(res => {
-        if (!res.ok) throw new Error('API not available, fallback to static JSON');
-        return res.json();
-      })
-      .then(data => {
-        setSelectedPost(data);
+
+    // 1. Check in-memory dataset cache
+    if (fullDatasetCache) {
+      const cached = fullDatasetCache.find(p => p.slug === slug);
+      if (cached) {
+        setSelectedPost(cached);
         setLoadingPost(false);
         setReadingProgress(0);
         if (articleScrollRef.current) {
           articleScrollRef.current.scrollTo({ top: 0, behavior: 'instant' });
         }
-      })
-      .catch(err => {
-        console.warn('Backend API failed, loading post from static file...', err);
-        fetch('/data/system_design_blog_full.json')
-          .then(res => res.json())
-          .then(data => {
-            const post = data.posts?.find((p: any) => p.slug === slug);
-            if (post) {
-              setSelectedPost(post);
-            }
-            setLoadingPost(false);
-            setReadingProgress(0);
-            if (articleScrollRef.current) {
-              articleScrollRef.current.scrollTo({ top: 0, behavior: 'instant' });
-            }
-          })
-          .catch(e => {
-            console.error('Failed to load article:', e);
-            setLoadingPost(false);
-          });
-      });
+        return;
+      }
+    }
+
+    // 2. Try server API endpoint
+    try {
+      const apiRes = await fetch(`/api/blog/posts/${slug}`);
+      if (apiRes.ok) {
+        const postData = await apiRes.json();
+        if (postData && postData.title) {
+          setSelectedPost(postData);
+          setLoadingPost(false);
+          setReadingProgress(0);
+          if (articleScrollRef.current) {
+            articleScrollRef.current.scrollTo({ top: 0, behavior: 'instant' });
+          }
+          return;
+        }
+      }
+    } catch {
+      // Backend not present, continue to static dataset loader
+    }
+
+    // 3. Try loading from static JSON dataset across multiple path strategies
+    try {
+      const allPosts = await fetchFullDataset();
+      const matched = allPosts.find(p => p.slug === slug);
+      if (matched) {
+        setSelectedPost(matched);
+        setLoadingPost(false);
+        setReadingProgress(0);
+        if (articleScrollRef.current) {
+          articleScrollRef.current.scrollTo({ top: 0, behavior: 'instant' });
+        }
+        return;
+      }
+    } catch (e) {
+      console.warn('Failed to load static full post:', e);
+    }
+
+    // 4. Guaranteed Fallback: Render post from embedded summary
+    const summaryPost = posts.find(p => p.slug === slug) || (EMBEDDED_BLOG_POSTS as PostSummary[]).find(p => p.slug === slug);
+    if (summaryPost) {
+      const fallbackPost: FullPost = {
+        ...summaryPost,
+        contentHtml: `
+          <div class="prose max-w-none text-slate-800 dark:text-slate-100">
+            <div class="p-6 my-4 bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60 rounded-2xl">
+              <h2 class="text-base font-bold text-emerald-950 dark:text-emerald-300 mb-2">Executive Overview & Key Takeaways</h2>
+              <p class="text-sm text-emerald-900/90 dark:text-emerald-200/90 leading-relaxed font-normal">${summaryPost.excerpt}</p>
+            </div>
+            
+            <div class="my-8 p-6 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl">
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white mb-2">Canonical Publication & Reference</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mb-4">
+                This comprehensive architectural system design analysis is published under the System Design engineering archive.
+              </p>
+              <a 
+                href="${summaryPost.originalUrl}" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-sm transition-all"
+              >
+                <span>Read Full Article on System Design Blog</span>
+                <span class="text-base">↗</span>
+              </a>
+            </div>
+          </div>
+        `
+      };
+      setSelectedPost(fallbackPost);
+    }
+
+    setLoadingPost(false);
+    setReadingProgress(0);
+    if (articleScrollRef.current) {
+      articleScrollRef.current.scrollTo({ top: 0, behavior: 'instant' });
+    }
   };
 
   // Scroll to top helper
