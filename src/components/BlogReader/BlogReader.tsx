@@ -79,14 +79,42 @@ export const BlogReader: React.FC = () => {
   // Fetch initial posts list
   useEffect(() => {
     fetch('/api/blog/posts')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('API not available, fallback to static JSON');
+        return res.json();
+      })
       .then(data => {
         setPosts(data.posts || []);
         setLoading(false);
       })
       .catch(err => {
-        console.error('Failed to load blog posts:', err);
-        setLoading(false);
+        console.warn('Backend API failed, loading from static file...', err);
+        fetch('/data/system_design_blog_full.json')
+          .then(res => res.json())
+          .then(data => {
+            const summaries = (data.posts || []).map((p: any) => ({
+              id: p.id,
+              slug: p.slug,
+              title: p.title,
+              date: p.date,
+              formattedDate: p.formattedDate,
+              year: p.year,
+              categories: p.categories,
+              excerpt: p.excerpt,
+              wordCount: p.wordCount,
+              readingTime: p.readingTime,
+              readingTimeMinutes: p.readingTimeMinutes,
+              originalUrl: p.originalUrl,
+              coverImage: p.coverImage,
+              isSystemDesign: p.isSystemDesign
+            }));
+            setPosts(summaries);
+            setLoading(false);
+          })
+          .catch(e => {
+            console.error('Failed to load static blog posts:', e);
+            setLoading(false);
+          });
       });
   }, []);
 
@@ -94,7 +122,10 @@ export const BlogReader: React.FC = () => {
   const handlePostClick = (slug: string) => {
     setLoadingPost(true);
     fetch(`/api/blog/posts/${slug}`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('API not available, fallback to static JSON');
+        return res.json();
+      })
       .then(data => {
         setSelectedPost(data);
         setLoadingPost(false);
@@ -104,8 +135,24 @@ export const BlogReader: React.FC = () => {
         }
       })
       .catch(err => {
-        console.error('Failed to load article:', err);
-        setLoadingPost(false);
+        console.warn('Backend API failed, loading post from static file...', err);
+        fetch('/data/system_design_blog_full.json')
+          .then(res => res.json())
+          .then(data => {
+            const post = data.posts?.find((p: any) => p.slug === slug);
+            if (post) {
+              setSelectedPost(post);
+            }
+            setLoadingPost(false);
+            setReadingProgress(0);
+            if (articleScrollRef.current) {
+              articleScrollRef.current.scrollTo({ top: 0, behavior: 'instant' });
+            }
+          })
+          .catch(e => {
+            console.error('Failed to load article:', e);
+            setLoadingPost(false);
+          });
       });
   };
 
