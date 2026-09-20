@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Play, Rocket, Code2, ChevronDown, Sparkles, Check, RefreshCw, ShieldAlert, LayoutGrid, ShieldCheck, Terminal, Sun, Moon, Zap, FileCheck2, Lightbulb, BookOpen, ChevronRight, Home } from 'lucide-react';
-import { AgentWorkflow } from '../types';
+import React, { useState, useRef, useEffect } from 'react';
+import { Play, Rocket, Code2, ChevronDown, Sparkles, Check, RefreshCw, ShieldAlert, LayoutGrid, ShieldCheck, Terminal, Sun, Moon, Zap, FileCheck2, Lightbulb, BookOpen, ChevronRight, Home, Palette, Eye } from 'lucide-react';
+import { AgentWorkflow, ThemeMode } from '../types';
 import { useTheme } from '../context/ThemeContext';
 
 interface NavbarProps {
@@ -29,8 +29,74 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenIdeas
 }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
-  const isLight = theme === 'light';
+  const [themeMenuOpen, setThemeMenuOpen] = useState(false);
+  const themeMenuRef = useRef<HTMLDivElement>(null);
+  const { theme, setTheme, toggleTheme } = useTheme();
+  const isLight = theme !== 'dark';
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (themeMenuRef.current && !themeMenuRef.current.contains(event.target as Node)) {
+        setThemeMenuOpen(false);
+      }
+    };
+    if (themeMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [themeMenuOpen]);
+
+  const lightThemeOptions: { id: ThemeMode; label: string; tag: string; bgTone: string; borderTone: string; description: string }[] = [
+    {
+      id: 'mission',
+      label: 'Daylight Mission',
+      tag: 'Aviation Slate',
+      bgTone: '#f1f5f9',
+      borderTone: '#0284c7',
+      description: 'Cool Slate 100 base, anti-glare for live flight & satellite overflights',
+    },
+    {
+      id: 'editorial',
+      label: 'Editorial Analyst',
+      tag: 'Warm Paper',
+      bgTone: '#f8f7f4',
+      borderTone: '#78716c',
+      description: 'Warm Alabaster paper, zero blue-light strain for long intel reading',
+    },
+    {
+      id: 'nordic',
+      label: 'Nordic Frost',
+      tag: 'Ice Minimal',
+      bgTone: '#f8fafc',
+      borderTone: '#6366f1',
+      description: 'Clean Scandinavian ice gray with maximum contrast for data grids',
+    },
+    {
+      id: 'sage',
+      label: 'Sage Laboratory',
+      tag: 'Eye-Rest Green',
+      bgTone: '#f2f5f3',
+      borderTone: '#10b981',
+      description: 'Gentle botanical sage mist, lowest ocular fatigue during long shifts',
+    },
+    {
+      id: 'light',
+      label: 'Pure Light (Default)',
+      tag: 'Standard',
+      bgTone: '#ffffff',
+      borderTone: '#3b82f6',
+      description: 'Classic high-contrast crisp light interface',
+    },
+  ];
+
+  const currentThemeLabel = 
+    theme === 'dark' ? 'Night Mode' :
+    theme === 'mission' ? 'Daylight Mission' :
+    theme === 'editorial' ? 'Editorial Analyst' :
+    theme === 'nordic' ? 'Nordic Frost' :
+    theme === 'sage' ? 'Sage Laboratory' : 'Pure Light';
 
   const getViewName = () => {
     switch (activeView) {
@@ -45,10 +111,27 @@ export const Navbar: React.FC<NavbarProps> = ({
     }
   };
 
+  const getNavbarThemeClass = () => {
+    switch (theme) {
+      case 'mission':
+        return 'bg-slate-100/90 border-slate-300 text-slate-900';
+      case 'editorial':
+        return 'bg-[#f4f2ee]/95 border-[#e2dfd5] text-stone-900';
+      case 'nordic':
+        return 'bg-slate-50/95 border-slate-200 text-slate-800';
+      case 'sage':
+        return 'bg-[#ebf0ed]/95 border-[#d0dbd4] text-emerald-950';
+      case 'dark':
+        return 'bg-[#0f172a]/95 border-slate-800 text-slate-200';
+      default:
+        return 'bg-white/95 border-slate-200 text-slate-800';
+    }
+  };
+
   return (
     <nav
       id="top-navbar"
-      className="flex flex-col bg-blue-50/50 text-slate-800 backdrop-blur-md z-30 select-none transition-colors border-b border-blue-100"
+      className={`flex flex-col backdrop-blur-md z-30 select-none transition-colors border-b ${getNavbarThemeClass()}`}
     >
       {/* Breadcrumb Navigation Trail */}
       <div className="flex items-center px-6 py-1.5 bg-slate-100/50 dark:bg-slate-900/50 border-b border-slate-200/50 dark:border-slate-800/50 text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-1">
@@ -185,15 +268,104 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span>Deploy</span>
           </button>
 
-          {/* Theme Toggle Button */}
-          <button
-            id="btn-toggle-theme"
-            onClick={toggleTheme}
-            className="w-8 h-8 rounded-lg flex items-center justify-center border border-slate-300 bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
-            title={isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-          >
-            {isLight ? <Moon className="w-4 h-4 text-slate-600" /> : <Sun className="w-4 h-4 text-amber-500" />}
-          </button>
+          {/* Eye-Comfort Theme Selector Dropdown */}
+          <div className="relative" ref={themeMenuRef}>
+            <button
+              id="btn-theme-selector"
+              onClick={() => setThemeMenuOpen(!themeMenuOpen)}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-slate-300 bg-white/90 hover:bg-slate-50 text-slate-800 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200 transition-all shadow-2xs cursor-pointer"
+              title="Change website theme & eye-comfort mode"
+            >
+              <Palette className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+              <span className="hidden sm:inline font-semibold">{currentThemeLabel}</span>
+              <ChevronDown className={`w-3 h-3 text-slate-500 transition-transform duration-200 ${themeMenuOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {themeMenuOpen && (
+              <div
+                id="theme-selector-dropdown"
+                className="absolute right-0 mt-2 w-72 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl p-2 z-50 animate-in fade-in zoom-in-95 duration-150"
+              >
+                <div className="px-2.5 py-1.5 border-b border-slate-100 dark:border-slate-800 mb-1.5 flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
+                    <Eye className="w-3.5 h-3.5 text-indigo-500" />
+                    <span>Eye-Comfort Themes</span>
+                  </div>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300 font-semibold">
+                    Anti-Glare
+                  </span>
+                </div>
+
+                <div className="space-y-1">
+                  {lightThemeOptions.map((opt) => {
+                    const isSelected = theme === opt.id;
+                    return (
+                      <button
+                        key={opt.id}
+                        id={`btn-theme-${opt.id}`}
+                        onClick={() => {
+                          setTheme(opt.id);
+                          setThemeMenuOpen(false);
+                        }}
+                        className={`w-full text-left p-2 rounded-lg text-xs transition-all cursor-pointer flex items-start gap-2.5 border ${
+                          isSelected
+                            ? 'bg-indigo-50/70 dark:bg-indigo-950/40 border-indigo-300 dark:border-indigo-600 text-slate-900 dark:text-slate-100 shadow-2xs'
+                            : 'border-transparent hover:bg-slate-50 dark:hover:bg-slate-800/70 text-slate-700 dark:text-slate-300'
+                        }`}
+                      >
+                        {/* Theme color preview swatch */}
+                        <div
+                          className="w-5 h-5 rounded-md shrink-0 mt-0.5 border shadow-2xs flex items-center justify-center"
+                          style={{ backgroundColor: opt.bgTone, borderColor: opt.borderTone }}
+                        >
+                          {isSelected && <Check className="w-3 h-3 text-slate-800" />}
+                        </div>
+
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-1">
+                            <span className="font-bold text-[12px] truncate">{opt.label}</span>
+                            <span className="text-[9px] px-1 py-0.2 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
+                              {opt.tag}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
+                            {opt.description}
+                          </p>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Night / Dark Mode Option */}
+                <div className="pt-1.5 mt-1.5 border-t border-slate-100 dark:border-slate-800">
+                  <button
+                    id="btn-theme-dark"
+                    onClick={() => {
+                      setTheme('dark');
+                      setThemeMenuOpen(false);
+                    }}
+                    className={`w-full text-left p-2 rounded-lg text-xs transition-all cursor-pointer flex items-center justify-between border ${
+                      theme === 'dark'
+                        ? 'bg-slate-800 text-white border-slate-700 shadow-2xs'
+                        : 'border-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-md bg-slate-900 border border-slate-700 flex items-center justify-center">
+                        <Moon className="w-3 h-3 text-amber-400" />
+                      </div>
+                      <div>
+                        <span className="font-bold text-[12px]">Night Mode</span>
+                        <p className="text-[10px] text-slate-400 leading-tight">Dark room / low-luminance monitoring</p>
+                      </div>
+                    </div>
+                    {theme === 'dark' && <Check className="w-3.5 h-3.5 text-amber-400 shrink-0 ml-1" />}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
 
           {/* User avatar indicator */}
           <div 
@@ -211,91 +383,91 @@ export const Navbar: React.FC<NavbarProps> = ({
         <button
           id="tab-secops-nexus-view"
           onClick={() => onChangeView('secops')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-2xs ${
             activeView === 'secops'
-              ? 'bg-violet-600 text-white border-violet-600 shadow-2xs font-bold'
-              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
+              ? 'bg-violet-50/80 dark:bg-violet-950/30 text-violet-950 dark:text-violet-200 border-violet-500 dark:border-violet-400 border-b-2 border-b-violet-600 dark:border-b-violet-400 font-bold'
+              : 'bg-white/90 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300'
           }`}
         >
-          <Sparkles className={`w-3.5 h-3.5 ${activeView === 'secops' ? 'text-white' : 'text-slate-500'}`} />
+          <Sparkles className={`w-3.5 h-3.5 ${activeView === 'secops' ? 'text-violet-600 dark:text-violet-400' : 'text-slate-500'}`} />
           <span>AI SecOps Nexus</span>
         </button>
 
         <button
           id="tab-appsec-scanner-view"
           onClick={() => onChangeView('appsec_scanner')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-2xs ${
             activeView === 'appsec_scanner'
-              ? 'bg-cyan-600 text-white border-cyan-600 shadow-2xs font-bold'
-              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
+              ? 'bg-cyan-50/80 dark:bg-cyan-950/30 text-cyan-950 dark:text-cyan-200 border-cyan-500 dark:border-cyan-400 border-b-2 border-b-cyan-600 dark:border-b-cyan-400 font-bold'
+              : 'bg-white/90 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300'
           }`}
         >
-          <ShieldCheck className={`w-3.5 h-3.5 ${activeView === 'appsec_scanner' ? 'text-white' : 'text-slate-500'}`} />
+          <ShieldCheck className={`w-3.5 h-3.5 ${activeView === 'appsec_scanner' ? 'text-cyan-600 dark:text-cyan-400' : 'text-slate-500'}`} />
           <span>AppSec Scanner</span>
         </button>
 
         <button
           id="tab-security-lab-view"
           onClick={() => onChangeView('security_lab')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-2xs ${
             activeView === 'security_lab'
-              ? 'bg-rose-600 text-white border-rose-600 shadow-2xs font-bold'
-              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
+              ? 'bg-rose-50/80 dark:bg-rose-950/30 text-rose-950 dark:text-rose-200 border-rose-500 dark:border-rose-400 border-b-2 border-b-rose-600 dark:border-b-rose-400 font-bold'
+              : 'bg-white/90 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300'
           }`}
         >
-          <ShieldAlert className={`w-3.5 h-3.5 ${activeView === 'security_lab' ? 'text-white' : 'text-slate-500'}`} />
+          <ShieldAlert className={`w-3.5 h-3.5 ${activeView === 'security_lab' ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500'}`} />
           <span>Red-Team Lab</span>
         </button>
 
         <button
           id="tab-vapt-workbench-view"
           onClick={() => onChangeView('vapt')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-2xs ${
             activeView === 'vapt'
-              ? 'bg-amber-600 text-white border-amber-600 shadow-2xs font-bold'
-              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
+              ? 'bg-amber-50/80 dark:bg-amber-950/30 text-amber-950 dark:text-amber-200 border-amber-500 dark:border-amber-400 border-b-2 border-b-amber-600 dark:border-b-amber-400 font-bold'
+              : 'bg-white/90 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300'
           }`}
         >
-          <Terminal className={`w-3.5 h-3.5 ${activeView === 'vapt' ? 'text-white' : 'text-slate-500'}`} />
+          <Terminal className={`w-3.5 h-3.5 ${activeView === 'vapt' ? 'text-amber-600 dark:text-amber-400' : 'text-slate-500'}`} />
           <span>PenTest & VAPT</span>
         </button>
 
         <button
           id="tab-grc-compliance-view"
           onClick={() => onChangeView('grc_compliance')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-2xs ${
             activeView === 'grc_compliance'
-              ? 'bg-blue-600 text-white border-blue-600 shadow-2xs font-bold'
-              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
+              ? 'bg-blue-50/80 dark:bg-blue-950/30 text-blue-950 dark:text-blue-200 border-blue-500 dark:border-blue-400 border-b-2 border-b-blue-600 dark:border-b-blue-400 font-bold'
+              : 'bg-white/90 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300'
           }`}
         >
-          <FileCheck2 className={`w-3.5 h-3.5 ${activeView === 'grc_compliance' ? 'text-white' : 'text-slate-500'}`} />
+          <FileCheck2 className={`w-3.5 h-3.5 ${activeView === 'grc_compliance' ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500'}`} />
           <span>NIST & EU GRC</span>
         </button>
 
         <button
           id="tab-builder-view"
           onClick={() => onChangeView('builder')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-2xs ${
             activeView === 'builder'
-              ? 'bg-sky-600 text-white border-sky-600 shadow-2xs font-bold'
-              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
+              ? 'bg-sky-50/80 dark:bg-sky-950/30 text-sky-950 dark:text-sky-200 border-sky-500 dark:border-sky-400 border-b-2 border-b-sky-600 dark:border-b-sky-400 font-bold'
+              : 'bg-white/90 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300'
           }`}
         >
-          <LayoutGrid className={`w-3.5 h-3.5 ${activeView === 'builder' ? 'text-white' : 'text-slate-500'}`} />
+          <LayoutGrid className={`w-3.5 h-3.5 ${activeView === 'builder' ? 'text-sky-600 dark:text-sky-400' : 'text-slate-500'}`} />
           <span>Canvas</span>
         </button>
 
         <button
           id="tab-blog-view"
           onClick={() => onChangeView('blog')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-2xs ${
             activeView === 'blog'
-              ? 'bg-emerald-600 text-white border-emerald-600 shadow-2xs font-bold'
-              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
+              ? 'bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-950 dark:text-emerald-200 border-emerald-500 dark:border-emerald-400 border-b-2 border-b-emerald-600 dark:border-b-emerald-400 font-bold'
+              : 'bg-white/90 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300'
           }`}
         >
-          <BookOpen className={`w-3.5 h-3.5 ${activeView === 'blog' ? 'text-white' : 'text-slate-500'}`} />
+          <BookOpen className={`w-3.5 h-3.5 ${activeView === 'blog' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500'}`} />
           <span>Security Design Blog</span>
         </button>
       </div>

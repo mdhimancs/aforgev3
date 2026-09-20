@@ -305,9 +305,27 @@ function AppContent() {
     );
   };
 
+  // Dynamic background style per theme for maximum eye comfort
+  const getThemeCanvasClass = () => {
+    switch (theme) {
+      case 'mission':
+        return 'bg-[#f1f5f9] text-slate-900 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px]';
+      case 'editorial':
+        return 'bg-[#f8f7f4] text-stone-900 bg-[radial-gradient(#e5e3da_1px,transparent_1px)] [background-size:24px_24px]';
+      case 'nordic':
+        return 'bg-[#f8fafc] text-slate-800 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px]';
+      case 'sage':
+        return 'bg-[#f2f5f3] text-emerald-950 bg-[radial-gradient(#d5ded8_1px,transparent_1px)] [background-size:24px_24px]';
+      case 'dark':
+        return 'bg-[#0b0f19] text-slate-100 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px]';
+      default:
+        return 'bg-[#f8fafc] text-slate-800 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px]';
+    }
+  };
+
   return (
     <div
-      className="relative flex flex-col h-screen w-screen font-sans overflow-hidden select-none bg-[#f8fafc] text-slate-800 transition-colors bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px]"
+      className={`relative flex flex-col h-screen w-screen font-sans overflow-hidden select-none transition-colors duration-200 ${getThemeCanvasClass()}`}
     >
       {/* Global Design Element: Top Gradient Accent Bar */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-600 via-indigo-500 to-cyan-400 z-50"></div>

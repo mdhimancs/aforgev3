@@ -3,12 +3,14 @@ import { ThemeMode } from '../types';
 
 interface ThemeContextType {
   theme: ThemeMode;
+  isLight: boolean;
   toggleTheme: () => void;
   setTheme: (theme: ThemeMode) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType>({
   theme: 'light',
+  isLight: true,
   toggleTheme: () => {},
   setTheme: () => {},
 });
@@ -30,12 +32,16 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     } catch (e) {
       console.warn('Error saving agentforge_theme to localStorage:', e);
     }
+    const allThemeClasses = ['light', 'dark', 'theme-mission', 'theme-editorial', 'theme-nordic', 'theme-sage'];
+    document.documentElement.classList.remove(...allThemeClasses);
+
     if (theme === 'dark') {
-      document.documentElement.classList.remove('light');
       document.documentElement.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('dark');
       document.documentElement.classList.add('light');
+      if (theme !== 'light') {
+        document.documentElement.classList.add(`theme-${theme}`);
+      }
     }
   }, [theme]);
 
@@ -47,8 +53,10 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setThemeState(t);
   };
 
+  const isLight = theme !== 'dark';
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, isLight, toggleTheme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );

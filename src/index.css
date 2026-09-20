@@ -5,11 +5,131 @@
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     background-color: #fafafa;
     color: #1e293b;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
   
   code, pre, kbd {
     font-family: 'JetBrains Mono', monospace;
   }
+}
+
+/* Ergonomic Eye-Comfort Light Themes */
+:root {
+  --theme-bg: #f8fafc;
+  --theme-surface: #ffffff;
+  --theme-surface-subtle: #f1f5f9;
+  --theme-border: #e2e8f0;
+  --theme-text-main: #0f172a;
+  --theme-text-muted: #475569;
+  --theme-accent: #2563eb;
+}
+
+html.theme-mission {
+  --theme-bg: #f1f5f9; /* Cool Slate 100 anti-glare */
+  --theme-surface: #ffffff;
+  --theme-surface-subtle: #e2e8f0;
+  --theme-border: #cbd5e1;
+  --theme-text-main: #0f172a;
+  --theme-text-muted: #475569;
+  --theme-accent: #0284c7;
+}
+html.theme-mission body,
+html.theme-mission {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+html.theme-editorial {
+  --theme-bg: #f8f7f4; /* Warm Alabaster / Milk Paper */
+  --theme-surface: #ffffff;
+  --theme-surface-subtle: #f1efe9;
+  --theme-border: #e7e5dd;
+  --theme-text-main: #1c1917;
+  --theme-text-muted: #57534e;
+  --theme-accent: #2563eb;
+}
+html.theme-editorial body,
+html.theme-editorial {
+  background-color: #f8f7f4 !important;
+  color: #1c1917 !important;
+}
+
+html.theme-nordic {
+  --theme-bg: #f8fafc; /* Clean Nordic Ice 50 */
+  --theme-surface: #ffffff;
+  --theme-surface-subtle: #f1f5f9;
+  --theme-border: #e2e8f0;
+  --theme-text-main: #1e293b;
+  --theme-text-muted: #64748b;
+  --theme-accent: #4f46e5;
+}
+html.theme-nordic body,
+html.theme-nordic {
+  background-color: #f8fafc !important;
+  color: #1e293b !important;
+}
+
+html.theme-sage {
+  --theme-bg: #f2f5f3; /* Calming Eye-Rest Sage Mist */
+  --theme-surface: #ffffff;
+  --theme-surface-subtle: #e8edea;
+  --theme-border: #d5ded8;
+  --theme-text-main: #14211a;
+  --theme-text-muted: #435b4c;
+  --theme-accent: #059669;
+}
+html.theme-sage body,
+html.theme-sage {
+  background-color: #f2f5f3 !important;
+  color: #14211a !important;
+}
+
+/* Comprehensive Theme Overrides for Components and Views */
+html.theme-mission #top-navbar,
+html.theme-mission .app-header,
+html.theme-mission #ai-cyber-fusion-nexus-header,
+html.theme-mission #appsec-scanner-header,
+html.theme-mission #vapt-workbench-header,
+html.theme-mission #grc-compliance-header,
+html.theme-mission #redteam-lab-header {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.theme-editorial #top-navbar,
+html.theme-editorial .app-header,
+html.theme-editorial #ai-cyber-fusion-nexus-header,
+html.theme-editorial #appsec-scanner-header,
+html.theme-editorial #vapt-workbench-header,
+html.theme-editorial #grc-compliance-header,
+html.theme-editorial #redteam-lab-header {
+  background-color: #ffffff !important;
+  border-color: #e7e5dd !important;
+}
+
+html.theme-sage #top-navbar,
+html.theme-sage .app-header,
+html.theme-sage #ai-cyber-fusion-nexus-header,
+html.theme-sage #appsec-scanner-header,
+html.theme-sage #vapt-workbench-header,
+html.theme-sage #grc-compliance-header,
+html.theme-sage #redteam-lab-header {
+  background-color: #ffffff !important;
+  border-color: #d5ded8 !important;
+}
+
+/* Sub-deck and view surfaces */
+html.theme-mission .theme-card-surface {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+html.theme-editorial .theme-card-surface {
+  background-color: #ffffff !important;
+  border-color: #e7e5dd !important;
+}
+html.theme-sage .theme-card-surface {
+  background-color: #ffffff !important;
+  border-color: #d5ded8 !important;
 }
 
 /* Light / Dark aware scrollbars */

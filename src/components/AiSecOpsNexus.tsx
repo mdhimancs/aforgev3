@@ -70,8 +70,7 @@ import { IdsIpsWafView } from './IdsIpsWafView';
 import { MalwareCampaignsView } from './MalwareCampaignsView';
 
 export function AiSecOpsNexus() {
-  const { theme } = useTheme();
-  const isLight = true; // Always apply the pristine light theme matching Security Design Blog
+  const { theme, isLight } = useTheme();
 
   // Sub-tabs: 'osint' | 'spire_stripe' | 'cspm' | 'tpcrm' | 'dspm' | 'grc' | 'darkweb' | 'ueba' | 'dlp' | 'killchain' | 'attacktree' | 'threathunt' | 'siem' | 'soar' | 'xdr' | 'aipentest' | 'ids_ips_waf' | 'malware_campaigns'
   const [activeTab, setActiveTab] = useState<
@@ -431,7 +430,9 @@ export function AiSecOpsNexus() {
 
   return (
     <div
-      className="flex flex-col flex-1 h-full w-full overflow-hidden font-sans bg-[#fafafa] text-slate-800 transition-colors"
+      className={`flex flex-col flex-1 h-full w-full overflow-hidden font-sans transition-colors ${
+        !isLight ? 'bg-[#0f172a] text-slate-100' : 'bg-transparent text-slate-800'
+      }`}
     >
       {/* Compact Two-Row Integrated Header & Tab Selector Deck */}
       <div
@@ -486,8 +487,8 @@ export function AiSecOpsNexus() {
                 id: 'siem_soar',
                 title: 'SIEM & SOAR (SOC)',
                 icon: <ShieldCheck className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />,
-                activeClass: 'bg-blue-600 text-white shadow-xs font-bold border-blue-600',
-                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80',
+                activeClass: 'bg-blue-50/80 dark:bg-blue-950/30 text-blue-950 dark:text-blue-200 border-blue-500 dark:border-blue-400 border-b-2 border-b-blue-600 dark:border-b-blue-400 font-bold shadow-2xs',
+                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/80 hover:border-slate-300',
                 apps: [
                   { id: 'siem', label: 'SIEM Log Analytics', icon: <Activity className="w-3.5 h-3.5" /> },
                   { id: 'ueba', label: 'UEBA Behaviour Analytics', icon: <UserX className="w-3.5 h-3.5" /> },
@@ -499,8 +500,8 @@ export function AiSecOpsNexus() {
                 id: 'threat_intel',
                 title: 'Active Threat Intel',
                 icon: <Bug className="w-3.5 h-3.5 text-rose-600 dark:text-rose-400" />,
-                activeClass: 'bg-rose-600 text-white shadow-xs font-bold border-rose-600',
-                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80',
+                activeClass: 'bg-rose-50/80 dark:bg-rose-950/30 text-rose-950 dark:text-rose-200 border-rose-500 dark:border-rose-400 border-b-2 border-b-rose-600 dark:border-b-rose-400 font-bold shadow-2xs',
+                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/80 hover:border-slate-300',
                 apps: [
                   { id: 'darkweb', label: 'Dark Web Scraper', icon: <Lock className="w-3.5 h-3.5" /> },
                   { id: 'osint', label: 'OSINT Surface Recon', icon: <Globe className="w-3.5 h-3.5" /> },
@@ -511,8 +512,8 @@ export function AiSecOpsNexus() {
                 id: 'modeling',
                 title: 'Forensic Modelling',
                 icon: <Crosshair className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />,
-                activeClass: 'bg-purple-600 text-white shadow-xs font-bold border-purple-600',
-                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80',
+                activeClass: 'bg-purple-50/80 dark:bg-purple-950/30 text-purple-950 dark:text-purple-200 border-purple-500 dark:border-purple-400 border-b-2 border-b-purple-600 dark:border-b-purple-400 font-bold shadow-2xs',
+                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80 hover:border-slate-300',
                 apps: [
                   { id: 'attacktree', label: 'Attack Tree Solver', icon: <GitFork className="w-3.5 h-3.5" /> },
                   { id: 'killchain', label: 'Cyber Kill Chain Map', icon: <Crosshair className="w-3.5 h-3.5" /> },
@@ -524,8 +525,8 @@ export function AiSecOpsNexus() {
                 id: 'appsec',
                 title: 'AppSec & VAPT',
                 icon: <Terminal className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />,
-                activeClass: 'bg-amber-600 text-white shadow-xs font-bold border-amber-600',
-                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80',
+                activeClass: 'bg-amber-50/80 dark:bg-amber-950/30 text-amber-950 dark:text-amber-200 border-amber-500 dark:border-amber-400 border-b-2 border-b-amber-600 dark:border-b-amber-400 font-bold shadow-2xs',
+                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80 hover:border-slate-300',
                 apps: [
                   { id: 'aipentest', label: 'AI Red-Team Pentest', icon: <Terminal className="w-3.5 h-3.5" /> },
                   { id: 'tpcrm', label: 'Third-Party Risk (TPCRM)', icon: <ShieldAlert className="w-3.5 h-3.5" /> },
@@ -535,8 +536,8 @@ export function AiSecOpsNexus() {
                 id: 'cloud_data',
                 title: 'Cloud & Data Posture',
                 icon: <Cloud className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />,
-                activeClass: 'bg-cyan-600 text-white shadow-xs font-bold border-cyan-600',
-                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80',
+                activeClass: 'bg-cyan-50/80 dark:bg-cyan-950/30 text-cyan-950 dark:text-cyan-200 border-cyan-500 dark:border-cyan-400 border-b-2 border-b-cyan-600 dark:border-b-cyan-400 font-bold shadow-2xs',
+                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80 hover:border-slate-300',
                 apps: [
                   { id: 'cspm', label: 'CSPM & CIEM Cloud', icon: <Cloud className="w-3.5 h-3.5" /> },
                   { id: 'dspm', label: 'DSPM Data Inventory', icon: <Database className="w-3.5 h-3.5" /> },
@@ -547,8 +548,8 @@ export function AiSecOpsNexus() {
                 id: 'compliance',
                 title: 'GRC Audits',
                 icon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />,
-                activeClass: 'bg-emerald-600 text-white shadow-xs font-bold border-emerald-600',
-                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80',
+                activeClass: 'bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-950 dark:text-emerald-200 border-emerald-500 dark:border-emerald-400 border-b-2 border-b-emerald-600 dark:border-b-emerald-400 font-bold shadow-2xs',
+                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80 hover:border-slate-300',
                 apps: [
                   { id: 'grc', label: 'GRC Compliance Center', icon: <CheckCircle2 className="w-3.5 h-3.5" /> },
                 ] as const,
@@ -557,8 +558,8 @@ export function AiSecOpsNexus() {
                 id: 'infrastructure',
                 title: 'Infrastructure',
                 icon: <CreditCard className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />,
-                activeClass: 'bg-indigo-600 text-white shadow-xs font-bold border-indigo-600',
-                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80',
+                activeClass: 'bg-indigo-50/80 dark:bg-indigo-950/30 text-indigo-950 dark:text-indigo-200 border-indigo-500 dark:border-indigo-400 border-b-2 border-b-indigo-600 dark:border-b-indigo-400 font-bold shadow-2xs',
+                inactiveClass: 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/80 hover:border-slate-300',
                 apps: [
                   { id: 'spire_stripe', label: 'SPIRE & STRIPE Billing', icon: <CreditCard className="w-3.5 h-3.5" /> },
                 ] as const,
@@ -577,13 +578,13 @@ export function AiSecOpsNexus() {
                   }`}
                   title={`Select ${group.title} domain`}
                 >
-                  <span className={isGroupActive ? 'text-white' : ''}>
+                  <span className={isGroupActive ? 'opacity-100' : 'opacity-80'}>
                     {group.icon}
                   </span>
                   <span>{group.title}</span>
                   <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
                     isGroupActive
-                      ? 'bg-white/20 text-white'
+                      ? 'bg-slate-200/80 dark:bg-slate-700/80 text-slate-900 dark:text-slate-100 font-bold'
                       : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
                   }`}>
                     {group.apps.length}
@@ -679,10 +680,10 @@ export function AiSecOpsNexus() {
                       key={app.id}
                       id={`btn-subapp-${app.id}`}
                       onClick={() => setActiveTab(app.id as any)}
-                      className={`flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-md transition-all cursor-pointer whitespace-nowrap border ${
+                      className={`flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-md transition-all cursor-pointer whitespace-nowrap border shadow-2xs ${
                         isAppActive
-                          ? 'bg-slate-900 text-white border-slate-900 font-bold shadow-2xs dark:bg-slate-100 dark:text-slate-900 dark:border-slate-100'
-                          : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-900 border-slate-300 dark:border-slate-300 hover:bg-slate-100 dark:hover:bg-slate-200'
+                          ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 border-slate-400 dark:border-slate-500 border-b-2 border-b-slate-900 dark:border-b-slate-100 font-bold'
+                          : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/80 hover:border-slate-300'
                       }`}
                       title={`Open ${app.label}`}
                     >

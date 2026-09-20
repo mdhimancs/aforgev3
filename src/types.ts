@@ -377,7 +377,13 @@ export interface VaptAuditReport {
   findings: VaptFinding[];
 }
 
-export type ThemeMode = 'light' | 'dark';
+export type ThemeMode = 
+  | 'light' 
+  | 'dark'
+  | 'mission'     // 1. Daylight Mission Desk (Cool Slate #F1F5F9)
+  | 'editorial'   // 2. Editorial Analyst (Warm Paper #F8F7F4)
+  | 'nordic'      // 3. Nordic Frost (Clean Ice #F8FAFC)
+  | 'sage';       // 4. Sage Laboratory (Calm Green-Tint #F3F5F4)
 
 // -------------------------------------------------------------
 // AI in SIEM, SOAR, XDR & Cyber Fusion Types
