@@ -73,6 +73,99 @@
         }
       },
       "required": ["postId", "requiredClearance"]
+    },
+    "accessRequest": {
+      "title": "Article Access Approval Request",
+      "description": "Access approval request submitted by a user to the administrator (munish.world@gmail.com) for reviewing and granting article access.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the access request."
+        },
+        "postId": {
+          "type": "string",
+          "description": "The target blog article ID."
+        },
+        "postTitle": {
+          "type": "string",
+          "description": "The title of the requested article."
+        },
+        "slug": {
+          "type": "string",
+          "description": "The article slug."
+        },
+        "userId": {
+          "type": "string",
+          "description": "UID of the requesting user."
+        },
+        "userEmail": {
+          "type": "string",
+          "description": "Email address of the requesting user."
+        },
+        "userName": {
+          "type": "string",
+          "description": "Display name of the requesting user."
+        },
+        "requestedClearance": {
+          "type": "string",
+          "enum": ["Public", "Internal", "Confidential", "Restricted"],
+          "description": "Clearance level required to unlock the article."
+        },
+        "reason": {
+          "type": "string",
+          "description": "Business justification for accessing the classified post."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["PENDING", "APPROVED", "REJECTED"],
+          "description": "Current status of the access request."
+        },
+        "reviewedBy": {
+          "type": "string",
+          "description": "Admin email who approved or rejected the request."
+        },
+        "reviewedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of review decision."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when request was filed."
+        }
+      },
+      "required": ["postId", "userId", "userEmail", "status", "requestedClearance"]
+    },
+    "userArticleGrant": {
+      "title": "User Article Specific Grant",
+      "description": "Explicit individual article access grant approved by the administrator.",
+      "type": "object",
+      "properties": {
+        "grantId": {
+          "type": "string",
+          "description": "Combined identifier {userId}_{postId}."
+        },
+        "userId": {
+          "type": "string",
+          "description": "UID of granted user."
+        },
+        "postId": {
+          "type": "string",
+          "description": "Article ID unlocked for the user."
+        },
+        "grantedBy": {
+          "type": "string",
+          "description": "Admin email who granted access."
+        },
+        "grantedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of grant."
+        }
+      },
+      "required": ["userId", "postId", "grantedBy"]
     }
   },
   "firestore": {
@@ -87,6 +180,18 @@
         "$ref": "#/entities/blogAccessPolicy"
       },
       "description": "Stores granular access control policies and clearance levels for each blog."
+    },
+    "/accessRequests/{requestId}": {
+      "schema": {
+        "$ref": "#/entities/accessRequest"
+      },
+      "description": "Stores article access requests routed to administrator munish.world@gmail.com for approval."
+    },
+    "/userArticleGrants/{grantId}": {
+      "schema": {
+        "$ref": "#/entities/userArticleGrant"
+      },
+      "description": "Stores individual approved article access grants."
     }
   }
 }

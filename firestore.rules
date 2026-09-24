@@ -45,6 +45,22 @@ service cloud.firestore {
              data.requiredClearance in ['Public', 'Internal', 'Confidential', 'Restricted'];
     }
 
+    function isValidAccessRequest(data) {
+      return data.keys().hasAll(['postId', 'userId', 'userEmail', 'status', 'requestedClearance']) &&
+             data.postId is string && data.postId.size() <= 128 &&
+             data.userId is string && data.userId.size() <= 128 &&
+             data.userEmail is string && data.userEmail.size() <= 254 &&
+             data.status in ['PENDING', 'APPROVED', 'REJECTED'] &&
+             data.requestedClearance in ['Public', 'Internal', 'Confidential', 'Restricted'];
+    }
+
+    function isValidUserArticleGrant(data) {
+      return data.keys().hasAll(['userId', 'postId', 'grantedBy']) &&
+             data.userId is string && data.userId.size() <= 128 &&
+             data.postId is string && data.postId.size() <= 128 &&
+             data.grantedBy is string && data.grantedBy.size() <= 254;
+    }
+
     // 1. User Profiles & Clearance State
     match /users/{userId} {
       allow get: if isSignedIn() && (request.auth.uid == userId || isAdmin());
@@ -62,6 +78,21 @@ service cloud.firestore {
         (request.auth.token.email_verified == true)
       );
       allow delete: if isAdmin();
+    }
+
+    // 3. Article Access Approval Requests (Routed to Admin munish.world@gmail.com)
+    match /accessRequests/{requestId} {
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow list: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && (incoming().userId == request.auth.uid || isAdmin()) && isValidAccessRequest(incoming());
+      allow update: if isAdmin() || (isSignedIn() && incoming().userId == request.auth.uid && isValidAccessRequest(incoming()));
+      allow delete: if isAdmin();
+    }
+
+    // 4. Individual Approved Article Grants
+    match /userArticleGrants/{grantId} {
+      allow get, list: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow create, update, delete: if isAdmin();
     }
   }
 }

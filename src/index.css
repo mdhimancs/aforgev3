@@ -559,3 +559,101 @@ textarea::placeholder {
     text-wrap: balance;
   }
 }
+
+/* ================================================================= */
+/* ADVANCED ANIMATION SUITE KEYFRAMES & UTILITIES                    */
+/* ================================================================= */
+
+/* 1. Shimmer Loading Skeleton */
+@keyframes shimmerSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(241, 245, 249, 0.7) 0%,
+    rgba(226, 232, 240, 0.9) 50%,
+    rgba(241, 245, 249, 0.7) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerSweep 1.8s ease-in-out infinite;
+}
+
+/* 2. SVG Path Stroke-Dashoffset Drawing */
+@keyframes drawStroke {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-check {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: drawStroke 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3. Staggered Fade-In-Up Entrance */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Stagger Delays */
+.stagger-1 { animation-delay: 35ms; }
+.stagger-2 { animation-delay: 70ms; }
+.stagger-3 { animation-delay: 105ms; }
+.stagger-4 { animation-delay: 140ms; }
+.stagger-5 { animation-delay: 175ms; }
+.stagger-6 { animation-delay: 210ms; }
+.stagger-7 { animation-delay: 245ms; }
+.stagger-8 { animation-delay: 280ms; }
+.stagger-9 { animation-delay: 315ms; }
+
+/* 4. Mouse-Tracking Spotlight Card */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    500px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(99, 102, 241, 0.08),
+    transparent 60%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}

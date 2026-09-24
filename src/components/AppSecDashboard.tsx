@@ -45,6 +45,8 @@ import {
 import { PRESET_APPSEC_PROJECTS, SAMPLE_CODE_SNIPPETS } from '../data/appsecPresets';
 import { AegisShieldView } from './AegisShieldView';
 import { useTheme } from '../context/ThemeContext';
+import { AnimatedCounter } from './common/AnimatedCounter';
+import { SpotlightCard } from './common/SpotlightCard';
 
 type AppSecTab = 'overview' | 'aegis' | 'sast' | 'dast' | 'sca' | 'secrets_iac' | 'ai_copilot' | 'reports';
 
@@ -634,79 +636,89 @@ export const AppSecDashboard: React.FC = () => {
             {/* Top Stat Gauges */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               {/* Security Health Score */}
-              <div className="p-4 bg-white border border-slate-200 rounded-xl relative overflow-hidden flex flex-col justify-between">
+              <SpotlightCard className="p-4 bg-white border border-slate-200 rounded-xl relative overflow-hidden flex flex-col justify-between shadow-2xs hover:shadow-md transition-all animate-fade-in-up stagger-1">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-slate-600">Security Health Score</span>
-                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  <span className="text-xs font-bold text-slate-700">Security Health Score</span>
+                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
                 </div>
                 <div className="my-2 flex items-baseline gap-2">
-                  <span className="text-3xl font-extrabold text-white">{currentProject.healthScore}</span>
+                  <span className="text-3xl font-extrabold text-slate-900">
+                    <AnimatedCounter value={currentProject.healthScore} />
+                  </span>
                   <span className="text-xs text-slate-500">/ 100</span>
-                  <span className="ml-auto text-xs font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">
+                  <span className="ml-auto text-xs font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
                     Grade B+
                   </span>
                 </div>
                 <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
                   <div
-                    className="bg-gradient-to-r from-emerald-500 to-indigo-500 h-full rounded-full"
+                    className="bg-gradient-to-r from-emerald-500 to-indigo-500 h-full rounded-full transition-all duration-1000"
                     style={{ width: `${currentProject.healthScore}%` }}
                   />
                 </div>
-              </div>
+              </SpotlightCard>
 
               {/* Critical Findings */}
-              <div className="p-4 bg-white border border-rose-500/30 rounded-xl relative overflow-hidden flex flex-col justify-between">
+              <SpotlightCard className="p-4 bg-white border border-rose-200 rounded-xl relative overflow-hidden flex flex-col justify-between shadow-2xs hover:shadow-md transition-all animate-fade-in-up stagger-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-rose-300">Critical Severity</span>
-                  <Flame className="w-4 h-4 text-rose-400" />
+                  <span className="text-xs font-bold text-rose-700">Critical Severity</span>
+                  <Flame className="w-4 h-4 text-rose-500 animate-pulse" />
                 </div>
                 <div className="my-2">
-                  <span className="text-3xl font-extrabold text-rose-400">{totalCritical}</span>
-                  <span className="text-xs text-rose-300/70 ml-2">Requires immediate patch</span>
+                  <span className="text-3xl font-extrabold text-rose-600">
+                    <AnimatedCounter value={totalCritical} />
+                  </span>
+                  <span className="text-xs text-rose-600/80 ml-2 font-medium">Requires immediate patch</span>
                 </div>
-                <p className="text-[11px] text-slate-600">SQLi, BOLA, JWT RCE, Exposed Keys</p>
-              </div>
+                <p className="text-[11px] text-slate-500">SQLi, BOLA, JWT RCE, Exposed Keys</p>
+              </SpotlightCard>
 
               {/* High Severity */}
-              <div className="p-4 bg-white border border-amber-500/30 rounded-xl relative overflow-hidden flex flex-col justify-between">
+              <SpotlightCard className="p-4 bg-white border border-amber-200 rounded-xl relative overflow-hidden flex flex-col justify-between shadow-2xs hover:shadow-md transition-all animate-fade-in-up stagger-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-amber-300">High Severity</span>
-                  <AlertTriangle className="w-4 h-4 text-amber-400" />
+                  <span className="text-xs font-bold text-amber-700">High Severity</span>
+                  <AlertTriangle className="w-4 h-4 text-amber-500" />
                 </div>
                 <div className="my-2">
-                  <span className="text-3xl font-extrabold text-amber-400">{totalHigh}</span>
-                  <span className="text-xs text-amber-300/70 ml-2">Fix in next release</span>
+                  <span className="text-3xl font-extrabold text-amber-600">
+                    <AnimatedCounter value={totalHigh} />
+                  </span>
+                  <span className="text-xs text-amber-700/80 ml-2 font-medium">Fix in next release</span>
                 </div>
-                <p className="text-[11px] text-slate-600">SSRF, Path Traversal, CVEs</p>
-              </div>
+                <p className="text-[11px] text-slate-500">SSRF, Path Traversal, CVEs</p>
+              </SpotlightCard>
 
               {/* Medium / Low */}
-              <div className="p-4 bg-white border border-slate-200 rounded-xl relative overflow-hidden flex flex-col justify-between">
+              <SpotlightCard className="p-4 bg-white border border-slate-200 rounded-xl relative overflow-hidden flex flex-col justify-between shadow-2xs hover:shadow-md transition-all animate-fade-in-up stagger-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-slate-600">Medium & Low</span>
-                  <Layers className="w-4 h-4 text-cyan-400" />
+                  <span className="text-xs font-bold text-slate-700">Medium & Low</span>
+                  <Layers className="w-4 h-4 text-cyan-600" />
                 </div>
                 <div className="my-2">
-                  <span className="text-3xl font-extrabold text-slate-900">{totalMedium + totalLow}</span>
-                  <span className="text-xs text-slate-500 ml-2">Audited & monitored</span>
+                  <span className="text-3xl font-extrabold text-slate-900">
+                    <AnimatedCounter value={totalMedium + totalLow} />
+                  </span>
+                  <span className="text-xs text-slate-500 ml-2 font-medium">Audited & monitored</span>
                 </div>
-                <p className="text-[11px] text-slate-600">CORS policies, XSS sanitization</p>
-              </div>
+                <p className="text-[11px] text-slate-500">CORS policies, XSS sanitization</p>
+              </SpotlightCard>
 
               {/* MTTR Metric */}
-              <div className="p-4 bg-white border border-slate-200 rounded-xl relative overflow-hidden flex flex-col justify-between">
+              <SpotlightCard className="p-4 bg-white border border-slate-200 rounded-xl relative overflow-hidden flex flex-col justify-between shadow-2xs hover:shadow-md transition-all animate-fade-in-up stagger-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-slate-600">Mean Time To Remediate</span>
-                  <Clock className="w-4 h-4 text-indigo-400" />
+                  <span className="text-xs font-bold text-slate-700">Mean Time To Remediate</span>
+                  <Clock className="w-4 h-4 text-indigo-600" />
                 </div>
                 <div className="my-2">
-                  <span className="text-3xl font-extrabold text-indigo-300">2.4</span>
-                  <span className="text-xs text-slate-600 ml-1">days average</span>
+                  <span className="text-3xl font-extrabold text-indigo-600">
+                    <AnimatedCounter value={2.4} decimals={1} />
+                  </span>
+                  <span className="text-xs text-slate-500 ml-1 font-medium">days average</span>
                 </div>
-                <p className="text-[11px] text-emerald-400 flex items-center gap-1">
+                <p className="text-[11px] text-emerald-700 flex items-center gap-1 font-bold">
                   <Check className="w-3 h-3" /> 42% faster with AI auto-fixes
                 </p>
-              </div>
+              </SpotlightCard>
             </div>
 
             {/* AppSec Scanning Pillars Matrix */}

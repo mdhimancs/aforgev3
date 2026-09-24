@@ -34,7 +34,16 @@ import {
   LogOut,
   User as UserIcon,
   RefreshCw,
-  Key
+  Key,
+  Bell,
+  CheckCircle2,
+  XCircle,
+  AlertCircle,
+  Inbox,
+  Send,
+  Eye,
+  HelpCircle,
+  BadgeCheck
 } from 'lucide-react';
 import {
   auth,
@@ -46,6 +55,26 @@ import {
 } from '../../lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { doc, setDoc, getDoc, onSnapshot, collection } from 'firebase/firestore';
+import { AnimatedCounter } from '../common/AnimatedCounter';
+import { AnimatedCheckmark } from '../common/AnimatedCheckmark';
+import { ShimmerSkeleton, ArticleLoadingSkeleton } from '../common/ShimmerSkeleton';
+import { SpotlightCard } from '../common/SpotlightCard';
+
+export interface AccessRequestItem {
+  id: string;
+  postId: string;
+  postTitle: string;
+  slug: string;
+  userId: string;
+  userEmail: string;
+  userName: string;
+  requestedClearance: 'Public' | 'Internal' | 'Confidential' | 'Restricted';
+  reason: string;
+  status: 'PENDING' | 'APPROVED' | 'REJECTED';
+  reviewedBy?: string;
+  reviewedAt?: string;
+  createdAt: string;
+}
 
 interface PostSummary {
   id: string;
@@ -198,6 +227,79 @@ export const BlogReader: React.FC = () => {
     return () => unsubscribeSnapshot();
   }, []);
 
+  // Access Request & Admin Approvals State (munish.world@gmail.com)
+  const [accessRequests, setAccessRequests] = useState<AccessRequestItem[]>([]);
+  const [userGrants, setUserGrants] = useState<Set<string>>(new Set());
+  const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
+  const [requestTargetPost, setRequestTargetPost] = useState<{ id: string; title: string; slug: string } | null>(null);
+  const [requestReason, setRequestReason] = useState('Requesting authorization to review system design architecture and security threat model.');
+  const [requestSubmitting, setRequestSubmitting] = useState(false);
+  const [requestSuccessMessage, setRequestSuccessMessage] = useState<string | null>(null);
+  const [isAdminInboxOpen, setIsAdminInboxOpen] = useState(false);
+  const [inboxFilter, setInboxFilter] = useState<'PENDING' | 'APPROVED' | 'REJECTED' | 'ALL'>('PENDING');
+  const [adminActionLoading, setAdminActionLoading] = useState<string | null>(null);
+
+  const isAdmin = currentUser?.email === 'munish.world@gmail.com' || userRole === 'admin';
+
+  // Listen to Access Requests from Firestore
+  useEffect(() => {
+    if (!currentUser) {
+      setAccessRequests([]);
+      return;
+    }
+
+    const requestsCol = collection(db, 'accessRequests');
+    const unsubscribeRequests = onSnapshot(
+      requestsCol,
+      (snapshot) => {
+        const list: AccessRequestItem[] = [];
+        snapshot.forEach((docSnap) => {
+          const data = docSnap.data() as any;
+          if (isAdmin || data.userId === currentUser.uid) {
+            list.push({
+              id: docSnap.id,
+              ...data
+            });
+          }
+        });
+        setAccessRequests(list.sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime()));
+      },
+      (err) => {
+        console.warn('Firestore accessRequests listener error:', err);
+      }
+    );
+
+    return () => unsubscribeRequests();
+  }, [currentUser, isAdmin]);
+
+  // Listen to User Article Grants from Firestore
+  useEffect(() => {
+    if (!currentUser) {
+      setUserGrants(new Set());
+      return;
+    }
+
+    const grantsCol = collection(db, 'userArticleGrants');
+    const unsubscribeGrants = onSnapshot(
+      grantsCol,
+      (snapshot) => {
+        const grantsSet = new Set<string>();
+        snapshot.forEach((docSnap) => {
+          const data = docSnap.data() as any;
+          if (data.userId === currentUser.uid) {
+            grantsSet.add(data.postId);
+          }
+        });
+        setUserGrants(grantsSet);
+      },
+      (err) => {
+        console.warn('Firestore userArticleGrants listener error:', err);
+      }
+    );
+
+    return () => unsubscribeGrants();
+  }, [currentUser]);
+
   const getArticleLevel = (postId: string) => {
     if (articleAccessLevels[postId]) {
       return articleAccessLevels[postId];
@@ -263,9 +365,130 @@ export const BlogReader: React.FC = () => {
   };
 
   const isGated = (postId: string) => {
+    if (isAdmin) return false;
+    if (userGrants.has(postId)) return false;
     const required = getArticleLevel(postId);
     return CLEARANCE_VALUES[userClearance] < CLEARANCE_VALUES[required];
   };
+
+  const handleOpenRequestModal = (post: { id: string; title: string; slug: string }) => {
+    setRequestTargetPost(post);
+    setRequestSuccessMessage(null);
+    setIsRequestModalOpen(true);
+  };
+
+  const handleSubmitAccessRequest = async () => {
+    const target = requestTargetPost || selectedPost;
+    if (!target) return;
+
+    if (!currentUser) {
+      const user = await signInWithGoogle();
+      if (!user) return;
+    }
+
+    const activeUser = currentUser || auth.currentUser;
+    if (!activeUser) return;
+
+    setRequestSubmitting(true);
+    const requestId = `req_${activeUser.uid}_${target.id}`;
+    const reqData: AccessRequestItem = {
+      id: requestId,
+      postId: target.id,
+      postTitle: target.title,
+      slug: target.slug,
+      userId: activeUser.uid,
+      userEmail: activeUser.email || 'analyst@enterprise.corp',
+      userName: activeUser.displayName || 'Security Analyst',
+      requestedClearance: getArticleLevel(target.id),
+      reason: requestReason.trim() || 'Requesting authorization to review system design architecture.',
+      status: 'PENDING',
+      createdAt: new Date().toISOString()
+    };
+
+    try {
+      await setDoc(doc(db, 'accessRequests', requestId), reqData);
+      setRequestSuccessMessage('Access request routed to Administrator (munish.world@gmail.com). You will receive instantaneous access upon approval.');
+      setTimeout(() => {
+        setIsRequestModalOpen(false);
+        setRequestSuccessMessage(null);
+      }, 2500);
+    } catch (err) {
+      console.error('Error submitting access request:', err);
+      handleFirestoreError(err, OperationType.WRITE, `accessRequests/${requestId}`);
+    } finally {
+      setRequestSubmitting(false);
+    }
+  };
+
+  const handleApproveRequest = async (req: AccessRequestItem) => {
+    setAdminActionLoading(req.id);
+    try {
+      // 1. Mark request as APPROVED
+      await setDoc(
+        doc(db, 'accessRequests', req.id),
+        {
+          status: 'APPROVED',
+          reviewedBy: currentUser?.email || 'munish.world@gmail.com',
+          reviewedAt: new Date().toISOString()
+        },
+        { merge: true }
+      );
+
+      // 2. Grant individual article access
+      const grantId = `${req.userId}_${req.postId}`;
+      await setDoc(doc(db, 'userArticleGrants', grantId), {
+        grantId,
+        userId: req.userId,
+        postId: req.postId,
+        grantedBy: currentUser?.email || 'munish.world@gmail.com',
+        grantedAt: new Date().toISOString()
+      });
+
+      // 3. Elevate user profile clearance if needed
+      const userRef = doc(db, 'users', req.userId);
+      const userSnap = await getDoc(userRef);
+      if (userSnap.exists()) {
+        const currentClearance = userSnap.data().clearanceLevel || 'Public';
+        if (CLEARANCE_VALUES[currentClearance as keyof typeof CLEARANCE_VALUES] < CLEARANCE_VALUES[req.requestedClearance]) {
+          await setDoc(
+            userRef,
+            {
+              clearanceLevel: req.requestedClearance,
+              updatedAt: new Date().toISOString()
+            },
+            { merge: true }
+          );
+        }
+      }
+    } catch (err) {
+      console.error('Error approving request:', err);
+      handleFirestoreError(err, OperationType.WRITE, `accessRequests/${req.id}`);
+    } finally {
+      setAdminActionLoading(null);
+    }
+  };
+
+  const handleRejectRequest = async (req: AccessRequestItem) => {
+    setAdminActionLoading(req.id);
+    try {
+      await setDoc(
+        doc(db, 'accessRequests', req.id),
+        {
+          status: 'REJECTED',
+          reviewedBy: currentUser?.email || 'munish.world@gmail.com',
+          reviewedAt: new Date().toISOString()
+        },
+        { merge: true }
+      );
+    } catch (err) {
+      console.error('Error rejecting request:', err);
+      handleFirestoreError(err, OperationType.WRITE, `accessRequests/${req.id}`);
+    } finally {
+      setAdminActionLoading(null);
+    }
+  };
+
+  const pendingRequestsCount = accessRequests.filter((r) => r.status === 'PENDING').length;
 
   // Initialize with embedded blog index so all 109 articles are instantly available in all environments
   const [posts, setPosts] = useState<PostSummary[]>(EMBEDDED_BLOG_POSTS as PostSummary[]);
@@ -785,7 +1008,7 @@ export const BlogReader: React.FC = () => {
               onClick={() => handleCopyLink(selectedPost.originalUrl)}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-2xs transition-colors cursor-pointer"
             >
-              {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+              {copiedLink ? <AnimatedCheckmark size={14} className="text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
               <span className="hidden sm:inline">{copiedLink ? 'Copied Link' : 'Copy Link'}</span>
             </button>
 
@@ -812,7 +1035,10 @@ export const BlogReader: React.FC = () => {
             onScroll={handleArticleScroll}
             className="flex-1 h-full overflow-y-auto px-4 sm:px-8 md:px-12 py-8 scroll-smooth"
           >
-            <div className="max-w-3xl mx-auto bg-white border border-slate-200 rounded-2xl p-6 sm:p-10 shadow-2xs">
+            {loadingPost ? (
+              <ArticleLoadingSkeleton />
+            ) : (
+              <div className="max-w-3xl mx-auto bg-white border border-slate-200 rounded-2xl p-6 sm:p-10 shadow-2xs">
               {/* Category badges */}
               <div className="flex flex-wrap items-center gap-2 mb-4">
                 {selectedPost.categories.map((c, i) => (
@@ -900,73 +1126,128 @@ export const BlogReader: React.FC = () => {
 
               {/* Article Content Render or Security Gate */}
               {isGated(selectedPost.id) ? (
-                <div className="my-8 p-8 border-2 border-dashed border-rose-200 bg-rose-50/40 rounded-2xl text-center flex flex-col items-center shadow-xs">
-                  <div className="w-16 h-16 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center mb-4 shadow-sm">
-                    <ShieldAlert className="w-8 h-8 animate-pulse" />
-                  </div>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-[11px] font-black uppercase tracking-wider mb-2 border border-rose-200">
-                    <Lock className="w-3.5 h-3.5" /> Firebase Zero-Trust Access Control
-                  </div>
-                  <h2 className="text-xl font-black text-rose-950 mb-2">Security Clearance Required</h2>
-                  <p className="text-xs text-rose-900 max-w-md mx-auto mb-6 leading-relaxed">
-                    This deep dive analysis is protected by Firebase Firestore Security Rules. Access is restricted to authenticated identities with <span className="font-extrabold text-rose-600 font-mono px-1.5 py-0.5 bg-white rounded border border-rose-200">{getArticleLevel(selectedPost.id).toUpperCase()}</span> clearance level or higher.
-                  </p>
-                  
-                  <div className="bg-white border border-rose-100 rounded-xl p-4 mb-6 text-xs shadow-xs max-w-md w-full space-y-2">
-                    <div className="flex justify-between items-center text-slate-500">
-                      <span>Firebase Identity:</span>
-                      <span className="font-bold text-slate-800 font-mono flex items-center gap-1">
-                        {currentUser ? (
-                          <>
-                            <UserIcon className="w-3.5 h-3.5 text-emerald-600" />
-                            <span>{currentUser.email}</span>
-                          </>
+                (() => {
+                  const currentReq = accessRequests.find((r) => r.postId === selectedPost.id && r.userId === currentUser?.uid);
+                  const isPending = currentReq?.status === 'PENDING';
+                  const isRejected = currentReq?.status === 'REJECTED';
+
+                  return (
+                    <div className="my-8 p-8 border-2 border-dashed border-rose-200 bg-rose-50/40 rounded-2xl text-center flex flex-col items-center shadow-xs">
+                      <div className="w-16 h-16 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center mb-4 shadow-sm">
+                        <ShieldAlert className="w-8 h-8 animate-pulse" />
+                      </div>
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-[11px] font-black uppercase tracking-wider mb-2 border border-rose-200">
+                        <Lock className="w-3.5 h-3.5" /> Firebase Zero-Trust Access Control
+                      </div>
+                      <h2 className="text-xl font-black text-rose-950 mb-2">Security Clearance Required</h2>
+                      <p className="text-xs text-rose-900 max-w-md mx-auto mb-6 leading-relaxed">
+                        This deep dive analysis is protected by Firebase Firestore Security Rules. Access is restricted to authenticated identities with <span className="font-extrabold text-rose-600 font-mono px-1.5 py-0.5 bg-white rounded border border-rose-200">{getArticleLevel(selectedPost.id).toUpperCase()}</span> clearance level or explicit approval from <span className="font-bold text-rose-950 underline">munish.world@gmail.com</span>.
+                      </p>
+                      
+                      <div className="bg-white border border-rose-100 rounded-xl p-4 mb-6 text-xs shadow-xs max-w-md w-full space-y-2">
+                        <div className="flex justify-between items-center text-slate-500">
+                          <span>Firebase Identity:</span>
+                          <span className="font-bold text-slate-800 font-mono flex items-center gap-1">
+                            {currentUser ? (
+                              <>
+                                <UserIcon className="w-3.5 h-3.5 text-emerald-600" />
+                                <span>{currentUser.email}</span>
+                              </>
+                            ) : (
+                              <span className="text-amber-600 font-bold">Unauthenticated Guest</span>
+                            )}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center text-slate-500">
+                          <span>Assigned Clearance:</span>
+                          <span className="font-bold text-slate-800 font-mono px-2 py-0.5 bg-slate-100 rounded">
+                            {userClearance}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center text-slate-500">
+                          <span>Required Blog Level:</span>
+                          <span className="font-bold text-rose-600 font-mono px-2 py-0.5 bg-rose-50 border border-rose-200 rounded">
+                            {getArticleLevel(selectedPost.id)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center text-slate-500">
+                          <span>Approval Authority:</span>
+                          <span className="font-bold text-slate-700 font-mono text-[11px]">
+                            munish.world@gmail.com
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Pending or Rejected Status Notice */}
+                      {isPending && (
+                        <div className="mb-6 p-4 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 max-w-md w-full text-left flex items-start gap-3 shadow-xs animate-pulse">
+                          <Clock className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+                          <div>
+                            <div className="font-bold text-xs">Access Request Pending Administrator Approval</div>
+                            <div className="text-[11px] text-amber-800 mt-0.5">
+                              Your request submitted on {currentReq?.createdAt ? new Date(currentReq.createdAt).toLocaleDateString() : 'today'} is awaiting review by munish.world@gmail.com. You will receive immediate access once approved.
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {isRejected && (
+                        <div className="mb-6 p-4 rounded-xl bg-rose-100/80 border border-rose-300 text-rose-900 max-w-md w-full text-left flex items-start gap-3 shadow-xs">
+                          <XCircle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
+                          <div>
+                            <div className="font-bold text-xs">Previous Access Request Declined</div>
+                            <div className="text-[11px] text-rose-800 mt-0.5">
+                              The administrator declined this request. You can re-submit with updated business justification.
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="flex flex-wrap items-center justify-center gap-3">
+                        {!currentUser ? (
+                          <button
+                            onClick={() => signInWithGoogle()}
+                            className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-black rounded-xl shadow-md transition-all cursor-pointer flex items-center gap-2 hover:scale-102"
+                          >
+                            <LogIn className="w-4 h-4" />
+                            <span>Sign In with Google (Firebase)</span>
+                          </button>
+                        ) : isAdmin ? (
+                          <button
+                            onClick={() => handleUpdateUserClearance(getArticleLevel(selectedPost.id))}
+                            className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black rounded-xl shadow-md transition-all cursor-pointer flex items-center gap-2 hover:scale-102"
+                          >
+                            <ShieldCheck className="w-4 h-4" />
+                            <span>Admin Instant Authorization (Unlock)</span>
+                          </button>
+                        ) : isPending ? (
+                          <button
+                            onClick={() => setIsAdminInboxOpen(true)}
+                            className="px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-black rounded-xl shadow-md transition-all cursor-pointer flex items-center gap-2"
+                          >
+                            <Clock className="w-4 h-4" />
+                            <span>View Request Status</span>
+                          </button>
                         ) : (
-                          <span className="text-amber-600 font-bold">Unauthenticated Guest</span>
+                          <button
+                            onClick={() => handleOpenRequestModal(selectedPost)}
+                            className="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-black rounded-xl shadow-md transition-all cursor-pointer flex items-center gap-2 hover:scale-102"
+                          >
+                            <Send className="w-4 h-4" />
+                            <span>Request Access from munish.world@gmail.com</span>
+                          </button>
                         )}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center text-slate-500">
-                      <span>Assigned Clearance:</span>
-                      <span className="font-bold text-slate-800 font-mono px-2 py-0.5 bg-slate-100 rounded">
-                        {userClearance}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center text-slate-500">
-                      <span>Required Blog Level:</span>
-                      <span className="font-bold text-rose-600 font-mono px-2 py-0.5 bg-rose-50 border border-rose-200 rounded">
-                        {getArticleLevel(selectedPost.id)}
-                      </span>
-                    </div>
-                  </div>
 
-                  <div className="flex flex-wrap items-center justify-center gap-3">
-                    {!currentUser ? (
-                      <button
-                        onClick={() => signInWithGoogle()}
-                        className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-black rounded-xl shadow-md transition-all cursor-pointer flex items-center gap-2 hover:scale-102"
-                      >
-                        <LogIn className="w-4 h-4" />
-                        <span>Sign In with Google (Firebase)</span>
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => handleUpdateUserClearance(getArticleLevel(selectedPost.id))}
-                        className="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-black rounded-xl shadow-md transition-all cursor-pointer flex items-center gap-2 hover:scale-102"
-                      >
-                        <ShieldCheck className="w-4 h-4" />
-                        <span>Elevate Clearance to {getArticleLevel(selectedPost.id)}</span>
-                      </button>
-                    )}
-
-                    <button
-                      onClick={() => setSelectedPost(null)}
-                      className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition-all cursor-pointer border border-slate-200"
-                    >
-                      Return to Index
-                    </button>
-                  </div>
-                </div>
+                        <button
+                          onClick={() => setSelectedPost(null)}
+                          className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition-all cursor-pointer border border-slate-200"
+                        >
+                          Return to Index
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })()
               ) : (
                 <article
                   key={selectedPost.slug}
@@ -1018,6 +1299,7 @@ export const BlogReader: React.FC = () => {
                 </button>
               </div>
             </div>
+            )}
           </main>
 
           {/* Right Sticky Table of Contents (ToC) Index */}
@@ -1214,6 +1496,25 @@ export const BlogReader: React.FC = () => {
                 <span>Firestore Syncing...</span>
               </div>
             )}
+
+            {/* Approvals Inbox button (for Admin munish.world@gmail.com and Requesters) */}
+            <button
+              onClick={() => setIsAdminInboxOpen(true)}
+              className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border transition-all cursor-pointer shadow-2xs ${
+                pendingRequestsCount > 0
+                  ? 'bg-amber-500 hover:bg-amber-600 text-white border-amber-600 animate-pulse'
+                  : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200'
+              }`}
+              title="Access Requests & Approvals Governance Center"
+            >
+              <Bell className="w-3.5 h-3.5" />
+              <span>{isAdmin ? 'Approvals Inbox' : 'Access Status'}</span>
+              {pendingRequestsCount > 0 && (
+                <span className="px-1.5 py-0.2 bg-rose-600 text-white rounded-full text-[10px] font-black ml-0.5">
+                  {pendingRequestsCount}
+                </span>
+              )}
+            </button>
 
             {/* Toggle Index Sidebar */}
             <button
@@ -1502,7 +1803,7 @@ export const BlogReader: React.FC = () => {
                 <span>Showing:</span>
               </span>
               <span className="text-xs font-black text-slate-900 bg-slate-100 px-2 py-0.5 rounded">
-                {filteredPosts.length} of {posts.length} articles
+                <AnimatedCounter value={filteredPosts.length} /> of <AnimatedCounter value={posts.length} /> articles
               </span>
 
               {selectedCategory !== 'ALL' && (
@@ -1575,9 +1876,9 @@ export const BlogReader: React.FC = () => {
           {viewMode === 'cards' && filteredPosts.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {filteredPosts.map((post, idx) => (
-                <article
+                <SpotlightCard
                   key={post.id}
-                  className="bg-white border border-slate-200 hover:border-emerald-400 rounded-xl p-5 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between group"
+                  className={`bg-white border border-slate-200 hover:border-emerald-400 rounded-xl p-5 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between group animate-fade-in-up stagger-${(idx % 8) + 1}`}
                 >
                   <div>
                     {/* Top metadata & index tag */}
@@ -1661,7 +1962,7 @@ export const BlogReader: React.FC = () => {
                       </button>
                     </div>
                   </div>
-                </article>
+                </SpotlightCard>
               ))}
             </div>
           )}
@@ -1771,6 +2072,287 @@ export const BlogReader: React.FC = () => {
           )}
         </main>
       </div>
+
+      {/* ================================================================= */}
+      {/* MODAL 1: REQUEST ARTICLE ACCESS MODAL                             */}
+      {/* ================================================================= */}
+      {isRequestModalOpen && (requestTargetPost || selectedPost) && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+          <div className="bg-white border border-slate-200 rounded-2xl max-w-lg w-full p-6 shadow-2xl animate-in fade-in zoom-in duration-150">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
+              <div className="flex items-center gap-2">
+                <div className="w-9 h-9 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center">
+                  <Key className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900">Request Classified Access</h3>
+                  <p className="text-[11px] text-slate-500">Security Clearance Approval Process</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setIsRequestModalOpen(false)}
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Target Article Box */}
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 mb-4 text-xs space-y-1.5">
+              <div className="font-bold text-slate-900 line-clamp-1">
+                {(requestTargetPost || selectedPost)?.title}
+              </div>
+              <div className="flex items-center justify-between text-slate-500 pt-1 border-t border-slate-200/60">
+                <span>Required Clearance:</span>
+                <span className="font-bold text-rose-600 font-mono px-1.5 py-0.5 bg-rose-50 rounded border border-rose-200 text-[10px]">
+                  {getArticleLevel((requestTargetPost || selectedPost)!.id)}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-slate-500">
+                <span>Approval Authority:</span>
+                <span className="font-bold text-slate-800 font-mono text-[10px]">
+                  munish.world@gmail.com
+                </span>
+              </div>
+            </div>
+
+            {/* Business Justification */}
+            <div className="mb-4">
+              <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                Business Justification & Operational Purpose <span className="text-rose-500">*</span>
+              </label>
+              <textarea
+                value={requestReason}
+                onChange={(e) => setRequestReason(e.target.value)}
+                placeholder="Explain why your role requires access to this system design and threat model..."
+                rows={3}
+                className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-hidden text-slate-800"
+              />
+              <p className="text-[10px] text-slate-400 mt-1">
+                Your request will be recorded immutably in Cloud Firestore and submitted for review.
+              </p>
+            </div>
+
+            {/* Success feedback */}
+            {requestSuccessMessage && (
+              <div className="mb-4 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>{requestSuccessMessage}</span>
+              </div>
+            )}
+
+            {/* Footer Buttons */}
+            <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+              <button
+                onClick={() => setIsRequestModalOpen(false)}
+                className="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                disabled={requestSubmitting}
+                onClick={handleSubmitAccessRequest}
+                className="px-5 py-2 text-xs font-black text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-colors shadow-sm flex items-center gap-2 cursor-pointer disabled:opacity-50"
+              >
+                {requestSubmitting ? (
+                  <>
+                    <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                    <span>Submitting...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-3.5 h-3.5" />
+                    <span>Send for Approval</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ================================================================= */}
+      {/* MODAL 2: ACCESS APPROVALS & GOVERNANCE CENTER                     */}
+      {/* ================================================================= */}
+      {isAdminInboxOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+          <div className="bg-white border border-slate-200 rounded-2xl max-w-3xl w-full p-6 shadow-2xl animate-in fade-in zoom-in duration-150 flex flex-col max-h-[85vh]">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4 shrink-0">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-600 flex items-center justify-center">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                    <span>{isAdmin ? 'Access Approvals & Governance Inbox' : 'My Access Requests Tracker'}</span>
+                    {isAdmin && (
+                      <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                        Admin: munish.world@gmail.com
+                      </span>
+                    )}
+                  </h3>
+                  <p className="text-xs text-slate-500">
+                    Real-time Firestore authorization queue and clearance grants
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setIsAdminInboxOpen(false)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Filter Tabs */}
+            <div className="flex items-center gap-2 mb-4 pb-2 border-b border-slate-100 shrink-0 overflow-x-auto">
+              <button
+                onClick={() => setInboxFilter('PENDING')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center gap-1.5 ${
+                  inboxFilter === 'PENDING'
+                    ? 'bg-amber-500 text-white shadow-xs'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                <Clock className="w-3.5 h-3.5" />
+                <span>Pending Review ({accessRequests.filter(r => r.status === 'PENDING').length})</span>
+              </button>
+
+              <button
+                onClick={() => setInboxFilter('APPROVED')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center gap-1.5 ${
+                  inboxFilter === 'APPROVED'
+                    ? 'bg-emerald-600 text-white shadow-xs'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Approved Grants ({accessRequests.filter(r => r.status === 'APPROVED').length})</span>
+              </button>
+
+              <button
+                onClick={() => setInboxFilter('REJECTED')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center gap-1.5 ${
+                  inboxFilter === 'REJECTED'
+                    ? 'bg-rose-600 text-white shadow-xs'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                <XCircle className="w-3.5 h-3.5" />
+                <span>Declined ({accessRequests.filter(r => r.status === 'REJECTED').length})</span>
+              </button>
+
+              <button
+                onClick={() => setInboxFilter('ALL')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+                  inboxFilter === 'ALL'
+                    ? 'bg-slate-800 text-white shadow-xs'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                All History ({accessRequests.length})
+              </button>
+            </div>
+
+            {/* Request List Content */}
+            <div className="flex-1 overflow-y-auto space-y-3 pr-1">
+              {accessRequests
+                .filter(r => inboxFilter === 'ALL' || r.status === inboxFilter)
+                .map((req) => (
+                  <div
+                    key={req.id}
+                    className="p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition-all shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                  >
+                    <div className="space-y-1 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-full border flex items-center gap-1 ${
+                          req.status === 'PENDING' ? 'bg-amber-50 text-amber-800 border-amber-300' :
+                          req.status === 'APPROVED' ? 'bg-emerald-50 text-emerald-800 border-emerald-300' :
+                          'bg-rose-50 text-rose-800 border-rose-300'
+                        }`}>
+                          {req.status === 'APPROVED' && <AnimatedCheckmark size={12} className="text-emerald-700" />}
+                          <span>{req.status}</span>
+                        </span>
+                        <span className="text-xs font-bold text-slate-900">
+                          {req.postTitle}
+                        </span>
+                        <span className="text-[10px] font-mono text-slate-500">
+                          (Req. Clearance: {req.requestedClearance})
+                        </span>
+                      </div>
+
+                      <div className="text-xs text-slate-600 italic bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                        "{req.reason}"
+                      </div>
+
+                      <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-400">
+                        <span className="flex items-center gap-1 font-mono">
+                          <UserIcon className="w-3 h-3 text-slate-500" />
+                          {req.userEmail} ({req.userName})
+                        </span>
+                        <span>•</span>
+                        <span>{req.createdAt ? new Date(req.createdAt).toLocaleString() : 'Recent'}</span>
+                        {req.reviewedBy && (
+                          <>
+                            <span>•</span>
+                            <span className="text-emerald-700 font-bold">
+                              Decision by: {req.reviewedBy}
+                            </span>
+                          </>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Admin Actions */}
+                    {isAdmin && req.status === 'PENDING' && (
+                      <div className="flex items-center gap-2 shrink-0">
+                        <button
+                          disabled={adminActionLoading === req.id}
+                          onClick={() => handleApproveRequest(req)}
+                          className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-black transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                        >
+                          {adminActionLoading === req.id ? (
+                            <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                          ) : (
+                            <Check className="w-3.5 h-3.5" />
+                          )}
+                          <span>Approve Access</span>
+                        </button>
+
+                        <button
+                          disabled={adminActionLoading === req.id}
+                          onClick={() => handleRejectRequest(req)}
+                          className="px-3 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 rounded-xl text-xs font-bold transition-colors cursor-pointer disabled:opacity-50"
+                        >
+                          Decline
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+              {accessRequests.filter(r => inboxFilter === 'ALL' || r.status === inboxFilter).length === 0 && (
+                <div className="text-center py-12 text-slate-400 bg-slate-50/50 rounded-xl border border-dashed border-slate-200">
+                  <Inbox className="w-8 h-8 mx-auto mb-2 text-slate-300" />
+                  <p className="text-xs font-semibold">No {inboxFilter.toLowerCase()} access requests found.</p>
+                </div>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 shrink-0">
+              <span>All access grants and approvals synchronize live in Cloud Firestore.</span>
+              <button
+                onClick={() => setIsAdminInboxOpen(false)}
+                className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
