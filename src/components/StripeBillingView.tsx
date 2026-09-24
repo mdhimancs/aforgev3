@@ -22,8 +22,7 @@ import { SAMPLE_STRIPE_PLANS, SAMPLE_STRIPE_INVOICES } from '../data/secOpsData'
 import { useTheme } from '../context/ThemeContext';
 
 export function StripeBillingView() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   const [plans] = useState<StripeSubscriptionPlan[]>(SAMPLE_STRIPE_PLANS);
   const [invoices] = useState<StripeInvoiceItem[]>(SAMPLE_STRIPE_INVOICES);

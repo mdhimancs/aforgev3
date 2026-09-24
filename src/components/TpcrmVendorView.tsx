@@ -16,8 +16,7 @@ import { PRESET_TPCRM_VENDORS, PRESET_FOURTH_PARTY_EXPOSURES } from '../data/ent
 import { TpcrmVendor, TpcrmFourthPartyExposure } from '../types';
 
 export function TpcrmVendorView() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   const [vendors, setVendors] = useState<TpcrmVendor[]>(PRESET_TPCRM_VENDORS);
   const [fourthParty, setFourthParty] = useState<TpcrmFourthPartyExposure[]>(PRESET_FOURTH_PARTY_EXPOSURES);

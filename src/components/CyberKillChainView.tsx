@@ -27,8 +27,7 @@ import { SAMPLE_KILL_CHAIN_STAGES, SAMPLE_KILL_CHAIN_CAMPAIGNS } from '../data/s
 import { useTheme } from '../context/ThemeContext';
 
 export function CyberKillChainView() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   const [stages, setStages] = useState<KillChainStageInfo[]>(SAMPLE_KILL_CHAIN_STAGES);
   const [campaigns, setCampaigns] = useState<KillChainCampaign[]>(SAMPLE_KILL_CHAIN_CAMPAIGNS);

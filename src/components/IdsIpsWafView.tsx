@@ -324,8 +324,7 @@ const INITIAL_BLOCKED_IPS: BlockedIpRecord[] = [
 ];
 
 export function IdsIpsWafView() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   // Sub-tabs: 'waf' | 'ids_ips' | 'logs' | 'ban_list'
   const [activeTab, setActiveTab] = useState<'waf' | 'ids_ips' | 'logs' | 'ban_list'>('waf');

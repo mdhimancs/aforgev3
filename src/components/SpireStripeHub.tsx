@@ -21,8 +21,7 @@ import { SAMPLE_SPIRE_WORKLOADS, SAMPLE_SPIRE_NODES, SAMPLE_STRIPE_PLANS, SAMPLE
 import { useTheme } from '../context/ThemeContext';
 
 export function SpireStripeHub() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   const [activeTab, setActiveTab] = useState<'SPIRE' | 'STRIPE'>('SPIRE');
   const [workloads, setWorkloads] = useState<SpireWorkloadEntry[]>(SAMPLE_SPIRE_WORKLOADS);

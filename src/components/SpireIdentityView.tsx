@@ -23,8 +23,7 @@ import { SAMPLE_SPIRE_WORKLOADS, SAMPLE_SPIRE_NODES } from '../data/secOpsData';
 import { useTheme } from '../context/ThemeContext';
 
 export function SpireIdentityView() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   const [workloads, setWorkloads] = useState<SpireWorkloadEntry[]>(SAMPLE_SPIRE_WORKLOADS);
   const [nodes, setNodes] = useState<SpireNodeAgent[]>(SAMPLE_SPIRE_NODES);

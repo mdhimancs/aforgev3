@@ -26,8 +26,7 @@ import {
 import { CspmCloudAsset, CspmToxicCombination, CiemRoleEntitlement } from '../types';
 
 export function CspmCiemView() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   const [assets, setAssets] = useState<CspmCloudAsset[]>(PRESET_CSPM_ASSETS);
   const [toxicCombos, setToxicCombos] = useState<CspmToxicCombination[]>(PRESET_TOXIC_COMBINATIONS);

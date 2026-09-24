@@ -137,6 +137,39 @@ export const Canvas: React.FC<CanvasProps> = ({
     setPan({ x: 0, y: 0 });
   };
 
+  // Trace visual path-highlighting for the selected node (all upstream and downstream flows)
+  const getHighlightedConnectionIds = (): Set<string> => {
+    const highlighted = new Set<string>();
+    if (!selectedNodeId) return highlighted;
+
+    const visitedNodes = new Set<string>([selectedNodeId]);
+    const queue = [selectedNodeId];
+
+    while (queue.length > 0) {
+      const curr = queue.shift()!;
+      connections.forEach((conn) => {
+        if (conn.fromNodeId === curr && !highlighted.has(conn.id)) {
+          highlighted.add(conn.id);
+          if (!visitedNodes.has(conn.toNodeId)) {
+            visitedNodes.add(conn.toNodeId);
+            queue.push(conn.toNodeId);
+          }
+        }
+        if (conn.toNodeId === curr && !highlighted.has(conn.id)) {
+          highlighted.add(conn.id);
+          if (!visitedNodes.has(conn.fromNodeId)) {
+            visitedNodes.add(conn.fromNodeId);
+            queue.push(conn.fromNodeId);
+          }
+        }
+      });
+    }
+    return highlighted;
+  };
+
+  const highlightedConnectionIds = getHighlightedConnectionIds();
+  const hasActiveSelection = Boolean(selectedNodeId);
+
   return (
     <main
       ref={containerRef}
@@ -240,8 +273,16 @@ export const Canvas: React.FC<CanvasProps> = ({
             const dx = Math.abs(end.x - start.x) * 0.55;
             const pathD = `M ${start.x} ${start.y} C ${start.x + dx} ${start.y}, ${end.x - dx} ${end.y}, ${end.x} ${end.y}`;
 
+            const isHighlighted = highlightedConnectionIds.has(conn.id);
+            const isDimmed = hasActiveSelection && !isHighlighted;
+
             return (
-              <g key={conn.id} className="pointer-events-auto group cursor-pointer">
+              <g
+                key={conn.id}
+                className={`pointer-events-auto group cursor-pointer transition-opacity duration-200 ${
+                  isDimmed ? 'opacity-20' : 'opacity-100'
+                }`}
+              >
                 {/* Wider invisible path for easy hover/clicking */}
                 <path
                   d={pathD}
@@ -259,18 +300,31 @@ export const Canvas: React.FC<CanvasProps> = ({
                 {/* Visible stylized path matching design */}
                 <path
                   d={pathD}
-                  stroke="#4f46e5"
-                  strokeWidth="2.5"
-                  strokeDasharray="4 4"
+                  stroke={isHighlighted ? '#6366f1' : isDimmed ? '#94a3b8' : '#4f46e5'}
+                  strokeWidth={isHighlighted ? 3.5 : isDimmed ? 1.5 : 2.5}
+                  strokeDasharray={isHighlighted ? '6 3' : '4 4'}
                   fill="none"
-                  className="group-hover:stroke-indigo-400 group-hover:stroke-[3.5] transition-all"
-                  filter="url(#glow)"
+                  className={`${
+                    isHighlighted
+                      ? 'stroke-indigo-600'
+                      : 'group-hover:stroke-indigo-400 group-hover:stroke-[3.5]'
+                  } transition-all`}
+                  filter={isHighlighted ? 'url(#glow)' : undefined}
                 />
 
                 {/* Animated pulse dot travelling along the link */}
-                <circle r="3.5" fill="#a5b4fc">
-                  <animateMotion path={pathD} dur="2.5s" repeatCount="indefinite" />
-                </circle>
+                {(!isDimmed || isHighlighted) && (
+                  <circle
+                    r={isHighlighted ? 4.5 : 3.5}
+                    fill={isHighlighted ? '#818cf8' : '#a5b4fc'}
+                  >
+                    <animateMotion
+                      path={pathD}
+                      dur={isHighlighted ? '1.8s' : '2.5s'}
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                )}
 
                 {/* Connection Label Pill */}
                 {conn.label && (
@@ -281,7 +335,13 @@ export const Canvas: React.FC<CanvasProps> = ({
                     height="24"
                     className="overflow-visible pointer-events-none"
                   >
-                    <div className="bg-slate-900/90 border border-slate-700/80 px-2 py-0.5 rounded text-[9px] text-slate-400 font-mono text-center shadow-lg truncate backdrop-blur-sm">
+                    <div
+                      className={`px-2 py-0.5 rounded text-[9px] font-mono text-center shadow-xs truncate backdrop-blur-sm transition-all ${
+                        isHighlighted
+                          ? 'bg-indigo-50 border border-indigo-300 text-indigo-700 font-bold'
+                          : 'bg-slate-100/90 border border-slate-300 text-slate-600'
+                      }`}
+                    >
                       {conn.label}
                     </div>
                   </foreignObject>
@@ -313,19 +373,46 @@ export const Canvas: React.FC<CanvasProps> = ({
         </svg>
 
         {/* Render Graph Nodes */}
-        {nodes.map((node) => (
-          <NodeCard
-            key={node.id}
-            node={node}
-            isSelected={node.id === selectedNodeId}
-            onSelect={onSelectNode}
-            onDelete={onDeleteNode}
-            onDuplicate={onDuplicateNode}
-            onStartConnect={handleStartConnect}
-            onEndConnect={handleEndConnect}
-            onDragStart={handleDragStart}
-          />
-        ))}
+        {(() => {
+          const validateConnection = (fromType: string, toType: string): boolean => {
+            if (fromType === 'trigger') return toType !== 'trigger';
+            if (toType === 'trigger') return false;
+            if (fromType === 'memory') return toType === 'llm';
+            if (fromType === 'guardrail') return toType === 'llm' || toType === 'action';
+            return true;
+          };
+
+          const getNodeValidationStatus = (node: AgentNode): boolean => {
+            const nodeConns = connections.filter(
+              (c) => c.fromNodeId === node.id || c.toNodeId === node.id
+            );
+            for (const conn of nodeConns) {
+              const fromNode = nodes.find((n) => n.id === conn.fromNodeId);
+              const toNode = nodes.find((n) => n.id === conn.toNodeId);
+              if (fromNode && toNode) {
+                if (!validateConnection(fromNode.type, toNode.type)) {
+                  return false;
+                }
+              }
+            }
+            return true;
+          };
+
+          return nodes.map((node) => (
+            <NodeCard
+              key={node.id}
+              node={node}
+              isSelected={node.id === selectedNodeId}
+              isValid={getNodeValidationStatus(node)}
+              onSelect={onSelectNode}
+              onDelete={onDeleteNode}
+              onDuplicate={onDuplicateNode}
+              onStartConnect={handleStartConnect}
+              onEndConnect={handleEndConnect}
+              onDragStart={handleDragStart}
+            />
+          ));
+        })()}
       </div>
 
       {/* Empty State Banner if no nodes */}

@@ -15,72 +15,77 @@
 
 /* Ergonomic Eye-Comfort Light Themes */
 :root {
-  --theme-bg: #f8fafc;
+  --theme-bg: #ffffff; /* Pristine Apple Studio white */
   --theme-surface: #ffffff;
-  --theme-surface-subtle: #f1f5f9;
-  --theme-border: #e2e8f0;
-  --theme-text-main: #0f172a;
-  --theme-text-muted: #475569;
-  --theme-accent: #2563eb;
+  --theme-surface-subtle: #fafafa;
+  --theme-border: #e5e5e7;
+  --theme-text-main: #1d1d1f;
+  --theme-text-muted: #6e6e73;
+  --theme-accent: #0066cc;
+  --theme-hover: #f5f5f7;
 }
 
 html.theme-mission {
-  --theme-bg: #f1f5f9; /* Cool Slate 100 anti-glare */
+  --theme-bg: #f5f7fa; /* Cool Daylight Mission anti-glare */
   --theme-surface: #ffffff;
-  --theme-surface-subtle: #e2e8f0;
+  --theme-surface-subtle: #eef2f6;
   --theme-border: #cbd5e1;
   --theme-text-main: #0f172a;
   --theme-text-muted: #475569;
   --theme-accent: #0284c7;
+  --theme-hover: #f1f5f9;
 }
 html.theme-mission body,
 html.theme-mission {
-  background-color: #f1f5f9 !important;
+  background-color: #f5f7fa !important;
   color: #0f172a !important;
 }
 
 html.theme-editorial {
-  --theme-bg: #f8f7f4; /* Warm Alabaster / Milk Paper */
+  --theme-bg: #fbfaf7; /* Editorial Alabaster / Milk Paper */
   --theme-surface: #ffffff;
-  --theme-surface-subtle: #f1efe9;
-  --theme-border: #e7e5dd;
+  --theme-surface-subtle: #f6f4ee;
+  --theme-border: #e6e4dc;
   --theme-text-main: #1c1917;
   --theme-text-muted: #57534e;
-  --theme-accent: #2563eb;
+  --theme-accent: #111111;
+  --theme-hover: #f5f3eb;
 }
 html.theme-editorial body,
 html.theme-editorial {
-  background-color: #f8f7f4 !important;
+  background-color: #fbfaf7 !important;
   color: #1c1917 !important;
 }
 
 html.theme-nordic {
-  --theme-bg: #f8fafc; /* Clean Nordic Ice 50 */
+  --theme-bg: #fcfdfe; /* Clean Nordic Frost minimal */
   --theme-surface: #ffffff;
-  --theme-surface-subtle: #f1f5f9;
+  --theme-surface-subtle: #f4f7fb;
   --theme-border: #e2e8f0;
   --theme-text-main: #1e293b;
   --theme-text-muted: #64748b;
   --theme-accent: #4f46e5;
+  --theme-hover: #f0f4f8;
 }
 html.theme-nordic body,
 html.theme-nordic {
-  background-color: #f8fafc !important;
+  background-color: #fcfdfe !important;
   color: #1e293b !important;
 }
 
 html.theme-sage {
-  --theme-bg: #f2f5f3; /* Calming Eye-Rest Sage Mist */
+  --theme-bg: #f6f8f6; /* Botanical Sage Mist eye-rest */
   --theme-surface: #ffffff;
-  --theme-surface-subtle: #e8edea;
-  --theme-border: #d5ded8;
+  --theme-surface-subtle: #edf0ed;
+  --theme-border: #d2dbd5;
   --theme-text-main: #14211a;
   --theme-text-muted: #435b4c;
   --theme-accent: #059669;
+  --theme-hover: #eaf0ec;
 }
 html.theme-sage body,
 html.theme-sage {
-  background-color: #f2f5f3 !important;
+  background-color: #f6f8f6 !important;
   color: #14211a !important;
 }
 
@@ -341,67 +346,216 @@ html.theme-sage .theme-card-surface {
   border-color: #cbd5e1;
 }
 
-/* Light Grey Theme Override for Night Mode (.dark class) */
-.dark {
-  background-color: #f1f5f9 !important;
-  color: #0f172a !important;
+/* Apple Studio Warm (Formerly Dark Mode) Theme Variables */
+html.dark {
+  --theme-bg: #fafaf9; /* Warm Alabaster paper-light */
+  --theme-surface: #ffffff;
+  --theme-surface-subtle: #f5f4ef;
+  --theme-border: #e6e3da;
+  --theme-text-main: #1c1917;
+  --theme-text-muted: #57534e;
+  --theme-accent: #c2410c;
+  --theme-hover: #f5f3eb;
+}
+html.dark body,
+html.dark {
+  background-color: #fafaf9 !important;
+  color: #1c1917 !important;
 }
 
-.dark bg-slate-900,
-.dark .bg-slate-900,
-.dark .bg-\[\#161d2a\],
-.dark .bg-slate-950 {
-  background-color: #ffffff !important;
+/* --- UNIVERSAL THEME-AWARE ELEMENT OVERRIDES --- */
+
+/* 1. Canvas / Main page background overrides - Remove all dark grays and light grays */
+body, 
+.bg-slate-950, 
+.bg-slate-900, 
+.bg-slate-950\/40, 
+.bg-slate-900\/50,
+.bg-slate-900\/30,
+.bg-slate-900\/80,
+.bg-slate-950\/80,
+.bg-slate-950\/50,
+.bg-slate-950\/95,
+.bg-slate-900\/95,
+.bg-\[\#0b0f19\], 
+.bg-\[\#0f172a\], 
+.bg-\[\#161d2a\], 
+.bg-\[\#090d16\],
+.bg-zinc-950,
+.bg-zinc-900,
+.bg-zinc-100,
+.bg-zinc-50,
+.bg-slate-50,
+.bg-[#080c14],
+.bg-[#050811] {
+  background-color: var(--theme-bg) !important;
 }
 
-.dark .bg-slate-800 {
-  background-color: #f8fafc !important;
+/* 2. Surfaces: headers, sidebars, cards, panels, modals */
+header, 
+nav, 
+aside, 
+#agent-components-sidebar, 
+#inspector-simulator-sidebar,
+.theme-card-surface,
+.bg-white,
+.bg-slate-800,
+.bg-slate-800\/80,
+.bg-slate-800\/90,
+.bg-slate-800\/50,
+.bg-slate-700,
+.bg-slate-700\/50,
+.bg-zinc-800,
+.bg-zinc-800\/80,
+.bg-zinc-900\/30,
+.bg-zinc-900\/50,
+.bg-zinc-900\/80,
+.bg-zinc-900,
+.bg-zinc-950,
+.bg-[#1a2333],
+.bg-[#0d131f],
+.bg-[#070b12],
+.bg-[#1e293b],
+.bg-[#1e293b]/50,
+.bg-[#111827],
+.bg-[#1f2937],
+.bg-[#111827]/50,
+.bg-[#1f2937]/50 {
+  background-color: var(--theme-surface) !important;
 }
 
-.dark .text-white,
-.dark .text-slate-100,
-.dark .text-slate-200,
-.dark .text-slate-300 {
-  color: #0f172a !important;
+/* 3. Hairline Borders */
+.border-slate-800,
+.border-slate-700,
+.border-slate-600,
+.border-slate-900,
+.border-zinc-800,
+.border-zinc-700,
+.border-zinc-900,
+.border-zinc-200,
+.border-slate-200,
+.border-slate-300,
+.border-slate-100,
+.border-slate-800\/50,
+.border-slate-700\/80,
+.border-slate-200\/50,
+.border-white\/10,
+.border-white\/20,
+.border-gray-800,
+.border-gray-700,
+.border-gray-200,
+hr {
+  border-color: var(--theme-border) !important;
 }
 
-.dark .text-slate-400,
-.dark .text-slate-500 {
-  color: #64748b !important;
+/* 4. Text Colors */
+.text-white,
+.text-slate-100,
+.text-slate-200,
+.text-slate-300,
+.text-stone-100,
+.text-stone-200,
+.text-zinc-100,
+.text-zinc-200,
+.text-gray-100,
+.text-gray-200,
+.text-neutral-100 {
+  color: var(--theme-text-main) !important;
 }
 
-.dark .border-slate-800,
-.dark .border-slate-700 {
-  border-color: #cbd5e1 !important;
+.text-slate-400,
+.text-slate-500,
+.text-zinc-400,
+.text-zinc-500,
+.text-gray-400,
+.text-gray-500,
+.text-stone-400,
+.text-stone-500 {
+  color: var(--theme-text-muted) !important;
 }
 
+.text-slate-600,
+.text-slate-700,
+.text-zinc-600,
+.text-zinc-700,
+.text-gray-600,
+.text-gray-700,
+.text-stone-600,
+.text-stone-700 {
+  color: var(--theme-text-main) !important;
+}
 
+/* 5. Input Fields, Textareas, Code Blocks, Logs, CodeMirror */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="url"],
+input[type="search"],
+textarea,
+select,
+.CodeMirror,
+.log-viewer,
+.font-mono.bg-slate-950,
+.font-mono.bg-slate-900,
+.bg-slate-950.p-4.font-mono,
+pre {
+  background-color: var(--theme-surface-subtle) !important;
+  border: 1px solid var(--theme-border) !important;
+  color: var(--theme-text-main) !important;
+}
 
+input::placeholder,
+textarea::placeholder {
+  color: var(--theme-text-muted) !important;
+}
+
+/* 6. Hover States */
+.hover\:bg-slate-800:hover,
+.hover\:bg-slate-700:hover,
+.hover\:bg-zinc-800:hover,
+.hover\:bg-zinc-700:hover,
+.hover\:bg-gray-800:hover,
+.hover\:bg-slate-100:hover,
+.hover\:bg-slate-50:hover {
+  background-color: var(--theme-hover) !important;
+}
+
+/* 7. Preserve white text inside active filled accent elements */
+.bg-blue-600, 
+.bg-blue-700, 
+.bg-indigo-600, 
+.bg-indigo-700, 
+.bg-emerald-600, 
+.bg-emerald-700, 
+.bg-red-600, 
+.bg-red-700, 
+.bg-amber-600, 
+.bg-amber-700, 
+.bg-violet-600, 
+.bg-violet-700, 
+.bg-rose-600, 
+.bg-cyan-600,
+.bg-blue-600 *, 
+.bg-blue-700 *, 
+.bg-indigo-600 *, 
+.bg-indigo-700 *, 
+.bg-emerald-600 *, 
+.bg-emerald-700 *, 
+.bg-red-600 *, 
+.bg-red-700 *, 
+.bg-amber-600 *, 
+.bg-amber-700 *, 
+.bg-violet-600 *, 
+.bg-violet-700 *, 
+.bg-rose-600 *, 
+.bg-cyan-600 * {
+  color: #ffffff !important;
+}
 
 @layer base {
   h1, h2, h3, h4, h5, h6 {
-    color: #000000 !important;
-  }
-}
-
-@layer base {
-  input[type="text"],
-  input[type="password"],
-  input[type="email"],
-  input[type="number"],
-  input[type="url"],
-  input[type="search"],
-  textarea,
-  select,
-  .CodeMirror,
-  .log-viewer {
-    background-color: #f1f5f9 !important; /* slate-100 */
-    border-color: #e2e8f0 !important; /* slate-200 */
-    color: #0f172a !important; /* slate-900 */
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: #64748b !important; /* slate-500 */
+    color: var(--theme-text-main) !important;
+    text-wrap: balance;
   }
 }

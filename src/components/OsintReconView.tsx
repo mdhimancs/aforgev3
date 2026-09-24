@@ -41,8 +41,7 @@ import { SAMPLE_OSINT_REPORT } from '../data/secOpsData';
 import { useTheme } from '../context/ThemeContext';
 
 export function OsintReconView() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   const [report, setReport] = useState<OsintInvestigationReport>(SAMPLE_OSINT_REPORT);
   const [targetInput, setTargetInput] = useState('agentforge.corp');

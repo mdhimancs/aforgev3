@@ -53,7 +53,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setThemeState(t);
   };
 
-  const isLight = theme !== 'dark';
+  const isLight = true;
 
   return (
     <ThemeContext.Provider value={{ theme, isLight, toggleTheme, setTheme }}>

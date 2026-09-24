@@ -22,8 +22,7 @@ import { PRESET_UEBA_PROFILES, PRESET_UEBA_ANOMALIES } from '../data/enterpriseP
 import { UebaEntityRiskProfile, UebaAnomalyEvent } from '../types';
 
 export function UebaAnalyticsView() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   const [profiles, setProfiles] = useState<UebaEntityRiskProfile[]>(PRESET_UEBA_PROFILES);
   const [anomalies, setAnomalies] = useState<UebaAnomalyEvent[]>(PRESET_UEBA_ANOMALIES);

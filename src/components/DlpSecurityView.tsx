@@ -24,8 +24,7 @@ import { PRESET_DLP_POLICIES, PRESET_DLP_INCIDENTS } from '../data/enterprisePre
 import { DlpInspectionPolicy, DlpIncidentRecord } from '../types';
 
 export function DlpSecurityView() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   const [policies, setPolicies] = useState<DlpInspectionPolicy[]>(PRESET_DLP_POLICIES);
   const [incidents, setIncidents] = useState<DlpIncidentRecord[]>(PRESET_DLP_INCIDENTS);

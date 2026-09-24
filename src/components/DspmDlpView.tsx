@@ -21,8 +21,7 @@ import {
 import { DspmDataStore, DspmShadowAiAlert, DspmInsiderThreatEvent } from '../types';
 
 export function DspmDlpView() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   const [dataStores, setDataStores] = useState<DspmDataStore[]>(PRESET_DSPM_STORES);
   const [shadowAiAlerts, setShadowAiAlerts] = useState<DspmShadowAiAlert[]>(PRESET_SHADOW_AI_ALERTS);

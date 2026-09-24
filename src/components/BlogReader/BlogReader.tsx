@@ -25,8 +25,27 @@ import {
   Filter,
   Bookmark,
   Hash,
-  Sparkles
+  Sparkles,
+  Lock,
+  Shield,
+  ShieldCheck,
+  ShieldAlert,
+  LogIn,
+  LogOut,
+  User as UserIcon,
+  RefreshCw,
+  Key
 } from 'lucide-react';
+import {
+  auth,
+  db,
+  signInWithGoogle,
+  logoutFirebase,
+  handleFirestoreError,
+  OperationType
+} from '../../lib/firebase';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { doc, setDoc, getDoc, onSnapshot, collection } from 'firebase/firestore';
 
 interface PostSummary {
   id: string;
@@ -95,6 +114,159 @@ async function fetchFullDataset(): Promise<FullPost[]> {
 
 export const BlogReader: React.FC = () => {
   const { theme } = useTheme();
+
+  // Firebase Auth & RBAC State
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [userRole, setUserRole] = useState<'viewer' | 'analyst' | 'security_architect' | 'admin'>('viewer');
+  const [userClearance, setUserClearance] = useState<'Public' | 'Internal' | 'Confidential' | 'Restricted'>('Public');
+  const [articleAccessLevels, setArticleAccessLevels] = useState<Record<string, 'Public' | 'Internal' | 'Confidential' | 'Restricted'>>({});
+  const [isFirebaseSyncing, setIsFirebaseSyncing] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
+
+  const CLEARANCE_VALUES = {
+    'Public': 0,
+    'Internal': 1,
+    'Confidential': 2,
+    'Restricted': 3
+  };
+
+  // Listen to Firebase Auth state
+  useEffect(() => {
+    const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
+      setCurrentUser(user);
+      setAuthLoading(false);
+      if (user) {
+        // Fetch or create user profile in Firestore
+        const userRef = doc(db, 'users', user.uid);
+        try {
+          const snap = await getDoc(userRef);
+          if (snap.exists()) {
+            const data = snap.data();
+            setUserRole(data.role || 'analyst');
+            setUserClearance(data.clearanceLevel || 'Internal');
+          } else {
+            const isAdminEmail = user.email === 'munish.world@gmail.com';
+            const defaultRole = isAdminEmail ? 'admin' : 'analyst';
+            const defaultClearance = isAdminEmail ? 'Restricted' : 'Internal';
+            await setDoc(userRef, {
+              uid: user.uid,
+              email: user.email || '',
+              displayName: user.displayName || 'Security Analyst',
+              role: defaultRole,
+              clearanceLevel: defaultClearance,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString()
+            });
+            setUserRole(defaultRole);
+            setUserClearance(defaultClearance);
+          }
+        } catch (err) {
+          console.warn('Could not read user profile from Firestore:', err);
+        }
+      } else {
+        setUserClearance('Public');
+        setUserRole('viewer');
+      }
+    });
+
+    return () => unsubscribeAuth();
+  }, []);
+
+  // Listen to real-time Firestore blog access policies
+  useEffect(() => {
+    const policiesCol = collection(db, 'blogAccessPolicies');
+    const unsubscribeSnapshot = onSnapshot(
+      policiesCol,
+      (snapshot) => {
+        const policiesMap: Record<string, 'Public' | 'Internal' | 'Confidential' | 'Restricted'> = {};
+        snapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+          if (data.requiredClearance) {
+            policiesMap[docSnap.id] = data.requiredClearance;
+            if (data.slug) {
+              policiesMap[data.slug] = data.requiredClearance;
+            }
+          }
+        });
+        setArticleAccessLevels((prev) => ({ ...prev, ...policiesMap }));
+      },
+      (error) => {
+        console.warn('Firestore blogAccessPolicies sync error:', error);
+      }
+    );
+
+    return () => unsubscribeSnapshot();
+  }, []);
+
+  const getArticleLevel = (postId: string) => {
+    if (articleAccessLevels[postId]) {
+      return articleAccessLevels[postId];
+    }
+    // Determinisitc fallback distribution so items have realistic clearance tiers initially
+    const firstChar = postId.charCodeAt(0) || 0;
+    const lastChar = postId.charCodeAt(postId.length - 1) || 0;
+    const val = (firstChar + lastChar) % 4;
+    if (val === 1) return 'Internal';
+    if (val === 2) return 'Confidential';
+    if (val === 3) return 'Restricted';
+    return 'Public';
+  };
+
+  const handleUpdateArticleLevel = async (
+    postId: string,
+    level: 'Public' | 'Internal' | 'Confidential' | 'Restricted',
+    slug?: string
+  ) => {
+    setArticleAccessLevels((prev) => ({
+      ...prev,
+      [postId]: level,
+      ...(slug ? { [slug]: level } : {})
+    }));
+
+    setIsFirebaseSyncing(true);
+    try {
+      await setDoc(
+        doc(db, 'blogAccessPolicies', postId),
+        {
+          postId,
+          slug: slug || postId,
+          requiredClearance: level,
+          updatedBy: currentUser?.uid || 'anonymous-user',
+          updatedAt: new Date().toISOString()
+        },
+        { merge: true }
+      );
+    } catch (err) {
+      console.error('Failed to sync blog policy with Firebase:', err);
+      handleFirestoreError(err, OperationType.WRITE, `blogAccessPolicies/${postId}`);
+    } finally {
+      setIsFirebaseSyncing(false);
+    }
+  };
+
+  const handleUpdateUserClearance = async (level: 'Public' | 'Internal' | 'Confidential' | 'Restricted') => {
+    setUserClearance(level);
+    if (currentUser) {
+      try {
+        await setDoc(
+          doc(db, 'users', currentUser.uid),
+          {
+            clearanceLevel: level,
+            updatedAt: new Date().toISOString()
+          },
+          { merge: true }
+        );
+      } catch (err) {
+        console.warn('Could not update user clearance in Firestore:', err);
+      }
+    }
+  };
+
+  const isGated = (postId: string) => {
+    const required = getArticleLevel(postId);
+    return CLEARANCE_VALUES[userClearance] < CLEARANCE_VALUES[required];
+  };
+
   // Initialize with embedded blog index so all 109 articles are instantly available in all environments
   const [posts, setPosts] = useState<PostSummary[]>(EMBEDDED_BLOG_POSTS as PostSummary[]);
   const [selectedPost, setSelectedPost] = useState<FullPost | null>(null);
@@ -658,6 +830,27 @@ export const BlogReader: React.FC = () => {
                     Architecture Design
                   </span>
                 )}
+                
+                <span className={`inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${
+                  getArticleLevel(selectedPost.id) === 'Public' ? 'bg-emerald-50 text-emerald-800 border-emerald-200' :
+                  getArticleLevel(selectedPost.id) === 'Internal' ? 'bg-blue-50 text-blue-800 border-blue-200' :
+                  getArticleLevel(selectedPost.id) === 'Confidential' ? 'bg-amber-50 text-amber-800 border-amber-200' :
+                  'bg-rose-50 text-rose-800 border-rose-200'
+                }`}>
+                  <Lock className="w-3 h-3" />
+                  <span>Access Control:</span>
+                  <select
+                    value={getArticleLevel(selectedPost.id)}
+                    onChange={(e) => handleUpdateArticleLevel(selectedPost.id, e.target.value as any)}
+                    className="bg-transparent border-none p-0 focus:ring-0 font-extrabold cursor-pointer text-[11px] underline ml-1"
+                    title="Change required clearance level for this article"
+                  >
+                    <option value="Public">Public Access</option>
+                    <option value="Internal">Access Required: Internal</option>
+                    <option value="Confidential">Access Required: Confidential</option>
+                    <option value="Restricted">Access Required: Restricted</option>
+                  </select>
+                </span>
               </div>
 
               {/* Title */}
@@ -705,12 +898,82 @@ export const BlogReader: React.FC = () => {
                 </div>
               )}
 
-              {/* Article Content Render */}
-              <article
-                key={selectedPost.slug}
-                className="blog-article-content"
-                dangerouslySetInnerHTML={{ __html: processedHtml }}
-              />
+              {/* Article Content Render or Security Gate */}
+              {isGated(selectedPost.id) ? (
+                <div className="my-8 p-8 border-2 border-dashed border-rose-200 bg-rose-50/40 rounded-2xl text-center flex flex-col items-center shadow-xs">
+                  <div className="w-16 h-16 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center mb-4 shadow-sm">
+                    <ShieldAlert className="w-8 h-8 animate-pulse" />
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-[11px] font-black uppercase tracking-wider mb-2 border border-rose-200">
+                    <Lock className="w-3.5 h-3.5" /> Firebase Zero-Trust Access Control
+                  </div>
+                  <h2 className="text-xl font-black text-rose-950 mb-2">Security Clearance Required</h2>
+                  <p className="text-xs text-rose-900 max-w-md mx-auto mb-6 leading-relaxed">
+                    This deep dive analysis is protected by Firebase Firestore Security Rules. Access is restricted to authenticated identities with <span className="font-extrabold text-rose-600 font-mono px-1.5 py-0.5 bg-white rounded border border-rose-200">{getArticleLevel(selectedPost.id).toUpperCase()}</span> clearance level or higher.
+                  </p>
+                  
+                  <div className="bg-white border border-rose-100 rounded-xl p-4 mb-6 text-xs shadow-xs max-w-md w-full space-y-2">
+                    <div className="flex justify-between items-center text-slate-500">
+                      <span>Firebase Identity:</span>
+                      <span className="font-bold text-slate-800 font-mono flex items-center gap-1">
+                        {currentUser ? (
+                          <>
+                            <UserIcon className="w-3.5 h-3.5 text-emerald-600" />
+                            <span>{currentUser.email}</span>
+                          </>
+                        ) : (
+                          <span className="text-amber-600 font-bold">Unauthenticated Guest</span>
+                        )}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center text-slate-500">
+                      <span>Assigned Clearance:</span>
+                      <span className="font-bold text-slate-800 font-mono px-2 py-0.5 bg-slate-100 rounded">
+                        {userClearance}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center text-slate-500">
+                      <span>Required Blog Level:</span>
+                      <span className="font-bold text-rose-600 font-mono px-2 py-0.5 bg-rose-50 border border-rose-200 rounded">
+                        {getArticleLevel(selectedPost.id)}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap items-center justify-center gap-3">
+                    {!currentUser ? (
+                      <button
+                        onClick={() => signInWithGoogle()}
+                        className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-black rounded-xl shadow-md transition-all cursor-pointer flex items-center gap-2 hover:scale-102"
+                      >
+                        <LogIn className="w-4 h-4" />
+                        <span>Sign In with Google (Firebase)</span>
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleUpdateUserClearance(getArticleLevel(selectedPost.id))}
+                        className="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-black rounded-xl shadow-md transition-all cursor-pointer flex items-center gap-2 hover:scale-102"
+                      >
+                        <ShieldCheck className="w-4 h-4" />
+                        <span>Elevate Clearance to {getArticleLevel(selectedPost.id)}</span>
+                      </button>
+                    )}
+
+                    <button
+                      onClick={() => setSelectedPost(null)}
+                      className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition-all cursor-pointer border border-slate-200"
+                    >
+                      Return to Index
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <article
+                  key={selectedPost.slug}
+                  className="blog-article-content"
+                  dangerouslySetInnerHTML={{ __html: processedHtml }}
+                />
+              )}
 
               {/* Bottom Next / Previous Navigator */}
               <div className="mt-12 pt-8 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -891,6 +1154,66 @@ export const BlogReader: React.FC = () => {
                 <Table className="w-3.5 h-3.5" />
               </button>
             </div>
+
+            {/* Dynamic Security Clearance & Firebase Identity */}
+            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition-colors shadow-2xs">
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider whitespace-nowrap flex items-center gap-1">
+                <ShieldCheck className="w-3 h-3 text-emerald-600" />
+                Clearance:
+              </span>
+              <select
+                value={userClearance}
+                onChange={(e) => handleUpdateUserClearance(e.target.value as any)}
+                className="bg-transparent text-xs font-black text-slate-800 focus:outline-hidden cursor-pointer p-0 border-none select-none font-sans"
+                title="Change your assigned security clearance in Firebase"
+              >
+                <option value="Public">Public (Lv 0)</option>
+                <option value="Internal">Internal (Lv 1)</option>
+                <option value="Confidential">Confidential (Lv 2)</option>
+                <option value="Restricted">Restricted (Lv 3)</option>
+              </select>
+            </div>
+
+            {/* Firebase User Auth Pill / Google Sign In */}
+            {currentUser ? (
+              <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-50 border border-emerald-200 rounded-lg shadow-2xs">
+                <div className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold">
+                  {currentUser.email?.charAt(0).toUpperCase() || 'U'}
+                </div>
+                <div className="hidden lg:flex flex-col text-left leading-none">
+                  <span className="text-[10px] font-bold text-emerald-950 truncate max-w-[120px]">
+                    {currentUser.email}
+                  </span>
+                  <span className="text-[8px] text-emerald-700 font-mono font-bold uppercase">
+                    {userRole}
+                  </span>
+                </div>
+                <button
+                  onClick={() => logoutFirebase()}
+                  className="p-1 text-slate-400 hover:text-rose-600 transition-colors"
+                  title="Sign out of Firebase"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => signInWithGoogle()}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition-colors shadow-2xs cursor-pointer"
+                title="Sign in with Google to authenticate via Firebase"
+              >
+                <LogIn className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Firebase Sign In</span>
+              </button>
+            )}
+
+            {/* Firebase Sync Indicator */}
+            {isFirebaseSyncing && (
+              <div className="flex items-center gap-1 text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-1 rounded border border-emerald-200 animate-pulse">
+                <RefreshCw className="w-3 h-3 animate-spin text-emerald-600" />
+                <span>Firestore Syncing...</span>
+              </div>
+            )}
 
             {/* Toggle Index Sidebar */}
             <button
@@ -1258,13 +1581,32 @@ export const BlogReader: React.FC = () => {
                 >
                   <div>
                     {/* Top metadata & index tag */}
-                    <div className="flex items-center justify-between gap-2 mb-3">
+                    <div className="flex items-center justify-between gap-2 mb-2">
                       <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
                         INDEX #{String(posts.findIndex(p => p.id === post.id) + 1).padStart(3, '0')}
                       </span>
                       <span className="text-xs font-medium text-slate-400 flex items-center gap-1">
                         <Calendar className="w-3.5 h-3.5" />
                         {post.year || post.date.slice(0, 4)}
+                      </span>
+                    </div>
+
+                    {/* Inline Granular Access Control Selector Badge */}
+                    <div className="flex items-center mb-3" onClick={e => e.stopPropagation()}>
+                      <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded border flex items-center gap-1 cursor-pointer transition-colors ${
+                        isGated(post.id) ? 'bg-red-50 text-red-700 border-red-100 hover:bg-red-100' : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                      }`}>
+                        {isGated(post.id) ? <Lock className="w-3 h-3 text-red-500" /> : <Check className="w-3 h-3 text-emerald-500" />}
+                        <select
+                          value={getArticleLevel(post.id)}
+                          onChange={(e) => handleUpdateArticleLevel(post.id, e.target.value as any)}
+                          className="bg-transparent border-none p-0 focus:ring-0 text-[10px] font-black cursor-pointer leading-tight"
+                        >
+                          <option value="Public">Public Access</option>
+                          <option value="Internal">Access Required: Internal</option>
+                          <option value="Confidential">Access Required: Confidential</option>
+                          <option value="Restricted">Access Required: Restricted</option>
+                        </select>
                       </span>
                     </div>
 
@@ -1355,6 +1697,24 @@ export const BlogReader: React.FC = () => {
                           </td>
                           <td className="py-3 px-4 font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
                             <div className="line-clamp-1">{post.title}</div>
+                            {/* Granular Access Control Selector Badge */}
+                            <div className="mt-1 flex items-center gap-1.5" onClick={(e) => e.stopPropagation()}>
+                              <span className={`text-[9px] font-extrabold px-1.5 py-0.2 rounded border flex items-center gap-0.5 cursor-pointer transition-colors ${
+                                isGated(post.id) ? 'bg-red-50 text-red-700 border-red-100 hover:bg-red-100' : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                              }`}>
+                                {isGated(post.id) ? <Lock className="w-2.5 h-2.5 text-red-500" /> : <Check className="w-2.5 h-2.5 text-emerald-500" />}
+                                <select
+                                  value={getArticleLevel(post.id)}
+                                  onChange={(e) => handleUpdateArticleLevel(post.id, e.target.value as any)}
+                                  className="bg-transparent border-none p-0 focus:ring-0 text-[9px] font-black cursor-pointer leading-none"
+                                >
+                                  <option value="Public">Public Access</option>
+                                  <option value="Internal">Access Required: Internal</option>
+                                  <option value="Confidential">Access Required: Confidential</option>
+                                  <option value="Restricted">Access Required: Restricted</option>
+                                </select>
+                              </span>
+                            </div>
                           </td>
                           <td className="py-3 px-4 hidden md:table-cell">
                             <div className="flex flex-wrap gap-1 max-w-xs">

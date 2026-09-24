@@ -317,7 +317,7 @@ function AppContent() {
       case 'sage':
         return 'bg-[#f2f5f3] text-emerald-950 bg-[radial-gradient(#d5ded8_1px,transparent_1px)] [background-size:24px_24px]';
       case 'dark':
-        return 'bg-[#0b0f19] text-slate-100 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px]';
+        return 'bg-[#f4ede1] text-[#4a3425] bg-[radial-gradient(#d3c5b7_1px,transparent_1px)] [background-size:24px_24px]';
       default:
         return 'bg-[#f8fafc] text-slate-800 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px]';
     }

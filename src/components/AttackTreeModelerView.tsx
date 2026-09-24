@@ -29,8 +29,7 @@ import { SAMPLE_ATTACK_TREES } from '../data/secOpsData';
 import { useTheme } from '../context/ThemeContext';
 
 export function AttackTreeModelerView() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   const [trees, setTrees] = useState<AttackTreeScenario[]>(SAMPLE_ATTACK_TREES);
   const [selectedTreeId, setSelectedTreeId] = useState<string>(SAMPLE_ATTACK_TREES[0].id);

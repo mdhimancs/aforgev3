@@ -92,7 +92,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   const currentThemeLabel = 
-    theme === 'dark' ? 'Night Mode' :
+    theme === 'dark' ? 'Tuscan Ochre (Earthy)' :
     theme === 'mission' ? 'Daylight Mission' :
     theme === 'editorial' ? 'Editorial Analyst' :
     theme === 'nordic' ? 'Nordic Frost' :
@@ -122,7 +122,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       case 'sage':
         return 'bg-[#ebf0ed]/95 border-[#d0dbd4] text-emerald-950';
       case 'dark':
-        return 'bg-[#0f172a]/95 border-slate-800 text-slate-200';
+        return 'bg-[#f3ede0]/95 border-[#d9cebe] text-[#4a3425]';
       default:
         return 'bg-white/95 border-slate-200 text-slate-800';
     }
@@ -134,30 +134,30 @@ export const Navbar: React.FC<NavbarProps> = ({
       className={`flex flex-col backdrop-blur-md z-30 select-none transition-colors border-b ${getNavbarThemeClass()}`}
     >
       {/* Breadcrumb Navigation Trail */}
-      <div className="flex items-center px-6 py-1.5 bg-slate-100/50 dark:bg-slate-900/50 border-b border-slate-200/50 dark:border-slate-800/50 text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-1">
-        <Home className="w-3 h-3 mr-1.5 text-slate-400 dark:text-slate-500" />
-        <span className="hover:text-slate-700 dark:hover:text-slate-200 cursor-pointer transition-colors" onClick={() => onChangeView('secops')}>AgentForge</span>
-        <ChevronRight className="w-3 h-3 mx-1 text-slate-300 dark:text-slate-600" />
-        <span className="hover:text-slate-700 dark:hover:text-slate-200 cursor-pointer transition-colors">Platform Modules</span>
-        <ChevronRight className="w-3 h-3 mx-1 text-slate-300 dark:text-slate-600" />
-        <span className="text-slate-800 dark:text-slate-200 font-semibold">{getViewName()}</span>
+      <div className="flex items-center px-6 py-1.5 bg-white/40 border-b border-slate-200/50 text-[11px] font-medium opacity-80 mt-1">
+        <Home className="w-3 h-3 mr-1.5 opacity-70" />
+        <span className="hover:opacity-100 cursor-pointer transition-colors" onClick={() => onChangeView('secops')}>AgentForge</span>
+        <ChevronRight className="w-3 h-3 mx-1 opacity-40" />
+        <span className="hover:opacity-100 cursor-pointer transition-colors">Platform Modules</span>
+        <ChevronRight className="w-3 h-3 mx-1 opacity-40" />
+        <span className="font-semibold opacity-100">{getViewName()}</span>
       </div>
 
       <div className="px-6 flex flex-col pt-2 pb-1">
         {/* Row 1: Brand & Workflow Switcher on Left, Actions on Right */}
-        <div className="flex items-center justify-between pb-2 border-b border-blue-100/60 dark:border-slate-800">
+        <div className="flex items-center justify-between pb-2 border-b border-blue-100/60">
         {/* Brand & Active Agent / Workflow Switcher */}
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-gradient-to-br from-slate-800 to-black rounded-lg flex items-center justify-center shadow-lg shadow-slate-900/20 text-white font-bold tracking-wider shrink-0">
+          <div className="w-8 h-8 bg-gradient-to-br from-blue-50 to-indigo-100/60 border border-blue-200/50 rounded-lg flex items-center justify-center shadow-xs text-blue-700 font-extrabold tracking-wider shrink-0">
             <span>A</span>
           </div>
           
           <div className="flex items-center shrink-0">
             <span className="font-extrabold text-lg tracking-tight">
-              <span className="text-slate-500 dark:text-slate-400">AGENT</span>
-              <span className="text-blue-600 dark:text-blue-500">FORGE</span>
+              <span className="text-slate-500">AGENT</span>
+              <span className="text-blue-600">FORGE</span>
             </span>
-            <span className="ml-2 px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-800 text-white dark:bg-slate-700 dark:text-white border border-slate-900 shadow-sm">
+            <span className="ml-2 px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-blue-50 text-blue-700 border border-blue-200/60 shadow-xs">
               CYBER
             </span>
           </div>
@@ -175,7 +175,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {dropdownOpen && (
               <div
-                className="absolute left-0 mt-1.5 w-64 border border-slate-200 rounded-xl shadow-2xl py-1.5 z-50 animate-in fade-in zoom-in-95 duration-100 bg-white dark:bg-slate-900 dark:border-slate-800"
+                className="absolute left-0 mt-1.5 w-64 border border-slate-200 rounded-xl shadow-2xl py-1.5 z-50 animate-in fade-in zoom-in-95 duration-100 bg-white"
               >
                 <div className="px-3 py-1.5 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
                   Switch Agent Workflow
@@ -189,13 +189,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                     }}
                     className={`w-full text-left px-3 py-2 flex items-center justify-between text-xs transition-colors cursor-pointer ${
                       wf.id === currentWorkflow.id
-                        ? 'bg-blue-50 text-blue-600 font-medium dark:bg-blue-950/50 dark:text-blue-300'
-                        : 'text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-800'
+                        ? 'bg-blue-50 text-blue-600 font-medium'
+                        : 'text-slate-700 hover:bg-slate-50'
                     }`}
                   >
                     <div className="truncate">
                       <p className="font-semibold truncate">{wf.name}_{wf.version}</p>
-                      <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{wf.description}</p>
+                      <p className="text-[11px] text-slate-500 truncate">{wf.description}</p>
                     </div>
                     {wf.id === currentWorkflow.id && <Check className="w-3.5 h-3.5 text-blue-500 shrink-0 ml-2" />}
                   </button>
@@ -216,7 +216,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
                 isRunningTest
                   ? 'bg-amber-500/20 text-amber-600 border-amber-500/40 cursor-wait'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-300 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-300'
               }`}
               title="Simulate node execution pipeline"
             >
@@ -239,7 +239,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="btn-open-ideas-hub"
               onClick={onOpenIdeas}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 dark:text-amber-400 border border-amber-500/30 rounded-lg text-xs font-bold transition-all cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 border border-amber-500/30 rounded-lg text-xs font-bold transition-all cursor-pointer"
               title="Ideas & Feature Roadmap Hub"
             >
               <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
@@ -251,7 +251,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             id="btn-export-code"
             onClick={onExportCode}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border border-slate-300 bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200 cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border border-slate-300 bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer"
             title="Export as LangGraph / CrewAI / Gemini TypeScript"
           >
             <Code2 className="w-3.5 h-3.5 text-blue-500" />
@@ -273,10 +273,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="btn-theme-selector"
               onClick={() => setThemeMenuOpen(!themeMenuOpen)}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-slate-300 bg-white/90 hover:bg-slate-50 text-slate-800 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200 transition-all shadow-2xs cursor-pointer"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-slate-300 bg-white/90 hover:bg-slate-50 text-slate-800 transition-all shadow-2xs cursor-pointer"
               title="Change website theme & eye-comfort mode"
             >
-              <Palette className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+              <Palette className="w-3.5 h-3.5 text-indigo-600" />
               <span className="hidden sm:inline font-semibold">{currentThemeLabel}</span>
               <ChevronDown className={`w-3 h-3 text-slate-500 transition-transform duration-200 ${themeMenuOpen ? 'rotate-180' : ''}`} />
             </button>
@@ -284,14 +284,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             {themeMenuOpen && (
               <div
                 id="theme-selector-dropdown"
-                className="absolute right-0 mt-2 w-72 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl p-2 z-50 animate-in fade-in zoom-in-95 duration-150"
+                className="absolute right-0 mt-2 w-72 rounded-xl bg-white border border-slate-200 shadow-xl p-2 z-50 animate-in fade-in zoom-in-95 duration-150"
               >
-                <div className="px-2.5 py-1.5 border-b border-slate-100 dark:border-slate-800 mb-1.5 flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
+                <div className="px-2.5 py-1.5 border-b border-slate-100 mb-1.5 flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-slate-500 uppercase">
                     <Eye className="w-3.5 h-3.5 text-indigo-500" />
                     <span>Eye-Comfort Themes</span>
                   </div>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300 font-semibold">
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 font-semibold">
                     Anti-Glare
                   </span>
                 </div>
@@ -309,8 +309,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                         }}
                         className={`w-full text-left p-2 rounded-lg text-xs transition-all cursor-pointer flex items-start gap-2.5 border ${
                           isSelected
-                            ? 'bg-indigo-50/70 dark:bg-indigo-950/40 border-indigo-300 dark:border-indigo-600 text-slate-900 dark:text-slate-100 shadow-2xs'
-                            : 'border-transparent hover:bg-slate-50 dark:hover:bg-slate-800/70 text-slate-700 dark:text-slate-300'
+                            ? 'bg-indigo-50/70 border-indigo-300 text-slate-900 shadow-2xs'
+                            : 'border-transparent hover:bg-slate-50 text-slate-700'
                         }`}
                       >
                         {/* Theme color preview swatch */}
@@ -324,11 +324,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-1">
                             <span className="font-bold text-[12px] truncate">{opt.label}</span>
-                            <span className="text-[9px] px-1 py-0.2 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
+                            <span className="text-[9px] px-1 py-0.2 rounded bg-slate-100 text-slate-600 font-medium">
                               {opt.tag}
                             </span>
                           </div>
-                          <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">
+                          <p className="text-[11px] text-slate-500 leading-tight mt-0.5">
                             {opt.description}
                           </p>
                         </div>
@@ -337,8 +337,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   })}
                 </div>
 
-                {/* Night / Dark Mode Option */}
-                <div className="pt-1.5 mt-1.5 border-t border-slate-100 dark:border-slate-800">
+                {/* Tuscan Ochre Earthy Mode Option */}
+                <div className="pt-1.5 mt-1.5 border-t border-slate-100">
                   <button
                     id="btn-theme-dark"
                     onClick={() => {
@@ -347,20 +347,20 @@ export const Navbar: React.FC<NavbarProps> = ({
                     }}
                     className={`w-full text-left p-2 rounded-lg text-xs transition-all cursor-pointer flex items-center justify-between border ${
                       theme === 'dark'
-                        ? 'bg-slate-800 text-white border-slate-700 shadow-2xs'
-                        : 'border-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300'
+                        ? 'bg-[#fcfaf5] text-[#4a3425] border-[#d9cebe] shadow-2xs'
+                        : 'border-transparent hover:bg-slate-50 text-slate-700'
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-md bg-slate-900 border border-slate-700 flex items-center justify-center">
-                        <Moon className="w-3 h-3 text-amber-400" />
+                      <div className="w-5 h-5 rounded-md bg-[#f3ede0] border border-[#d9cebe] flex items-center justify-center">
+                        <Palette className="w-3 h-3 text-[#b0744a]" />
                       </div>
                       <div>
-                        <span className="font-bold text-[12px]">Night Mode</span>
-                        <p className="text-[10px] text-slate-400 leading-tight">Dark room / low-luminance monitoring</p>
+                        <span className="font-bold text-[12px]">Tuscan Ochre (Earthy)</span>
+                        <p className="text-[10px] text-amber-900/60 leading-tight">Comforting natural ochre and clay warm tone</p>
                       </div>
                     </div>
-                    {theme === 'dark' && <Check className="w-3.5 h-3.5 text-amber-400 shrink-0 ml-1" />}
+                    {theme === 'dark' && <Check className="w-3.5 h-3.5 text-amber-600 shrink-0 ml-1" />}
                   </button>
                 </div>
               </div>
@@ -378,96 +378,96 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Row 2: View Mode Switcher Bar */}
-      <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-1.5 shrink-0">
+      {/* Row 2: View Mode Switcher Bar - Premium Flat Tabs */}
+      <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none border-b border-slate-200/60 mt-1.5 shrink-0 pt-1 px-1">
         <button
           id="tab-secops-nexus-view"
           onClick={() => onChangeView('secops')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-2xs ${
+          className={`flex items-center gap-2 px-4 py-2 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-lg whitespace-nowrap border-t border-l border-r ${
             activeView === 'secops'
-              ? 'bg-violet-50/80 dark:bg-violet-950/30 text-violet-950 dark:text-violet-200 border-violet-500 dark:border-violet-400 border-b-2 border-b-violet-600 dark:border-b-violet-400 font-bold'
-              : 'bg-white/90 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300'
+              ? 'border-violet-300 bg-violet-100/70 text-violet-850 shadow-3xs'
+              : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/40 hover:border-slate-200/40'
           }`}
         >
-          <Sparkles className={`w-3.5 h-3.5 ${activeView === 'secops' ? 'text-violet-600 dark:text-violet-400' : 'text-slate-500'}`} />
+          <Sparkles className={`w-3.5 h-3.5 ${activeView === 'secops' ? 'text-violet-600' : 'text-slate-400'}`} />
           <span>AI SecOps Nexus</span>
         </button>
 
         <button
           id="tab-appsec-scanner-view"
           onClick={() => onChangeView('appsec_scanner')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-2xs ${
+          className={`flex items-center gap-2 px-4 py-2 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-lg whitespace-nowrap border-t border-l border-r ${
             activeView === 'appsec_scanner'
-              ? 'bg-cyan-50/80 dark:bg-cyan-950/30 text-cyan-950 dark:text-cyan-200 border-cyan-500 dark:border-cyan-400 border-b-2 border-b-cyan-600 dark:border-b-cyan-400 font-bold'
-              : 'bg-white/90 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300'
+              ? 'border-cyan-300 bg-cyan-100/70 text-cyan-850 shadow-3xs'
+              : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/40 hover:border-slate-200/40'
           }`}
         >
-          <ShieldCheck className={`w-3.5 h-3.5 ${activeView === 'appsec_scanner' ? 'text-cyan-600 dark:text-cyan-400' : 'text-slate-500'}`} />
+          <ShieldCheck className={`w-3.5 h-3.5 ${activeView === 'appsec_scanner' ? 'text-cyan-600' : 'text-slate-400'}`} />
           <span>AppSec Scanner</span>
         </button>
 
         <button
           id="tab-security-lab-view"
           onClick={() => onChangeView('security_lab')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-2xs ${
+          className={`flex items-center gap-2 px-4 py-2 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-lg whitespace-nowrap border-t border-l border-r ${
             activeView === 'security_lab'
-              ? 'bg-rose-50/80 dark:bg-rose-950/30 text-rose-950 dark:text-rose-200 border-rose-500 dark:border-rose-400 border-b-2 border-b-rose-600 dark:border-b-rose-400 font-bold'
-              : 'bg-white/90 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300'
+              ? 'border-rose-300 bg-rose-100/70 text-rose-850 shadow-3xs'
+              : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/40 hover:border-slate-200/40'
           }`}
         >
-          <ShieldAlert className={`w-3.5 h-3.5 ${activeView === 'security_lab' ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500'}`} />
+          <ShieldAlert className={`w-3.5 h-3.5 ${activeView === 'security_lab' ? 'text-rose-600' : 'text-slate-400'}`} />
           <span>Red-Team Lab</span>
         </button>
 
         <button
           id="tab-vapt-workbench-view"
           onClick={() => onChangeView('vapt')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-2xs ${
+          className={`flex items-center gap-2 px-4 py-2 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-lg whitespace-nowrap border-t border-l border-r ${
             activeView === 'vapt'
-              ? 'bg-amber-50/80 dark:bg-amber-950/30 text-amber-950 dark:text-amber-200 border-amber-500 dark:border-amber-400 border-b-2 border-b-amber-600 dark:border-b-amber-400 font-bold'
-              : 'bg-white/90 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300'
+              ? 'border-amber-300 bg-amber-100/70 text-amber-850 shadow-3xs'
+              : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/40 hover:border-slate-200/40'
           }`}
         >
-          <Terminal className={`w-3.5 h-3.5 ${activeView === 'vapt' ? 'text-amber-600 dark:text-amber-400' : 'text-slate-500'}`} />
+          <Terminal className={`w-3.5 h-3.5 ${activeView === 'vapt' ? 'text-amber-600' : 'text-slate-400'}`} />
           <span>PenTest & VAPT</span>
         </button>
 
         <button
           id="tab-grc-compliance-view"
           onClick={() => onChangeView('grc_compliance')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-2xs ${
+          className={`flex items-center gap-2 px-4 py-2 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-lg whitespace-nowrap border-t border-l border-r ${
             activeView === 'grc_compliance'
-              ? 'bg-blue-50/80 dark:bg-blue-950/30 text-blue-950 dark:text-blue-200 border-blue-500 dark:border-blue-400 border-b-2 border-b-blue-600 dark:border-b-blue-400 font-bold'
-              : 'bg-white/90 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300'
+              ? 'border-blue-300 bg-blue-100/70 text-blue-850 shadow-3xs'
+              : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/40 hover:border-slate-200/40'
           }`}
         >
-          <FileCheck2 className={`w-3.5 h-3.5 ${activeView === 'grc_compliance' ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500'}`} />
+          <FileCheck2 className={`w-3.5 h-3.5 ${activeView === 'grc_compliance' ? 'text-blue-600' : 'text-slate-400'}`} />
           <span>NIST & EU GRC</span>
         </button>
 
         <button
           id="tab-builder-view"
           onClick={() => onChangeView('builder')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-2xs ${
+          className={`flex items-center gap-2 px-4 py-2 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-lg whitespace-nowrap border-t border-l border-r ${
             activeView === 'builder'
-              ? 'bg-sky-50/80 dark:bg-sky-950/30 text-sky-950 dark:text-sky-200 border-sky-500 dark:border-sky-400 border-b-2 border-b-sky-600 dark:border-b-sky-400 font-bold'
-              : 'bg-white/90 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300'
+              ? 'border-sky-300 bg-sky-100/70 text-sky-850 shadow-3xs'
+              : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/40 hover:border-slate-200/40'
           }`}
         >
-          <LayoutGrid className={`w-3.5 h-3.5 ${activeView === 'builder' ? 'text-sky-600 dark:text-sky-400' : 'text-slate-500'}`} />
+          <LayoutGrid className={`w-3.5 h-3.5 ${activeView === 'builder' ? 'text-sky-600' : 'text-slate-400'}`} />
           <span>Canvas</span>
         </button>
 
         <button
           id="tab-blog-view"
           onClick={() => onChangeView('blog')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-2xs ${
+          className={`flex items-center gap-2 px-4 py-2 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-lg whitespace-nowrap border-t border-l border-r ${
             activeView === 'blog'
-              ? 'bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-950 dark:text-emerald-200 border-emerald-500 dark:border-emerald-400 border-b-2 border-b-emerald-600 dark:border-b-emerald-400 font-bold'
-              : 'bg-white/90 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300'
+              ? 'border-emerald-300 bg-emerald-100/70 text-emerald-850 shadow-3xs'
+              : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/40 hover:border-slate-200/40'
           }`}
         >
-          <BookOpen className={`w-3.5 h-3.5 ${activeView === 'blog' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500'}`} />
+          <BookOpen className={`w-3.5 h-3.5 ${activeView === 'blog' ? 'text-emerald-600' : 'text-slate-400'}`} />
           <span>Security Design Blog</span>
         </button>
       </div>

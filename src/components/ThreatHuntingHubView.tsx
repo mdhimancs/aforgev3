@@ -28,8 +28,7 @@ import { SAMPLE_THREAT_HUNT_HYPOTHESES, SAMPLE_THREAT_HUNT_FINDINGS } from '../d
 import { useTheme } from '../context/ThemeContext';
 
 export function ThreatHuntingHubView() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   const [hypotheses, setHypotheses] = useState<ThreatHuntHypothesis[]>(SAMPLE_THREAT_HUNT_HYPOTHESES);
   const [findings, setFindings] = useState<ThreatHuntFinding[]>(SAMPLE_THREAT_HUNT_FINDINGS);

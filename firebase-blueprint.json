@@ -1,0 +1,92 @@
+{
+  "entities": {
+    "userProfile": {
+      "title": "User Profile",
+      "description": "User profile containing authentication details, role, and security clearance level.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth UID of the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name."
+        },
+        "role": {
+          "type": "string",
+          "enum": ["viewer", "analyst", "security_architect", "admin"],
+          "description": "User RBAC role."
+        },
+        "clearanceLevel": {
+          "type": "string",
+          "enum": ["Public", "Internal", "Confidential", "Restricted"],
+          "description": "Security clearance level for accessing gated blogs."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last updated timestamp."
+        }
+      },
+      "required": ["uid", "email", "role", "clearanceLevel"]
+    },
+    "blogAccessPolicy": {
+      "title": "Blog Access Control Policy",
+      "description": "Granular Firebase access control rule specifying required clearance and role restrictions per blog post.",
+      "type": "object",
+      "properties": {
+        "postId": {
+          "type": "string",
+          "description": "Unique identifier of the blog post."
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL slug of the blog article."
+        },
+        "requiredClearance": {
+          "type": "string",
+          "enum": ["Public", "Internal", "Confidential", "Restricted"],
+          "description": "Minimum clearance required to view this blog."
+        },
+        "allowedRoles": {
+          "type": "string",
+          "description": "Comma-separated or serialized list of allowed RBAC roles."
+        },
+        "updatedBy": {
+          "type": "string",
+          "description": "UID of the security architect or admin who modified this policy."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when policy was last updated."
+        }
+      },
+      "required": ["postId", "requiredClearance"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/userProfile"
+      },
+      "description": "Stores user profiles with assigned security clearances and RBAC roles."
+    },
+    "/blogAccessPolicies/{postId}": {
+      "schema": {
+        "$ref": "#/entities/blogAccessPolicy"
+      },
+      "description": "Stores granular access control policies and clearance levels for each blog."
+    }
+  }
+}

@@ -21,8 +21,7 @@ import {
 import { CtiStealerLogRecord, CtiTyposquatDomain, CtiCanaryTokenTrigger } from '../types';
 
 export function DarkWebCtiView() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   const [stealerLogs, setStealerLogs] = useState<CtiStealerLogRecord[]>(PRESET_STEALER_LOGS);
   const [typosquats, setTyposquats] = useState<CtiTyposquatDomain[]>(PRESET_TYPOSQUAT_DOMAINS);

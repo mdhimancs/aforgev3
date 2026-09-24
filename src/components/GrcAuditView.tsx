@@ -27,8 +27,7 @@ import { PRESET_GRC_CONTROLS, PRESET_AUDIT_EVIDENCE } from '../data/enterprisePr
 import { GrcFrameworkControl, GrcAuditEvidence } from '../types';
 
 export function GrcAuditView() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const { theme, isLight } = useTheme();
 
   const [controls, setControls] = useState<GrcFrameworkControl[]>(PRESET_GRC_CONTROLS);
   const [evidenceList, setEvidenceList] = useState<GrcAuditEvidence[]>(PRESET_AUDIT_EVIDENCE);

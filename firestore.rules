@@ -1,0 +1,67 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Safety Net: Default-deny all unhandled paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper Primitives
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-\\.]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'munish.world@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function isValidUserProfile(data) {
+      return data.keys().hasAll(['uid', 'email', 'role', 'clearanceLevel']) &&
+             data.uid is string && data.uid.size() <= 128 &&
+             data.email is string && data.email.size() <= 254 &&
+             data.role in ['viewer', 'analyst', 'security_architect', 'admin'] &&
+             data.clearanceLevel in ['Public', 'Internal', 'Confidential', 'Restricted'];
+    }
+
+    function isValidBlogAccessPolicy(data) {
+      return data.keys().hasAll(['postId', 'requiredClearance']) &&
+             data.postId is string && data.postId.size() <= 128 &&
+             data.requiredClearance in ['Public', 'Internal', 'Confidential', 'Restricted'];
+    }
+
+    // 1. User Profiles & Clearance State
+    match /users/{userId} {
+      allow get: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      allow list: if isAdmin();
+      allow create: if isSignedIn() && (request.auth.uid == userId || isAdmin()) && isValidUserProfile(incoming());
+      allow update: if isSignedIn() && (request.auth.uid == userId || isAdmin()) && isValidUserProfile(incoming());
+      allow delete: if isAdmin();
+    }
+
+    // 2. Granular Blog Access Policies
+    match /blogAccessPolicies/{postId} {
+      allow read: if true; // Publicly readable metadata so client can display required clearances
+      allow create, update: if isSignedIn() && isValidBlogAccessPolicy(incoming()) && (
+        isAdmin() || 
+        (request.auth.token.email_verified == true)
+      );
+      allow delete: if isAdmin();
+    }
+  }
+}
