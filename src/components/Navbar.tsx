@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Play, Rocket, Code2, ChevronDown, Sparkles, Check, RefreshCw, ShieldAlert, LayoutGrid, ShieldCheck, Terminal, Sun, Moon, Zap, FileCheck2, Lightbulb, BookOpen, ChevronRight, Home, Palette, Eye } from 'lucide-react';
+import { Play, Rocket, Code2, ChevronDown, Sparkles, Check, RefreshCw, ShieldAlert, LayoutGrid, ShieldCheck, Terminal, Sun, Moon, Zap, FileCheck2, Lightbulb, BookOpen, ChevronRight, Home, Palette, Eye, Link2, Copy } from 'lucide-react';
 import { AgentWorkflow, ThemeMode } from '../types';
 import { useTheme } from '../context/ThemeContext';
+import { getMainViewDefaultUrl } from '../utils/urlRouter';
 
 interface NavbarProps {
   currentWorkflow: AgentWorkflow;
@@ -9,6 +10,7 @@ interface NavbarProps {
   onSelectWorkflow: (workflow: AgentWorkflow) => void;
   activeView: 'builder' | 'security_lab' | 'appsec_scanner' | 'vapt' | 'secops' | 'grc_compliance' | 'blog';
   onChangeView: (view: 'builder' | 'security_lab' | 'appsec_scanner' | 'vapt' | 'secops' | 'grc_compliance' | 'blog') => void;
+  currentPathname?: string;
   onDeploy: () => void;
   onExportCode: () => void;
   onTestRun: () => void;
@@ -22,6 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSelectWorkflow,
   activeView,
   onChangeView,
+  currentPathname,
   onDeploy,
   onExportCode,
   onTestRun,
@@ -30,9 +33,19 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [themeMenuOpen, setThemeMenuOpen] = useState(false);
+  const [copiedTabUrl, setCopiedTabUrl] = useState(false);
   const themeMenuRef = useRef<HTMLDivElement>(null);
   const { theme, setTheme, toggleTheme } = useTheme();
   const isLight = theme !== 'dark';
+
+  const activeUrlPath = currentPathname || getMainViewDefaultUrl(activeView);
+
+  const handleCopyCurrentUrl = () => {
+    const fullUrl = `${window.location.origin}${activeUrlPath}`;
+    navigator.clipboard.writeText(fullUrl);
+    setCopiedTabUrl(true);
+    setTimeout(() => setCopiedTabUrl(false), 2000);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -133,44 +146,80 @@ export const Navbar: React.FC<NavbarProps> = ({
       id="top-navbar"
       className={`flex flex-col backdrop-blur-md z-30 select-none transition-colors border-b ${getNavbarThemeClass()}`}
     >
-      {/* Breadcrumb Navigation Trail */}
-      <div className="flex items-center px-6 py-1.5 bg-white/40 border-b border-slate-200/50 text-[11px] font-medium opacity-80 mt-1">
-        <Home className="w-3 h-3 mr-1.5 opacity-70" />
-        <span className="hover:opacity-100 cursor-pointer transition-colors" onClick={() => onChangeView('secops')}>AgentForge</span>
-        <ChevronRight className="w-3 h-3 mx-1 opacity-40" />
-        <span className="hover:opacity-100 cursor-pointer transition-colors">Platform Modules</span>
-        <ChevronRight className="w-3 h-3 mx-1 opacity-40" />
-        <span className="font-semibold opacity-100">{getViewName()}</span>
+      {/* Breadcrumb Navigation Trail & Live URL Route Bar */}
+      <div className="flex items-center justify-between px-3 md:px-4 py-1 bg-white/40 border-b border-slate-200/50 text-[11px] font-medium mt-0.5">
+        <div className="flex items-center opacity-80 min-w-0 truncate">
+          <Home className="w-3 h-3 mr-1 opacity-70 shrink-0" />
+          <a
+            href="/secops/siem"
+            onClick={(e) => {
+              e.preventDefault();
+              onChangeView('secops');
+            }}
+            className="hover:opacity-100 cursor-pointer transition-colors"
+          >
+            AgentForge
+          </a>
+          <ChevronRight className="w-3 h-3 mx-0.5 opacity-40 shrink-0" />
+          <span className="hover:opacity-100 cursor-pointer transition-colors">Platform</span>
+          <ChevronRight className="w-3 h-3 mx-0.5 opacity-40 shrink-0" />
+          <span className="font-semibold opacity-100">{getViewName()}</span>
+        </div>
+
+        {/* Live Tab Route URL Indicator & Copy Pill */}
+        <div className="flex items-center gap-1.5 shrink-0 ml-2">
+          <div className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-slate-100/90 border border-slate-200/80 text-[10px] font-mono text-slate-700 shadow-2xs">
+            <Link2 className="w-3 h-3 text-indigo-600 shrink-0" />
+            <span className="font-bold text-slate-800 truncate max-w-[140px] sm:max-w-none">{activeUrlPath}</span>
+            <button
+              onClick={handleCopyCurrentUrl}
+              className="ml-0.5 pl-1 border-l border-slate-300 text-indigo-700 hover:text-indigo-900 font-sans font-bold flex items-center gap-1 cursor-pointer transition-colors"
+              title="Copy full URL for this tab"
+            >
+              {copiedTabUrl ? (
+                <>
+                  <Check className="w-2.5 h-2.5 text-emerald-600" />
+                  <span className="text-emerald-700">Copied</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-2.5 h-2.5" />
+                  <span className="hidden sm:inline">Copy</span>
+                </>
+              )}
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div className="px-6 flex flex-col pt-2 pb-1">
+      <div className="px-3 md:px-4 flex flex-col pt-1.5 pb-0.5">
         {/* Row 1: Brand & Workflow Switcher on Left, Actions on Right */}
-        <div className="flex items-center justify-between pb-2 border-b border-blue-100/60">
+        <div className="flex items-center justify-between pb-1.5 border-b border-blue-100/60 gap-2">
         {/* Brand & Active Agent / Workflow Switcher */}
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-gradient-to-br from-blue-50 to-indigo-100/60 border border-blue-200/50 rounded-lg flex items-center justify-center shadow-xs text-blue-700 font-extrabold tracking-wider shrink-0">
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 bg-gradient-to-br from-blue-50 to-indigo-100/60 border border-blue-200/50 rounded-lg flex items-center justify-center shadow-xs text-blue-700 font-extrabold tracking-wider shrink-0 text-xs">
             <span>A</span>
           </div>
           
           <div className="flex items-center shrink-0">
-            <span className="font-extrabold text-lg tracking-tight">
+            <span className="font-extrabold text-base tracking-tight">
               <span className="text-slate-500">AGENT</span>
               <span className="text-blue-600">FORGE</span>
             </span>
-            <span className="ml-2 px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-blue-50 text-blue-700 border border-blue-200/60 shadow-xs">
+            <span className="ml-1.5 px-1 py-0.2 rounded text-[9px] font-extrabold bg-blue-50 text-blue-700 border border-blue-200/60 shadow-xs">
               CYBER
             </span>
           </div>
 
           {/* Workflow Switcher Dropdown */}
-          <div className="relative ml-3">
+          <div className="relative ml-1.5">
             <button
               id="workflow-selector-btn"
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-blue-200 bg-blue-50/80 text-blue-800 hover:bg-blue-100 transition-colors cursor-pointer"
+              className="flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium border border-blue-200 bg-blue-50/80 text-blue-800 hover:bg-blue-100 transition-colors cursor-pointer max-w-[160px] sm:max-w-xs truncate"
             >
-              <span className="font-mono font-semibold">{currentWorkflow.name}_{currentWorkflow.version}</span>
-              <ChevronDown className="w-3.5 h-3.5 text-blue-600" />
+              <span className="font-mono font-semibold truncate">{currentWorkflow.name}_{currentWorkflow.version}</span>
+              <ChevronDown className="w-3 h-3 text-blue-600 shrink-0" />
             </button>
 
             {dropdownOpen && (
@@ -206,14 +255,14 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Action Controls & Theme Toggle */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Test Run Execution (visible in builder mode) */}
           {activeView === 'builder' && (
             <button
               id="btn-run-pipeline-test"
               onClick={onTestRun}
               disabled={isRunningTest}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium border transition-all cursor-pointer ${
                 isRunningTest
                   ? 'bg-amber-500/20 text-amber-600 border-amber-500/40 cursor-wait'
                   : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-300'
@@ -222,12 +271,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               {isRunningTest ? (
                 <>
-                  <RefreshCw className="w-3.5 h-3.5 animate-spin text-amber-500" />
+                  <RefreshCw className="w-3 h-3 animate-spin text-amber-500" />
                   <span>Simulating...</span>
                 </>
               ) : (
                 <>
-                  <Play className="w-3.5 h-3.5 fill-current text-emerald-500" />
+                  <Play className="w-3 h-3 fill-current text-emerald-500" />
                   <span>Run Pipeline</span>
                 </>
               )}
@@ -239,11 +288,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="btn-open-ideas-hub"
               onClick={onOpenIdeas}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 border border-amber-500/30 rounded-lg text-xs font-bold transition-all cursor-pointer"
+              className="flex items-center gap-1 px-2.5 py-1 bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 border border-amber-500/30 rounded-md text-xs font-bold transition-all cursor-pointer"
               title="Ideas & Feature Roadmap Hub"
             >
-              <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
-              <span className="hidden md:inline">Ideas Hub</span>
+              <Lightbulb className="w-3 h-3 text-amber-500" />
+              <span className="hidden md:inline">Ideas</span>
             </button>
           )}
 
@@ -251,20 +300,20 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             id="btn-export-code"
             onClick={onExportCode}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border border-slate-300 bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer"
+            className="flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium transition-colors border border-slate-300 bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer"
             title="Export as LangGraph / CrewAI / Gemini TypeScript"
           >
-            <Code2 className="w-3.5 h-3.5 text-blue-500" />
-            <span className="hidden sm:inline">Export Code</span>
+            <Code2 className="w-3 h-3 text-blue-500" />
+            <span className="hidden sm:inline">Export</span>
           </button>
 
           {/* Deploy Agent Button */}
           <button
             id="btn-deploy-agent"
             onClick={onDeploy}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition-all shadow-md shadow-blue-600/20 cursor-pointer active:scale-95"
+            className="flex items-center gap-1 px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-xs font-bold transition-all shadow-sm shadow-blue-600/20 cursor-pointer active:scale-95"
           >
-            <Rocket className="w-3.5 h-3.5" />
+            <Rocket className="w-3 h-3" />
             <span>Deploy</span>
           </button>
 
@@ -273,11 +322,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="btn-theme-selector"
               onClick={() => setThemeMenuOpen(!themeMenuOpen)}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-slate-300 bg-white/90 hover:bg-slate-50 text-slate-800 transition-all shadow-2xs cursor-pointer"
+              className="flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium border border-slate-300 bg-white/90 hover:bg-slate-50 text-slate-800 transition-all shadow-2xs cursor-pointer"
               title="Change website theme & eye-comfort mode"
             >
-              <Palette className="w-3.5 h-3.5 text-indigo-600" />
-              <span className="hidden sm:inline font-semibold">{currentThemeLabel}</span>
+              <Palette className="w-3 h-3 text-indigo-600" />
+              <span className="hidden md:inline font-semibold">{currentThemeLabel}</span>
               <ChevronDown className={`w-3 h-3 text-slate-500 transition-transform duration-200 ${themeMenuOpen ? 'rotate-180' : ''}`} />
             </button>
 
@@ -370,7 +419,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* User avatar indicator */}
           <div 
             id="user-avatar-indicator"
-            className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-blue-900 border border-blue-400/40 flex items-center justify-center text-xs font-bold text-white shadow-xs"
+            className="w-7 h-7 rounded-full bg-gradient-to-tr from-blue-600 to-blue-900 border border-blue-400/40 flex items-center justify-center text-[11px] font-bold text-white shadow-xs shrink-0"
             title="AI Studio User (munish.world@gmail.com)"
           >
             M
@@ -378,12 +427,17 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Row 2: View Mode Switcher Bar - Premium Flat Tabs */}
-      <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none border-b border-slate-200/60 mt-1.5 shrink-0 pt-1 px-1">
-        <button
+      {/* Row 2: View Mode Switcher Bar - Horizontally Compact Flat Tabs */}
+      <div className="flex items-center gap-1 overflow-x-auto scrollbar-none border-b border-slate-200/60 mt-1 shrink-0 pt-0.5 px-1">
+        <a
           id="tab-secops-nexus-view"
-          onClick={() => onChangeView('secops')}
-          className={`flex items-center gap-2 px-4 py-2 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-lg whitespace-nowrap border-t border-l border-r ${
+          href="/secops/siem"
+          onClick={(e) => {
+            e.preventDefault();
+            onChangeView('secops');
+          }}
+          title="Navigate to /secops/siem"
+          className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-md whitespace-nowrap border-t border-l border-r ${
             activeView === 'secops'
               ? 'border-violet-300 bg-violet-100/70 text-violet-850 shadow-3xs'
               : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/40 hover:border-slate-200/40'
@@ -391,12 +445,18 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <Sparkles className={`w-3.5 h-3.5 ${activeView === 'secops' ? 'text-violet-600' : 'text-slate-400'}`} />
           <span>AI SecOps Nexus</span>
-        </button>
+          <span className="text-[9px] font-mono opacity-60 hidden xl:inline">/secops</span>
+        </a>
 
-        <button
+        <a
           id="tab-appsec-scanner-view"
-          onClick={() => onChangeView('appsec_scanner')}
-          className={`flex items-center gap-2 px-4 py-2 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-lg whitespace-nowrap border-t border-l border-r ${
+          href="/appsec-scanner/overview"
+          onClick={(e) => {
+            e.preventDefault();
+            onChangeView('appsec_scanner');
+          }}
+          title="Navigate to /appsec-scanner/overview"
+          className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-md whitespace-nowrap border-t border-l border-r ${
             activeView === 'appsec_scanner'
               ? 'border-cyan-300 bg-cyan-100/70 text-cyan-850 shadow-3xs'
               : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/40 hover:border-slate-200/40'
@@ -404,12 +464,18 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <ShieldCheck className={`w-3.5 h-3.5 ${activeView === 'appsec_scanner' ? 'text-cyan-600' : 'text-slate-400'}`} />
           <span>AppSec Scanner</span>
-        </button>
+          <span className="text-[9px] font-mono opacity-60 hidden xl:inline">/appsec</span>
+        </a>
 
-        <button
+        <a
           id="tab-security-lab-view"
-          onClick={() => onChangeView('security_lab')}
-          className={`flex items-center gap-2 px-4 py-2 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-lg whitespace-nowrap border-t border-l border-r ${
+          href="/red-team-lab"
+          onClick={(e) => {
+            e.preventDefault();
+            onChangeView('security_lab');
+          }}
+          title="Navigate to /red-team-lab"
+          className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-md whitespace-nowrap border-t border-l border-r ${
             activeView === 'security_lab'
               ? 'border-rose-300 bg-rose-100/70 text-rose-850 shadow-3xs'
               : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/40 hover:border-slate-200/40'
@@ -417,12 +483,18 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <ShieldAlert className={`w-3.5 h-3.5 ${activeView === 'security_lab' ? 'text-rose-600' : 'text-slate-400'}`} />
           <span>Red-Team Lab</span>
-        </button>
+          <span className="text-[9px] font-mono opacity-60 hidden xl:inline">/red-team</span>
+        </a>
 
-        <button
+        <a
           id="tab-vapt-workbench-view"
-          onClick={() => onChangeView('vapt')}
-          className={`flex items-center gap-2 px-4 py-2 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-lg whitespace-nowrap border-t border-l border-r ${
+          href="/pentest-vapt/workbench"
+          onClick={(e) => {
+            e.preventDefault();
+            onChangeView('vapt');
+          }}
+          title="Navigate to /pentest-vapt/workbench"
+          className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-md whitespace-nowrap border-t border-l border-r ${
             activeView === 'vapt'
               ? 'border-amber-300 bg-amber-100/70 text-amber-850 shadow-3xs'
               : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/40 hover:border-slate-200/40'
@@ -430,12 +502,18 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <Terminal className={`w-3.5 h-3.5 ${activeView === 'vapt' ? 'text-amber-600' : 'text-slate-400'}`} />
           <span>PenTest & VAPT</span>
-        </button>
+          <span className="text-[9px] font-mono opacity-60 hidden xl:inline">/vapt</span>
+        </a>
 
-        <button
+        <a
           id="tab-grc-compliance-view"
-          onClick={() => onChangeView('grc_compliance')}
-          className={`flex items-center gap-2 px-4 py-2 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-lg whitespace-nowrap border-t border-l border-r ${
+          href="/grc-compliance"
+          onClick={(e) => {
+            e.preventDefault();
+            onChangeView('grc_compliance');
+          }}
+          title="Navigate to /grc-compliance"
+          className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-md whitespace-nowrap border-t border-l border-r ${
             activeView === 'grc_compliance'
               ? 'border-blue-300 bg-blue-100/70 text-blue-850 shadow-3xs'
               : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/40 hover:border-slate-200/40'
@@ -443,12 +521,18 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <FileCheck2 className={`w-3.5 h-3.5 ${activeView === 'grc_compliance' ? 'text-blue-600' : 'text-slate-400'}`} />
           <span>NIST & EU GRC</span>
-        </button>
+          <span className="text-[9px] font-mono opacity-60 hidden xl:inline">/grc</span>
+        </a>
 
-        <button
+        <a
           id="tab-builder-view"
-          onClick={() => onChangeView('builder')}
-          className={`flex items-center gap-2 px-4 py-2 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-lg whitespace-nowrap border-t border-l border-r ${
+          href="/canvas"
+          onClick={(e) => {
+            e.preventDefault();
+            onChangeView('builder');
+          }}
+          title="Navigate to /canvas"
+          className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-md whitespace-nowrap border-t border-l border-r ${
             activeView === 'builder'
               ? 'border-sky-300 bg-sky-100/70 text-sky-850 shadow-3xs'
               : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/40 hover:border-slate-200/40'
@@ -456,12 +540,18 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <LayoutGrid className={`w-3.5 h-3.5 ${activeView === 'builder' ? 'text-sky-600' : 'text-slate-400'}`} />
           <span>Canvas</span>
-        </button>
+          <span className="text-[9px] font-mono opacity-60 hidden xl:inline">/canvas</span>
+        </a>
 
-        <button
+        <a
           id="tab-blog-view"
-          onClick={() => onChangeView('blog')}
-          className={`flex items-center gap-2 px-4 py-2 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-lg whitespace-nowrap border-t border-l border-r ${
+          href="/security-blog"
+          onClick={(e) => {
+            e.preventDefault();
+            onChangeView('blog');
+          }}
+          title="Navigate to /security-blog"
+          className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold transition-all duration-150 cursor-pointer rounded-t-md whitespace-nowrap border-t border-l border-r ${
             activeView === 'blog'
               ? 'border-emerald-300 bg-emerald-100/70 text-emerald-850 shadow-3xs'
               : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100/40 hover:border-slate-200/40'
@@ -469,7 +559,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <BookOpen className={`w-3.5 h-3.5 ${activeView === 'blog' ? 'text-emerald-600' : 'text-slate-400'}`} />
           <span>Security Design Blog</span>
-        </button>
+          <span className="text-[9px] font-mono opacity-60 hidden xl:inline">/blog</span>
+        </a>
       </div>
       </div>
     </nav>

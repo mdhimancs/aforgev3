@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Shield,
   ShieldAlert,
@@ -47,15 +47,52 @@ import { AegisShieldView } from './AegisShieldView';
 import { useTheme } from '../context/ThemeContext';
 import { AnimatedCounter } from './common/AnimatedCounter';
 import { SpotlightCard } from './common/SpotlightCard';
+import {
+  AppSecSubTabType,
+  APPSEC_TAB_TO_SLUG,
+  SLUG_TO_APPSEC_TAB,
+  parsePathname,
+  navigateToUrl,
+} from '../utils/urlRouter';
 
-type AppSecTab = 'overview' | 'aegis' | 'sast' | 'dast' | 'sca' | 'secrets_iac' | 'ai_copilot' | 'reports';
+type AppSecTab = AppSecSubTabType;
 
 export const AppSecDashboard: React.FC = () => {
   const { theme } = useTheme();
   const isLight = theme === 'light';
   const [projects, setProjects] = useState<AppSecProject[]>(PRESET_APPSEC_PROJECTS);
   const [selectedProjectId, setSelectedProjectId] = useState<string>(PRESET_APPSEC_PROJECTS[0].id);
-  const [activeTab, setActiveTab] = useState<AppSecTab>('overview');
+  const [activeTab, setActiveTabState] = useState<AppSecTab>(() => {
+    const parsed = parsePathname();
+    if (parsed.mainView === 'appsec_scanner' && parsed.subSegment && SLUG_TO_APPSEC_TAB[parsed.subSegment]) {
+      return SLUG_TO_APPSEC_TAB[parsed.subSegment];
+    }
+    return 'overview';
+  });
+
+  const setActiveTab = (tab: AppSecTab) => {
+    setActiveTabState(tab);
+    const slug = APPSEC_TAB_TO_SLUG[tab] || 'overview';
+    navigateToUrl(`/appsec-scanner/${slug}`);
+  };
+
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const parsed = parsePathname();
+      if (parsed.mainView === 'appsec_scanner') {
+        const mapped = parsed.subSegment ? SLUG_TO_APPSEC_TAB[parsed.subSegment] : 'overview';
+        if (mapped) {
+          setActiveTabState(mapped);
+        }
+      }
+    };
+    window.addEventListener('popstate', syncFromUrl);
+    window.addEventListener('app-location-change', syncFromUrl);
+    return () => {
+      window.removeEventListener('popstate', syncFromUrl);
+      window.removeEventListener('app-location-change', syncFromUrl);
+    };
+  }, []);
 
   // Filter states
   const [severityFilter, setSeverityFilter] = useState<string>('ALL');
@@ -482,11 +519,16 @@ export const AppSecDashboard: React.FC = () => {
         </div>
       </div>
 
-       {/* Main AppSec Navigation Tabs */}
+       {/* Main AppSec Navigation Tabs with Individual URLs */}
       <div className="px-6 border-b border-slate-200 bg-slate-50/80 flex items-center justify-between shrink-0 overflow-x-auto py-2.5">
          <div className="flex items-center gap-2">
-          <button
-            onClick={() => setActiveTab('overview')}
+          <a
+            href="/appsec-scanner/overview"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveTab('overview');
+            }}
+            title="/appsec-scanner/overview"
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'overview'
                 ? 'bg-sky-50 text-sky-900 border-b-2 border-sky-600 font-bold'
@@ -495,10 +537,15 @@ export const AppSecDashboard: React.FC = () => {
           >
             <ShieldCheck className={`w-4 h-4 ${activeTab === 'overview' ? 'text-sky-600' : 'text-slate-500'}`} />
             <span>Executive Overview</span>
-          </button>
+          </a>
  
-          <button
-            onClick={() => setActiveTab('aegis')}
+          <a
+            href="/appsec-scanner/aegis"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveTab('aegis');
+            }}
+            title="/appsec-scanner/aegis"
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'aegis'
                 ? 'bg-emerald-50 text-emerald-900 border-b-2 border-emerald-600 font-bold'
@@ -517,10 +564,15 @@ export const AppSecDashboard: React.FC = () => {
             }`}>
               ACTIVE
             </span>
-          </button>
+          </a>
  
-          <button
-            onClick={() => setActiveTab('sast')}
+          <a
+            href="/appsec-scanner/sast"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveTab('sast');
+            }}
+            title="/appsec-scanner/sast"
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'sast'
                 ? 'bg-indigo-50 text-indigo-900 border-b-2 border-indigo-600 font-bold'
@@ -534,10 +586,15 @@ export const AppSecDashboard: React.FC = () => {
             }`}>
               {activeSastList.length}
             </span>
-          </button>
+          </a>
  
-          <button
-            onClick={() => setActiveTab('dast')}
+          <a
+            href="/appsec-scanner/dast"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveTab('dast');
+            }}
+            title="/appsec-scanner/dast"
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'dast'
                 ? 'bg-cyan-50 text-cyan-900 border-b-2 border-cyan-600 font-bold'
@@ -551,10 +608,15 @@ export const AppSecDashboard: React.FC = () => {
             }`}>
               {currentProject.dastProbes.length}
             </span>
-          </button>
+          </a>
  
-          <button
-            onClick={() => setActiveTab('sca')}
+          <a
+            href="/appsec-scanner/sca"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveTab('sca');
+            }}
+            title="/appsec-scanner/sca"
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'sca'
                 ? 'bg-amber-50 text-amber-900 border-b-2 border-amber-600 font-bold'
@@ -568,10 +630,15 @@ export const AppSecDashboard: React.FC = () => {
             }`}>
               {allSca.length} CVEs
             </span>
-          </button>
+          </a>
  
-          <button
-            onClick={() => setActiveTab('secrets_iac')}
+          <a
+            href="/appsec-scanner/secrets-iac"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveTab('secrets_iac');
+            }}
+            title="/appsec-scanner/secrets-iac"
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'secrets_iac'
                 ? 'bg-rose-50 text-rose-900 border-b-2 border-rose-600 font-bold'
@@ -585,10 +652,15 @@ export const AppSecDashboard: React.FC = () => {
             }`}>
               {allSecrets.length + allIac.length}
             </span>
-          </button>
+          </a>
  
-          <button
-            onClick={() => setActiveTab('ai_copilot')}
+          <a
+            href="/appsec-scanner/ai-copilot"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveTab('ai_copilot');
+            }}
+            title="/appsec-scanner/ai-copilot"
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'ai_copilot'
                 ? 'bg-purple-50 text-purple-900 border-b-2 border-purple-600 font-bold'
@@ -597,10 +669,15 @@ export const AppSecDashboard: React.FC = () => {
           >
             <Sparkles className={`w-4 h-4 ${activeTab === 'ai_copilot' ? 'text-purple-600' : 'text-slate-500'} animate-pulse`} />
             <span>AI Security Copilot</span>
-          </button>
+          </a>
  
-          <button
-            onClick={() => setActiveTab('reports')}
+          <a
+            href="/appsec-scanner/reports"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveTab('reports');
+            }}
+            title="/appsec-scanner/reports"
             className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer border shadow-2xs ${
               activeTab === 'reports'
                 ? 'bg-teal-50 text-teal-900 border-b-2 border-teal-600 font-bold'
@@ -609,7 +686,7 @@ export const AppSecDashboard: React.FC = () => {
           >
             <FileText className={`w-4 h-4 ${activeTab === 'reports' ? 'text-teal-600' : 'text-slate-500'}`} />
             <span>Reports & CI/CD Gate</span>
-          </button>
+          </a>
         </div>
 
         <div className="flex items-center gap-2 py-1">

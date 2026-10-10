@@ -6,7 +6,7 @@ export interface AgentNode {
   title: string;
   subtitle?: string;
   position: { x: number; y: number };
-  status: 'idle' | 'running' | 'success' | 'error';
+  status: 'idle' | 'running' | 'success' | 'error' | 'testing' | 'simulated';
   config: {
     // For Trigger
     triggerType?: 'email' | 'webhook' | 'cron' | 'chat' | 'api';

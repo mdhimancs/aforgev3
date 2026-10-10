@@ -58,6 +58,7 @@ import { doc, setDoc, getDoc, onSnapshot, collection } from 'firebase/firestore'
 import { AnimatedCounter } from '../common/AnimatedCounter';
 import { AnimatedCheckmark } from '../common/AnimatedCheckmark';
 import { ShimmerSkeleton, ArticleLoadingSkeleton } from '../common/ShimmerSkeleton';
+import { parsePathname, navigateToUrl } from '../../utils/urlRouter';
 import { SpotlightCard } from '../common/SpotlightCard';
 
 export interface AccessRequestItem {
@@ -499,9 +500,34 @@ export const BlogReader: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
   const [selectedYear, setSelectedYear] = useState<string>('ALL');
   const [selectedLetter, setSelectedLetter] = useState<string>('ALL');
-  const [viewMode, setViewMode] = useState<'cards' | 'index_table'>('cards');
+  const [viewMode, setViewModeState] = useState<'cards' | 'index_table'>(() => {
+    const parsed = parsePathname();
+    if (parsed.mainView === 'blog' && parsed.subSegment === 'index-table') {
+      return 'index_table';
+    }
+    return 'cards';
+  });
   const [showIndexSidebar, setShowIndexSidebar] = useState<boolean>(true);
-  const [indexTab, setIndexTab] = useState<'categories' | 'az' | 'years' | 'master_list'>('categories');
+  const [indexTab, setIndexTabState] = useState<'categories' | 'az' | 'years' | 'master_list'>(() => {
+    const parsed = parsePathname();
+    if (parsed.mainView === 'blog' && parsed.subSegment) {
+      const cleanSeg = parsed.subSegment.replace(/-/g, '_');
+      if (['categories', 'az', 'years', 'master_list'].includes(cleanSeg)) {
+        return cleanSeg as 'categories' | 'az' | 'years' | 'master_list';
+      }
+    }
+    return 'categories';
+  });
+
+  const setViewMode = (mode: 'cards' | 'index_table') => {
+    setViewModeState(mode);
+    navigateToUrl(mode === 'index_table' ? '/security-blog/index-table' : '/security-blog/cards');
+  };
+
+  const setIndexTab = (tab: 'categories' | 'az' | 'years' | 'master_list') => {
+    setIndexTabState(tab);
+    navigateToUrl(`/security-blog/${tab.replace(/_/g, '-')}`);
+  };
   const [readingProgress, setReadingProgress] = useState<number>(0);
   const [showBackToTop, setShowBackToTop] = useState<boolean>(false);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -528,8 +554,11 @@ export const BlogReader: React.FC = () => {
   }, []);
 
   // Handle post selection and smooth scroll to top
-  const handlePostClick = async (slug: string) => {
+  const handlePostClick = async (slug: string, updateUrl = true) => {
     setLoadingPost(true);
+    if (updateUrl) {
+      navigateToUrl(`/security-blog/article/${slug}`);
+    }
 
     // 1. Check in-memory dataset cache
     if (fullDatasetCache) {
@@ -620,6 +649,43 @@ export const BlogReader: React.FC = () => {
       articleScrollRef.current.scrollTo({ top: 0, behavior: 'instant' });
     }
   };
+
+  // Sync blog view state with URL route changes
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const parsed = parsePathname();
+      if (parsed.mainView !== 'blog') return;
+      if (!parsed.subSegment) {
+        setSelectedPost(null);
+        return;
+      }
+      if (parsed.subSegment.startsWith('article/')) {
+        const slug = parsed.subSegment.replace(/^article\//, '');
+        if (slug && selectedPost?.slug !== slug) {
+          handlePostClick(slug, false);
+        }
+      } else if (parsed.subSegment === 'index-table') {
+        setSelectedPost(null);
+        setViewModeState('index_table');
+      } else if (parsed.subSegment === 'cards') {
+        setSelectedPost(null);
+        setViewModeState('cards');
+      } else {
+        const cleanSeg = parsed.subSegment.replace(/-/g, '_');
+        if (['categories', 'az', 'years', 'master_list'].includes(cleanSeg)) {
+          setSelectedPost(null);
+          setIndexTabState(cleanSeg as 'categories' | 'az' | 'years' | 'master_list');
+        }
+      }
+    };
+    syncFromUrl();
+    window.addEventListener('popstate', syncFromUrl);
+    window.addEventListener('app-location-change', syncFromUrl);
+    return () => {
+      window.removeEventListener('popstate', syncFromUrl);
+      window.removeEventListener('app-location-change', syncFromUrl);
+    };
+  }, [selectedPost?.slug]);
 
   // Scroll to top helper
   const scrollToTop = (ref: React.RefObject<HTMLDivElement | null>) => {
@@ -956,7 +1022,10 @@ export const BlogReader: React.FC = () => {
         <header className="h-14 bg-white border-b border-slate-200 px-4 md:px-6 flex items-center justify-between shrink-0 shadow-2xs z-10">
           <div className="flex items-center gap-3 min-w-0">
             <button
-              onClick={() => setSelectedPost(null)}
+              onClick={() => {
+                setSelectedPost(null);
+                navigateToUrl(viewMode === 'index_table' ? '/security-blog/index-table' : '/security-blog');
+              }}
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer border border-slate-200"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -2344,10 +2413,14 @@ export const BlogReader: React.FC = () => {
             <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 shrink-0">
               <span>All access grants and approvals synchronize live in Cloud Firestore.</span>
               <button
-                onClick={() => setIsAdminInboxOpen(false)}
-                className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer"
+                onClick={() => {
+                  logoutFirebase();
+                  setIsAdminInboxOpen(false);
+                }}
+                className="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer flex items-center gap-2"
               >
-                Close
+                <LogOut className="w-3.5 h-3.5" />
+                <span>Logout Session</span>
               </button>
             </div>
           </div>

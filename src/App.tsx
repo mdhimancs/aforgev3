@@ -22,6 +22,7 @@ import { AiSecOpsNexus } from './components/AiSecOpsNexus';
 import { GrcAuditView } from './components/GrcAuditView';
 import { BlogReader } from './components/BlogReader/BlogReader';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { useUrlRoute, getMainViewDefaultUrl, MainViewType, navigateToUrl } from './utils/urlRouter';
 
 function AppContent() {
   const [workflows, setWorkflows] = useState<AgentWorkflow[]>(PRESET_WORKFLOWS);
@@ -30,8 +31,12 @@ function AppContent() {
     PRESET_WORKFLOWS[0].nodes.find((n) => n.type === 'llm')?.id || null
   );
 
-  // View state: 'secops' | 'vapt' | 'appsec_scanner' | 'grc_compliance' | 'security_lab' | 'builder' | 'blog'
-  const [activeView, setActiveView] = useState<'secops' | 'vapt' | 'appsec_scanner' | 'grc_compliance' | 'security_lab' | 'builder' | 'blog'>('secops');
+  // URL-driven View state: 'secops' | 'vapt' | 'appsec_scanner' | 'grc_compliance' | 'security_lab' | 'builder' | 'blog'
+  const { mainView: activeView, subSegment, pathname } = useUrlRoute();
+
+  const handleSetActiveView = (view: MainViewType) => {
+    navigateToUrl(getMainViewDefaultUrl(view));
+  };
 
   // Modals state
   const [isDeployOpen, setIsDeployOpen] = useState(false);
@@ -54,6 +59,9 @@ function AppContent() {
     setActiveWorkflowId(wf.id);
     const llm = wf.nodes.find((n) => n.type === 'llm');
     setSelectedNodeId(llm ? llm.id : wf.nodes[0]?.id || null);
+    if (activeView === 'builder') {
+      navigateToUrl(`/canvas/${wf.id}`);
+    }
   };
 
   // Node position updater
@@ -336,7 +344,8 @@ function AppContent() {
         allWorkflows={workflows}
         onSelectWorkflow={handleSelectWorkflow}
         activeView={activeView}
-        onChangeView={setActiveView}
+        onChangeView={handleSetActiveView}
+        currentPathname={pathname}
         onDeploy={() => setIsDeployOpen(true)}
         onExportCode={() => setIsExportOpen(true)}
         onTestRun={handleTestRun}
@@ -363,7 +372,12 @@ function AppContent() {
         </div>
       ) : activeView === 'security_lab' ? (
         <div className="flex flex-1 overflow-hidden">
-          <SecurityAttackLab workflow={activeWorkflow} />
+          <SecurityAttackLab 
+            workflow={activeWorkflow} 
+            onUpdateWorkflow={(updatedWf) => {
+              setWorkflows((prev) => prev.map((w) => w.id === updatedWf.id ? updatedWf : w));
+            }}
+          />
         </div>
       ) : activeView === 'blog' ? (
         <div className="flex flex-1 overflow-hidden">

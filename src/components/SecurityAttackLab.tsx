@@ -1,25 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   ShieldAlert, ShieldCheck, Play, RefreshCw, AlertTriangle, CheckCircle2, 
   XCircle, Filter, Download, FileText, Lock, Unlock, Eye, Sparkles, Terminal,
-  Plus, Check, ChevronRight, BarChart3, HelpCircle
+  Plus, Check, ChevronRight, BarChart3, HelpCircle, Flame
 } from 'lucide-react';
 import { AgentWorkflow, SecurityTestSuite, SecurityTestCase, TestExecutionResult, SecurityAuditReport, AttackCategory } from '../types';
 import { SECURITY_TEST_SUITES } from '../data/securityTestSuites';
+import { parsePathname, navigateToUrl } from '../utils/urlRouter';
+import { ThreatLibraryModal } from './ThreatLibraryModal';
+import { SimulationHeatmapModal } from './SimulationHeatmapModal';
+import { ThreatItem } from '../data/threatLibraryData';
 
 interface SecurityAttackLabProps {
   workflow: AgentWorkflow;
   onClose?: () => void;
+  onUpdateWorkflow?: (workflow: AgentWorkflow) => void;
 }
 
-export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, onClose }) => {
+export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, onClose, onUpdateWorkflow }) => {
   const [selectedSuiteId, setSelectedSuiteId] = useState<string>(SECURITY_TEST_SUITES[0].id);
   const [guardrailsEnabled, setGuardrailsEnabled] = useState<boolean>(true);
   const [isRunningAll, setIsRunningAll] = useState<boolean>(false);
   const [activeRunningTestId, setActiveRunningTestId] = useState<string | null>(null);
   const [testResults, setTestResults] = useState<Record<string, TestExecutionResult>>({});
   const [selectedResult, setSelectedResult] = useState<TestExecutionResult | null>(null);
-  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState<string>('all');
+  const [showThreatLibrary, setShowThreatLibrary] = useState<boolean>(false);
+  const [showSimulationHeatmap, setShowSimulationHeatmap] = useState<boolean>(false);
+  const [selectedCategoryFilter, setSelectedCategoryFilterState] = useState<string>(() => {
+    const parsed = parsePathname();
+    if (parsed.mainView === 'security_lab' && parsed.subSegment) {
+      return parsed.subSegment.replace(/-/g, '_');
+    }
+    return 'all';
+  });
+
+  const setSelectedCategoryFilter = (cat: string) => {
+    setSelectedCategoryFilterState(cat);
+    const slug = cat.replace(/_/g, '-');
+    navigateToUrl(cat === 'all' ? '/red-team-lab' : `/red-team-lab/${slug}`);
+  };
+
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const parsed = parsePathname();
+      if (parsed.mainView === 'security_lab') {
+        const cat = parsed.subSegment ? parsed.subSegment.replace(/-/g, '_') : 'all';
+        setSelectedCategoryFilterState(cat);
+      }
+    };
+    window.addEventListener('popstate', syncFromUrl);
+    window.addEventListener('app-location-change', syncFromUrl);
+    return () => {
+      window.removeEventListener('popstate', syncFromUrl);
+      window.removeEventListener('app-location-change', syncFromUrl);
+    };
+  }, []);
   const [customProbes, setCustomProbes] = useState<SecurityTestCase[]>([]);
   const [showAddCustomModal, setShowAddCustomModal] = useState<boolean>(false);
   const [reportExported, setReportExported] = useState<boolean>(false);
@@ -45,6 +80,13 @@ export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, 
   // Run a single probe
   const runSingleProbe = async (testCase: SecurityTestCase): Promise<TestExecutionResult> => {
     setActiveRunningTestId(testCase.id);
+    if (onUpdateWorkflow) {
+      const testingNodes = workflow.nodes.map((n) => ({
+        ...n,
+        status: 'testing' as const
+      }));
+      onUpdateWorkflow({ ...workflow, nodes: testingNodes });
+    }
     
     // Set pending state
     setTestResults((prev) => ({
@@ -110,6 +152,13 @@ export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, 
       return errorResult;
     } finally {
       setActiveRunningTestId(null);
+      if (onUpdateWorkflow && !isRunningAll && activeRunningTestId === null) {
+        const resetNodes = workflow.nodes.map((n) => ({
+          ...n,
+          status: 'success' as const
+        }));
+        onUpdateWorkflow({ ...workflow, nodes: resetNodes });
+      }
     }
   };
 
@@ -117,6 +166,13 @@ export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, 
   const handleRunAllProbes = async () => {
     if (isRunningAll) return;
     setIsRunningAll(true);
+    if (onUpdateWorkflow) {
+      const testingNodes = workflow.nodes.map((n) => ({
+        ...n,
+        status: 'testing' as const
+      }));
+      onUpdateWorkflow({ ...workflow, nodes: testingNodes });
+    }
 
     for (const testCase of allTests) {
       await runSingleProbe(testCase);
@@ -125,6 +181,13 @@ export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, 
     }
 
     setIsRunningAll(false);
+    if (onUpdateWorkflow) {
+      const resetNodes = workflow.nodes.map((n) => ({
+        ...n,
+        status: 'success' as const
+      }));
+      onUpdateWorkflow({ ...workflow, nodes: resetNodes });
+    }
   };
 
   // Calculate metrics
@@ -165,6 +228,22 @@ export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, 
     setNewProbeName('');
     setNewProbePayload('');
     setNewProbePattern('');
+  };
+
+  const handleInjectThreat = (threat: ThreatItem) => {
+    const newCase: SecurityTestCase = {
+      id: `threat-${threat.id.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${Date.now().toString().slice(-4)}`,
+      name: `${threat.id}: ${threat.name}`,
+      category: threat.category,
+      owaspId: threat.reference,
+      severity: threat.severity,
+      description: threat.description,
+      probePayload: threat.probePayload,
+      expectedDefense: threat.expectedDefense,
+      vulnerabilityPattern: 'VIOLATION_TRIGGERED',
+      remediationAdvice: threat.remediationAdvice
+    };
+    setCustomProbes((prev) => [...prev, newCase]);
   };
 
   const handleExportAuditReport = () => {
@@ -248,6 +327,24 @@ export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, 
 
         {/* Global Action Bar */}
         <div className="flex items-center gap-3">
+          {/* Threat Library Catalog Button */}
+          <button
+            onClick={() => setShowThreatLibrary(true)}
+            className="flex items-center gap-1.5 px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded-xl text-xs font-semibold transition-colors cursor-pointer shadow-2xs"
+          >
+            <ShieldAlert className="w-4 h-4 text-blue-600" />
+            <span>Threat Library (CVEs & TTPs)</span>
+          </button>
+
+          {/* Simulation Heatmap Button */}
+          <button
+            onClick={() => setShowSimulationHeatmap(true)}
+            className="flex items-center gap-1.5 px-3 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 rounded-xl text-xs font-semibold transition-colors cursor-pointer shadow-2xs"
+          >
+            <Flame className="w-4 h-4 text-rose-600" />
+            <span>Simulation Heatmap</span>
+          </button>
+
           {/* Guardrail Toggle (Before/After Comparison) */}
           <div className="flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
             <button
@@ -372,6 +469,44 @@ export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, 
             Add Probe
           </button>
         </div>
+      </div>
+
+      {/* Workflow Nodes Active Simulation Topology Banner */}
+      <div className="px-6 py-2.5 bg-white border-b border-slate-200 flex items-center justify-between gap-4">
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Target Workflow Nodes:</span>
+          <div className="flex items-center gap-2 overflow-x-auto py-1">
+            {workflow.nodes.map((node) => {
+              const isTestingActive = isRunningAll || activeRunningTestId !== null;
+              return (
+                <div
+                  key={node.id}
+                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-semibold transition-all ${
+                    isTestingActive
+                      ? 'bg-rose-50 border-rose-400 text-rose-800 animate-pulse ring-2 ring-rose-400/50 shadow-[0_0_15px_rgba(244,63,94,0.25)]'
+                      : 'bg-slate-50 border-slate-200 text-slate-700'
+                  }`}
+                >
+                  <span className={`w-2 h-2 rounded-full ${isTestingActive ? 'bg-rose-500 animate-pulse' : 'bg-emerald-500'}`} />
+                  <span>{node.title}</span>
+                  <span className="text-[9px] font-mono px-1 bg-white/60 rounded border border-slate-200 text-slate-500">
+                    {node.type}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        {isRunningAll || activeRunningTestId !== null ? (
+          <div className="flex items-center gap-1.5 px-3 py-1 bg-rose-50 border border-rose-200 rounded-lg text-rose-700 text-xs font-bold animate-pulse">
+            <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+            <span>Adversarial Probe & Node Simulation Active...</span>
+          </div>
+        ) : (
+          <div className="text-[11px] text-slate-500 font-medium">
+            Workflow Nodes Ready for Security Probing
+          </div>
+        )}
       </div>
 
       {/* Main Dual-Pane Section */}
@@ -710,6 +845,21 @@ export const SecurityAttackLab: React.FC<SecurityAttackLabProps> = ({ workflow, 
           </div>
         </div>
       )}
+
+      {/* Threat Library Modal */}
+      <ThreatLibraryModal
+        isOpen={showThreatLibrary}
+        onClose={() => setShowThreatLibrary(false)}
+        onInjectThreat={handleInjectThreat}
+      />
+
+      {/* Simulation Heatmap Modal */}
+      <SimulationHeatmapModal
+        isOpen={showSimulationHeatmap}
+        onClose={() => setShowSimulationHeatmap(false)}
+        workflow={workflow}
+        testResults={testResults}
+      />
     </div>
   );
 };

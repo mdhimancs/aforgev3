@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ShieldAlert,
   Terminal,
@@ -35,13 +35,50 @@ import {
   PRESET_VAPT_REPORT
 } from '../data/vaptPresets';
 import { useTheme } from '../context/ThemeContext';
+import {
+  VaptSubTabType,
+  VAPT_TAB_TO_SLUG,
+  SLUG_TO_VAPT_TAB,
+  parsePathname,
+  navigateToUrl,
+} from '../utils/urlRouter';
 
-type VaptTab = 'workbench' | 'findings' | 'cvss_calc' | 'scope_roe' | 'compliance_report';
+type VaptTab = VaptSubTabType;
 
 export const VaptCenter: React.FC = () => {
   const { theme } = useTheme();
   const isLight = theme === 'light';
-  const [activeTab, setActiveTab] = useState<VaptTab>('workbench');
+  const [activeTab, setActiveTabState] = useState<VaptTab>(() => {
+    const parsed = parsePathname();
+    if (parsed.mainView === 'vapt' && parsed.subSegment && SLUG_TO_VAPT_TAB[parsed.subSegment]) {
+      return SLUG_TO_VAPT_TAB[parsed.subSegment];
+    }
+    return 'workbench';
+  });
+
+  const setActiveTab = (tab: VaptTab) => {
+    setActiveTabState(tab);
+    const slug = VAPT_TAB_TO_SLUG[tab] || 'workbench';
+    navigateToUrl(`/pentest-vapt/${slug}`);
+  };
+
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const parsed = parsePathname();
+      if (parsed.mainView === 'vapt') {
+        const mapped = parsed.subSegment ? SLUG_TO_VAPT_TAB[parsed.subSegment] : 'workbench';
+        if (mapped) {
+          setActiveTabState(mapped);
+        }
+      }
+    };
+    window.addEventListener('popstate', syncFromUrl);
+    window.addEventListener('app-location-change', syncFromUrl);
+    return () => {
+      window.removeEventListener('popstate', syncFromUrl);
+      window.removeEventListener('app-location-change', syncFromUrl);
+    };
+  }, []);
   const [scopes, setScopes] = useState<VaptTargetScope[]>(PRESET_VAPT_SCOPES);
   const [selectedScopeId, setSelectedScopeId] = useState<string>(PRESET_VAPT_SCOPES[0].id);
   const selectedScope = scopes.find(s => s.id === selectedScopeId) || scopes[0];

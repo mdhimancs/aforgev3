@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FileCheck2,
   ShieldCheck,
@@ -25,6 +25,13 @@ import {
 import { useTheme } from '../context/ThemeContext';
 import { PRESET_GRC_CONTROLS, PRESET_AUDIT_EVIDENCE } from '../data/enterprisePresets';
 import { GrcFrameworkControl, GrcAuditEvidence } from '../types';
+import {
+  GrcFrameworkFilterType,
+  GRC_FILTER_TO_SLUG,
+  SLUG_TO_GRC_FILTER,
+  parsePathname,
+  navigateToUrl,
+} from '../utils/urlRouter';
 
 export function GrcAuditView() {
   const { theme, isLight } = useTheme();
@@ -32,9 +39,42 @@ export function GrcAuditView() {
   const [controls, setControls] = useState<GrcFrameworkControl[]>(PRESET_GRC_CONTROLS);
   const [evidenceList, setEvidenceList] = useState<GrcAuditEvidence[]>(PRESET_AUDIT_EVIDENCE);
   
-  const [frameworkFilter, setFrameworkFilter] = useState<
-    'ALL' | 'EU_AI_ACT' | 'GDPR' | 'NIST_AI_RMF' | 'NIST_CSF_2_0' | 'NIST_SP_800_53' | 'SOC2_TYPE2' | 'ISO_27001_2022' | 'PCI_DSS_4_0'
-  >('ALL');
+  const [frameworkFilter, setFrameworkFilterState] = useState<GrcFrameworkFilterType>(() => {
+    const parsed = parsePathname();
+    if (parsed.mainView === 'grc_compliance' && parsed.subSegment && SLUG_TO_GRC_FILTER[parsed.subSegment]) {
+      return SLUG_TO_GRC_FILTER[parsed.subSegment];
+    }
+    return 'ALL';
+  });
+
+  const setFrameworkFilter = (fw: GrcFrameworkFilterType) => {
+    setFrameworkFilterState(fw);
+    const parsed = parsePathname();
+    const slug = GRC_FILTER_TO_SLUG[fw] || 'all';
+    if (parsed.mainView === 'grc_compliance') {
+      navigateToUrl(fw === 'ALL' ? '/grc-compliance' : `/grc-compliance/${slug}`);
+    } else if (parsed.mainView === 'secops') {
+      navigateToUrl(fw === 'ALL' ? '/secops/grc' : `/secops/grc/${slug}`);
+    }
+  };
+
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const parsed = parsePathname();
+      if (parsed.mainView === 'grc_compliance') {
+        const mapped = parsed.subSegment ? SLUG_TO_GRC_FILTER[parsed.subSegment] : 'ALL';
+        if (mapped) {
+          setFrameworkFilterState(mapped);
+        }
+      }
+    };
+    window.addEventListener('popstate', syncFromUrl);
+    window.addEventListener('app-location-change', syncFromUrl);
+    return () => {
+      window.removeEventListener('popstate', syncFromUrl);
+      window.removeEventListener('app-location-change', syncFromUrl);
+    };
+  }, []);
   
   const [categoryFilter, setCategoryFilter] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');

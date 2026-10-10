@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Shield,
   Activity,
@@ -68,31 +68,49 @@ import { UebaAnalyticsView } from './UebaAnalyticsView';
 import { DlpSecurityView } from './DlpSecurityView';
 import { IdsIpsWafView } from './IdsIpsWafView';
 import { MalwareCampaignsView } from './MalwareCampaignsView';
+import {
+  SecOpsSubTabType,
+  SECOPS_TAB_TO_SLUG,
+  SLUG_TO_SECOPS_TAB,
+  parsePathname,
+  navigateToUrl,
+} from '../utils/urlRouter';
 
 export function AiSecOpsNexus() {
   const { theme, isLight } = useTheme();
 
   // Sub-tabs: 'osint' | 'spire_stripe' | 'cspm' | 'tpcrm' | 'dspm' | 'grc' | 'darkweb' | 'ueba' | 'dlp' | 'killchain' | 'attacktree' | 'threathunt' | 'siem' | 'soar' | 'xdr' | 'aipentest' | 'ids_ips_waf' | 'malware_campaigns'
-  const [activeTab, setActiveTab] = useState<
-    | 'osint'
-    | 'spire_stripe'
-    | 'cspm'
-    | 'tpcrm'
-    | 'dspm'
-    | 'grc'
-    | 'darkweb'
-    | 'ueba'
-    | 'dlp'
-    | 'killchain'
-    | 'attacktree'
-    | 'threathunt'
-    | 'siem'
-    | 'soar'
-    | 'xdr'
-    | 'aipentest'
-    | 'ids_ips_waf'
-    | 'malware_campaigns'
-  >('siem');
+  const [activeTab, setActiveTabState] = useState<SecOpsSubTabType>(() => {
+    const parsed = parsePathname();
+    if (parsed.mainView === 'secops' && parsed.subSegment && SLUG_TO_SECOPS_TAB[parsed.subSegment]) {
+      return SLUG_TO_SECOPS_TAB[parsed.subSegment];
+    }
+    return 'siem';
+  });
+
+  const setActiveTab = (tab: SecOpsSubTabType) => {
+    setActiveTabState(tab);
+    const slug = SECOPS_TAB_TO_SLUG[tab] || 'siem';
+    navigateToUrl(`/secops/${slug}`);
+  };
+
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const parsed = parsePathname();
+      if (parsed.mainView === 'secops') {
+        const mapped = parsed.subSegment ? SLUG_TO_SECOPS_TAB[parsed.subSegment] : 'siem';
+        if (mapped) {
+          setActiveTabState(mapped);
+        }
+      }
+    };
+    window.addEventListener('popstate', syncFromUrl);
+    window.addEventListener('app-location-change', syncFromUrl);
+    return () => {
+      window.removeEventListener('popstate', syncFromUrl);
+      window.removeEventListener('app-location-change', syncFromUrl);
+    };
+  }, []);
 
   // SIEM State
   const [siemLogs, setSiemLogs] = useState<SiemLogEvent[]>(SAMPLE_SIEM_LOGS);
@@ -566,17 +584,23 @@ export function AiSecOpsNexus() {
               },
             ].map((group) => {
               const isGroupActive = group.apps.some((app) => app.id === activeTab);
+              const defaultGroupSlug = SECOPS_TAB_TO_SLUG[group.apps[0].id as SecOpsSubTabType];
+              const groupUrl = `/secops/${defaultGroupSlug}`;
               return (
-                <button
+                <a
                   key={group.id}
                   id={`btn-domain-group-${group.id}`}
-                  onClick={() => setActiveTab(group.apps[0].id as any)}
+                  href={groupUrl}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActiveTab(group.apps[0].id as SecOpsSubTabType);
+                  }}
                   className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer whitespace-nowrap border ${
                     isGroupActive
                       ? group.activeClass
                       : group.inactiveClass
                   }`}
-                  title={`Select ${group.title} domain`}
+                  title={`Select ${group.title} domain (${groupUrl})`}
                 >
                   <span className={isGroupActive ? 'opacity-100' : 'opacity-80'}>
                     {group.icon}
@@ -589,7 +613,7 @@ export function AiSecOpsNexus() {
                   }`}>
                     {group.apps.length}
                   </span>
-                </button>
+                </a>
               );
             })}
           </div>
@@ -675,23 +699,30 @@ export function AiSecOpsNexus() {
                 </span>
                 {activeGroup.apps.map((app) => {
                   const isAppActive = activeTab === app.id;
+                  const appSlug = SECOPS_TAB_TO_SLUG[app.id as SecOpsSubTabType];
+                  const appUrl = `/secops/${appSlug}`;
                   return (
-                    <button
+                    <a
                       key={app.id}
                       id={`btn-subapp-${app.id}`}
-                      onClick={() => setActiveTab(app.id as any)}
+                      href={appUrl}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setActiveTab(app.id as SecOpsSubTabType);
+                      }}
                       className={`flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-md transition-all cursor-pointer whitespace-nowrap border shadow-2xs ${
                         isAppActive
                           ? 'bg-slate-100 text-slate-900 border-slate-400 border-b-2 border-b-slate-900 font-bold'
                           : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
                       }`}
-                      title={`Open ${app.label}`}
+                      title={`Open ${app.label} (${appUrl})`}
                     >
                       <span className="shrink-0">
                         {app.icon}
                       </span>
                       <span>{app.label}</span>
-                    </button>
+                      <span className="text-[9px] font-mono opacity-55 hidden xl:inline">{appUrl}</span>
+                    </a>
                   );
                 })}
               </div>

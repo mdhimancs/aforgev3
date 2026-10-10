@@ -165,6 +165,8 @@ export const NodeCard: React.FC<NodeCardProps> = ({
       className={`absolute select-none cursor-move p-2.5 rounded-xl border shadow-md transition-all duration-150 ${widthClass} ${
         !isValid
           ? 'bg-rose-50/50 border-rose-400 ring-2 ring-rose-250/20 shadow-[0_4px_12px_rgba(220,38,38,0.12)]'
+          : node.status === 'testing' || node.status === 'simulated' || node.status === 'running'
+          ? 'bg-rose-50/90 border-rose-400 ring-2 ring-rose-400/60 animate-pulse shadow-[0_0_25px_rgba(244,63,94,0.3)] z-30 scale-[1.02]'
           : isSelected
           ? `${style.selectedBorder} z-30 scale-[1.01]`
           : isLLM
@@ -269,7 +271,7 @@ export const NodeCard: React.FC<NodeCardProps> = ({
         {/* Status Indicator */}
         <div className="flex items-center gap-1 bg-white/40 border border-slate-200/40 rounded-full px-2 py-0.5 shadow-3xs">
           <span className={`w-1.5 h-1.5 rounded-full ${
-            node.status === 'running' ? 'bg-amber-500 animate-pulse' :
+            node.status === 'testing' || node.status === 'simulated' || node.status === 'running' ? 'bg-rose-500 animate-pulse' :
             node.status === 'success' ? 'bg-emerald-500' :
             node.status === 'error' ? 'bg-rose-500' : 'bg-slate-400'
           }`} />
